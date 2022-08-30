@@ -1,0 +1,23 @@
+.mainHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+        height: 150px;
+        object-fit: contain;
+    }
+
+    .generateBtn {
+        width: 100%;
+        height: 50px;
+        border-radius: 50px;
+        background-color: skyblue;
+        text-align: center;
+        line-height: 50px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

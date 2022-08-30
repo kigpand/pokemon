@@ -1,18 +1,23 @@
 import { useEffect } from 'react';
 import styles from './app.module.scss';
 import Main from './container/Main/Main';
+import { useDispatch } from 'react-redux';
+import { setCurrentPoke } from './reducers/pokemon';
+import axios from 'axios';
 
 function App() {
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     getPokemon().then((v) => {
-      console.log(v);
+      dispatch(setCurrentPoke(v));
     });
   }, []);
 
   async function getPokemon() {
-    const item = await fetch('https://pokeapi.co/api/v2/pokemon/1/');
-    return item;
+    const item = await axios('https://pokeapi.co/api/v2/pokemon/1/');
+    return item.data;
   }
 
   return (
