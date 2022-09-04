@@ -1,9 +1,13 @@
+import { useSelector } from 'react-redux';
 import styles from './Detail.module.scss';
 
 const Detail = () => {
+
+    const currentPoke = useSelector((state) => state.pokemon.currentPoke);
+
     return (
         <div className={styles.detail}>
-            디테일
+            {currentPoke && currentPoke.name}
         </div>
     )
 }

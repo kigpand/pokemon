@@ -1,9 +1,11 @@
 .mainHeader {
     width: 100%;
+    background-color: red;
     display: flex;
     flex-direction: column;
 
     .logo {
+        width: 150px;
         height: 150px;
         object-fit: contain;
     }

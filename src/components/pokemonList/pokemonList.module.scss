@@ -1,5 +1,11 @@
 .list {
-    width: 100%;
+    width: 45%;
     height: 100px;
     background-color: whitesmoke;
+    margin-top: 1rem;
+
+    &:hover {
+        background-color: lightgray;
+        cursor: pointer;
+    }
 }

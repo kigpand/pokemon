@@ -1,20 +1,22 @@
+import { useState } from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { dummy } from '../../utils/dummy';
 import PokemonList from '../pokemonList/pokemonList';
 import styles from './mainBody.module.scss';
 
 const MainBody = () => {
 
-    const currentPoke = useSelector((state) => state.pokemon.currentPoke);
-    const item = '123';
+    const [data, setData] = useState([]);
 
     useEffect(() => {
-        console.log(currentPoke);
+        setData([...dummy]);
     }, []);
 
     return(
         <div className={styles.mainBody}>
-            <PokemonList pokemon={item} />
+            {data.map((data) => {
+                return <PokemonList pokemon={data} key={data.name}/>; 
+            })}
         </div>
     )
 }

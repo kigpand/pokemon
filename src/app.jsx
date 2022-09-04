@@ -1,15 +1,9 @@
-import { useEffect } from 'react';
 import styles from './app.module.scss';
 import Main from './container/Main/Main';
-import { useDispatch } from 'react-redux';
-import { setCurrentPoke } from './reducers/pokemon';
-import axios from 'axios';
 import { Routes, Route } from "react-router-dom";
 import Detail from './container/Detail/Detail';
 
 function App() {
-
-  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   getPokemon().then((v) => {
