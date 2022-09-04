@@ -1,6 +1,5 @@
 .mainHeader {
     width: 100%;
-    background-color: red;
     display: flex;
     flex-direction: column;
 
@@ -8,6 +7,53 @@
         width: 150px;
         height: 150px;
         object-fit: contain;
+    }
+
+    .generateList {
+        width: 100%;
+        position: relative;
+
+        .listHeader{
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background-color: skyblue;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .listItems {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+
+            .listItem {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                background-color: skyblue;
+                
+                &:hover {
+                    background-color: rgb(62, 62, 168);
+                    cursor: pointer;
+                }
+
+                &:last-child {
+                    border-bottom-left-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                }
+            }
+        }
     }
 
     .generateBtn {
