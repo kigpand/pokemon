@@ -1,8 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit'
-import pokemon from '../reducers/pokemon'
+import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import pokemon from '../reducers/pokemon';
+import storage from 'redux-persist/lib/storage';
+import persistReducer from 'redux-persist/es/persistReducer';
+
+const rootReducer = combineReducers({
+  pokemon: pokemon
+})
+
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    pokemon: pokemon
-  },
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
