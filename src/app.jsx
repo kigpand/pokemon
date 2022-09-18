@@ -1,7 +1,5 @@
 import styles from './app.module.scss';
 import Main from './container/Main/Main';
-import { Routes, Route } from "react-router-dom";
-import Detail from './container/Detail/Detail';
 
 function App() {
 
@@ -18,10 +16,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/detail' element={<Detail />} />
-      </Routes>
+        <Main />
     </div>
   );
 }
