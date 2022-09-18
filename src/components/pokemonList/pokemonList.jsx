@@ -15,7 +15,9 @@ const PokemonList = ({ pokemon }) => {
 
     return (
         <div className={styles.list} onClick={onNav}>
-            {pokemon.name}
+            <div className={styles.num}>No.{pokemon.id}</div>
+            <img className={styles.img} src={pokemon.imageUrl} alt={pokemon.name}></img>
+            <div className={styles.name}>{pokemon.name}</div>
         </div>
     )
 }
