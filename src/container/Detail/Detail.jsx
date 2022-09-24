@@ -72,6 +72,7 @@ const Detail = () => {
             <div className={styles.generate}>{currentPoke.generate}</div>
             <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
             <div className={styles.genus}>
+                <div className={styles.miniTitle}>분류</div>
                 { genus && genus.map((gene, i) => {
                     return <div key={i}>{gene}</div>
                 })}

@@ -8,4 +8,37 @@
     width: 100%;
     height: 100vh;
     background-color: white;
+
+    border: 4px solid gray;
+
+    .num {
+        padding: 10px 0;
+        padding-left: 10px;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: gray;
+    }
+
+    .generate {
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+        font-weight: bold;
+        color: gray;
+        padding: 5px 0;
+        padding-left: 10px;
+    }
+
+    .genus {
+        .miniTitle {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: purple;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+        }
+    }
 }
