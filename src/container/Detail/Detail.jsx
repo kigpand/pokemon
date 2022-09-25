@@ -51,6 +51,23 @@ const Detail = () => {
     function getTypeKo(types) {
         const converting = types.map((type) => {
             if (type === 'water') return '물';
+            if (type === 'grass') return '풀';
+            if (type === 'poison') return '독';
+            if (type === 'fire') return '불';
+            if (type === 'normal') return '노말';
+            if (type === 'electric') return '전기';
+            if (type === 'ice') return '얼음';
+            if (type === 'fighting') return '격투';
+            if (type === 'ground') return '땅';
+            if (type === 'flying') return '비행';
+            if (type === 'psychic') return '에스퍼';
+            if (type === 'bug') return '벌레';
+            if (type === 'rock') return '바위';
+            if (type === 'ghost') return '고스트';
+            if (type === 'dragon') return '드래곤';
+            if (type === 'dark') return '악';
+            if (type === 'steel') return '강철';
+            if (type === 'fairy') return '페어리';
             return null;
         })
 
@@ -59,10 +76,23 @@ const Detail = () => {
 
     function getColor(type) {
         if (type === '물') return '#5ec4ff';
-    }
-
-    function getBackgroundColor(type) {
-        if (type === '물') return '#0b8cd6';
+        if (type === '풀') return '#3aff6b';
+        if (type === '독') return '#b639ff';
+        if (type === '불') return '#ff0000';
+        if (type === '노말') return '#888888';
+        if (type === '전기') return '#fff34a';
+        if (type === '얼음') return '#42f9ff';
+        if (type === '격투') return '#b15429';
+        if (type === '땅') return '#b46c00';
+        if (type === '비행') return '#1f66ff';
+        if (type === '에스퍼') return '#fa51b3';
+        if (type === '벌레') return '#257439';
+        if (type === '바위') return '#977f13';
+        if (type === '고스트') return '#5e379e';
+        if (type === '드래곤') return '#4251aa';
+        if (type === '악') return '#584a30';
+        if (type === '강철') return '#797979';
+        if (type === '페어리') return '#ff35b2';
     }
 
     const makeGenus = useCallback(() => {
@@ -84,13 +114,13 @@ const Detail = () => {
     }
 
     return (
-        <div className={styles.detail} onClick={onTest} style={{ borderColor: getBackgroundColor(pokeTypes[0])}}>
-            <div className={styles.num} style={{ color: getColor(pokeTypes[0])} }>No.{currentPoke.id} {currentPoke.name}</div>
-            <div className={styles.generate} style={{ color: getColor(pokeTypes[0]), borderColor: getBackgroundColor(pokeTypes[0])} }>{currentPoke.generate}</div>
+        <div className={styles.detail} onClick={onTest} style={{ borderColor: getColor(pokeTypes[0])}}>
+            <div className={styles.num}>No.{currentPoke.id} {currentPoke.name}</div>
+            <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke.generate}</div>
             <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
             <div></div>
             <div className={styles.genus}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getBackgroundColor(pokeTypes[0])}}>분류</div>
+                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>분류</div>
                 <div className={styles.mainContents}>
                     { genus && genus.map((gene, i) => {
                         return <span key={i}>{gene}</span>
@@ -98,7 +128,7 @@ const Detail = () => {
                 </div>
             </div>
             <div className={styles.types}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getBackgroundColor(pokeTypes[0])}}>타입</div>
+                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>타입</div>
                 <div className={styles.mainContents}>
                     { pokeTypes && pokeTypes.map((type, i) => {
                         return <span key={i} className={styles.type} style={{backgroundColor: getColor(type)}}>{type}</span>
@@ -106,7 +136,7 @@ const Detail = () => {
                 </div>
             </div>
             <div className={styles.abilities}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getBackgroundColor(pokeTypes[0])}}>특성</div>
+                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>특성</div>
                 <div className={styles.mainContents}>
                     { abilities && abilities.map((abil, i) => {
                         return <span key={i}>{abil}</span>
@@ -114,13 +144,14 @@ const Detail = () => {
                 </div>
             </div>
             <div className={styles.status}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getBackgroundColor(pokeTypes[0])}}>종족값</div>
+                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>종족값</div>
                 <div className={styles.mainContents}>
                     { status && status.map((stat, i) => {
                         return <div key={i}><b>{stat.name}</b>: {stat.stat}</div>
                     })}
                 </div>
             </div>
+            <b>정보</b>
             <div className={styles.flavor}>{currentPoke.flavor}</div>
         </div>
     )

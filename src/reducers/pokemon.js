@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     generate: null,
+    pokemonList: [],
     currentPoke: null,
-    generateList: ['1세대', '2세대']
+    generateList: ['1세대', '2세대', '3세대', '4세대', '5세대', '6세대', '7세대', '8세대']
 }
 
 export const counterSlice = createSlice({
@@ -12,6 +13,9 @@ export const counterSlice = createSlice({
     reducers: {
         setGenerate: (state, action) => {
             state.generate = action.payload;
+        },
+        setPokemonList: (state, action) => {
+            state.pokemonList = [...action.payload];
         },
         setCurrentPoke: (state, action) => {
             state.currentPoke = {...action.payload};
@@ -22,6 +26,6 @@ export const counterSlice = createSlice({
     },
 })
 
-export const { setGenerate, setCurrentPoke, setGenerateList } = counterSlice.actions
+export const { setGenerate, setPokemonList, setCurrentPoke, setGenerateList } = counterSlice.actions
 
 export default counterSlice.reducer;

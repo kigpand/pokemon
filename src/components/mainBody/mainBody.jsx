@@ -1,29 +1,25 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { dummy } from '../../utils/dummy';
 import PokemonList from '../pokemonList/pokemonList';
 import styles from './mainBody.module.scss';
 
 const MainBody = () => {
 
     const [data, setData] = useState([]);
+    const pokemonList = useSelector((state) => state.pokemon.pokemonList);
     const generate = useSelector((state) => state.pokemon.generate);
-
-    useEffect(() => {
-        setData([...dummy]);
-    }, []);
 
     useEffect(() => {
         if (generate !== null) {
             if (generate === 'all') {
-                return setData(dummy);
+                return setData(pokemonList.slice(370, 380));
             } else {
-                const array = dummy.filter((item) => item.generate === generate);
-                setData(array);
+                // const array = dummy.filter((item) => item.generate === generate);
+                // setData(array);
             }
         }
-    }, [generate]);
+    }, [generate, pokemonList]);
 
     return(
         <div className={styles.mainBody}>
