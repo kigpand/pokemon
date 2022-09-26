@@ -1,7 +1,18 @@
 .mainBody {
     margin-top: 2rem;
     width: 100%;
+    height: 80%;
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    .lists {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .bottom {
+        background: red;
+    }
 }
