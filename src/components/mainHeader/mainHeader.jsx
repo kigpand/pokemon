@@ -1,14 +1,14 @@
 import styles from './mainHeader.module.scss';
 import LOGO from '../../imgs/logo.png';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setGenerate } from '../../reducers/pokemon';
 import { useState } from 'react';
 
 const MainHeader = () => {
 
     const dispatch = useDispatch();
-    const generateList = useSelector((state) => state.pokemon.generateList);
     const [isGene, setIsGene] = useState(false);
+    const generateList = ['1세대', '2세대', '3세대', '4세대', '5세대', '6세대', '7세대', '8세대'];
 
     function onGenerate(v) {
         setIsGene(false);
