@@ -111,6 +111,7 @@ const Detail = () => {
 
     function onTest() {
         dispatch(setCurrentPoke(null));
+        document.getElementById('app').style.overflowY = 'visible';
     }
 
     return (

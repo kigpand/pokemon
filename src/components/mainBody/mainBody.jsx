@@ -50,11 +50,17 @@ const MainBody = () => {
         }
     }, [bottom]);
 
+    function resetNum() {
+        num = 10;
+        setData(pokemonList.slice(0, num));
+        window.scrollTo(0,0);
+    }
+
     return(
         <div className={styles.mainBody}>
             <div className={styles.lists}>
                 {data.map((data) => {
-                    return <PokemonList pokemon={data} key={data.name}/>; 
+                    return <PokemonList pokemon={data} resetNum={resetNum} key={data.name}/>; 
                 })}
             </div>
             <div className={styles.bottom} ref={setBottom}>bottom</div>
