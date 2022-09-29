@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    generate: null,
+    generate: 'all',
     pokemonList: [],
     currentPoke: null,
 }

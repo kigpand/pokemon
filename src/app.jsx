@@ -2,11 +2,12 @@ import styles from './app.module.scss';
 import Main from './container/Main/Main';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setPokemonList } from './reducers/pokemon';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentPoke, setGenerate, setPokemonList } from './reducers/pokemon';
 
 function App() {
   const dispatch = useDispatch();
+  const currentPoke = useSelector((state) => state.pokemon.currentPoke);
 
   useEffect(() => {
     getPokemon().then((v) => {
@@ -18,6 +19,20 @@ function App() {
     const item = await axios('http://localhost:4000/pokemon');
     return item.data;
   }
+
+  useEffect(() => {
+
+    if (currentPoke.id) {
+      document.getElementById('app').style.overflowY = 'hidden';
+    }
+
+    return (() => {
+      dispatch(setPokemonList([]));
+      dispatch(setGenerate('all'));
+      dispatch(setCurrentPoke(null));
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.app} id='app'>

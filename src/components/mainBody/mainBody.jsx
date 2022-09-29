@@ -27,6 +27,8 @@ const MainBody = () => {
                 const result = pokemonList.filter((list) => list.generate === generate);
                 setList([...result]);
             }
+        } else {
+            setList([...pokemonList]);
         }
     }, [generate, pokemonList]);
 
