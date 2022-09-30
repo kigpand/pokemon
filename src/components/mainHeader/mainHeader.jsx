@@ -1,14 +1,16 @@
 import styles from './mainHeader.module.scss';
 import LOGO from '../../imgs/logo.png';
-import { useDispatch } from 'react-redux';
-import { setGenerate } from '../../reducers/pokemon';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentPoke, setGenerate } from '../../reducers/pokemon';
+import { useRef, useState } from 'react';
 
 const MainHeader = () => {
 
+    const searchRef = useRef();
     const dispatch = useDispatch();
     const [isGene, setIsGene] = useState(false);
     const generateList = ['1세대', '2세대', '3세대', '4세대', '5세대', '6세대', '7세대', '8세대'];
+    const pokemonList = useSelector((state) => state.pokemon.pokemonList); 
 
     function onGenerate(v) {
         setIsGene(false);
@@ -22,6 +24,18 @@ const MainHeader = () => {
     function onGenerateAll() {
         setIsGene(false);
         dispatch(setGenerate('all'));
+    }
+
+    function onSearchItem(e) {
+        if (e.key === 'Enter') {
+            const list = pokemonList.find((v) => v.name === searchRef.current.value);
+            if (list?.name) {
+                dispatch(setCurrentPoke(list));
+            } else {
+                dispatch(setCurrentPoke(null));
+            }
+            searchRef.current.value = '';
+        }
     }
 
     return (
@@ -38,6 +52,7 @@ const MainHeader = () => {
                 </div>
             </div>
             :<div className={styles.generateBtn} onClick={onGenerateBtn}>세대를 선택하세요</div>}
+            <input type='text' className={styles.search} ref={searchRef} placeholder='검색...' onKeyDown={onSearchItem}></input>
         </div>
     )
 }
