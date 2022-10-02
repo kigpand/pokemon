@@ -63,6 +63,10 @@ const MainBody = () => {
         window.scrollTo(0,0);
     }
 
+    function returnToTop() {
+        window.scrollTo(0,0);
+    }
+
     return(
         <div className={styles.mainBody}>
             <div className={styles.lists}>
@@ -71,6 +75,7 @@ const MainBody = () => {
                 })}
             </div>
             <div className={styles.bottom} ref={bottomRef}>bottom</div>
+            <div className={styles.topBtn} onClick={returnToTop}></div>
         </div>
     )
 }
