@@ -69,4 +69,16 @@
             cursor: pointer;
         }
     }
+
+    .search {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        border: none;
+        outline: none;
+        background-color: lightgray;
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+    }
 }

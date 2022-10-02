@@ -31,6 +31,7 @@ const MainHeader = () => {
             const list = pokemonList.find((v) => v.name === searchRef.current.value);
             if (list?.name) {
                 dispatch(setCurrentPoke(list));
+                document.getElementById('app').style.overflowY = 'hidden';
             } else {
                 dispatch(setCurrentPoke(null));
             }
