@@ -4,10 +4,12 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPoke, setGenerate, setPokemonList } from './reducers/pokemon';
+import React from 'react';
+import { RootState } from './store/store';
 
 function App() {
   const dispatch = useDispatch();
-  const currentPoke = useSelector((state) => state.pokemon.currentPoke);
+  const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
 
   useEffect(() => {
     getPokemon().then((v) => {
@@ -26,8 +28,8 @@ function App() {
   }
 
   useEffect(() => {
-    if (currentPoke.id) {
-      document.getElementById('app').style.overflowY = 'hidden';
+    if (currentPoke?.id) {
+      document.getElementById('app')!.style.overflowY = 'hidden';
     }
 
     return (() => {

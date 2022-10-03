@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IPokemonList } from '../interface/IPokemonList';
 
-const initialState = {
+interface InitState {
+    generate: string,
+    pokemonList: IPokemonList[],
+    currentPoke: null | IPokemonList
+}
+
+const initialState: InitState = {
     generate: 'all',
     pokemonList: [],
     currentPoke: null,
