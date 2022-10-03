@@ -16,12 +16,16 @@ function App() {
   }, [dispatch]);
 
   async function getPokemon() {
-    const item = await axios('http://localhost:4000/pokemon');
-    return item.data;
+    try {
+      const item = await axios('http://localhost:4000/pokemon');
+      return item.data;
+    } catch(e) {
+      console.error(e);
+      return [];
+    }
   }
 
   useEffect(() => {
-
     if (currentPoke.id) {
       document.getElementById('app').style.overflowY = 'hidden';
     }
