@@ -1,1 +1,7 @@
-$color: #fff238;
+$mobile: 767px;
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}

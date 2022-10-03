@@ -1,3 +1,5 @@
+@import '../../common/common.scss';
+
 .main {
     width: 30%;
     height: 100vh;
@@ -6,4 +8,8 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+
+    @include mobile {
+        width: 100%;
+    }
 }

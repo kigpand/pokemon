@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PokemonList from '../pokemonList/pokemonList';
 import styles from './mainBody.module.scss';
+import ARROW from '../../imgs/arrow.png';
 
 const MainBody = () => {
 
@@ -75,7 +76,7 @@ const MainBody = () => {
                 })}
             </div>
             <div className={styles.bottom} ref={bottomRef}>bottom</div>
-            <div className={styles.topBtn} onClick={returnToTop}></div>
+            <img src={ARROW} alt='arrow' className={styles.topBtn} onClick={returnToTop}></img>
         </div>
     )
 }
