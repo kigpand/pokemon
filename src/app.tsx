@@ -36,6 +36,7 @@ function App() {
       dispatch(setPokemonList([]));
       dispatch(setGenerate('all'));
       dispatch(setCurrentPoke(null));
+      window.localStorage.clear();
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -3,19 +3,26 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPoke } from '../../reducers/pokemon';
-import styles from './Detail.module.scss';
+import styles from './detail.module.scss';
+import React from 'react';
+import { RootState } from '../../store/store';
+
+interface IStateItem {
+    name: string;
+    stat: string;
+}
 
 const Detail = () => {
 
-    const currentPoke = useSelector((state) => state.pokemon.currentPoke);
-    const [status, setStatus] = useState([]);
-    const [abilities, setAbilities] = useState([]);
-    const [pokeTypes, setPokeTypes] = useState([]);
-    const [genus, setGenus] = useState([]);
+    const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
+    const [status, setStatus] = useState<any>([]);
+    const [abilities, setAbilities] = useState<string[]>([]);
+    const [pokeTypes, setPokeTypes] = useState<string[]>([]);
+    const [genus, setGenus] = useState<string[]>([]);
     const dispatch = useDispatch();
 
     const makeStateItem = useCallback(() => {
-        const items = currentPoke.states.split(',');
+        const items = currentPoke!.states.split(',');
         const splitItems = items.map((item) => {
             if (item === 'hp') return 'HP';
             if (item === 'attack') return '공격';
@@ -25,9 +32,9 @@ const Detail = () => {
             if (item === 'speed') return '스피드';
             return item;
         });
-        const stateItem = [];
-        stateItem.push({ name: '무게', stat: currentPoke.weight + 'g'});
-        stateItem.push({ name: '키', stat: currentPoke.height + 'm'});
+        const stateItem: IStateItem[] = [];
+        stateItem.push({ name: '무게', stat: currentPoke!.weight + 'g'});
+        stateItem.push({ name: '키', stat: currentPoke!.height + 'm'});
         stateItem.push({ name : splitItems[0], stat: splitItems[1]});
         stateItem.push({ name : splitItems[2], stat: splitItems[3]});
         stateItem.push({ name : splitItems[4], stat: splitItems[5]});
@@ -39,17 +46,17 @@ const Detail = () => {
     }, [currentPoke]);
 
     const makeAbilitie = useCallback(() => {
-        const abils = currentPoke.abilities.split(',');
+        const abils = currentPoke!.abilities.split(',');
         setAbilities([...abils]);
     }, [currentPoke]);
 
     const makeTypes = useCallback(() => {
-        const types = currentPoke.pokeTypes.split(',');
+        const types = currentPoke!.pokeTypes.split(',');
         setPokeTypes([...getTypeKo(types)]);
     }, [currentPoke]);
 
-    function getTypeKo(types) {
-        const converting = types.map((type) => {
+    function getTypeKo(types: string[]) {
+        const converting = types.map((type: string) => {
             if (type === 'water') return '물';
             if (type === 'grass') return '풀';
             if (type === 'poison') return '독';
@@ -68,13 +75,13 @@ const Detail = () => {
             if (type === 'dark') return '악';
             if (type === 'steel') return '강철';
             if (type === 'fairy') return '페어리';
-            return null;
-        })
+            return 'normal';
+        });
 
         return converting;
     }
 
-    function getColor(type) {
+    function getColor(type: string) {
         if (type === '물') return '#5ec4ff';
         if (type === '풀') return '#3aff6b';
         if (type === '독') return '#b639ff';
@@ -96,7 +103,7 @@ const Detail = () => {
     }
 
     const makeGenus = useCallback(() => {
-        const gene = currentPoke.genus.split(',');
+        const gene = currentPoke!.genus.split(',');
         setGenus([...gene]);
     }, [currentPoke]);
 
@@ -111,14 +118,14 @@ const Detail = () => {
 
     function onTest() {
         dispatch(setCurrentPoke(null));
-        document.getElementById('app').style.overflowY = 'visible';
+        document.getElementById('app')!.style.overflowY = 'visible';
     }
 
     return (
         <div className={styles.detail} onClick={onTest} style={{ borderColor: getColor(pokeTypes[0])}}>
-            <div className={styles.num}>No.{currentPoke.id} {currentPoke.name}</div>
-            <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke.generate}</div>
-            <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
+            <div className={styles.num}>No.{currentPoke!.id} {currentPoke!.name}</div>
+            <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke!.generate}</div>
+            <img src={currentPoke!.imageUrl} alt={currentPoke!.name} className={styles.img}></img>
             <div></div>
             <div className={styles.genus}>
                 <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>분류</div>
@@ -147,13 +154,13 @@ const Detail = () => {
             <div className={styles.status}>
                 <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>종족값</div>
                 <div className={styles.mainContents}>
-                    { status && status.map((stat, i) => {
+                    { status && status.map((stat: IStateItem, i: number) => {
                         return <div key={i}><b>{stat.name}</b>: {stat.stat}</div>
                     })}
                 </div>
             </div>
             <b>정보</b>
-            <div className={styles.flavor}>{currentPoke.flavor}</div>
+            <div className={styles.flavor}>{currentPoke!.flavor}</div>
         </div>
     )
 }
