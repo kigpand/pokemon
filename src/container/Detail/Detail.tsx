@@ -116,13 +116,14 @@ const Detail = () => {
         }
     }, [currentPoke, makeStateItem, makeAbilitie, makeTypes, makeGenus]);
 
-    function onTest() {
+    function onCloseBtn() {
         dispatch(setCurrentPoke(null));
         document.getElementById('app')!.style.overflowY = 'visible';
     }
 
     return (
-        <div className={styles.detail} onClick={onTest} style={{ borderColor: getColor(pokeTypes[0])}}>
+        <div className={styles.detail} style={{ borderColor: getColor(pokeTypes[0])}}>
+            <div className={styles.closeBtn} style={{ borderColor: getColor(pokeTypes[0]), color: getColor(pokeTypes[0])}} onClick={onCloseBtn}>X</div>
             <div className={styles.num}>No.{currentPoke!.id} {currentPoke!.name}</div>
             <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke!.generate}</div>
             <img src={currentPoke!.imageUrl} alt={currentPoke!.name} className={styles.img}></img>
