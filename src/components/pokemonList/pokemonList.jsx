@@ -1,15 +1,16 @@
 import styles from './pokemonList.module.scss';
 import { useDispatch } from 'react-redux';
 import { setCurrentPoke } from '../../reducers/pokemon';
+import { useNavigate } from 'react-router-dom';
 
 const PokemonList = ({ pokemon, resetNum }) => {
     const dispatch = useDispatch();
+    const nav = useNavigate();
 
     function onNav() {
         dispatch(setCurrentPoke(pokemon));
         resetNum();
-
-        document.getElementById('app').style.overflowY = 'hidden';
+        nav('/detail');
     }
 
     return (

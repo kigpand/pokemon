@@ -6,6 +6,7 @@ import { setCurrentPoke } from '../../reducers/pokemon';
 import styles from './detail.module.scss';
 import React from 'react';
 import { RootState } from '../../store/store';
+import { useNavigate } from 'react-router-dom';
 
 interface IStateItem {
     name: string;
@@ -19,6 +20,7 @@ const Detail = () => {
     const [abilities, setAbilities] = useState<string[]>([]);
     const [pokeTypes, setPokeTypes] = useState<string[]>([]);
     const [genus, setGenus] = useState<string[]>([]);
+    const nav = useNavigate();
     const dispatch = useDispatch();
 
     const makeStateItem = useCallback(() => {
@@ -118,50 +120,52 @@ const Detail = () => {
 
     function onCloseBtn() {
         dispatch(setCurrentPoke(null));
-        document.getElementById('app')!.style.overflowY = 'visible';
+        nav('/');
     }
 
     return (
         <div className={styles.detail} style={{ borderColor: getColor(pokeTypes[0])}}>
-            <div className={styles.closeBtn} style={{ borderColor: getColor(pokeTypes[0]), color: getColor(pokeTypes[0])}} onClick={onCloseBtn}>X</div>
-            <div className={styles.num}>No.{currentPoke!.id} {currentPoke!.name}</div>
-            <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke!.generate}</div>
-            <img src={currentPoke!.imageUrl} alt={currentPoke!.name} className={styles.img}></img>
-            <div></div>
-            <div className={styles.genus}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>분류</div>
-                <div className={styles.mainContents}>
-                    { genus && genus.map((gene, i) => {
-                        return <span key={i}>{gene}</span>
-                    })}
+            <div className={styles.container} style={{ borderColor: getColor(pokeTypes[0])}}>
+                <div className={styles.closeBtn} style={{ borderColor: getColor(pokeTypes[0]), color: getColor(pokeTypes[0])}} onClick={onCloseBtn}>X</div>
+                <div className={styles.num}>No.{currentPoke!.id} {currentPoke!.name}</div>
+                <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke!.generate}</div>
+                <img src={currentPoke!.imageUrl} alt={currentPoke!.name} className={styles.img}></img>
+                <div></div>
+                <div className={styles.genus}>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>분류</div>
+                    <div className={styles.mainContents}>
+                        { genus && genus.map((gene, i) => {
+                            return <span key={i}>{gene}</span>
+                        })}
+                    </div>
                 </div>
-            </div>
-            <div className={styles.types}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>타입</div>
-                <div className={styles.mainContents}>
-                    { pokeTypes && pokeTypes.map((type, i) => {
-                        return <span key={i} className={styles.type} style={{backgroundColor: getColor(type)}}>{type}</span>
-                    })}
+                <div className={styles.types}>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>타입</div>
+                    <div className={styles.mainContents}>
+                        { pokeTypes && pokeTypes.map((type, i) => {
+                            return <span key={i} className={styles.type} style={{backgroundColor: getColor(type)}}>{type}</span>
+                        })}
+                    </div>
                 </div>
-            </div>
-            <div className={styles.abilities}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>특성</div>
-                <div className={styles.mainContents}>
-                    { abilities && abilities.map((abil, i) => {
-                        return <span key={i}>{abil}</span>
-                    })}
+                <div className={styles.abilities}>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>특성</div>
+                    <div className={styles.mainContents}>
+                        { abilities && abilities.map((abil, i) => {
+                            return <span key={i}>{abil}</span>
+                        })}
+                    </div>
                 </div>
-            </div>
-            <div className={styles.status}>
-                <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>종족값</div>
-                <div className={styles.mainContents}>
-                    { status && status.map((stat: IStateItem, i: number) => {
-                        return <div key={i}><b>{stat.name}</b>: {stat.stat}</div>
-                    })}
+                <div className={styles.status}>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>종족값</div>
+                    <div className={styles.mainContents}>
+                        { status && status.map((stat: IStateItem, i: number) => {
+                            return <div key={i}><b>{stat.name}</b>: {stat.stat}</div>
+                        })}
+                    </div>
                 </div>
+                <b>정보</b>
+                <div className={styles.flavor}>{currentPoke!.flavor}</div>
             </div>
-            <b>정보</b>
-            <div className={styles.flavor}>{currentPoke!.flavor}</div>
         </div>
     )
 }

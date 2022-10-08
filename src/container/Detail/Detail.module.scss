@@ -1,17 +1,21 @@
 @import '../../common/common.scss';
 
 .detail {
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 98%;
-    height: 99vh;
+    width: 30%;
+    height: 100%;
     background-color: white;
-    border: 5px solid gray;
+    position: relative;
 
     display: flex;
     flex-direction: column;
+
+    .container {
+        width: 100%;
+        height: 100%;
+        border: 5px solid;
+        display: flex;
+        flex-direction: column;
+    }
 
     .closeBtn {
         width: 20px;
@@ -78,5 +82,13 @@
     .abilities,
     .status {
         margin-bottom: 1rem;
+    }
+
+    .flavor {
+        font-size: 0.8rem;
+    }
+
+    @include mobile {
+        width: 100%;
     }
 }

@@ -2,14 +2,13 @@ import styles from './app.module.scss';
 import Main from './container/Main/Main';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentPoke, setGenerate, setPokemonList } from './reducers/pokemon';
-import React from 'react';
-import { RootState } from './store/store';
+import { Route, Routes } from 'react-router-dom';
+import Detail from './container/Detail/Detail';
 
 function App() {
   const dispatch = useDispatch();
-  const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
 
   useEffect(() => {
     getPokemon().then((v) => {
@@ -28,10 +27,6 @@ function App() {
   }
 
   useEffect(() => {
-    if (currentPoke?.id) {
-      document.getElementById('app')!.style.overflowY = 'hidden';
-    }
-
     return (() => {
       dispatch(setPokemonList([]));
       dispatch(setGenerate('all'));
@@ -43,7 +38,10 @@ function App() {
 
   return (
     <div className={styles.app} id='app'>
-        <Main />
+      <Routes>
+        <Route path='/' element={<Main /> }></Route>
+        <Route path='/detail' element={<Detail />}></Route>
+      </Routes>
     </div>
   );
 }

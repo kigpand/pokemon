@@ -3,6 +3,7 @@ import LOGO from '../../imgs/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPoke, setGenerate } from '../../reducers/pokemon';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MainHeader = () => {
 
@@ -10,7 +11,8 @@ const MainHeader = () => {
     const dispatch = useDispatch();
     const [isGene, setIsGene] = useState(false);
     const generateList = ['1세대', '2세대', '3세대', '4세대', '5세대', '6세대', '7세대', '8세대'];
-    const pokemonList = useSelector((state) => state.pokemon.pokemonList); 
+    const pokemonList = useSelector((state) => state.pokemon.pokemonList);
+    const nav = useNavigate();
 
     function onGenerate(v) {
         setIsGene(false);
@@ -31,7 +33,7 @@ const MainHeader = () => {
             const list = pokemonList.find((v) => v.name === searchRef.current.value);
             if (list?.name) {
                 dispatch(setCurrentPoke(list));
-                document.getElementById('app').style.overflowY = 'hidden';
+                nav('/detail');
             } else {
                 dispatch(setCurrentPoke(null));
             }
