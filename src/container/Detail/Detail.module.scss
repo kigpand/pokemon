@@ -2,7 +2,7 @@
 
 .detail {
     width: 30%;
-    height: 100%;
+    height: 100vh;
     background-color: white;
     position: relative;
 
@@ -10,7 +10,6 @@
     flex-direction: column;
 
     .container {
-        width: 100%;
         height: 100%;
         border: 5px solid;
         display: flex;
@@ -18,12 +17,10 @@
     }
 
     .closeBtn {
+        @include flex;
         width: 20px;
         height: 20px;
         position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         top: 10px;
         right: 10px;
         font-weight: bold;
@@ -55,12 +52,10 @@
     }
 
     .miniTitle {
+        @include flex;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         height: 30px;
     }
 

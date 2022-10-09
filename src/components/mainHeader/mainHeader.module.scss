@@ -1,3 +1,5 @@
+@import '../../common/common.scss';
+
 .mainHeader {
     width: 100%;
     height: 20%;
@@ -16,14 +18,12 @@
         z-index: 100;
 
         .listHeader{
+            @include flex;
             top: 0;
             left: 0;
             position: absolute;
             width: 100%;
             height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
             background-color: skyblue;
             border-top-left-radius: 20px;
@@ -37,11 +37,9 @@
             width: 100%;
 
             .listItem {
+                @include flex;
                 width: 100%;
                 height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 color: white;
                 background-color: skyblue;
                 
