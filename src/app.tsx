@@ -1,11 +1,11 @@
 import styles from './app.module.scss';
 import Main from './container/Main/Main';
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCurrentPoke, setGenerate, setPokemonList } from './reducers/pokemon';
 import { Route, Routes } from 'react-router-dom';
 import Detail from './container/Detail/Detail';
+import { getPokemon } from './utils/network';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,16 +15,6 @@ function App() {
       dispatch(setPokemonList(v));
     });
   }, [dispatch]);
-
-  async function getPokemon() {
-    try {
-      const item = await axios('http://localhost:4000/pokemon');
-      return item.data;
-    } catch(e) {
-      console.error(e);
-      return [];
-    }
-  }
 
   useEffect(() => {
     return (() => {
