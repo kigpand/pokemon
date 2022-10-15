@@ -6,6 +6,7 @@ import { setCurrentPoke, setGenerate, setPokemonList } from './reducers/pokemon'
 import { Route, Routes } from 'react-router-dom';
 import Detail from './container/Detail/Detail';
 import { getPokemon } from './utils/network';
+import Type from './container/Type/Type';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main /> }></Route>
         <Route path='/detail' element={<Detail />}></Route>
+        <Route path='/type' element={<Type />}></Route>
       </Routes>
     </div>
   );

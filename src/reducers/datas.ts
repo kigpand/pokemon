@@ -1,19 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ITypeKoData } from '../interface/IPokemonList';
 
-const initialState: any = {
-    type: ''
+interface InitState {
+    typeLists: ITypeKoData[];
+    currentType: string | null;
+}
+
+
+const initialState: InitState = {
+    typeLists: [],
+    currentType: null
 }
 
 export const counterSlice = createSlice({
     name: 'datas',
     initialState,
     reducers: {
-        setType: (state, action) => {
-            state.type = action.payload;
+        setTypeLists: (state, action) => {
+            if (state.typeLists) {
+                state.typeLists = [...state.typeLists, action.payload];
+            } else {
+                state.typeLists = [action.payload];
+            }
+        },
+        setCurrentType: (state, action) => {
+            state.currentType = action.payload;
         }
     },
 })
 
-export const { setType } = counterSlice.actions
+export const { setTypeLists, setCurrentType } = counterSlice.actions
 
 export default counterSlice.reducer;

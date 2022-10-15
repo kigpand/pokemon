@@ -7,6 +7,8 @@ import styles from './detail.module.scss';
 import React from 'react';
 import { RootState } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
+import { setCurrentType } from '../../reducers/datas';
+import { getColor, getTypeKo } from '../../utils/convert';
 
 interface IStateItem {
     name: string;
@@ -54,55 +56,8 @@ const Detail = () => {
 
     const makeTypes = useCallback(() => {
         const types = currentPoke!.pokeTypes.split(',');
-        setPokeTypes([...getTypeKo(types)]);
+        setPokeTypes([...types]);
     }, [currentPoke]);
-
-    function getTypeKo(types: string[]) {
-        const converting = types.map((type: string) => {
-            if (type === 'water') return '물';
-            if (type === 'grass') return '풀';
-            if (type === 'poison') return '독';
-            if (type === 'fire') return '불';
-            if (type === 'normal') return '노말';
-            if (type === 'electric') return '전기';
-            if (type === 'ice') return '얼음';
-            if (type === 'fighting') return '격투';
-            if (type === 'ground') return '땅';
-            if (type === 'flying') return '비행';
-            if (type === 'psychic') return '에스퍼';
-            if (type === 'bug') return '벌레';
-            if (type === 'rock') return '바위';
-            if (type === 'ghost') return '고스트';
-            if (type === 'dragon') return '드래곤';
-            if (type === 'dark') return '악';
-            if (type === 'steel') return '강철';
-            if (type === 'fairy') return '페어리';
-            return 'normal';
-        });
-
-        return converting;
-    }
-
-    function getColor(type: string) {
-        if (type === '물') return '#5ec4ff';
-        if (type === '풀') return '#3aff6b';
-        if (type === '독') return '#b639ff';
-        if (type === '불') return '#ff0000';
-        if (type === '노말') return '#888888';
-        if (type === '전기') return '#fff34a';
-        if (type === '얼음') return '#42f9ff';
-        if (type === '격투') return '#b15429';
-        if (type === '땅') return '#b46c00';
-        if (type === '비행') return '#1f66ff';
-        if (type === '에스퍼') return '#fa51b3';
-        if (type === '벌레') return '#257439';
-        if (type === '바위') return '#977f13';
-        if (type === '고스트') return '#5e379e';
-        if (type === '드래곤') return '#4251aa';
-        if (type === '악') return '#584a30';
-        if (type === '강철') return '#797979';
-        if (type === '페어리') return '#ff35b2';
-    }
 
     const makeGenus = useCallback(() => {
         const gene = currentPoke!.genus.split(',');
@@ -121,6 +76,11 @@ const Detail = () => {
     function onCloseBtn() {
         dispatch(setCurrentPoke(null));
         nav('/');
+    }
+
+    function onTypeClick(type: string) {
+        dispatch(setCurrentType(type));
+        nav('/type');
     }
 
     return (
@@ -143,7 +103,7 @@ const Detail = () => {
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>타입</div>
                     <div className={styles.mainContents}>
                         { pokeTypes && pokeTypes.map((type, i) => {
-                            return <span key={i} className={styles.type} style={{backgroundColor: getColor(type)}}>{type}</span>
+                            return <span key={i} className={styles.type} style={{backgroundColor: getColor(type)}} onClick={() => onTypeClick(type)}>{getTypeKo(type)}</span>
                         })}
                     </div>
                 </div>

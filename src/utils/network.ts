@@ -10,9 +10,9 @@ export async function getPokemon() {
     }
 }
 
-export async function getTypes(type: string) {
+export async function getTypes(type: string): Promise<any[]> {
     try {
-        const data = await axios.get(`http://localhost:4000/typeData?type=${type}`);
+        const data = await axios.get(`http://localhost:4000/types/${type}`);
         return data.data;
     } catch(e) {
         console.error(e);
