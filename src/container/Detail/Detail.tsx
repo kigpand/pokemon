@@ -36,7 +36,7 @@ const Detail = () => {
             return item;
         });
         const stateItem: IStateItem[] = [];
-        stateItem.push({ name: '무게', stat: currentPoke!.weight + 'g'});
+        stateItem.push({ name: '무게', stat: currentPoke!.weight / 10 + 'kg'});
         stateItem.push({ name: '키', stat: currentPoke!.height / 10 + 'm'});
         stateItem.push({ name : splitItems[0], stat: splitItems[1]});
         stateItem.push({ name : splitItems[2], stat: splitItems[3]});
