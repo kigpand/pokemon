@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPoke } from '../../reducers/pokemon';
 import styles from './detail.module.scss';
-import React from 'react';
 import { RootState } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { setCurrentType } from '../../reducers/datas';
@@ -38,7 +37,7 @@ const Detail = () => {
         });
         const stateItem: IStateItem[] = [];
         stateItem.push({ name: '무게', stat: currentPoke!.weight + 'g'});
-        stateItem.push({ name: '키', stat: currentPoke!.height + 'm'});
+        stateItem.push({ name: '키', stat: currentPoke!.height / 10 + 'm'});
         stateItem.push({ name : splitItems[0], stat: splitItems[1]});
         stateItem.push({ name : splitItems[2], stat: splitItems[3]});
         stateItem.push({ name : splitItems[4], stat: splitItems[5]});
@@ -49,29 +48,21 @@ const Detail = () => {
         setStatus(stateItem);
     }, [currentPoke]);
 
-    const makeAbilitie = useCallback(() => {
+    const makePokeStats = useCallback(() => {
         const abils = currentPoke!.abilities.split(',');
-        setAbilities([...abils]);
-    }, [currentPoke]);
-
-    const makeTypes = useCallback(() => {
         const types = currentPoke!.pokeTypes.split(',');
-        setPokeTypes([...types]);
-    }, [currentPoke]);
-
-    const makeGenus = useCallback(() => {
         const gene = currentPoke!.genus.split(',');
+        setAbilities([...abils]);
+        setPokeTypes([...types]);
         setGenus([...gene]);
     }, [currentPoke]);
 
     useEffect(() => {
         if (currentPoke) {
             makeStateItem();
-            makeAbilitie();
-            makeTypes();
-            makeGenus();
+            makePokeStats();
         }
-    }, [currentPoke, makeStateItem, makeAbilitie, makeTypes, makeGenus]);
+    }, [currentPoke, makeStateItem, makePokeStats]);
 
     function onCloseBtn() {
         dispatch(setCurrentPoke(null));
