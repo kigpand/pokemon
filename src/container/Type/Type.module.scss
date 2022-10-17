@@ -1,0 +1,38 @@
+.type {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        border-radius: 8px;
+        width: 30%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .doubleDamegeFrom,
+        .doubleDamegeTo,
+        .halfDamegeFrom,
+        .halfDamegeTo,
+        .noDamegeFrom,
+        .noDamegeTo {
+            width: 90%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            
+            .items{
+                border: 3px solid black;
+                border-radius: 20px;
+                display: flex;
+
+                span {
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+}
