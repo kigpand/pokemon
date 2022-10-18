@@ -1,0 +1,23 @@
+.typeItem {
+    width: 90%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    .items{
+        border: 3px solid black;
+        border-radius: 20px;
+        display: flex;
+
+        span {
+            margin-right: 1rem;
+        }
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+}

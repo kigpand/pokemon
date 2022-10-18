@@ -7,6 +7,8 @@ import { getColor, getTypeConvertData, getTypeKo } from '../../utils/convert';
 import { getTypes } from '../../utils/network';
 import styles from './Type.module.scss';
 import { useCallback } from 'react';
+import TypeItem from './TypeItem';
+import { useNavigate } from 'react-router-dom';
 
 interface ITypeData {
     id: number;
@@ -24,6 +26,7 @@ const Type = () => {
     const typeLists = useSelector((state: RootState) => state.datas.typeLists);
     const dispatch = useDispatch();
     const [type, setType] = useState<ITypeKoData | null>(null);
+    const nav = useNavigate();
 
     useEffect(() => {
         if (currentType) {
@@ -57,63 +60,24 @@ const Type = () => {
         }
     }, [currentType, dispatch]);
 
-    useEffect(() => {
-        console.log(type);
-    }, [type]);
+    function onCloseBtn() {
+        nav('/');
+        setType(null);
+        dispatch(setTypeLists([]))
+    }
 
     return (
         <div className={styles.type}>
+            <div className={styles.closeBtn} onClick={onCloseBtn}>X</div>
             { type && 
                 <div className={styles.container} style={{ backgroundColor: getColor(type.name)}}>
                     {getTypeKo(type?.name)}
-                    <div className={styles.doubleDamegeFrom}>
-                        <div className={styles.title}>2배 데미지</div>
-                        <div className={styles.items}>
-                            {type.doubleDamegeFrom?.map((item: string, i: number) => {
-                                return <span key={i}>{item}</span>
-                            })}
-                        </div>
-                    </div>
-                    <div className={styles.doubleDamegeTo}>
-                        <div className={styles.title}>2배 준다</div>
-                        <div className={styles.items}>
-                            {type.doubleDamegeTo?.map((item: string, i: number) => {
-                                return <span key={i}>{item}</span>
-                            })}
-                        </div>
-                    </div>
-                    <div className={styles.halfDamegeFrom}>
-                        <div className={styles.title}>절반 데미지</div>
-                        <div className={styles.items}>
-                            {type.halfDamegeFrom?.map((item: string, i: number) => {
-                                return <span key={i}>{item}</span>
-                            })}
-                        </div>
-                    </div>
-                    <div className={styles.halfDamegeTo}>
-                        <div className={styles.title}>절반 데미지를 준다</div>
-                        <div className={styles.items}>
-                            {type.halfDamegeTo?.map((item: string, i: number) => {
-                                return <span key={i}>{item}</span>
-                            })}
-                        </div>
-                    </div>
-                    <div className={styles.noDamegeFrom}>
-                        <div className={styles.title}>데미지를 줄수 없다</div>
-                        <div className={styles.items}>
-                            {type.noDamegeFrom?.map((item: string, i: number) => {
-                                return <span key={i}>{item}</span>
-                            })}
-                        </div>
-                    </div>
-                    <div className={styles.noDamegeTo}>
-                        <div className={styles.title}>데미지를 받지 않는다</div>
-                        <div className={styles.items}>
-                            {type.noDamegeTo?.map((item: string, i: number) => {
-                                return <span key={i}>{item}</span>
-                            })}
-                        </div>
-                    </div>
+                    { type.doubleDamegeFrom && <TypeItem arr={type.doubleDamegeFrom} title='2배 데미지 받음'/>}
+                    { type.doubleDamegeTo && <TypeItem arr={type.doubleDamegeTo} title='2배 데미지 줌'/>}
+                    { type.halfDamegeFrom && <TypeItem arr={type.halfDamegeFrom} title='0.5배 데미지 받음'/>}
+                    { type.halfDamegeTo && <TypeItem arr={type.halfDamegeTo} title='0.5배 데미지 줌'/>}
+                    { type.noDamegeFrom && <TypeItem arr={type.noDamegeFrom} title='데미지 받지않음'/>}
+                    { type.noDamegeTo && <TypeItem arr={type.noDamegeTo} title='데미지를 줄수 없음'/>}
                 </div>
             }
         </div>
