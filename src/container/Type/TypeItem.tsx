@@ -1,3 +1,4 @@
+import { getColor } from '../../utils/convert';
 import styles from './TypeItem.module.scss';
 
 interface ITypeItem {
@@ -11,7 +12,7 @@ const TypeItem = ({ arr, title }: ITypeItem) => {
             <div className={styles.title}>{title}</div>
                 <div className={styles.items}>
                     {arr.map((item: string, i: number) => {
-                        return <span key={i}>{item}</span>
+                        return <span style={{ backgroundColor: getColor(item)}} key={i}>{item}</span>
                     })}
                 </div>
         </div>

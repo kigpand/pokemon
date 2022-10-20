@@ -2,11 +2,12 @@ import styles from './app.module.scss';
 import Main from './container/Main/Main';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setCurrentPoke, setGenerate, setPokemonList } from './reducers/pokemon';
+import { setCurrentPoke, setPokemonList } from './reducers/pokemon';
 import { Route, Routes } from 'react-router-dom';
 import Detail from './container/Detail/Detail';
 import { getPokemon } from './utils/network';
 import Type from './container/Type/Type';
+import { setCurrentType } from './reducers/datas';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,12 +19,14 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    return (() => {
-      dispatch(setPokemonList([]));
-      dispatch(setGenerate('all'));
-      dispatch(setCurrentPoke(null));
-      window.localStorage.clear();
-    })
+    if (sessionStorage.getItem('currentPoke')) {
+      const json = JSON.parse(sessionStorage.getItem('currentPoke')!);
+      dispatch(setCurrentPoke(json));
+    }
+
+    if (sessionStorage.getItem('currentType')) {
+      dispatch(setCurrentType(sessionStorage.getItem('currentType')));
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

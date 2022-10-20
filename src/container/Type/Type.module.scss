@@ -13,6 +13,16 @@
         flex-direction: column;
         align-items: center;
 
+        &:hover {
+            cursor: pointer;
+        }
+
+        .title {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
         .doubleDamegeFrom,
         .doubleDamegeTo,
         .halfDamegeFrom,

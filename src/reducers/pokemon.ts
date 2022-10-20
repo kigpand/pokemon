@@ -24,6 +24,7 @@ export const counterSlice = createSlice({
             state.pokemonList = [...action.payload];
         },
         setCurrentPoke: (state, action) => {
+            sessionStorage.setItem('currentPoke', JSON.stringify(action.payload));
             state.currentPoke = {...action.payload};
         }
     },

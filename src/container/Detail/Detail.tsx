@@ -24,6 +24,13 @@ const Detail = () => {
     const nav = useNavigate();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if (sessionStorage.getItem('currentPoke')) {
+            const json = JSON.parse(sessionStorage.getItem('currentPoke')!);
+            dispatch(setCurrentPoke(json));
+        }
+    }, [dispatch]);
+
     const makeStateItem = useCallback(() => {
         const items = currentPoke!.states.split(',');
         const splitItems = items.map((item) => {
@@ -35,6 +42,7 @@ const Detail = () => {
             if (item === 'speed') return '스피드';
             return item;
         });
+
         const stateItem: IStateItem[] = [];
         stateItem.push({ name: '무게', stat: currentPoke!.weight / 10 + 'kg'});
         stateItem.push({ name: '키', stat: currentPoke!.height / 10 + 'm'});
@@ -78,9 +86,9 @@ const Detail = () => {
         <div className={styles.detail} style={{ borderColor: getColor(pokeTypes[0])}}>
             <div className={styles.container} style={{ borderColor: getColor(pokeTypes[0])}}>
                 <div className={styles.closeBtn} style={{ borderColor: getColor(pokeTypes[0]), color: getColor(pokeTypes[0])}} onClick={onCloseBtn}>X</div>
-                <div className={styles.num}>No.{currentPoke!.id} {currentPoke!.name}</div>
-                <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke!.generate}</div>
-                <img src={currentPoke!.imageUrl} alt={currentPoke!.name} className={styles.img}></img>
+                <div className={styles.num}>No.{currentPoke?.id} {currentPoke?.name}</div>
+                <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke?.generate}</div>
+                <img src={currentPoke?.imageUrl} alt={currentPoke?.name} className={styles.img}></img>
                 <div></div>
                 <div className={styles.genus}>
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>분류</div>
@@ -115,7 +123,7 @@ const Detail = () => {
                     </div>
                 </div>
                 <b>정보</b>
-                <div className={styles.flavor}>{currentPoke!.flavor}</div>
+                <div className={styles.flavor}>{currentPoke?.flavor}</div>
             </div>
         </div>
     )

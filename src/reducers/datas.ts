@@ -24,6 +24,7 @@ export const counterSlice = createSlice({
             }
         },
         setCurrentType: (state, action) => {
+            sessionStorage.setItem('currentType', action.payload);
             state.currentType = action.payload;
         }
     },

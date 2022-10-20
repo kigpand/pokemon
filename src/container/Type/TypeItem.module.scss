@@ -1,17 +1,25 @@
 .typeItem {
     width: 90%;
-    height: 100px;
     display: flex;
     flex-direction: column;
     position: relative;
+
+    .title {
+        margin-top: 2rem;
+    }
     
     .items{
         border: 3px solid black;
         border-radius: 20px;
         display: flex;
+        align-items: center;
+        padding: 10px;
 
         span {
-            margin-right: 1rem;
+            font-size: 13px;
+            margin-left: 10px;
+            padding: 5px;
+            border-radius: 8px;
         }
     }
 
