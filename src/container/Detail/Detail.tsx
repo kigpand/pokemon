@@ -14,13 +14,17 @@ interface IStateItem {
     stat: string;
 }
 
+interface IPokeData {
+    status: any[];
+    abilities: string[];
+    pokeTypes: string[];
+    genus: string[];
+}
+
 const Detail = () => {
 
     const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
-    const [status, setStatus] = useState<any>([]);
-    const [abilities, setAbilities] = useState<string[]>([]);
-    const [pokeTypes, setPokeTypes] = useState<string[]>([]);
-    const [genus, setGenus] = useState<string[]>([]);
+    const [pokeData, setPokeData] = useState<IPokeData>({ status: [], abilities: [], pokeTypes: [], genus: []});
     const nav = useNavigate();
     const dispatch = useDispatch();
 
@@ -31,7 +35,7 @@ const Detail = () => {
         }
     }, [dispatch]);
 
-    const makeStateItem = useCallback(() => {
+    const makePokeData = useCallback(() => {
         const items = currentPoke!.states.split(',');
         const splitItems = items.map((item) => {
             if (item === 'hp') return 'HP';
@@ -53,24 +57,24 @@ const Detail = () => {
         stateItem.push({ name : splitItems[8], stat: splitItems[9]});
         stateItem.push({ name : splitItems[10], stat: splitItems[11]});
 
-        setStatus(stateItem);
-    }, [currentPoke]);
-
-    const makePokeStats = useCallback(() => {
         const abils = currentPoke!.abilities.split(',');
         const types = currentPoke!.pokeTypes.split(',');
         const gene = currentPoke!.genus.split(',');
-        setAbilities([...abils]);
-        setPokeTypes([...types]);
-        setGenus([...gene]);
+
+        setPokeData({
+            status: [...stateItem],
+            abilities: [...abils],
+            pokeTypes: [...types],
+            genus: [...gene]}
+        );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPoke]);
 
     useEffect(() => {
         if (currentPoke) {
-            makeStateItem();
-            makePokeStats();
+            makePokeData();
         }
-    }, [currentPoke, makeStateItem, makePokeStats]);
+    }, [currentPoke, makePokeData]);
 
     function onCloseBtn() {
         dispatch(setCurrentPoke(null));
@@ -83,41 +87,41 @@ const Detail = () => {
     }
 
     return (
-        <div className={styles.detail} style={{ borderColor: getColor(pokeTypes[0])}}>
-            <div className={styles.container} style={{ borderColor: getColor(pokeTypes[0])}}>
-                <div className={styles.closeBtn} style={{ borderColor: getColor(pokeTypes[0]), color: getColor(pokeTypes[0])}} onClick={onCloseBtn}>X</div>
+        <div className={styles.detail} style={{ borderColor: getColor(pokeData.pokeTypes[0])}}>
+            <div className={styles.container} style={{ borderColor: getColor(pokeData.pokeTypes[0])}}>
+                <div className={styles.closeBtn} style={{ borderColor: getColor(pokeData.pokeTypes[0]), color: getColor(pokeData.pokeTypes[0])}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke?.name}</div>
-                <div className={styles.generate} style={{ borderColor: getColor(pokeTypes[0])} }>{currentPoke?.generate}</div>
+                <div className={styles.generate} style={{ borderColor: getColor(pokeData.pokeTypes[0])} }>{currentPoke?.generate}</div>
                 <img src={currentPoke?.imageUrl} alt={currentPoke?.name} className={styles.img}></img>
                 <div></div>
                 <div className={styles.genus}>
-                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>분류</div>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeData.pokeTypes[0])}}>분류</div>
                     <div className={styles.mainContents}>
-                        { genus && genus.map((gene, i) => {
+                        { pokeData.genus && pokeData.genus.map((gene, i) => {
                             return <span key={i}>{gene}</span>
                         })}
                     </div>
                 </div>
                 <div className={styles.types}>
-                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>타입</div>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeData.pokeTypes[0])}}>타입</div>
                     <div className={styles.mainContents}>
-                        { pokeTypes && pokeTypes.map((type, i) => {
+                        { pokeData.pokeTypes && pokeData.pokeTypes.map((type, i) => {
                             return <span key={i} className={styles.type} style={{backgroundColor: getColor(type)}} onClick={() => onTypeClick(type)}>{getTypeKo(type)}</span>
                         })}
                     </div>
                 </div>
                 <div className={styles.abilities}>
-                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>특성</div>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeData.pokeTypes[0])}}>특성</div>
                     <div className={styles.mainContents}>
-                        { abilities && abilities.map((abil, i) => {
+                        { pokeData.abilities && pokeData.abilities.map((abil, i) => {
                             return <span key={i}>{abil}</span>
                         })}
                     </div>
                 </div>
                 <div className={styles.status}>
-                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeTypes[0])}}>종족값</div>
+                    <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeData.pokeTypes[0])}}>종족값</div>
                     <div className={styles.mainContents}>
-                        { status && status.map((stat: IStateItem, i: number) => {
+                        { pokeData.status && pokeData.status.map((stat: IStateItem, i: number) => {
                             return <div key={i}><b>{stat.name}</b>: {stat.stat}</div>
                         })}
                     </div>
