@@ -36,6 +36,7 @@ const MainHeader = () => {
                 nav('/detail');
             } else {
                 dispatch(setCurrentPoke(null));
+                alert('찾는 포켓몬이 없습니다');
             }
             searchRef.current.value = '';
         }

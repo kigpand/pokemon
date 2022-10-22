@@ -71,12 +71,12 @@ const Type = () => {
             { type && 
                 <div className={styles.container} style={{ backgroundColor: getColor(type.name)}}>
                     <div className={styles.title}>{getTypeKo(type?.name)}</div>
-                    { type.doubleDamegeFrom && <TypeItem arr={type.doubleDamegeFrom} title='2배 데미지 받음'/>}
-                    { type.doubleDamegeTo && <TypeItem arr={type.doubleDamegeTo} title='2배 데미지 줌'/>}
-                    { type.halfDamegeFrom && <TypeItem arr={type.halfDamegeFrom} title='0.5배 데미지 받음'/>}
-                    { type.halfDamegeTo && <TypeItem arr={type.halfDamegeTo} title='0.5배 데미지 줌'/>}
-                    { type.noDamegeFrom && <TypeItem arr={type.noDamegeFrom} title='데미지 받지않음'/>}
-                    { type.noDamegeTo && <TypeItem arr={type.noDamegeTo} title='데미지를 줄수 없음'/>}
+                    { type.doubleDamegeFrom && <TypeItem arr={type.doubleDamegeFrom} title='2배 데미지 받음' type={type.name}/>}
+                    { type.doubleDamegeTo && <TypeItem arr={type.doubleDamegeTo} title='2배 데미지 줌' type={type.name}/>}
+                    { type.halfDamegeFrom && <TypeItem arr={type.halfDamegeFrom} title='0.5배 데미지 받음' type={type.name}/>}
+                    { type.halfDamegeTo && <TypeItem arr={type.halfDamegeTo} title='0.5배 데미지 줌' type={type.name}/>}
+                    { type.noDamegeFrom && <TypeItem arr={type.noDamegeFrom} title='데미지 받지않음' type={type.name}/>}
+                    { type.noDamegeTo && <TypeItem arr={type.noDamegeTo} title='데미지를 줄수 없음' type={type.name}/>}
                 </div>
             }
         </div>

@@ -19,6 +19,27 @@ export function getColor(type: string) {
     if (type === 'fairy' || type === '페어리') return '#ff35b2';
 }
 
+export function getLineColor(type: string) {
+    if (type === 'water' || type === '물') return '#33b4ff';
+    if (type === 'grass' || type === '풀') return '#19df4b';
+    if (type === 'poison' || type === '독') return '#871dc5';
+    if (type === 'fire' || type === '불') return '#b60000';
+    if (type === 'normal' || type === '노말') return '#5a5a5a';
+    if (type === 'electric' || type === '전기') return '#e4d72a';
+    if (type === 'ice' || type === '얼음') return '#24dfe6';
+    if (type === 'fighting' || type === '격투') return '#973e15';
+    if (type === 'ground' || type === '땅') return '#794b05';
+    if (type === 'flying' || type === '비행') return '#194ec0';
+    if (type === 'psychic' || type === '에스퍼') return '#f52ba1';
+    if (type === 'bug' || type === '벌레') return '#145a26';
+    if (type === 'rock' || type === '바위') return '#816f1d';
+    if (type === 'ghost' || type === '고스트') return '#3d1877';
+    if (type === 'dragon' || type === '드래곤') return '#434e8b';
+    if (type === 'dark' || type === '악') return '#383020';
+    if (type === 'steel' || type === '강철') return '#444444';
+    if (type === 'fairy' || type === '페어리') return '#ff18a7';
+}
+
 export function getTypeKo(type: string) {
     if (type === 'water') return '물';
     if (type === 'grass') return '풀';

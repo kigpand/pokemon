@@ -67,6 +67,15 @@
         -webkit-box-shadow: 0px 8px 17px -3px #000000; 
         box-shadow: 0px 3px 17px -3px #000000;
 
+        .statusItem {
+            width: 100%;
+            display: flex;
+            div {
+                font-weight: bold;
+                width: 80px;
+            }
+        }
+
         span {
             margin-right: 1rem;
         }

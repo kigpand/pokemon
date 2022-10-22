@@ -11,7 +11,7 @@ import { getColor, getTypeKo } from '../../utils/convert';
 
 interface IStateItem {
     name: string;
-    stat: string;
+    stat: string | number;
 }
 
 interface IPokeData {
@@ -28,13 +28,6 @@ const Detail = () => {
     const nav = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (sessionStorage.getItem('currentPoke')) {
-            const json = JSON.parse(sessionStorage.getItem('currentPoke')!);
-            dispatch(setCurrentPoke(json));
-        }
-    }, [dispatch]);
-
     const makePokeData = useCallback(() => {
         const items = currentPoke!.states.split(',');
         const splitItems = items.map((item) => {
@@ -48,6 +41,7 @@ const Detail = () => {
         });
 
         const stateItem: IStateItem[] = [];
+        const assemble: number = Number(splitItems[1]) + Number(splitItems[3]) + Number(splitItems[5]) + Number(splitItems[7]) + Number(splitItems[9]) + Number(splitItems[11]);
         stateItem.push({ name: '무게', stat: currentPoke!.weight / 10 + 'kg'});
         stateItem.push({ name: '키', stat: currentPoke!.height / 10 + 'm'});
         stateItem.push({ name : splitItems[0], stat: splitItems[1]});
@@ -56,6 +50,7 @@ const Detail = () => {
         stateItem.push({ name : splitItems[6], stat: splitItems[7]});
         stateItem.push({ name : splitItems[8], stat: splitItems[9]});
         stateItem.push({ name : splitItems[10], stat: splitItems[11]});
+        stateItem.push({ name : '총합', stat: assemble})
 
         const abils = currentPoke!.abilities.split(',');
         const types = currentPoke!.pokeTypes.split(',');
@@ -70,11 +65,6 @@ const Detail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPoke]);
 
-    useEffect(() => {
-        if (currentPoke) {
-            makePokeData();
-        }
-    }, [currentPoke, makePokeData]);
 
     function onCloseBtn() {
         dispatch(setCurrentPoke(null));
@@ -85,6 +75,19 @@ const Detail = () => {
         dispatch(setCurrentType(type));
         nav('/type');
     }
+
+    useEffect(() => {
+        if (currentPoke) {
+            makePokeData();
+        }
+    }, [currentPoke, makePokeData]);
+
+    useEffect(() => {
+        if (sessionStorage.getItem('currentPoke')) {
+            const json = JSON.parse(sessionStorage.getItem('currentPoke')!);
+            dispatch(setCurrentPoke(json));
+        }
+    }, [dispatch]);
 
     return (
         <div className={styles.detail} style={{ borderColor: getColor(pokeData.pokeTypes[0])}}>
@@ -122,7 +125,7 @@ const Detail = () => {
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(pokeData.pokeTypes[0])}}>종족값</div>
                     <div className={styles.mainContents}>
                         { pokeData.status && pokeData.status.map((stat: IStateItem, i: number) => {
-                            return <div key={i}><b>{stat.name}</b>: {stat.stat}</div>
+                            return <div className={styles.statusItem} key={i}><div>{stat.name}</div>: {stat.stat}</div>
                         })}
                     </div>
                 </div>
