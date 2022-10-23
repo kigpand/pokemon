@@ -13,10 +13,17 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getPokemon().then((v) => {
-      dispatch(setPokemonList(v));
-    });
-  }, [dispatch]);
+    if (sessionStorage.getItem('pokeList')) {
+      const pokeList = JSON.parse(sessionStorage.getItem('pokeList')!);
+      dispatch(setPokemonList(pokeList));
+    } else {
+      getPokemon().then((v) => {
+        sessionStorage.setItem('pokeList', JSON.stringify(v));
+        dispatch(setPokemonList(v));
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (sessionStorage.getItem('currentPoke')) {

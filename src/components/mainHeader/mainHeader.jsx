@@ -19,10 +19,6 @@ const MainHeader = () => {
         dispatch(setGenerate(v));
     }
 
-    function onGenerateBtn() {
-        setIsGene(true);
-    }
-
     function onGenerateAll() {
         setIsGene(false);
         dispatch(setGenerate('all'));
@@ -55,7 +51,7 @@ const MainHeader = () => {
                     })}
                 </div>
             </div>
-            :<div className={styles.generateBtn} onClick={onGenerateBtn}>세대를 선택하세요</div>}
+            :<div className={styles.generateBtn} onClick={() => setIsGene(true)}>세대를 선택하세요</div>}
             <input type='text' className={styles.search} ref={searchRef} placeholder='검색...' onKeyDown={onSearchItem}></input>
         </div>
     )

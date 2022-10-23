@@ -40,9 +40,9 @@ const Type = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentType]);
 
-    const getTypeData = useCallback(async () => {
+    const getTypeData = useCallback(() => {
         if (currentType) {
-            await getTypes(currentType)
+            getTypes(currentType)
             .then((data: ITypeData[]) => {
                 const typeList: ITypeKoData = {
                     id: data[0].id,
