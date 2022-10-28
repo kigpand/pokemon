@@ -2,14 +2,20 @@ import styles from './pokemonList.module.scss';
 import { useDispatch } from 'react-redux';
 import { setCurrentPoke } from '../../reducers/pokemon';
 import { useNavigate } from 'react-router-dom';
+import { setDataCount } from '../../reducers/datas';
+import { IPokemonList } from '../../interface/IPokemonList';
 
-const PokemonList = ({ pokemon, resetNum }) => {
+interface IPokeMonList {
+    pokemon: IPokemonList
+}
+
+const PokemonList = ({ pokemon }: IPokeMonList) => {
     const dispatch = useDispatch();
     const nav = useNavigate();
 
     function onNav() {
         dispatch(setCurrentPoke(pokemon));
-        resetNum();
+        dispatch(setDataCount(10));
         nav('/detail');
     }
 

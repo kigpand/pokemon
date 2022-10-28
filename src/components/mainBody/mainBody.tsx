@@ -1,24 +1,25 @@
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PokemonList from '../pokemonList/pokemonList';
 import styles from './mainBody.module.scss';
+import { setDataCount } from '../../reducers/datas';
+import { RootState } from '../../store/store';
+import { IPokemonList } from '../../interface/IPokemonList';
 import ARROW from '../../imgs/arrow.png';
 
 const MainBody = () => {
 
-    const [data, setData] = useState([]);
-    const [num, setNum] = useState(10);
-    const [list, setList] = useState([]);
-    const pokemonList = useSelector((state) => state.pokemon.pokemonList);
-    const generate = useSelector((state) => state.pokemon.generate);
-    const observerRef = useRef();
-    const bottomRef = useRef();
-
-    useEffect(() => {
-        setNum(10);
-    }, [generate]);
+    const [data, setData] = useState<IPokemonList[]>([]);
+    const [list, setList] = useState<IPokemonList[]>([]);
+    const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
+    const generate = useSelector((state: RootState) => state.pokemon.generate);
+    const dataCount = useSelector((state: RootState) => state.datas.dataCount);
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const bottomRef = useRef<HTMLDivElement>(null);
+    const bodyRef = useRef<HTMLDivElement>(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (generate !== null) {
@@ -33,8 +34,8 @@ const MainBody = () => {
         }
     }, [generate, pokemonList]);
 
-    const intersectionObserver = (entries, io) => {
-        entries.forEach((entry) => {
+    const intersectionObserver = (entries: any, io: any) => {
+        entries.forEach((entry: any) => {
             if(entry.isIntersecting) { 
                 io.unobserve(entry.target); 
                 onAddListCount();
@@ -45,34 +46,28 @@ const MainBody = () => {
     useEffect(() => {
         observerRef.current = new IntersectionObserver(intersectionObserver)
         bottomRef.current && observerRef.current.observe(bottomRef.current);
-        setData(list.slice(0, num));
+        setData(list.slice(0, dataCount));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [num])
+    }, [dataCount])
 
     function onAddListCount() {
-        setNum(num + 10);
+        dispatch(setDataCount(dataCount + 10));
     }
 
     useEffect(() => {
-        setData(list.slice(0, num));
+        setData(list.slice(0, dataCount));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [list]);
 
-    function resetNum() {
-        setNum(10);
-        setData(list.slice(0, 10));
-        window.scrollTo(0,0);
-    }
-
     function returnToTop() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     return(
-        <div className={styles.mainBody}>
+        <div className={styles.mainBody} ref={bodyRef}>
             <div className={styles.lists}>
-                {data.map((data) => {
-                    return <PokemonList pokemon={data} resetNum={resetNum} key={data.name}/>; 
+                {data.map((data: IPokemonList) => {
+                    return <PokemonList pokemon={data} key={data.name} />; 
                 })}
             </div>
             <div className={styles.bottom} ref={bottomRef}>bottom</div>

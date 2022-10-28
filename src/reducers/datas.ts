@@ -4,12 +4,14 @@ import { ITypeKoData } from '../interface/IPokemonList';
 interface InitState {
     typeLists: ITypeKoData[];
     currentType: string | null;
+    dataCount: number;
 }
 
 
 const initialState: InitState = {
     typeLists: [],
-    currentType: null
+    currentType: null,
+    dataCount: 10,
 }
 
 export const counterSlice = createSlice({
@@ -26,10 +28,13 @@ export const counterSlice = createSlice({
         setCurrentType: (state, action) => {
             sessionStorage.setItem('currentType', action.payload);
             state.currentType = action.payload;
-        }
+        },
+        setDataCount: (state,action) => {
+            state.dataCount = action.payload;
+        },
     },
 })
 
-export const { setTypeLists, setCurrentType } = counterSlice.actions
+export const { setTypeLists, setCurrentType, setDataCount } = counterSlice.actions
 
 export default counterSlice.reducer;

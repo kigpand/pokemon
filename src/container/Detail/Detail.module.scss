@@ -103,5 +103,9 @@
 
     @include mobile {
         width: 100%;
+
+        .img {
+            height: 150px;
+        }
     }
 }
