@@ -94,6 +94,11 @@
 
     .types {
         .type {
+            padding: 3px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+
             &:hover {
                 cursor: pointer;
                 text-decoration: underline;

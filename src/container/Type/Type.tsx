@@ -69,8 +69,8 @@ const Type = () => {
     return (
         <div className={styles.type} onClick={onCloseBtn}>
             { type && 
-                <div className={styles.container} style={{ backgroundColor: getColor(type.name)}}>
-                    <div className={styles.title}>{getTypeKo(type?.name)}</div>
+                <div className={styles.container} style={{ borderColor: getColor(type.name)}}>
+                    <div className={styles.title} style={{ backgroundColor: getColor(type.name)}}>{getTypeKo(type?.name)}(타입)</div>
                     { type.doubleDamegeFrom && <TypeItem arr={type.doubleDamegeFrom} title='2배 데미지 받음' type={type.name}/>}
                     { type.doubleDamegeTo && <TypeItem arr={type.doubleDamegeTo} title='2배 데미지 줌' type={type.name}/>}
                     { type.halfDamegeFrom && <TypeItem arr={type.halfDamegeFrom} title='0.5배 데미지 받음' type={type.name}/>}
