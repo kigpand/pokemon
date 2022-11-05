@@ -13,8 +13,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (sessionStorage.getItem('pokeList')) {
-      const pokeList = JSON.parse(sessionStorage.getItem('pokeList')!);
+    console.log(process.env);
+    const item = sessionStorage.getItem('pokeList');
+    if (item?.length && item!.length > 0) {
+      const pokeList = JSON.parse(item);
       dispatch(setPokemonList(pokeList));
     } else {
       getPokemon().then((v) => {
