@@ -25,7 +25,8 @@ function App() {
     //   });
     // }
     getPokemon(20).then(async (v) => {
-      await addPokeList(v);
+      const list = await addPokeList(v);
+      console.log(list);
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
