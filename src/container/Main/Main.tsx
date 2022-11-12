@@ -6,8 +6,8 @@ const Main = () => {
 
     return (
         <div className={styles.main}>
-            {/* <MainHeader />
-            <MainBody /> */}
+            <MainHeader />
+            <MainBody />
         </div>
     )
 }

@@ -88,6 +88,16 @@
         margin-bottom: 1rem;
     }
 
+    .abilities {
+        span {
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                font-weight: bold;
+            }
+        }
+    }
+
     .flavor {
         font-size: 0.8rem;
     }

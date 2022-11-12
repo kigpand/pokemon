@@ -31,8 +31,8 @@ const MainHeader = () => {
 
     function onSearchItem(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
-            const list = pokemonList.find((v: IPokemonList) => v.name === searchRef.current?.value);
-            if (list?.name) {
+            const list = pokemonList.find((v: IPokemonList) => v.species.name === searchRef.current?.value);
+            if (list?.species.name) {
                 dispatch(setCurrentPoke(list));
                 nav('/detail');
             } else {

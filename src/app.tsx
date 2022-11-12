@@ -2,7 +2,7 @@ import styles from './app.module.scss';
 import Main from './container/Main/Main';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setCurrentPoke } from './reducers/pokemon';
+import { setCurrentPoke, setPokemonList } from './reducers/pokemon';
 import { Route, Routes } from 'react-router-dom';
 import Detail from './container/Detail/Detail';
 import { getPokemon } from './utils/network';
@@ -26,7 +26,7 @@ function App() {
     // }
     getPokemon(20).then(async (v) => {
       const list = await addPokeList(v);
-      console.log(list);
+      dispatch(setPokemonList(list));
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

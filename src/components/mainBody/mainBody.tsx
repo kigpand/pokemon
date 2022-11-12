@@ -16,7 +16,6 @@ const MainBody = () => {
     const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
     const generate = useSelector((state: RootState) => state.pokemon.generate);
     const dataCount = useSelector((state: RootState) => state.datas.dataCount);
-    const observerRef = useRef<IntersectionObserver | null>(null);
     const bottomRef = useRef<HTMLDivElement>(null);
     const bodyRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
@@ -26,38 +25,13 @@ const MainBody = () => {
             if (generate === 'all') {
                 setList([...pokemonList]);
             } else {
-                const result = pokemonList.filter((list) => list.generate === generate);
+                const result = pokemonList.filter((list) => list.species.generation === generate);
                 setList([...result]);
             }
         } else {
             setList([...pokemonList]);
         }
     }, [generate, pokemonList]);
-
-    const intersectionObserver = (entries: any, io: any) => {
-        entries.forEach((entry: any) => {
-            if(entry.isIntersecting) { 
-                io.unobserve(entry.target); 
-                onAddListCount();
-            }
-        })
-    }
-
-    useEffect(() => {
-        observerRef.current = new IntersectionObserver(intersectionObserver)
-        bottomRef.current && observerRef.current.observe(bottomRef.current);
-        setData(list.slice(0, dataCount));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataCount])
-
-    function onAddListCount() {
-        dispatch(setDataCount(dataCount + 10));
-    }
-
-    useEffect(() => {
-        setData(list.slice(0, dataCount));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [list]);
 
     function returnToTop() {
         window.scrollTo(0, 0);
@@ -66,8 +40,8 @@ const MainBody = () => {
     return(
         <div className={styles.mainBody} ref={bodyRef}>
             <div className={styles.lists}>
-                {data.map((data: IPokemonList) => {
-                    return <PokemonList pokemon={data} key={data.name} />; 
+                {list.map((data: IPokemonList, i: number) => {
+                    return <PokemonList pokemon={data} key={i} />; 
                 })}
             </div>
             <div className={styles.bottom} ref={bottomRef}>bottom</div>
