@@ -1,3 +1,5 @@
+@import '../../common/common.scss';
+
 .typeItem {
     width: 90%;
     display: flex;
@@ -29,5 +31,11 @@
         position: absolute;
         top: 1rem;
         right: 1rem;
+    }
+
+    @include mobile {
+        .title {
+            margin-top: 20px;
+        }
     }
 }

@@ -46,6 +46,9 @@ const MainBody = () => {
     useEffect(() => {
         if (onFetch) {
             onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
+            document.body.style.overflowY = 'hidden';
+        } else {
+            document.body.style.overflowY = 'scroll';
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [onFetch]);
@@ -75,6 +78,7 @@ const MainBody = () => {
             </div>
             <img src={ARROW} alt='arrow' className={styles.topBtn} onClick={returnToTop}></img>
             { onFetch && <div className={styles.loading}><div className={styles.spinner}></div></div> }
+            { onFetch && <div className={styles.block} />}
         </div>
     )
 }
