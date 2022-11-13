@@ -53,7 +53,7 @@ function makeStatItem(stat: any) {
     return [...stats, { name: '총합', stat: all}];
 }
 
-async function makeSpecieItem(url: any) {
+async function makeSpecieItem(url: string) {
     const species = await axios.get(url);
     
     const generation = species.data.generation.url.replace('https://pokeapi.co/api/v2/generation/', '')[0];

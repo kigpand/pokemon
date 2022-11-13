@@ -4,7 +4,7 @@ export function getColor(type: string) {
     if (type === 'poison' || type === '독') return '#b639ff';
     if (type === 'fire' || type === '불꽃') return '#ff0000';
     if (type === 'normal' || type === '노말') return '#888888';
-    if (type === 'electric' || type === '전기') return '#fff34a';
+    if (type === 'electric' || type === '전기') return '#e7dc37';
     if (type === 'ice' || type === '얼음') return '#42f9ff';
     if (type === 'fighting' || type === '격투') return '#b15429';
     if (type === 'ground' || type === '땅') return '#b46c00';

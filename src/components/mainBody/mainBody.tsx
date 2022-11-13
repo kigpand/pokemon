@@ -74,7 +74,7 @@ const MainBody = () => {
                 })}
             </div>
             <img src={ARROW} alt='arrow' className={styles.topBtn} onClick={returnToTop}></img>
-            
+            { onFetch && <div className={styles.loading}><div className={styles.spinner}></div></div> }
         </div>
     )
 }

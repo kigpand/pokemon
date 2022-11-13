@@ -15,7 +15,7 @@ const PokemonList = ({ pokemon }: IPokeMonList) => {
 
     function onNav(e: any) {
         dispatch(setCurrentPoke(pokemon));
-        dispatch(setScrollPoint(e.pageY));
+        dispatch(setScrollPoint(e.pageY - 500));
         nav('/detail');
     }
 

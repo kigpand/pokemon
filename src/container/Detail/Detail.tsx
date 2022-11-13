@@ -3,8 +3,11 @@ import { setCurrentPoke } from '../../reducers/pokemon';
 import styles from './detail.module.scss';
 import { RootState } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentType } from '../../reducers/datas';
+import { setCurrentAbility, setCurrentType } from '../../reducers/datas';
 import { getColor } from '../../utils/convert';
+import { IType } from '../../interface/IType';
+import { IAbility } from '../../interface/IAbility';
+import AbilityModal from '../../components/abilityModal/AbilityModal';
 
 interface IStateItem {
     name: string;
@@ -14,6 +17,7 @@ interface IStateItem {
 const Detail = () => {
 
     const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
+    const currentAbility = useSelector((state: RootState) => state.datas.currentAbility);
     const nav = useNavigate();
     const dispatch = useDispatch();
 
@@ -22,13 +26,13 @@ const Detail = () => {
         nav('/');
     }
 
-    function onTypeClick(type: string) {
+    function onTypeClick(type: IType) {
         dispatch(setCurrentType(type));
         nav('/type');
     }
 
-    function onAbility(ability: any) {
-        alert(ability.flavor);
+    function onAbility(ability: IAbility) {
+        dispatch(setCurrentAbility(ability));
     }
 
     return (
@@ -49,7 +53,7 @@ const Detail = () => {
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(currentPoke?.types[0].name!)}}>타입</div>
                     <div className={styles.mainContents}>
                         { currentPoke?.types && currentPoke?.types.map((type, i) => {
-                            return <span key={i} className={styles.type} style={{backgroundColor: getColor(type.name)}} onClick={() => onTypeClick(type.name)}>{type.name}</span>
+                            return <span key={i} className={styles.type} style={{backgroundColor: getColor(type.name)}} onClick={() => onTypeClick(type)}>{type.name}</span>
                         })}
                     </div>
                 </div>
@@ -72,6 +76,7 @@ const Detail = () => {
                 <b>정보</b>
                 <div className={styles.flavor}><div>{currentPoke?.species.flavor[0]}</div></div>
             </div>
+            { currentAbility?.key && <AbilityModal /> }
         </div>
     )
 }

@@ -1,82 +1,32 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ITypeKoData } from '../../interface/IPokemonList';
-import { setTypeLists } from '../../reducers/datas';
+import { setCurrentType } from '../../reducers/datas';
 import { RootState } from '../../store/store';
-import { getColor, getTypeConvertData, getTypeKo } from '../../utils/convert';
-import { getTypes } from '../../utils/network';
+import { getColor } from '../../utils/convert';
 import styles from './Type.module.scss';
-import { useCallback } from 'react';
 import TypeItem from './TypeItem';
 import { useNavigate } from 'react-router-dom';
 
-interface ITypeData {
-    id: number;
-    name: string;
-    doubleDamegeFrom: string;
-    doubleDamegeTo: string;
-    halfDamegeFrom: string;
-    halfDamegeTo: string;
-    noDamegeFrom: string;
-    noDamegeTo: string;
-}
-
 const Type = () => {
     const currentType = useSelector((state: RootState) => state.datas.currentType);
-    const typeLists = useSelector((state: RootState) => state.datas.typeLists);
     const dispatch = useDispatch();
-    const [type, setType] = useState<ITypeKoData | null>(null);
     const nav = useNavigate();
-
-    useEffect(() => {
-        if (currentType) {
-            const result = typeLists.find((type: ITypeKoData) => type.name === getTypeKo(currentType));
-            if (result) {
-                setType(result);
-            } else {
-                getTypeData();
-            }
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentType]);
-
-    const getTypeData = useCallback(() => {
-        if (currentType) {
-            getTypes(currentType)
-            .then((data: ITypeData[]) => {
-                const typeList: ITypeKoData = {
-                    id: data[0].id,
-                    name: data[0].name,
-                    doubleDamegeFrom: getTypeConvertData(data[0].doubleDamegeFrom),
-                    doubleDamegeTo: getTypeConvertData(data[0].doubleDamegeTo),
-                    halfDamegeFrom: getTypeConvertData(data[0].halfDamegeFrom),
-                    halfDamegeTo: getTypeConvertData(data[0].halfDamegeTo),
-                    noDamegeFrom: getTypeConvertData(data[0].noDamegeFrom),
-                    noDamegeTo: getTypeConvertData(data[0].noDamegeTo)
-                }
-                dispatch(setTypeLists(typeList));
-                setType(typeList);
-            });
-        }
-    }, [currentType, dispatch]);
 
     function onCloseBtn() {
         nav('/');
-        setType(null);
-        dispatch(setTypeLists([]))
+        dispatch(setCurrentType(null));
     }
 
     return (
         <div className={styles.type} onClick={onCloseBtn}>
-            { type && 
-                <div className={styles.container} style={{ borderColor: getColor(type.name)}}>
-                    <div className={styles.title} style={{ backgroundColor: getColor(type.name)}}>{getTypeKo(type?.name)}(타입)</div>
-                    { type.doubleDamegeFrom && <TypeItem arr={type.doubleDamegeFrom} title='2배 데미지 받음' type={type.name}/>}
-                    { type.doubleDamegeTo && <TypeItem arr={type.doubleDamegeTo} title='2배 데미지 줌' type={type.name}/>}
-                    { type.halfDamegeFrom && <TypeItem arr={type.halfDamegeFrom} title='0.5배 데미지 받음' type={type.name}/>}
-                    { type.halfDamegeTo && <TypeItem arr={type.halfDamegeTo} title='0.5배 데미지 줌' type={type.name}/>}
-                    { type.noDamegeFrom && <TypeItem arr={type.noDamegeFrom} title='데미지 받지않음' type={type.name}/>}
-                    { type.noDamegeTo && <TypeItem arr={type.noDamegeTo} title='데미지를 줄수 없음' type={type.name}/>}
+            { currentType && 
+                <div className={styles.container} style={{ borderColor: getColor(currentType.name)}}>
+                    <div className={styles.title} style={{ backgroundColor: getColor(currentType.name)}}>{currentType.name}(타입)</div>
+                    { currentType.doubleFrom && <TypeItem arr={currentType.doubleFrom} title='2배 데미지 받음' type={currentType.name}/>}
+                    { currentType.doubleTo && <TypeItem arr={currentType.doubleTo} title='2배 데미지 줌' type={currentType.name}/>}
+                    { currentType.halfFrom && <TypeItem arr={currentType.halfFrom} title='0.5배 데미지 받음' type={currentType.name}/>}
+                    { currentType.halfTo && <TypeItem arr={currentType.halfTo} title='0.5배 데미지 줌' type={currentType.name}/>}
+                    { currentType.noFrom && <TypeItem arr={currentType.noFrom} title='데미지 받지않음' type={currentType.name}/>}
+                    { currentType.noTo && <TypeItem arr={currentType.noTo} title='데미지를 줄수 없음' type={currentType.name}/>}
                 </div>
             }
         </div>

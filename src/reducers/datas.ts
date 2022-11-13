@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ITypeKoData } from '../interface/IPokemonList';
+import { IAbility } from '../interface/IAbility';
+import { IType } from '../interface/IType';
 
 interface InitState {
-    typeLists: ITypeKoData[];
-    currentType: string | null;
+    typeLists: IType[];
+    currentType: IType | null;
     dataCount: number;
     scrollPoint: number;
+    currentAbility: IAbility | null;
 }
 
 
@@ -13,7 +15,8 @@ const initialState: InitState = {
     typeLists: [],
     currentType: null,
     dataCount: 1,
-    scrollPoint: 100
+    scrollPoint: 100,
+    currentAbility: null
 }
 
 export const counterSlice = createSlice({
@@ -36,10 +39,13 @@ export const counterSlice = createSlice({
         },
         setScrollPoint: (state, action) => {
             state.scrollPoint = action.payload;
+        },
+        setCurrentAbility: (state, action) => {
+            state.currentAbility = action.payload;
         }
     },
 })
 
-export const { setTypeLists, setCurrentType, setDataCount, setScrollPoint } = counterSlice.actions
+export const { setTypeLists, setCurrentType, setDataCount, setScrollPoint, setCurrentAbility } = counterSlice.actions
 
 export default counterSlice.reducer;
