@@ -10,20 +10,20 @@ import ARROW from '../../imgs/arrow.png';
 import { getPokemon } from '../../utils/network';
 import { addPokeList } from '../../utils/makeData';
 import { setPokemonList } from '../../reducers/pokemon';
+import { setDataCount } from '../../reducers/datas';
 
 const MainBody = () => {
 
     const [list, setList] = useState<IPokemonList[]>([]);
     const [onFetch, setOnFetch] = useState<Boolean>(false);
-    const [pokeCount, setPokeCount] = useState<number>(1);
     const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
-    const generate = useSelector((state: RootState) => state.pokemon.generate);
+    const { dataCount, scrollPoint } = useSelector((state: RootState) => state.datas);
     const bodyRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
         setList([...pokemonList]);
-    }, [generate, pokemonList]);
+    }, [pokemonList]);
 
     function returnToTop() {
         window.scrollTo(0, 0);
@@ -35,7 +35,7 @@ const MainBody = () => {
             dispatch(setPokemonList(list));
             setOnFetch(false);
         });
-      }, []);
+    }, [dispatch]);
 
     function onScroll() {
         if(window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 20){
@@ -45,13 +45,13 @@ const MainBody = () => {
 
     useEffect(() => {
         if (onFetch) {
-            onFetchData(pokeCount).then(() => setPokeCount(pokeCount + 10));
+            onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [onFetch]);
 
     useEffect(() => {
-        onFetchData(pokeCount).then(() => setPokeCount(pokeCount + 10));
+        onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
         window.addEventListener('scroll', onScroll);
 
         return (() => {
@@ -59,6 +59,12 @@ const MainBody = () => {
         });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo(0, scrollPoint);
+        }, 10);
+    }, [scrollPoint]);
 
     return(
         <div className={styles.mainBody} ref={bodyRef}>
@@ -68,6 +74,7 @@ const MainBody = () => {
                 })}
             </div>
             <img src={ARROW} alt='arrow' className={styles.topBtn} onClick={returnToTop}></img>
+            
         </div>
     )
 }

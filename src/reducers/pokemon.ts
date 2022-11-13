@@ -2,13 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { IPokemonList } from '../interface/IPokemonList';
 
 interface InitState {
-    generate: string,
     pokemonList: IPokemonList[],
     currentPoke: null | IPokemonList
 }
 
 const initialState: InitState = {
-    generate: 'all',
     pokemonList: [],
     currentPoke: null,
 }
@@ -17,11 +15,7 @@ export const counterSlice = createSlice({
     name: 'pokemon',
     initialState,
     reducers: {
-        setGenerate: (state, action) => {
-            state.generate = action.payload;
-        },
         setPokemonList: (state, action) => {
-            console.log(state.pokemonList);
             state.pokemonList = [...state.pokemonList, ...action.payload];
         },
         setCurrentPoke: (state, action) => {
@@ -31,6 +25,6 @@ export const counterSlice = createSlice({
     },
 })
 
-export const { setGenerate, setPokemonList, setCurrentPoke } = counterSlice.actions
+export const { setPokemonList, setCurrentPoke } = counterSlice.actions
 
 export default counterSlice.reducer;

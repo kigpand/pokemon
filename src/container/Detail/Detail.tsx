@@ -1,6 +1,3 @@
-import { useCallback } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPoke } from '../../reducers/pokemon';
 import styles from './detail.module.scss';
@@ -33,19 +30,6 @@ const Detail = () => {
     function onAbility(ability: any) {
         alert(ability.flavor);
     }
-
-    // useEffect(() => {
-    //     if (currentPoke) {
-    //         makecurrentPoke?();
-    //     }
-    // }, [currentPoke, makecurrentPoke?]);
-
-    // useEffect(() => {
-    //     if (sessionStorage.getItem('currentPoke')) {
-    //         const json = JSON.parse(sessionStorage.getItem('currentPoke')!);
-    //         dispatch(setCurrentPoke(json));
-    //     }
-    // }, [dispatch]);
 
     return (
         <div className={styles.detail} >

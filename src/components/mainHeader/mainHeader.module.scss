@@ -12,66 +12,6 @@
         object-fit: contain;
     }
 
-    .generateList {
-        width: 100%;
-        position: relative;
-        z-index: 100;
-
-        .listHeader{
-            @include flex;
-            top: 0;
-            left: 0;
-            position: absolute;
-            width: 100%;
-            height: 50px;
-            font-weight: bold;
-            color: white;
-            background-color: skyblue;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-
-        .listItems {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-
-            .listItem {
-                @include flex;
-                width: 100%;
-                height: 50px;
-                color: white;
-                background-color: skyblue;
-                
-                &:hover {
-                    background-color: rgb(62, 62, 168);
-                    cursor: pointer;
-                }
-
-                &:last-child {
-                    border-bottom-left-radius: 20px;
-                    border-bottom-right-radius: 20px;
-                }
-            }
-        }
-    }
-
-    .generateBtn {
-        width: 100%;
-        height: 50px;
-        border-radius: 50px;
-        color: white;
-        font-weight: bold;
-        background-color: skyblue;
-        text-align: center;
-        line-height: 50px;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
     .search {
         position: absolute;
         top: 1rem;
