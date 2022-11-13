@@ -11,7 +11,7 @@ interface InitState {
 const initialState: InitState = {
     typeLists: [],
     currentType: null,
-    dataCount: 10,
+    dataCount: 1,
 }
 
 export const counterSlice = createSlice({

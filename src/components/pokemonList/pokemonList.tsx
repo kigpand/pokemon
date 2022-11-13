@@ -4,7 +4,6 @@ import { setCurrentPoke } from '../../reducers/pokemon';
 import { useNavigate } from 'react-router-dom';
 import { setDataCount } from '../../reducers/datas';
 import { IPokemonList } from '../../interface/IPokemonList';
-import { useEffect } from 'react';
 
 interface IPokeMonList {
     pokemon: IPokemonList
@@ -13,10 +12,6 @@ interface IPokeMonList {
 const PokemonList = ({ pokemon }: IPokeMonList) => {
     const dispatch = useDispatch();
     const nav = useNavigate();
-
-    useEffect(() => {
-        console.log(pokemon);
-    }, [pokemon]);
 
     function onNav() {
         dispatch(setCurrentPoke(pokemon));

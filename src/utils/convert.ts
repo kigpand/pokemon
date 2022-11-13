@@ -2,7 +2,7 @@ export function getColor(type: string) {
     if (type === 'water' || type === '물') return '#5ec4ff';
     if (type === 'grass' || type === '풀') return '#3aff6b';
     if (type === 'poison' || type === '독') return '#b639ff';
-    if (type === 'fire' || type === '불') return '#ff0000';
+    if (type === 'fire' || type === '불꽃') return '#ff0000';
     if (type === 'normal' || type === '노말') return '#888888';
     if (type === 'electric' || type === '전기') return '#fff34a';
     if (type === 'ice' || type === '얼음') return '#42f9ff';
@@ -23,7 +23,7 @@ export function getLineColor(type: string) {
     if (type === 'water' || type === '물') return '#33b4ff';
     if (type === 'grass' || type === '풀') return '#19df4b';
     if (type === 'poison' || type === '독') return '#871dc5';
-    if (type === 'fire' || type === '불') return '#b60000';
+    if (type === 'fire' || type === '불꽃') return '#b60000';
     if (type === 'normal' || type === '노말') return '#5a5a5a';
     if (type === 'electric' || type === '전기') return '#e4d72a';
     if (type === 'ice' || type === '얼음') return '#24dfe6';
@@ -44,7 +44,7 @@ export function getTypeKo(type: string) {
     if (type === 'water') return '물';
     if (type === 'grass') return '풀';
     if (type === 'poison') return '독';
-    if (type === 'fire') return '불';
+    if (type === 'fire') return '불꽃';
     if (type === 'normal') return '노말';
     if (type === 'electric') return '전기';
     if (type === 'ice') return '얼음';

@@ -13,7 +13,7 @@ export async function getPokemon(count: number) {
     try {
         const array: any[] = [];
         // const item = await axios.get(`${process.env.REACT_APP_HOST}/pokemon`);
-        for (let i = 200; i <= 220; i++) {
+        for (let i = count; i < count + 10; i++) {
             array.push(await getPokAPI(i));
         }
         // const array = await Promise.allSettled(count.map((num: number) => { return getPokAPI(num)}));
