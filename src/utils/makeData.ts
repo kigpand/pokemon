@@ -2,20 +2,26 @@ import axios from 'axios';
 
 export async function addPokeList(v: any) {
     const list = await Promise.all(v.map(async (list: any) => {
-        const id = list.id;
-        const abilities = await makeAbilitItem(list.abilities);
-        const species = await makeSpecieItem(list.species.url);
-        const types = await makeTypeItem(list.types);
-        const imgUrl = list.sprites.other.home.front_default;
-        const stats = makeStatItem(list.stats);
-        const weight = list.weight;
-        const height = list.height;
-
-        return { id, abilities, species, types, imgUrl, stats, weight, height }; 
+        const item = await getPokeData(list);
+        return item;
     }));
     
     return list;
 }
+
+export async function getPokeData(item: any) {
+    const id = item.id;
+    const abilities = await makeAbilitItem(item.abilities);
+    const species = await makeSpecieItem(item.species.url);
+    const types = await makeTypeItem(item.types);
+    const imgUrl = item.sprites.other.home.front_default;
+    const stats = makeStatItem(item.stats);
+    const weight = item.weight;
+    const height = item.height;
+
+    return { id, abilities, species, types, imgUrl, stats, weight, height };
+}
+
 async function makeAbilitItem(abilities: any) {
     const abilitArray: any = [];
     await Promise.all(abilities.map(async (ab: any) => {

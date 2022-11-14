@@ -12,15 +12,23 @@ async function getPokAPI(num: number) {
 export async function getPokemon(count: number) {
     try {
         const array: any[] = [];
-        // const item = await axios.get(`${process.env.REACT_APP_HOST}/pokemon`);
         for (let i = count; i < count + 10; i++) {
             array.push(await getPokAPI(i));
         }
-        // const array = await Promise.allSettled(count.map((num: number) => { return getPokAPI(num)}));
-        // return item.data;
         return array;
     } catch(e) {
         console.error(e);
         return [];
     }
+}
+
+export async function getPokeItem(count: number) {
+    try {
+        const item = await getPokAPI(count);
+        return item;
+    } catch(e) {
+        console.error(e);
+        return null;
+    }
+
 }
