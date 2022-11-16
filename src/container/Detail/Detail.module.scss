@@ -70,9 +70,25 @@
         .statusItem {
             width: 100%;
             display: flex;
-            div {
-                font-weight: bold;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 3px;
+
+            .statusTitle {
+                height: 13px;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                border: 1px solid black;
                 width: 80px;
+            }
+
+            .statusBar {
+                height: 15px;
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+                padding: 5px;
             }
         }
 

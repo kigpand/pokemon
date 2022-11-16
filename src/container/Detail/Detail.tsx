@@ -35,6 +35,20 @@ const Detail = () => {
         dispatch(setCurrentAbility(ability));
     }
 
+    function getStatusBarColor(name: string) {
+        const backgroundColor: any = {
+            'HP': 'red',
+            '공격': 'orange',
+            '방어': 'blue',
+            '특수공격': 'pink',
+            '특수방어': 'purple',
+            '속도': 'green',
+            '총합': null
+        }
+
+        return backgroundColor[name];
+    }
+
     return (
         <div className={styles.detail} >
             <div className={styles.container} style={{ borderColor: getColor(currentPoke?.types[0].name!)}}>
@@ -69,7 +83,11 @@ const Detail = () => {
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(currentPoke?.types[0].name!)}}>종족값</div>
                     <div className={styles.mainContents}>
                         { currentPoke?.stats && currentPoke?.stats.map((stat: IStateItem, i: number) => {
-                            return <div className={styles.statusItem} key={i}><div>{stat.name}</div>: {stat.stat}</div>
+                            const backgroudColor = getStatusBarColor(stat.name);
+                            return <div className={styles.statusItem} key={i}>
+                                <div className={styles.statusTitle} style={{ borderColor: backgroudColor }}>{stat.name}</div>
+                                <div className={styles.statusBar} style={{ width: `${stat.name === '총합' ? 200 : stat.stat}px`, backgroundColor: backgroudColor}}>{stat.stat}</div>
+                            </div>
                         })}
                     </div>
                 </div>
