@@ -16,6 +16,22 @@
         flex-direction: column;
     }
 
+    .addBookBtn {
+        @include flex;
+        width: 20px;
+        height: 20px;
+        padding: 3px;
+        position: absolute;
+        top: 10px;
+        right: 50px;
+        font-weight: bold;
+        border: 1px solid;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     .closeBtn {
         @include flex;
         width: 20px;

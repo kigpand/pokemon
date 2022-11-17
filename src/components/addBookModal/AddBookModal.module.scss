@@ -1,0 +1,5 @@
+@import '../../common/modal.scss';
+
+.addBookModal {
+    @include modal;
+}

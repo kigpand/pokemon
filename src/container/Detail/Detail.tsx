@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPoke } from '../../reducers/pokemon';
+import { setBookPokeList, setCurrentPoke } from '../../reducers/pokemon';
 import styles from './detail.module.scss';
 import { RootState } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,8 @@ import { getColor } from '../../utils/convert';
 import { IType } from '../../interface/IType';
 import { IAbility } from '../../interface/IAbility';
 import AbilityModal from '../../components/abilityModal/AbilityModal';
+import { useState } from 'react';
+import AddBookModal from '../../components/addBookModal/AddBookModal';
 
 interface IStateItem {
     name: string;
@@ -18,6 +20,7 @@ const Detail = () => {
 
     const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
     const currentAbility = useSelector((state: RootState) => state.datas.currentAbility);
+    const [onBookModal, setOnBookModal] = useState<Boolean>(false);
     const nav = useNavigate();
     const dispatch = useDispatch();
 
@@ -49,9 +52,19 @@ const Detail = () => {
         return backgroundColor[name];
     }
 
+    function addPokeBook() {
+        dispatch(setBookPokeList(currentPoke));
+        setOnBookModal(true);
+    }
+
+    function onCloseBookModal() {
+        setOnBookModal(false);
+    }
+
     return (
         <div className={styles.detail} >
             <div className={styles.container} style={{ borderColor: getColor(currentPoke?.types[0].name!)}}>
+                <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0].name!), color: getColor(currentPoke?.types[0].name!)}} onClick={addPokeBook}>+</div>
                 <div className={styles.closeBtn} style={{ borderColor: getColor(currentPoke?.types[0].name!), color: getColor(currentPoke?.types[0].name!)}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke?.species.name}</div>
                 <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0].name!)} }>{currentPoke?.species.generation}세대</div>
@@ -95,6 +108,7 @@ const Detail = () => {
                 <div className={styles.flavor}><div>{currentPoke?.species.flavor[0]}</div></div>
             </div>
             { currentAbility?.key && <AbilityModal /> }
+            { onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}
         </div>
     )
 }
