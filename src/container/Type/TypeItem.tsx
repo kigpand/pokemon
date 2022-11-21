@@ -12,8 +12,8 @@ const TypeItem = ({ arr, title, type }: ITypeItem) => {
         <div className={styles.typeItem}>
             <div className={styles.title}>{title}</div>
                 <div className={styles.items} style={{ borderColor: getLineColor(type)}}>
-                    {arr.map((item: string, i: number) => {
-                        return <span style={{ backgroundColor: getColor(item), borderColor: getLineColor(item)}} key={i}>{getTypeKo(item)}</span>
+                    {arr[0] && arr.map((item: string, i: number) => {
+                        return <span style={{ backgroundColor: getColor(item), borderColor: getLineColor(item)}} key={i}>{item}</span>
                     })}
                 </div>
         </div>

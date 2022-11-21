@@ -1,34 +1,40 @@
 import axios from 'axios';
+import { convertPokeData } from './makeData';
 
-async function getPokAPI(num: number) {
+async function getPokAPI() {
     try {
-        const item = await axios.get(`https://pokeapi.co/api/v2/pokemon/${num}/`);
+        const item = await axios.get(`http://localhost:4000/pokemon`);
         return item.data;
     } catch (e) {
         return null;
     }
 }
 
-export async function getPokemon(count: number) {
+export async function getPokeType(name: string) {
     try {
-        const array: any[] = [];
-        for (let i = count; i < count + 10; i++) {
-            array.push(await getPokAPI(i));
-        }
-        return array;
+        const item = await axios.get(`http://localhost:4000/types/${name}`);
+        return item.data;
+    } catch (e) {
+        return null;
+    }
+}
+
+export async function getPokemon() {
+    try {
+        const list = await getPokAPI();
+        return convertPokeData(list);
     } catch(e) {
         console.error(e);
         return [];
     }
 }
 
-export async function getPokeItem(count: number) {
+export async function getPokeItem() {
     try {
-        const item = await getPokAPI(count);
+        const item = await getPokAPI();
         return item;
     } catch(e) {
         console.error(e);
         return null;
     }
-
 }

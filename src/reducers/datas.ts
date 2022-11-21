@@ -4,7 +4,7 @@ import { IType } from '../interface/IType';
 
 interface InitState {
     typeLists: IType[];
-    currentType: IType | null;
+    currentType: string | null;
     dataCount: number;
     scrollPoint: number;
     currentAbility: IAbility | null;
