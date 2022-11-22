@@ -19,6 +19,15 @@ export async function getPokeType(name: string) {
     }
 }
 
+export async function getPokeAbility(name: string) {
+    try {
+        const item = await axios.get(`http://localhost:4000/ability/${name}`);
+        return item.data;
+    } catch (e) {
+        return null;
+    }
+}
+
 export async function getPokemon() {
     try {
         const list = await getPokAPI();

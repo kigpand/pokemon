@@ -110,7 +110,7 @@ const Detail = () => {
                 <div className={styles.flavor}><div>{currentPoke?.flavor}</div></div>
             </div>
             }
-            { currentAbility?.key && <AbilityModal /> }
+            { currentAbility && <AbilityModal /> }
             { onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}
         </div>
     )
