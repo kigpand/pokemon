@@ -1,18 +1,16 @@
-import { IAbility } from './IAbility';
-import { ISpecies } from './ISpecies';
-import { IType } from './IType';
 
 export interface IPokemonList {
-    abilities: IAbility[];
+    abilities: string[];
     genus: string,
     height: number,
     id: number,
-    imgUrl: string;
-    species: ISpecies;
-    states: string;
-    weight: number;
+    name: string,
+    imageUrl: string;
     stats: IStat[];
-    types: IType[];
+    weight: number;
+    flavor: string;
+    generate: string;
+    types: string[] | null;
 }
 
 interface IStat {

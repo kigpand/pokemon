@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IAbility } from '../interface/IAbility';
 import { IType } from '../interface/IType';
 
 interface InitState {
     typeLists: IType[];
-    currentType: IType | null;
+    currentType: string | null;
     dataCount: number;
     scrollPoint: number;
-    currentAbility: IAbility | null;
+    currentAbility: string | null;
 }
 
 

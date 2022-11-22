@@ -29,9 +29,13 @@ const MainBody = () => {
         window.scrollTo(0, 0);
     }
 
-    const onFetchData = useCallback(async (count: number) => {
-        await getPokemon(count).then(async(v) => {
-            const list = await addPokeList(v);
+    const onFetchData = useCallback(async () => {
+        await getPokemon().then(async(v) => {
+            // const list = await addPokeList(v);
+            const list = [];
+            for (let i =0; i < 20; i++) {
+                list.push(v[i]);
+            }
             dispatch(setPokemonList(list));
             setOnFetch(false);
         });
@@ -45,7 +49,7 @@ const MainBody = () => {
 
     useEffect(() => {
         if (onFetch) {
-            onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
+            // onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
             document.body.style.overflowY = 'hidden';
         } else {
             document.body.style.overflowY = 'scroll';
@@ -54,12 +58,12 @@ const MainBody = () => {
     }, [onFetch]);
 
     useEffect(() => {
-        onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
-        window.addEventListener('scroll', onScroll);
+        onFetchData().then(() => dispatch(setDataCount(dataCount + 10)));
+        // window.addEventListener('scroll', onScroll);
 
-        return (() => {
-            window.removeEventListener('scroll', onScroll);
-        });
+        // return (() => {
+        //     window.removeEventListener('scroll', onScroll);
+        // });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -59,16 +59,51 @@ export function getTypeKo(type: string) {
     if (type === 'dark') return '악';
     if (type === 'steel') return '강철';
     if (type === 'fairy') return '페어리';
-    return 'normal';
+    return null;
+}
+
+export function getStatList(stat: string) {
+    const items = stat.split(',');
+    const splitItems = items.map((item) => {
+        if (item === 'hp') return 'HP';
+        if (item === 'attack') return '공격';
+        if (item === 'defense') return '방어';
+        if (item === 'special-attack') return '특수공격';
+        if (item === 'special-defense') return '특수방어';
+        if (item === 'speed') return '스피드';
+        return item;
+    });
+    const stateItem = [];
+    const allCount = Number(splitItems[1]) + Number(splitItems[3]) + Number(splitItems[5]) + Number(splitItems[7]) + Number(splitItems[9]) + Number(splitItems[11]);
+    stateItem.push({ name : splitItems[0], stat: Number(splitItems[1])});
+    stateItem.push({ name : splitItems[2], stat: Number(splitItems[3])});
+    stateItem.push({ name : splitItems[4], stat: Number(splitItems[5])});
+    stateItem.push({ name : splitItems[6], stat: Number(splitItems[7])});
+    stateItem.push({ name : splitItems[8], stat: Number(splitItems[9])});
+    stateItem.push({ name : splitItems[10], stat: Number(splitItems[11])});
+    stateItem.push({ name: '총합', stat: allCount });
+    return stateItem;
 }
 
 export function getTypeConvertData(typeInfo: string) {
     const array: string[] = typeInfo.split(',');
     if (array.length > 0 && array[0] !== '') {
         return array.map((arr: string) => {
-            return getTypeKo(arr);
+            return arr;
         });
     }
     
     return null;
+}
+
+export function typeConvertDamegeData(typeData: any) {
+    const name = getTypeKo(typeData.name);
+    const doubleFrom = typeData.doubleDamegeFrom.split(',').map((v: any) => { return getTypeKo(v)});
+    const doubleTo = typeData.doubleDamegeTo.split(',').map((v: any) => { return getTypeKo(v)});
+    const halfFrom = typeData.halfDamegeFrom.split(',').map((v: any) => { return getTypeKo(v)});
+    const halfTo = typeData.halfDamegeTo.split(',').map((v: any) => { return getTypeKo(v)});
+    const noFrom = typeData.noDamegeFrom.split(',').map((v: any) => { return getTypeKo(v)});
+    const noTo = typeData.noDamegeTo.split(',').map((v: any) => { return getTypeKo(v)});
+
+    return { name, doubleFrom, doubleTo, halfFrom, halfTo, noFrom, noTo };
 }

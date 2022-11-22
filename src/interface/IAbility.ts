@@ -1,6 +1,5 @@
 export interface IAbility {
-    key: string;
+    id: number;
     name: string;
-    isHidden: false;
-    flavor: string;
+    text: string;
 }

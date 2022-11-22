@@ -16,17 +16,17 @@ const MainHeader = () => {
 
     function onSearchItem(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
-            try {
-                getPokeItem(Number(searchRef.current?.value)).then(async (v) => {
-                    const item = await getPokeData(v);
-                    dispatch(setCurrentPoke(item));
-                    nav('/detail');
-                }).catch((e) => {
-                    alert('올바른 도감번호를 입력해주세요.');
-                });
-            } catch {
-                alert('올바른 도감번호를 입력해주세요.');
-            }
+            // try {
+            //     getPokeItem(Number(searchRef.current?.value)).then(async (v) => {
+            //         const item = await getPokeData(v);
+            //         dispatch(setCurrentPoke(item));
+            //         nav('/detail');
+            //     }).catch((e) => {
+            //         alert('올바른 도감번호를 입력해주세요.');
+            //     });
+            // } catch {
+            //     alert('올바른 도감번호를 입력해주세요.');
+            // }
 
             searchRef.current!.value = '';
         }
