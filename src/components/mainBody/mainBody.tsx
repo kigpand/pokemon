@@ -65,9 +65,9 @@ const MainBody = () => {
     }, [scroll]);
 
     useEffect(() => {
-        setTimeout(() => {
-            window.scrollTo(0, scrollPoint);
-        }, 10);
+        // setTimeout(() => {
+        //     window.scrollTo(0, scrollPoint);
+        // }, 10);
     }, [scrollPoint]);
 
     return(

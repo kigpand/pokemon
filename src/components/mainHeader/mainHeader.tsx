@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { KeyboardEvent } from 'react';
 import { getPokeData } from '../../utils/makeData';
 import { getPokeItem } from '../../utils/network';
+import SortModal from '../sortModal/SortModal';
 
 const MainHeader = () => {
 
@@ -36,6 +37,7 @@ const MainHeader = () => {
         <div className={styles.mainHeader}>
             <img src={LOGO} className={styles.logo} alt='logo'></img>
             <input type='text' className={styles.search} ref={searchRef} placeholder='검색...' onKeyDown={onSearchItem}></input>
+            <SortModal />
         </div>
     )
 }

@@ -1,0 +1,23 @@
+.sortModal {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: -300px;
+    right: 10px;
+    background-color: lightgray;
+    z-index: 100;
+    border-radius: 8px;
+    animation: sortAnim .8s forwards;
+
+    @keyframes sortAnim {
+        100% {
+            top: 10px;
+        }
+    }
+
+    @keyframes sortCloseAnim {
+        100% {
+            top: -300px;
+        }
+    }
+}
