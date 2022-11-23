@@ -3,12 +3,14 @@ import { IPokemonList } from '../interface/IPokemonList';
 
 interface InitState {
     pokemonList: IPokemonList[],
+    currentList: IPokemonList[],
     currentPoke: null | IPokemonList,
     bookPokeList: IPokemonList[]
 }
 
 const initialState: InitState = {
     pokemonList: [],
+    currentList: [],
     currentPoke: null,
     bookPokeList: []
 }
@@ -18,7 +20,10 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         setPokemonList: (state, action) => {
-            state.pokemonList = [...state.pokemonList, ...action.payload];
+            state.pokemonList = action.payload;
+        },
+        setCurrentList: (state, action) => {
+            state.currentList = [...state.currentList, ...action.payload];
         },
         setCurrentPoke: (state, action) => {
             sessionStorage.setItem('currentPoke', JSON.stringify(action.payload));
@@ -33,6 +38,6 @@ export const counterSlice = createSlice({
     },
 })
 
-export const { setPokemonList, setCurrentPoke, setBookPokeList, removeBookPokeList } = counterSlice.actions
+export const { setPokemonList, setCurrentPoke, setBookPokeList, removeBookPokeList, setCurrentList } = counterSlice.actions
 
 export default counterSlice.reducer;

@@ -45,7 +45,7 @@ const Detail = () => {
             '방어': 'blue',
             '특수공격': 'pink',
             '특수방어': 'purple',
-            '속도': 'green',
+            '스피드': 'green',
             '총합': null
         }
 

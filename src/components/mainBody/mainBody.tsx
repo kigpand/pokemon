@@ -9,21 +9,15 @@ import { IPokemonList } from '../../interface/IPokemonList';
 import ARROW from '../../imgs/arrow.png';
 import { getPokemon } from '../../utils/network';
 import { addPokeList } from '../../utils/makeData';
-import { setPokemonList } from '../../reducers/pokemon';
+import { setCurrentList, setPokemonList } from '../../reducers/pokemon';
 import { setDataCount } from '../../reducers/datas';
 
 const MainBody = () => {
-
-    const [list, setList] = useState<IPokemonList[]>([]);
-    const [onFetch, setOnFetch] = useState<Boolean>(false);
-    const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
+    const [scroll, setScroll] = useState<number>(0);
+    const { pokemonList, currentList } = useSelector((state: RootState) => state.pokemon);
     const { dataCount, scrollPoint } = useSelector((state: RootState) => state.datas);
     const bodyRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setList([...pokemonList]);
-    }, [pokemonList]);
 
     function returnToTop() {
         window.scrollTo(0, 0);
@@ -31,41 +25,44 @@ const MainBody = () => {
 
     const onFetchData = useCallback(async () => {
         await getPokemon().then(async(v) => {
-            // const list = await addPokeList(v);
-            const list = [];
-            for (let i =0; i < 20; i++) {
-                list.push(v[i]);
+            dispatch(setPokemonList(v));
+            const setting: IPokemonList[] = [];
+            for(let i = dataCount; i < dataCount + 20; i++) {
+                setting.push(v[i]);
             }
-            dispatch(setPokemonList(list));
-            setOnFetch(false);
+            dispatch(setCurrentList(setting));
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
-    function onScroll() {
+    const onScroll = () => {
         if(window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 20){
-            setOnFetch(true);
+            setScroll(window.scrollY);
         }
     }
 
     useEffect(() => {
-        if (onFetch) {
-            // onFetchData(dataCount).then(() => dispatch(setDataCount(dataCount + 10)));
-            document.body.style.overflowY = 'hidden';
-        } else {
-            document.body.style.overflowY = 'scroll';
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onFetch]);
+        onFetchData().then(() => {
+            dispatch(setDataCount(dataCount + 20));
+        });
+        window.addEventListener('scroll', onScroll);
 
-    useEffect(() => {
-        onFetchData().then(() => dispatch(setDataCount(dataCount + 10)));
-        // window.addEventListener('scroll', onScroll);
-
-        // return (() => {
-        //     window.removeEventListener('scroll', onScroll);
-        // });
+        return (() => {
+            window.removeEventListener('scroll', onScroll);
+        });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (scroll !== 0) {
+            const item: any[] = [];
+            for( let i = dataCount; i < dataCount + 10; i++) {
+                item.push(pokemonList[i]);
+            }
+            dispatch(setCurrentList(item));
+            dispatch(setDataCount(dataCount + 10));
+        }
+    }, [scroll]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -76,13 +73,11 @@ const MainBody = () => {
     return(
         <div className={styles.mainBody} ref={bodyRef}>
             <div className={styles.lists}>
-                {list.map((data: IPokemonList, i: number) => {
+                {currentList.map((data: IPokemonList, i: number) => {
                     return <PokemonList pokemon={data} key={i} />; 
                 })}
             </div>
             <img src={ARROW} alt='arrow' className={styles.topBtn} onClick={returnToTop}></img>
-            { onFetch && <div className={styles.loading}><div className={styles.spinner}></div></div> }
-            { onFetch && <div className={styles.block} />}
         </div>
     )
 }
