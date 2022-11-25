@@ -7,10 +7,10 @@ import styles from './mainBody.module.scss';
 import { RootState } from '../../store/store';
 import { IPokemonList } from '../../interface/IPokemonList';
 import ARROW from '../../imgs/arrow.png';
-import { getPokemon } from '../../utils/network';
-import { addPokeList } from '../../utils/makeData';
+import { convertPokeData } from '../../utils/makeData';
 import { setCurrentList, setPokemonList } from '../../reducers/pokemon';
 import { setDataCount } from '../../reducers/datas';
+import test from '../../json/pokemonList.json';
 
 const MainBody = () => {
     const [scroll, setScroll] = useState<number>(0);
@@ -23,15 +23,14 @@ const MainBody = () => {
         window.scrollTo(0, 0);
     }
 
-    const onFetchData = useCallback(async () => {
-        await getPokemon().then(async(v) => {
-            dispatch(setPokemonList(v));
-            const setting: IPokemonList[] = [];
-            for(let i = dataCount; i < dataCount + 20; i++) {
-                setting.push(v[i]);
-            }
-            dispatch(setCurrentList(setting));
-        });
+    const onFetchData = useCallback(() => {
+        const loadList: IPokemonList[] = convertPokeData(test);
+        dispatch(setPokemonList(loadList));
+        const setting: IPokemonList[] = [];
+        for(let i = dataCount; i < dataCount + 20; i++) {
+            setting.push(loadList[i]);
+        }
+        dispatch(setCurrentList(setting));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
@@ -42,9 +41,8 @@ const MainBody = () => {
     }
 
     useEffect(() => {
-        onFetchData().then(() => {
-            dispatch(setDataCount(dataCount + 20));
-        });
+        onFetchData();
+        dispatch(setDataCount(dataCount + 20));
         window.addEventListener('scroll', onScroll);
 
         return (() => {
@@ -62,6 +60,7 @@ const MainBody = () => {
             dispatch(setCurrentList(item));
             dispatch(setDataCount(dataCount + 10));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scroll]);
 
     useEffect(() => {

@@ -3,8 +3,8 @@ import { setCurrentAbility } from '../../reducers/datas';
 import { RootState } from '../../store/store';
 import styles from './AbilityModal.module.scss';
 import { useEffect, useState } from 'react';
-import { getPokeAbility } from '../../utils/network';
 import { IAbility } from '../../interface/IAbility';
+import abililty from '../../json/ability.json';
 
 const AbilityModal = () => {
 
@@ -14,7 +14,8 @@ const AbilityModal = () => {
 
     useEffect(() => {
         if (currentAbility !== null) {
-            getPokeAbility(currentAbility).then((v) => setAbility(v[0]));
+            const abilites = abililty.find((abil) => abil.name === currentAbility);
+            setAbility(abilites)
         }
     }, [currentAbility]);
 

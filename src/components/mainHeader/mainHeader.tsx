@@ -5,9 +5,9 @@ import { setCurrentPoke } from '../../reducers/pokemon';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React, { KeyboardEvent } from 'react';
-import { getPokeData } from '../../utils/makeData';
-import { getPokeItem } from '../../utils/network';
+import { convertOnePoke } from '../../utils/makeData';
 import SortModal from '../sortModal/SortModal';
+import list from '../../json/pokemonList.json';
 
 const MainHeader = () => {
 
@@ -17,17 +17,14 @@ const MainHeader = () => {
 
     function onSearchItem(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
-            // try {
-            //     getPokeItem(Number(searchRef.current?.value)).then(async (v) => {
-            //         const item = await getPokeData(v);
-            //         dispatch(setCurrentPoke(item));
-            //         nav('/detail');
-            //     }).catch((e) => {
-            //         alert('올바른 도감번호를 입력해주세요.');
-            //     });
-            // } catch {
-            //     alert('올바른 도감번호를 입력해주세요.');
-            // }
+            const item = list.find((item) => item.name === searchRef.current?.value);
+            if (item) {
+                const pokemon = convertOnePoke(item);
+                dispatch(setCurrentPoke(pokemon));
+                nav('/detail');
+            } else {
+                alert('올바른 도감번호를 입력해주세요.');
+            }
 
             searchRef.current!.value = '';
         }

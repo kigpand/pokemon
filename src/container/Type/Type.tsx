@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentType } from '../../reducers/datas';
 import { RootState } from '../../store/store';
-import { getColor, getTypeConvertData, typeConvertDamegeData } from '../../utils/convert';
+import { getColor, typeConvertDamegeData } from '../../utils/convert';
 import styles from './Type.module.scss';
 import TypeItem from './TypeItem';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getPokeType } from '../../utils/network';
 import { useState } from 'react';
+import types from '../../json/types.json';
 
 const Type = () => {
     const currentType = useSelector((state: RootState) => state.datas.currentType);
@@ -22,9 +22,8 @@ const Type = () => {
 
     useEffect(() => {
         if (currentType) {
-            getPokeType(currentType).then((v) => {
-                setTypeData(typeConvertDamegeData(v[0]));
-            })
+            const type = types.find((type) => type.name === currentType);
+            setTypeData(typeConvertDamegeData(type));
         }
     }, [currentType]);
 
