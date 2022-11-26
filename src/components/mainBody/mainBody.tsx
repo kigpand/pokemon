@@ -10,7 +10,7 @@ import ARROW from '../../imgs/arrow.png';
 import { convertPokeData } from '../../utils/makeData';
 import { setCurrentList, setPokemonList } from '../../reducers/pokemon';
 import { setDataCount } from '../../reducers/datas';
-import test from '../../json/pokemonList.json';
+import pokeData from '../../json/pokemonList.json';
 
 const MainBody = () => {
     const [scroll, setScroll] = useState<number>(0);
@@ -23,14 +23,21 @@ const MainBody = () => {
         window.scrollTo(0, 0);
     }
 
-    const onFetchData = useCallback(() => {
-        const loadList: IPokemonList[] = convertPokeData(test);
-        dispatch(setPokemonList(loadList));
-        const setting: IPokemonList[] = [];
-        for(let i = dataCount; i < dataCount + 20; i++) {
-            setting.push(loadList[i]);
+    useEffect(() => {
+        if (pokemonList.length > 0) {
+            const setting: IPokemonList[] = [];
+            for(let i = dataCount; i < dataCount + 20; i++) {
+                setting.push(pokemonList[i]);
+            }
+            dispatch(setCurrentList(setting));
+            dispatch(setDataCount(dataCount + 20));
         }
-        dispatch(setCurrentList(setting));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pokemonList]);
+
+    const onFetchData = useCallback(() => {
+        const loadList: IPokemonList[] = convertPokeData(pokeData);
+        dispatch(setPokemonList(loadList));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
@@ -42,7 +49,6 @@ const MainBody = () => {
 
     useEffect(() => {
         onFetchData();
-        dispatch(setDataCount(dataCount + 20));
         window.addEventListener('scroll', onScroll);
 
         return (() => {
@@ -68,6 +74,10 @@ const MainBody = () => {
         //     window.scrollTo(0, scrollPoint);
         // }, 10);
     }, [scrollPoint]);
+
+    useEffect(() => {
+        console.log(currentList);
+    }, [currentList]);
 
     return(
         <div className={styles.mainBody} ref={bodyRef}>

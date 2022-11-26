@@ -1,19 +1,60 @@
 import '../../common/event.scss';
 import styles from './SortModal.module.scss';
 import { useRef } from 'react';
+import { typeList, geneList } from './sort';
+import { getColor, getTypeConvertData, getTypeKo } from '../../utils/convert';
+import pokeData from '../../json/pokemonList.json';
+import { useDispatch } from 'react-redux';
+import { resetCurrentList } from '../../reducers/pokemon';
+import { setDataCount } from '../../reducers/datas';
 
 const SortModal = () => {
     const modalRef = useRef<HTMLDivElement>(null);
+    const dispatch = useDispatch();
 
-    function onCloseModal() {
+    function onCloseBtn() {
         if (modalRef.current) {
             modalRef.current.style.animation = 'closeModal .8s forwards';
         }
     }
 
+    function onSort(sortData: string, type: string) {
+        if (type === 'type') {
+            const filteredData = pokeData.filter((poke) => {
+                const types = getTypeConvertData(poke.pokeTypes);
+                const result = types?.find((type) => type === sortData);
+                return result ? true : false;
+            });
+            if (filteredData?.length > 0) {
+                dispatch(resetCurrentList(filteredData));
+                dispatch(setDataCount(0));
+            }
+        } else {
+            const filteredData = pokeData.filter((poke) => poke.generate === sortData);
+            if (filteredData?.length > 0) {
+                dispatch(resetCurrentList(filteredData));
+                dispatch(setDataCount(0));
+            }
+        }
+
+        onCloseBtn();
+    }
+
     return (
         <div className={styles.sortModal} ref={modalRef}>
-            <div onClick={onCloseModal}>close</div>
+            <div className={styles.sortBtn} onClick={onCloseBtn}>닫기</div>
+            <div className={styles.title}>타입</div>
+            <div className={styles.container}>
+                { typeList.map((type, i: number) => {
+                    return <div key={i} style={{ backgroundColor: getColor(type)}} onClick={() => onSort(type, 'type')}>{getTypeKo(type)}</div>
+                })}
+            </div>
+            <div className={styles.title}>세대</div>
+            <div className={styles.container}>
+                { geneList.map((gene, i: number) => {
+                    return <div key={i} className={styles.gene} onClick={() => onSort(gene, 'gene')}>{gene}</div>
+                })}
+            </div>
         </div>
     )
 }

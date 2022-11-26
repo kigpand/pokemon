@@ -25,6 +25,9 @@ export const counterSlice = createSlice({
         setCurrentList: (state, action) => {
             state.currentList = [...state.currentList, ...action.payload];
         },
+        resetCurrentList: (state, action) => {
+            state.currentList = action.payload;
+        },
         setCurrentPoke: (state, action) => {
             sessionStorage.setItem('currentPoke', JSON.stringify(action.payload));
             state.currentPoke = {...action.payload};
@@ -38,6 +41,6 @@ export const counterSlice = createSlice({
     },
 })
 
-export const { setPokemonList, setCurrentPoke, setBookPokeList, removeBookPokeList, setCurrentList } = counterSlice.actions
+export const { setPokemonList, setCurrentPoke, setBookPokeList, removeBookPokeList, setCurrentList, resetCurrentList } = counterSlice.actions
 
 export default counterSlice.reducer;
