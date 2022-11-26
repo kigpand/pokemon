@@ -69,7 +69,7 @@ const Detail = () => {
                 <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={addPokeBook}>+</div>
                 <div className={styles.closeBtn} style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke.name}</div>
-                <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}세대</div>
+                <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}</div>
                 <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
                 <div></div>
                 <div className={styles.genus}>

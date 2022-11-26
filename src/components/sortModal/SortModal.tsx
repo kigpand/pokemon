@@ -7,6 +7,7 @@ import pokeData from '../../json/pokemonList.json';
 import { useDispatch } from 'react-redux';
 import { resetCurrentList } from '../../reducers/pokemon';
 import { setDataCount } from '../../reducers/datas';
+import { convertPokeData } from '../../utils/makeData';
 
 const SortModal = () => {
     const modalRef = useRef<HTMLDivElement>(null);
@@ -19,22 +20,21 @@ const SortModal = () => {
     }
 
     function onSort(sortData: string, type: string) {
+        let filteredData = [];
         if (type === 'type') {
-            const filteredData = pokeData.filter((poke) => {
+            filteredData = pokeData.filter((poke) => {
                 const types = getTypeConvertData(poke.pokeTypes);
                 const result = types?.find((type) => type === sortData);
                 return result ? true : false;
             });
-            if (filteredData?.length > 0) {
-                dispatch(resetCurrentList(filteredData));
-                dispatch(setDataCount(0));
-            }
         } else {
-            const filteredData = pokeData.filter((poke) => poke.generate === sortData);
-            if (filteredData?.length > 0) {
-                dispatch(resetCurrentList(filteredData));
-                dispatch(setDataCount(0));
-            }
+            filteredData = pokeData.filter((poke) => poke.generate === sortData);
+        }
+
+        if (filteredData?.length > 0) {
+            const setting = convertPokeData(filteredData);
+            dispatch(resetCurrentList(setting));
+            dispatch(setDataCount(0));
         }
 
         onCloseBtn();
