@@ -5,10 +5,8 @@ import { RootState } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { setCurrentAbility, setCurrentType } from '../../reducers/datas';
 import { getColor, getTypeKo } from '../../utils/convert';
-import { IType } from '../../interface/IType';
-import { IAbility } from '../../interface/IAbility';
 import AbilityModal from '../../components/abilityModal/AbilityModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AddBookModal from '../../components/addBookModal/AddBookModal';
 
 interface IStateItem {
@@ -66,7 +64,7 @@ const Detail = () => {
             {currentPoke && currentPoke.types
             &&
             <div className={styles.container} style={{ borderColor: getColor(currentPoke.types[0])}}>
-                <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={addPokeBook}>+</div>
+                {/* <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={addPokeBook}>+</div> */}
                 <div className={styles.closeBtn} style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke.name}</div>
                 <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}</div>

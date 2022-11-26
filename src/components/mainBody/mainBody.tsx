@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PokemonList from '../pokemonList/pokemonList';
@@ -9,13 +9,12 @@ import { IPokemonList } from '../../interface/IPokemonList';
 import ARROW from '../../imgs/arrow.png';
 import { convertPokeData } from '../../utils/makeData';
 import { setCurrentList, setPokemonList } from '../../reducers/pokemon';
-import { setDataCount } from '../../reducers/datas';
 import pokeData from '../../json/pokemonList.json';
 
 const MainBody = () => {
     const [scroll, setScroll] = useState<number>(0);
     const { pokemonList, currentList } = useSelector((state: RootState) => state.pokemon);
-    const { dataCount, scrollPoint } = useSelector((state: RootState) => state.datas);
+    const { scrollPoint } = useSelector((state: RootState) => state.datas);
     const bodyRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
 
@@ -24,31 +23,10 @@ const MainBody = () => {
     }
 
     useEffect(() => {
-        if (pokemonList.length > 0) {
-            const setting: IPokemonList[] = [];
-            for(let i = dataCount; i < dataCount + 20; i++) {
-                setting.push(pokemonList[i]);
-            }
-            dispatch(setCurrentList(setting));
-            dispatch(setDataCount(dataCount + 20));
+        if (pokemonList.length === 0) {
+            const loadList: IPokemonList[] = convertPokeData(pokeData);
+            dispatch(setPokemonList(loadList));
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pokemonList]);
-
-    const onFetchData = useCallback(() => {
-        const loadList: IPokemonList[] = convertPokeData(pokeData);
-        dispatch(setPokemonList(loadList));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch]);
-
-    const onScroll = () => {
-        if(window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 20){
-            setScroll(window.scrollY);
-        }
-    }
-
-    useEffect(() => {
-        onFetchData();
         window.addEventListener('scroll', onScroll);
 
         return (() => {
@@ -58,26 +36,39 @@ const MainBody = () => {
     }, []);
 
     useEffect(() => {
+        if (pokemonList.length > 0 && currentList.length === 0) {
+            const setting: IPokemonList[] = [];
+            for(let i = 0; i < 20; i++) {
+                setting.push(pokemonList[i]);
+            }
+            dispatch(setCurrentList(setting));
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pokemonList]);
+
+    const onScroll = () => {
+        if(window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 20){
+            setScroll(window.scrollY);
+        }
+    }
+
+    useEffect(() => {
         if (scroll !== 0) {
             const item: any[] = [];
-            for( let i = dataCount; i < dataCount + 10; i++) {
-                item.push(pokemonList[i]);
+            const count = currentList.length - 1;
+            for( let i = count; i < count + 10; i++) {
+                if (pokemonList[i]) item.push(pokemonList[i]);
             }
             dispatch(setCurrentList(item));
-            dispatch(setDataCount(dataCount + 10));
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scroll]);
 
     useEffect(() => {
-        // setTimeout(() => {
-        //     window.scrollTo(0, scrollPoint);
-        // }, 10);
+        setTimeout(() => {
+            window.scrollTo(0, scrollPoint);
+        }, 10);
     }, [scrollPoint]);
-
-    useEffect(() => {
-        console.log(currentList);
-    }, [currentList]);
 
     return(
         <div className={styles.mainBody} ref={bodyRef}>

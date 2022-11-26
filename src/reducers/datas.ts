@@ -4,7 +4,6 @@ import { IType } from '../interface/IType';
 interface InitState {
     typeLists: IType[];
     currentType: string | null;
-    dataCount: number;
     scrollPoint: number;
     currentAbility: string | null;
 }
@@ -13,7 +12,6 @@ interface InitState {
 const initialState: InitState = {
     typeLists: [],
     currentType: null,
-    dataCount: 0,
     scrollPoint: 100,
     currentAbility: null
 }
@@ -33,9 +31,6 @@ export const counterSlice = createSlice({
             sessionStorage.setItem('currentType', action.payload);
             state.currentType = action.payload;
         },
-        setDataCount: (state,action) => {
-            state.dataCount = action.payload;
-        },
         setScrollPoint: (state, action) => {
             state.scrollPoint = action.payload;
         },
@@ -45,6 +40,6 @@ export const counterSlice = createSlice({
     },
 })
 
-export const { setTypeLists, setCurrentType, setDataCount, setScrollPoint, setCurrentAbility } = counterSlice.actions
+export const { setTypeLists, setCurrentType, setScrollPoint, setCurrentAbility } = counterSlice.actions
 
 export default counterSlice.reducer;

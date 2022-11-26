@@ -5,18 +5,31 @@ import { typeList, geneList } from './sort';
 import { getColor, getTypeConvertData, getTypeKo } from '../../utils/convert';
 import pokeData from '../../json/pokemonList.json';
 import { useDispatch } from 'react-redux';
-import { resetCurrentList } from '../../reducers/pokemon';
-import { setDataCount } from '../../reducers/datas';
+import { resetCurrentList, setPokemonList } from '../../reducers/pokemon';
 import { convertPokeData } from '../../utils/makeData';
 
-const SortModal = () => {
+interface ISortModal {
+    closeSort: () => void;
+}
+
+const SortModal = ({ closeSort }: ISortModal) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
 
     function onCloseBtn() {
         if (modalRef.current) {
             modalRef.current.style.animation = 'closeModal .8s forwards';
+            modalRef.current.addEventListener('animationend', () => {
+                closeSort();
+            });
         }
+    }
+
+    function onResetBtn() {
+        const list = convertPokeData(pokeData);
+        dispatch(setPokemonList(list));
+        dispatch(resetCurrentList([]));
+        onCloseBtn();
     }
 
     function onSort(sortData: string, type: string) {
@@ -33,8 +46,8 @@ const SortModal = () => {
 
         if (filteredData?.length > 0) {
             const setting = convertPokeData(filteredData);
-            dispatch(resetCurrentList(setting));
-            dispatch(setDataCount(0));
+            dispatch(setPokemonList(setting));
+            dispatch(resetCurrentList([]));
         }
 
         onCloseBtn();
@@ -43,6 +56,7 @@ const SortModal = () => {
     return (
         <div className={styles.sortModal} ref={modalRef}>
             <div className={styles.sortBtn} onClick={onCloseBtn}>닫기</div>
+            <div className={styles.resetBtn} onClick={onResetBtn}>초기화</div>
             <div className={styles.title}>타입</div>
             <div className={styles.container}>
                 { typeList.map((type, i: number) => {

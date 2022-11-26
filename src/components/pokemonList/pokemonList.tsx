@@ -4,7 +4,6 @@ import { setCurrentPoke } from '../../reducers/pokemon';
 import { useNavigate } from 'react-router-dom';
 import { IPokemonList } from '../../interface/IPokemonList';
 import { setScrollPoint } from '../../reducers/datas';
-import { useEffect } from 'react';
 
 interface IPokeMonList {
     pokemon: IPokemonList
