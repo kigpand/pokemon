@@ -37,16 +37,17 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     }
 
     function onSortBy(type: string) {
+        const list: IPrevList[] = JSON.parse(JSON.stringify(pokeData));
         let filteredData: IPrevList[] = [];
         switch(type) {
             case 'id':
-                filteredData = pokeData.sort((a, b) => b.id - a.id);
+                filteredData = list.sort((a, b) => b.id - a.id);
                 break;
             case 'weight':
-                filteredData = pokeData.sort((a, b) => b.weight - a.weight);
+                filteredData = list.sort((a, b) => b.weight - a.weight);
                 break;
             case 'height':
-                filteredData = pokeData.sort((a, b) => b.height - a.height);
+                filteredData = list.sort((a, b) => b.height - a.height);
                 break;
             default:
                 break;
@@ -62,17 +63,17 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     }
 
     function onReverseSortBy(type: string) {
+        const list: IPrevList[] = JSON.parse(JSON.stringify(pokeData));
         let filteredData: IPrevList[] = [];
-        console.log(type);
         switch(type) {
             case 'id':
-                filteredData = pokeData.sort((a, b) => a.id - b.id);
+                filteredData = list.sort((a, b) => a.id - b.id);
                 break;
             case 'weight':
-                filteredData = pokeData.sort((a, b) => a.weight - b.weight);
+                filteredData = list.sort((a, b) => a.weight - b.weight);
                 break;
             case 'height':
-                filteredData = pokeData.sort((a, b) => a.height - b.height);
+                filteredData = list.sort((a, b) => a.height - b.height);
                 break;
             default:
                 break;
@@ -99,8 +100,8 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
                     return <div key={i} className={styles.gene} onClick={() => onSort(gene, 'gene')}>{gene}</div>
                 })
             }
-            { !list && <div className={styles.item} onClick={() => onSortBy(type)}>위</div>}
-            { !list && <div className={styles.item} onClick={() => onReverseSortBy(type)}>아래</div>}
+            { !list && <div className={styles.item} onClick={() => onSortBy(type)}>높은 순</div>}
+            { !list && <div className={styles.item} onClick={() => onReverseSortBy(type)}>낮은 순</div>}
         </div>
     )
 }

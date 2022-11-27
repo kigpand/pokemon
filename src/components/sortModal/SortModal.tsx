@@ -2,7 +2,6 @@ import '../../common/event.scss';
 import styles from './SortModal.module.scss';
 import { useRef } from 'react';
 import { typeList, geneList } from './sort';
-import { getColor, getTypeConvertData, getTypeKo } from '../../utils/convert';
 import pokeData from '../../json/pokemonList.json';
 import { useDispatch } from 'react-redux';
 import { resetCurrentList, setPokemonList } from '../../reducers/pokemon';
