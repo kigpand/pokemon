@@ -1,6 +1,7 @@
 import styles from './mainHeader.module.scss';
-import LOGO from '../../imgs/logo.png';
+import LOGO from '../../imgs/logo2.png';
 import SORT from '../../imgs/sort.png';
+import FILTER from '../../imgs/filter.png';
 import { useDispatch } from 'react-redux';
 import { setCurrentPoke } from '../../reducers/pokemon';
 import { useRef } from 'react';
@@ -46,8 +47,8 @@ const MainHeader = () => {
     return (
         <div className={styles.mainHeader}>
             <img src={LOGO} className={styles.logo} alt='logo'></img>
-            <input type='text' className={styles.search} ref={searchRef} placeholder='검색...' onKeyDown={onSearchItem}></input>
-            <img src={SORT} className={styles.sort} alt='sort' onClick={openSort}></img>
+            <input type='text' className={styles.search} ref={searchRef} placeholder='도감번호나 이름을 입력해주세요' onKeyDown={onSearchItem}></input>
+            <img src={FILTER} className={styles.sort} alt='sort' onClick={openSort}></img>
             { onSortModal && <SortModal closeSort={closeSort}/> }
         </div>
     )

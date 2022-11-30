@@ -12,7 +12,7 @@ interface InitState {
 const initialState: InitState = {
     typeLists: [],
     currentType: null,
-    scrollPoint: 100,
+    scrollPoint: 0,
     currentAbility: null
 }
 

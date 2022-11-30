@@ -55,7 +55,7 @@ const MainBody = () => {
     useEffect(() => {
         if (scroll !== 0) {
             const item: any[] = [];
-            const count = currentList.length - 1;
+            const count = currentList.length;
             for( let i = count; i < count + 10; i++) {
                 if (pokemonList[i]) item.push(pokemonList[i]);
             }

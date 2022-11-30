@@ -69,7 +69,6 @@ const Detail = () => {
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke.name}</div>
                 <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}</div>
                 <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
-                <div></div>
                 <div className={styles.genus}>
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(currentPoke?.types[0])}}>분류</div>
                     <div className={styles.mainContents}>
@@ -104,7 +103,7 @@ const Detail = () => {
                         })}
                     </div>
                 </div>
-                <b>정보</b>
+                <b style={{ paddingLeft: '5px'}}>정보</b>
                 <div className={styles.flavor}><div>{currentPoke?.flavor}</div></div>
             </div>
             }
