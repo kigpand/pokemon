@@ -22,7 +22,8 @@ const MainHeader = () => {
 
     function onSearchItem(e: KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
-            const item = list.find((item) => item.name === searchRef.current?.value);
+            const isNaN = Number.isNaN(Number(searchRef.current!.value));
+            const item = isNaN ? list.find((item) => item.name === searchRef.current?.value) : list.find((item) => item.id === Number(searchRef.current?.value));
             if (item) {
                 const pokemon = convertOnePoke(item);
                 dispatch(setCurrentPoke(pokemon));
