@@ -1,5 +1,4 @@
 export interface IType {
-    key: number;
     name: string;
     doubleFrom: string[] | null;
     doubleTo: string[] | null;

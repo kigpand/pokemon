@@ -5,10 +5,11 @@ import { convertPokeData } from '../../utils/makeData';
 import { useDispatch } from 'react-redux';
 import { resetCurrentList, setPokemonList } from '../../reducers/pokemon';
 import { IPrevList } from '../../interface/IPrveList';
+import { cloneDeep } from 'lodash';
 
 interface ISortBtns {
     type: string;
-    list?: any;
+    list?: string[];
     onCloseBtn: () => void
 }
 const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
@@ -37,7 +38,7 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     }
 
     function onSortBy(type: string) {
-        const list: IPrevList[] = JSON.parse(JSON.stringify(pokeData));
+        const list: IPrevList[] = cloneDeep(pokeData);
         let filteredData: IPrevList[] = [];
         switch(type) {
             case 'id':
@@ -63,7 +64,7 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     }
 
     function onReverseSortBy(type: string) {
-        const list: IPrevList[] = JSON.parse(JSON.stringify(pokeData));
+        const list: IPrevList[] = cloneDeep(pokeData);
         let filteredData: IPrevList[] = [];
         switch(type) {
             case 'id':
@@ -90,12 +91,12 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
 
     return (
         <div className={styles.sortBtns}>
-            { type === 'type' &&
+            { type === 'type' && list &&
                 list.map((type: string, i: number) => {
                     return <div key={i} style={{ backgroundColor: getColor(type)}} onClick={() => onSort(type, 'type')}>{getTypeKo(type)}</div>
                 })
             }
-            { type === 'gene' && 
+            { type === 'gene' && list &&
                 list.map((gene: string, i: number) => {
                     return <div key={i} className={styles.gene} onClick={() => onSort(gene, 'gene')}>{gene}</div>
                 })

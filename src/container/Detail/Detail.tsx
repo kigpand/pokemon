@@ -14,6 +14,16 @@ interface IStateItem {
     stat: string | number;
 }
 
+interface IBackgroundColor {
+    [index: string]: string; // 이렇게 한 줄만 써주면 된다
+    'HP': string;
+    '공격': string;
+    '방어': string;
+    '특수공격': string;
+    '특수방어': string;
+    '스피드': string;
+  }
+
 const Detail = () => {
 
     const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
@@ -37,14 +47,14 @@ const Detail = () => {
     }
 
     function getStatusBarColor(name: string) {
-        const backgroundColor: any = {
+        const backgroundColor: IBackgroundColor = {
             'HP': 'red',
             '공격': 'orange',
             '방어': 'blue',
             '특수공격': 'pink',
             '특수방어': 'purple',
             '스피드': 'green',
-            '총합': null
+            '총합': ''
         }
 
         return backgroundColor[name];

@@ -4,6 +4,7 @@ import { setCurrentPoke } from '../../reducers/pokemon';
 import { useNavigate } from 'react-router-dom';
 import { IPokemonList } from '../../interface/IPokemonList';
 import { setScrollPoint } from '../../reducers/datas';
+import { MouseEvent } from 'react';
 
 interface IPokeMonList {
     pokemon: IPokemonList
@@ -13,7 +14,7 @@ const PokemonList = ({ pokemon }: IPokeMonList) => {
     const dispatch = useDispatch();
     const nav = useNavigate();
 
-    function onNav(e: any) {
+    function onNav(e: MouseEvent<HTMLDivElement>) {
         dispatch(setCurrentPoke(pokemon));
         dispatch(setScrollPoint(e.pageY - 500));
         nav('/detail');

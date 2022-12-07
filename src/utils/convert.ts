@@ -1,3 +1,5 @@
+import { IServerType } from '../interface/IServerType';
+
 export function getColor(type: string) {
     if (type === 'water' || type === '물') return '#5ec4ff';
     if (type === 'grass' || type === '풀') return '#3aff6b';
@@ -59,7 +61,7 @@ export function getTypeKo(type: string) {
     if (type === 'dark') return '악';
     if (type === 'steel') return '강철';
     if (type === 'fairy') return '페어리';
-    return null;
+    return '노말';
 }
 
 export function getStatList(stat: string) {
@@ -96,14 +98,14 @@ export function getTypeConvertData(typeInfo: string) {
     return null;
 }
 
-export function typeConvertDamegeData(typeData: any) {
+export function typeConvertDamegeData(typeData: IServerType) {
     const name = getTypeKo(typeData.name);
-    const doubleFrom = typeData.doubleDamegeFrom.split(',').map((v: any) => { return getTypeKo(v)});
-    const doubleTo = typeData.doubleDamegeTo.split(',').map((v: any) => { return getTypeKo(v)});
-    const halfFrom = typeData.halfDamegeFrom.split(',').map((v: any) => { return getTypeKo(v)});
-    const halfTo = typeData.halfDamegeTo.split(',').map((v: any) => { return getTypeKo(v)});
-    const noFrom = typeData.noDamegeFrom.split(',').map((v: any) => { return getTypeKo(v)});
-    const noTo = typeData.noDamegeTo.split(',').map((v: any) => { return getTypeKo(v)});
+    const doubleFrom = typeData.doubleDamegeFrom !== '' ? typeData.doubleDamegeFrom.split(',').map((v: string) => { return getTypeKo(v)}) : null;
+    const doubleTo = typeData.doubleDamegeTo !== '' ? typeData.doubleDamegeTo.split(',').map((v: string) => { return getTypeKo(v)}) : null;
+    const halfFrom = typeData.halfDamegeFrom !== '' ? typeData.halfDamegeFrom.split(',').map((v: string) => { return getTypeKo(v)}) : null;
+    const halfTo = typeData.halfDamegeTo !== '' ? typeData.halfDamegeTo.split(',').map((v: string) => { return getTypeKo(v)}) : null;
+    const noFrom = typeData.noDamegeFrom !== '' ? typeData.noDamegeFrom.split(',').map((v: string) => { return getTypeKo(v)}) : null;
+    const noTo = typeData.noDamegeTo !== '' ? typeData.noDamegeTo.split(',').map((v: string) => { return getTypeKo(v)}) : null;
 
     return { name, doubleFrom, doubleTo, halfFrom, halfTo, noFrom, noTo };
 }

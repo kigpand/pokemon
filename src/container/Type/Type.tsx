@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import types from '../../json/types.json';
+import { IType } from '../../interface/IType';
 
 const Type = () => {
     const currentType = useSelector((state: RootState) => state.datas.currentType);
     const dispatch = useDispatch();
     const nav = useNavigate();
-    const [typeData, setTypeData] = useState<any>();
+    const [typeData, setTypeData] = useState<IType>();
 
     function onCloseBtn() {
         nav('/');
@@ -23,7 +24,9 @@ const Type = () => {
     useEffect(() => {
         if (currentType) {
             const type = types.find((type) => type.name === currentType);
-            setTypeData(typeConvertDamegeData(type));
+            if (type) {
+                setTypeData(typeConvertDamegeData(type));
+            }
         }
     }, [currentType]);
 
