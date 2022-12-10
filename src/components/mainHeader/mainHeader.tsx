@@ -1,9 +1,7 @@
 import styles from './mainHeader.module.scss';
 import LOGO from '../../imgs/logo2.png';
-import SORT from '../../imgs/sort.png';
 import FILTER from '../../imgs/filter.png';
 import { useDispatch } from 'react-redux';
-import { setCurrentPoke } from '../../reducers/pokemon';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { KeyboardEvent } from 'react';
@@ -26,7 +24,7 @@ const MainHeader = () => {
             const item = isNaN ? list.find((item) => item.name === searchRef.current?.value) : list.find((item) => item.id === Number(searchRef.current?.value));
             if (item) {
                 const pokemon = convertOnePoke(item);
-                dispatch(setCurrentPoke(pokemon));
+                sessionStorage.setItem('currentPoke', JSON.stringify(pokemon));
                 dispatch(setScrollPoint(0));
                 nav('/detail');
             } else {

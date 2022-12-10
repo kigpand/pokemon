@@ -1,6 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentType } from '../../reducers/datas';
-import { RootState } from '../../store/store';
 import { getColor, typeConvertDamegeData } from '../../utils/convert';
 import styles from './Type.module.scss';
 import TypeItem from './TypeItem';
@@ -11,24 +8,24 @@ import types from '../../json/types.json';
 import { IType } from '../../interface/IType';
 
 const Type = () => {
-    const currentType = useSelector((state: RootState) => state.datas.currentType);
-    const dispatch = useDispatch();
     const nav = useNavigate();
     const [typeData, setTypeData] = useState<IType>();
 
     function onCloseBtn() {
         nav('/');
-        dispatch(setCurrentType(null));
+        sessionStorage.removeItem('type');
+        sessionStorage.removeItem('currentPoke');
     }
 
     useEffect(() => {
-        if (currentType) {
-            const type = types.find((type) => type.name === currentType);
+        const sessionType = sessionStorage.getItem('type');
+        if (sessionType) {
+            const type = types.find((type) => type.name === sessionType);
             if (type) {
                 setTypeData(typeConvertDamegeData(type));
             }
         }
-    }, [currentType]);
+    }, []);
 
     return (
         <div className={styles.type} onClick={onCloseBtn}>

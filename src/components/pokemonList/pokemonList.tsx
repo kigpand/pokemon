@@ -1,6 +1,5 @@
 import styles from './pokemonList.module.scss';
 import { useDispatch } from 'react-redux';
-import { setCurrentPoke } from '../../reducers/pokemon';
 import { useNavigate } from 'react-router-dom';
 import { IPokemonList } from '../../interface/IPokemonList';
 import { setScrollPoint } from '../../reducers/datas';
@@ -15,8 +14,8 @@ const PokemonList = ({ pokemon }: IPokeMonList) => {
     const nav = useNavigate();
 
     function onNav(e: MouseEvent<HTMLDivElement>) {
-        dispatch(setCurrentPoke(pokemon));
         dispatch(setScrollPoint(e.pageY - 500));
+        sessionStorage.setItem('currentPoke', JSON.stringify(pokemon));
         nav('/detail');
     }
 

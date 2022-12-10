@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setBookPokeList, setCurrentPoke } from '../../reducers/pokemon';
 import styles from './detail.module.scss';
 import { RootState } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentAbility, setCurrentType } from '../../reducers/datas';
+import { setCurrentAbility } from '../../reducers/datas';
 import { getColor, getTypeKo } from '../../utils/convert';
 import AbilityModal from '../../components/abilityModal/AbilityModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddBookModal from '../../components/addBookModal/AddBookModal';
+import { IPokemonList } from '../../interface/IPokemonList';
 
 interface IStateItem {
     name: string;
@@ -26,19 +26,29 @@ interface IBackgroundColor {
 
 const Detail = () => {
 
-    const currentPoke = useSelector((state: RootState) => state.pokemon.currentPoke);
+    const [currentPoke, setCurrentPoke] = useState<IPokemonList>();
     const currentAbility = useSelector((state: RootState) => state.datas.currentAbility);
     const [onBookModal, setOnBookModal] = useState<Boolean>(false);
     const nav = useNavigate();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        const item = sessionStorage.getItem('currentPoke');
+        if (item) {
+            const poke = JSON.parse(item);
+            setCurrentPoke(poke);
+        }
+
+    }, []);
+
     function onCloseBtn() {
-        dispatch(setCurrentPoke(null));
+        // dispatch(setCurrentPoke(null));
+        sessionStorage.removeItem('currentPoke');
         nav('/');
     }
 
     function onTypeClick(type: string) {
-        dispatch(setCurrentType(type));
+        sessionStorage.setItem('type', type);
         nav('/type');
     }
 
@@ -58,11 +68,6 @@ const Detail = () => {
         }
 
         return backgroundColor[name];
-    }
-
-    function addPokeBook() {
-        dispatch(setBookPokeList(currentPoke));
-        setOnBookModal(true);
     }
 
     function onCloseBookModal() {
