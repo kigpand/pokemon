@@ -4,8 +4,8 @@ import pokeData from '../../json/pokemonList.json';
 import { convertPokeData } from '../../utils/makeData';
 import { useDispatch } from 'react-redux';
 import { resetCurrentList, setPokemonList } from '../../reducers/pokemon';
-import { IPrevList } from '../../interface/IPrveList';
 import { cloneDeep } from 'lodash';
+import { IPokemonList } from '../../interface/IPokemonList';
 
 interface ISortBtns {
     type: string;
@@ -38,8 +38,9 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     }
 
     function onSortBy(type: string) {
-        const list: IPrevList[] = cloneDeep(pokeData);
-        let filteredData: IPrevList[] = [];
+        const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
+        console.log(list);
+        let filteredData: IPokemonList[] = [];
         switch(type) {
             case 'id':
                 filteredData = list.sort((a, b) => b.id - a.id);
@@ -50,13 +51,33 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
             case 'height':
                 filteredData = list.sort((a, b) => b.height - a.height);
                 break;
+            case 'hp':
+                filteredData = list.sort((a, b) => b.stats[0].stat - a.stats[0].stat);
+                break;
+            case '공격':
+                filteredData = list.sort((a, b) => b.stats[1].stat - a.stats[1].stat);
+                break;
+            case '방어':
+                filteredData = list.sort((a, b) => b.stats[2].stat - a.stats[2].stat);
+                break;
+            case '특수공격':
+                filteredData = list.sort((a, b) => b.stats[3].stat - a.stats[3].stat);
+                break;
+            case '특수방어':
+                filteredData = list.sort((a, b) => b.stats[4].stat - a.stats[4].stat);
+                break;
+            case '스피드':
+                filteredData = list.sort((a, b) => b.stats[5].stat - a.stats[5].stat);
+                break;
+            case '총합':
+                filteredData = list.sort((a, b) => b.stats[6].stat - a.stats[6].stat);
+                break;
             default:
                 break;
         }
 
         if (filteredData?.length > 0) {
-            const setting = convertPokeData(filteredData);
-            dispatch(setPokemonList(setting));
+            dispatch(setPokemonList(filteredData));
             dispatch(resetCurrentList([]));
         }
 
@@ -64,8 +85,8 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     }
 
     function onReverseSortBy(type: string) {
-        const list: IPrevList[] = cloneDeep(pokeData);
-        let filteredData: IPrevList[] = [];
+        const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
+        let filteredData: IPokemonList[] = [];
         switch(type) {
             case 'id':
                 filteredData = list.sort((a, b) => a.id - b.id);
@@ -76,13 +97,33 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
             case 'height':
                 filteredData = list.sort((a, b) => a.height - b.height);
                 break;
+            case 'hp':
+                filteredData = list.sort((a, b) => a.stats[0].stat - b.stats[0].stat);
+                break;
+            case '공격':
+                filteredData = list.sort((a, b) => a.stats[1].stat - b.stats[1].stat);
+                break;
+            case '방어':
+                filteredData = list.sort((a, b) => a.stats[2].stat - b.stats[2].stat);
+                break;
+            case '특수공격':
+                filteredData = list.sort((a, b) => a.stats[3].stat - b.stats[3].stat);
+                break;
+            case '특수방어':
+                filteredData = list.sort((a, b) => a.stats[4].stat - b.stats[4].stat);
+                break;
+            case '스피드':
+                filteredData = list.sort((a, b) => a.stats[5].stat - b.stats[5].stat);
+                break;
+            case '총합':
+                filteredData = list.sort((a, b) => a.stats[6].stat - b.stats[6].stat);
+                break;
             default:
                 break;
         }
 
         if (filteredData?.length > 0) {
-            const setting = convertPokeData(filteredData);
-            dispatch(setPokemonList(setting));
+            dispatch(setPokemonList(filteredData));
             dispatch(resetCurrentList([]));
         }
 

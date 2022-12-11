@@ -12,6 +12,24 @@
     flex-direction: column;
     align-items: center;
 
+    .selectContainer {
+        width: 95%;
+        display: flex;
+        align-items: flex-start;
+
+        .select {
+            margin-bottom: 5px;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            border: 2px solid white;
+            outline: none;
+            height: 25px;
+            border-radius: 4px;
+            width: 100px;
+        }
+    }
+
     .sortBtn,
     .resetBtn {
         width: 90%;
