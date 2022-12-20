@@ -27,6 +27,9 @@ export const counterSlice = createSlice({
             state.currentList = action.payload;
         },
         setBookPokeList: (state, action) => {
+            if (state.bookPokeList.length > 6) {
+                state.bookPokeList.shift();
+            }
             state.bookPokeList.push(action.payload);
         },
         removeBookPokeList: (state, action) => {

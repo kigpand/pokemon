@@ -8,6 +8,7 @@ import AbilityModal from '../../components/abilityModal/AbilityModal';
 import { useEffect, useState } from 'react';
 import AddBookModal from '../../components/addBookModal/AddBookModal';
 import { IPokemonList } from '../../interface/IPokemonList';
+import { setBookPokeList } from '../../reducers/pokemon';
 
 interface IStateItem {
     name: string;
@@ -28,6 +29,7 @@ const Detail = () => {
 
     const [currentPoke, setCurrentPoke] = useState<IPokemonList>();
     const currentAbility = useSelector((state: RootState) => state.datas.currentAbility);
+    const bookPokeList = useSelector((state: RootState) => state.pokemon.bookPokeList);
     const [onBookModal, setOnBookModal] = useState<Boolean>(false);
     const nav = useNavigate();
     const dispatch = useDispatch();
@@ -42,7 +44,6 @@ const Detail = () => {
     }, []);
 
     function onCloseBtn() {
-        // dispatch(setCurrentPoke(null));
         sessionStorage.removeItem('currentPoke');
         nav('/');
     }
@@ -74,12 +75,24 @@ const Detail = () => {
         setOnBookModal(false);
     }
 
+    function addPokeBook() {
+        if (currentPoke) {
+            const result = bookPokeList.find((pokeList: IPokemonList) => pokeList.id === currentPoke.id);
+            if (result) {
+                alert('이미 도감에 등록된 포켓몬입니다.');
+                return;
+            }
+            dispatch(setBookPokeList(currentPoke));
+            setOnBookModal(true);
+        }
+    }
+
     return (
         <div className={styles.detail} >
             {currentPoke && currentPoke.types
             &&
             <div className={styles.container} style={{ borderColor: getColor(currentPoke.types[0])}}>
-                {/* <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={addPokeBook}>+</div> */}
+                <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={addPokeBook}>+</div>
                 <div className={styles.closeBtn} style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke.name}</div>
                 <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}</div>

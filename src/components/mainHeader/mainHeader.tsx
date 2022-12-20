@@ -43,9 +43,14 @@ const MainHeader = () => {
         setOnSortModal(false);
     }
 
+    function moveToBook() {
+        nav('/books');
+    }
+
     return (
         <div className={styles.mainHeader}>
             <img src={LOGO} className={styles.logo} alt='logo'></img>
+            <div onClick={moveToBook}>도감</div>
             <input type='text' className={styles.search} ref={searchRef} placeholder='도감번호나 이름을 입력해주세요' onKeyDown={onSearchItem}></input>
             <img src={FILTER} className={styles.sort} alt='sort' onClick={openSort}></img>
             { onSortModal && <SortModal closeSort={closeSort}/> }
