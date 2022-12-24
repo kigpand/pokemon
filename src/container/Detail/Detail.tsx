@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import AddBookModal from '../../components/addBookModal/AddBookModal';
 import { IPokemonList } from '../../interface/IPokemonList';
 import { setBookPokeList } from '../../reducers/pokemon';
+import ADDBTN from '../../imgs/addBtn.png';
 
 interface IStateItem {
     name: string;
@@ -92,7 +93,7 @@ const Detail = () => {
             {currentPoke && currentPoke.types
             &&
             <div className={styles.container} style={{ borderColor: getColor(currentPoke.types[0])}}>
-                <div className={styles.addBookBtn}  style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={addPokeBook}>+</div>
+                <img src={ADDBTN} alt='추가버튼' className={styles.addBookBtn} onClick={addPokeBook}></img>
                 <div className={styles.closeBtn} style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke.name}</div>
                 <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}</div>

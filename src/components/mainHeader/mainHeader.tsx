@@ -10,6 +10,7 @@ import SortModal from '../sortModal/SortModal';
 import list from '../../json/pokemonList.json';
 import { useState } from 'react'; 
 import { setScrollPoint } from '../../reducers/datas';
+import BOOK from '../../imgs/book.png';
 
 const MainHeader = () => {
 
@@ -50,9 +51,9 @@ const MainHeader = () => {
     return (
         <div className={styles.mainHeader}>
             <img src={LOGO} className={styles.logo} alt='logo'></img>
-            <div onClick={moveToBook}>도감</div>
             <input type='text' className={styles.search} ref={searchRef} placeholder='도감번호나 이름을 입력해주세요' onKeyDown={onSearchItem}></input>
             <img src={FILTER} className={styles.sort} alt='sort' onClick={openSort}></img>
+            <img src={BOOK} className={styles.book} alt='book' onClick={moveToBook}></img>
             { onSortModal && <SortModal closeSort={closeSort}/> }
         </div>
     )
