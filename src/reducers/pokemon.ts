@@ -33,7 +33,7 @@ export const counterSlice = createSlice({
             state.bookPokeList.push(action.payload);
         },
         removeBookPokeList: (state, action) => {
-            state.bookPokeList = [...state.bookPokeList.filter((list: IPokemonList) => list.id !== action.payload.id)];
+            state.bookPokeList = [...state.bookPokeList.filter((list: IPokemonList) => list.id !== action.payload.list.id)];
         }
     },
 })

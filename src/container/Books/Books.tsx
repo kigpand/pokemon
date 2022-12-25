@@ -34,15 +34,17 @@ const Books = () => {
     return (
         <div className={styles.books}>
             <img src={LOGO} alt='logo' className={styles.logo}></img>
-            <div className={styles.title}>도감</div>
+            <div className={styles.title}>도감   ({bookPokeList.length > 0 && `${bookPokeList.length}/6`})</div>
             <div className={styles.line}></div>
             { bookPokeList.length > 0 && bookPokeList.map((pokeList: IPokemonList) => {
                 return <BookList key={pokeList.id} list={pokeList} />
             })}
-            <div className={styles.totalData}>
+            { bookPokeList.length > 0 
+            ? <div className={styles.totalData}>
                 <div>평균 종족치: {avg}</div>
                 <div>총 종족치: {total}</div>
-            </div>
+                </div>
+            : <div className={styles.noting}>도감에 저장된 포켓몬이 없습니다.</div>}
             <div className={styles.back} onClick={onBackBtn}>&lt; 뒤로가기</div>
         </div>
     )
