@@ -8,9 +8,9 @@
 
     .lists {
         width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: repeat(6, 250px);
+        justify-content: center;
     }
 
     .bottom {
@@ -32,6 +32,12 @@
     }
 
     @include mobile {
+
+        .lists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
         .topBtn {
             right: 10%;
         }
