@@ -10,6 +10,7 @@ import AddBookModal from '../../components/addBookModal/AddBookModal';
 import { IPokemonList } from '../../interface/IPokemonList';
 import { setBookPokeList } from '../../reducers/pokemon';
 import ADDBTN from '../../imgs/addBtn.png';
+import QUESTION from '../../imgs/question.png';
 
 interface IStateItem {
     name: string;
@@ -116,7 +117,7 @@ const Detail = () => {
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(currentPoke?.types[0])}}>특성</div>
                     <div className={styles.mainContents}>
                         { currentPoke?.abilities && currentPoke?.abilities.map((abil, i) => {
-                            return <span onClick={() => onAbility(abil)} key={i}>{abil}</span>
+                            return <span onClick={() => onAbility(abil)} key={i}>{abil}<img src={QUESTION} alt='question' /></span>
                         })}
                     </div>
                 </div>

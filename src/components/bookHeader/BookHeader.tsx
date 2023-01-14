@@ -2,7 +2,6 @@ import styles from './BookHeader.module.scss';
 import LOGO from '../../imgs/logo2.png';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-
 const BookHeader = () => {
 
     const bookPokeList = useSelector((state:RootState) => state.pokemon.bookPokeList);
