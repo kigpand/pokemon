@@ -28,6 +28,7 @@
     }
 
     .back {
+        display: none;
         font-weight: bold;
         position: absolute;
         bottom: 20px;
@@ -40,5 +41,9 @@
 
     @include mobile {
         width: 100%;
+
+        .back {
+            display: block;
+        }
     }
 }

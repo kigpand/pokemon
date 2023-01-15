@@ -20,9 +20,9 @@ const DesktopBook = () => {
             {bookList.length > 0 && <div className={styles.lists}>
                 {bookList.map((item: IPokemonList, i: number) => {
                     return (
-                        <div className={styles.listContainer}>
+                        <div className={styles.listContainer} key={i}>
                             <img src={DELETE} className={styles.removeBtn} alt='delete' onClick={() => onRemove(item)}/>
-                            <PokemonList pokemon={item} key={i} />
+                            <PokemonList pokemon={item} />
                         </div>)
                 })}
             </div>}

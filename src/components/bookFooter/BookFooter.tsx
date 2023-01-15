@@ -40,7 +40,7 @@ const BookFooter = ({ width }: IBookFoot) => {
                 <div>총 종족치: {total}</div>
                 </div>
             : <div className={styles.noting}>도감에 저장된 포켓몬이 없습니다.</div>}
-            { width <= 767 && <div className={styles.back} onClick={onBackBtn}>&lt; 뒤로가기</div>}
+            <div className={styles.back} onClick={onBackBtn}>&lt; 뒤로가기</div>
         </div>
     )
 }

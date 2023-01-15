@@ -28,7 +28,7 @@
     .book {
         position: absolute;
         right: 1rem;
-        height: 20px;
+        height: 30px;
         object-fit: contain;
         border: 1px solid lightgray;
         border-radius: 4px;
@@ -45,7 +45,7 @@
     }
 
     .book {
-        top: 50px;
+        top: 60px;
     }
 
     @include mobile {
@@ -55,6 +55,15 @@
         
         .search {
             width: 90%;
+        }
+
+        .sort,
+        .book {
+            height: 20px;
+        }
+
+        .book {
+            top: 50px;
         }
     }
 }
