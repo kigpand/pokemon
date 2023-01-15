@@ -27,7 +27,7 @@ const Books = () => {
         <div className={styles.books}>
             <BookHeader />
             {width > 767 ? <DesktopBook /> : <MobileBook />}
-            <BookFooter width={width} />
+            <BookFooter />
         </div>
     )
 }

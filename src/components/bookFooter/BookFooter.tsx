@@ -5,19 +5,14 @@ import { RootState } from '../../store/store';
 import { IPokemonList } from '../../interface/IPokemonList';
 import { useNavigate } from 'react-router-dom';
 
-
-interface IBookFoot {
-    width: number;
-}
-
-const BookFooter = ({ width }: IBookFoot) => {
+const BookFooter = () => {
     const [total, setTotal] = useState<number>(0);
     const [avg, setAvg] = useState<number>(0);
     const bookPokeList = useSelector((state:RootState) => state.pokemon.bookPokeList);
     const nav = useNavigate();
 
     function onBackBtn() {
-        nav('/');
+        nav(-1);
     }
 
     useEffect(() => {

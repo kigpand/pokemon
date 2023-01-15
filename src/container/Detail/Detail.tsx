@@ -47,7 +47,7 @@ const Detail = () => {
 
     function onCloseBtn() {
         sessionStorage.removeItem('currentPoke');
-        nav('/');
+        nav(-1);
     }
 
     function onTypeClick(type: string) {
@@ -98,7 +98,13 @@ const Detail = () => {
                 <div className={styles.closeBtn} style={{ borderColor: getColor(currentPoke?.types[0]), color: getColor(currentPoke?.types[0])}} onClick={onCloseBtn}>X</div>
                 <div className={styles.num}>No.{currentPoke?.id} {currentPoke.name}</div>
                 <div className={styles.generate} style={{ borderColor: getColor(currentPoke?.types[0])} }>{currentPoke.generate}</div>
-                <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
+                <div className={styles.imgInfo}>
+                    <img src={currentPoke.imageUrl} alt={currentPoke.name} className={styles.img}></img>
+                    <div className={styles.wHstat}>
+                        <div>키: {currentPoke.height / 10}m</div>
+                        <div>몸무게: {currentPoke.weight / 10}kg</div>
+                    </div>
+                </div>
                 <div className={styles.genus}>
                     <div className={styles.miniTitle} style={{ backgroundColor: getColor(currentPoke?.types[0])}}>분류</div>
                     <div className={styles.mainContents}>
@@ -128,7 +134,9 @@ const Detail = () => {
                             const backgroudColor = getStatusBarColor(stat.name);
                             return <div className={styles.statusItem} key={i}>
                                 <div className={styles.statusTitle} style={{ borderColor: backgroudColor }}>{stat.name}</div>
-                                <div className={styles.statusBar} style={{ width: `${stat.name === '총합' ? 200 : stat.stat}px`, backgroundColor: backgroudColor}}>{stat.stat}</div>
+                                <div className={styles.statusBar} style={{ width: `${stat.name === '총합' ? 200 : stat.stat}px`}}>
+                                    <div style={{ backgroundColor: backgroudColor}}>{stat.stat}</div>
+                                </div>
                             </div>
                         })}
                     </div>

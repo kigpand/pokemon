@@ -10,7 +10,7 @@ const BookHeader = () => {
     const nav = useNavigate();
 
     function onBack() {
-        nav('/');
+        nav(-1);
     }
 
     return (
