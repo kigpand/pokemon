@@ -1,48 +1,47 @@
-@import '../../common/common.scss';
+@import "../../common/common.scss";
 
 .list {
-    width: 230px;
-    height: 230px;
-    margin-top: 1rem;
-    border: 1px solid #e8e8e8;
-    border-radius: 8px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    // -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.71); 
-    // box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.71);
+  // width: 230px;
+  height: 230px;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  // -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.71);
+  // box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.71);
+
+  .num {
+    font-size: 20px;
+    color: gray;
+  }
+
+  .img {
+    height: 170px;
+    object-fit: contain;
+  }
+
+  .name {
+    height: 60px;
+    @include flex;
+    font-weight: 700;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+  }
+
+  @include mobile {
+    width: 90%;
+    height: 150px;
 
     .num {
-        font-size: 20px;
-        color: gray;
+      font-size: 16px;
     }
 
     .img {
-        height: 170px;
-        object-fit: contain;
+      height: 100px;
     }
-
-    .name {
-        height: 60px;
-        @include flex;
-        font-weight: 700;
-    }
-
-    &:hover {
-        transform: translateY(-10px);
-        cursor: pointer;
-    }
-
-    @include mobile {
-        width: 40%;
-        height: 150px;
-
-        .num {
-            font-size: 16px;
-        }
-
-        .img {
-            height: 100px;
-        }
-    }
+  }
 }
