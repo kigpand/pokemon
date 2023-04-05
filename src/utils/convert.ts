@@ -76,25 +76,47 @@ export function getTypeKo(type: string) {
   return "노말";
 }
 
+export function getTypeEn(type: string) {
+  if (type === "물") return "water";
+  if (type === "풀") return "grass";
+  if (type === "독") return "poison";
+  if (type === "불꽃") return "fire";
+  if (type === "노말") return "normal";
+  if (type === "전기") return "electric";
+  if (type === "얼음") return "ice";
+  if (type === "격투") return "fighting";
+  if (type === "땅") return "ground";
+  if (type === "비행") return "flying";
+  if (type === "에스퍼") return "psychic";
+  if (type === "벌레") return "bug";
+  if (type === "바위") return "rock";
+  if (type === "고스트") return "ghost";
+  if (type === "드래곤") return "dragon";
+  if (type === "악") return "dark";
+  if (type === "강철") return "steel";
+  if (type === "페어리") return "fairy";
+  return "노말";
+}
+
 export function getTypeIcon(type: string) {
-  if (type === "water") return "/imgs/water.png";
-  if (type === "grass") return "/imgs/grass.png";
-  if (type === "poison") return "/imgs/poision.png";
-  if (type === "fire") return "/imgs/fire.png";
-  if (type === "normal") return "/imgs/normal.png";
-  if (type === "electric") return "/imgs/electic.png";
-  if (type === "ice") return "/imgs/ice.png";
-  if (type === "fighting") return "/imgs/fight.png";
-  if (type === "ground") return "/imgs/earth.png";
-  if (type === "flying") return "/imgs/air.png";
-  if (type === "psychic") return "/imgs/magic.png";
-  if (type === "bug") return "/imgs/bug.png";
-  if (type === "rock") return "/imgs/rock.png";
-  if (type === "ghost") return "/imgs/ghost.png";
-  if (type === "dragon") return "/imgs/dragon.png";
-  if (type === "dark") return "/imgs/dark.png";
-  if (type === "steel") return "/imgs/iron.png";
-  if (type === "fairy") return "/imgs/fairy.png";
+  if (type === "water" || type === "물") return "/imgs/water.png";
+  if (type === "grass" || type === "풀") return "/imgs/grass.png";
+  if (type === "poison" || type === "독") return "/imgs/poision.png";
+  if (type === "fire" || type === "불꽃") return "/imgs/fire.png";
+  if (type === "normal" || type === "노말") return "/imgs/normal.png";
+  if (type === "electric" || type === "전기") return "/imgs/electic.png";
+  if (type === "ice" || type === "얼음") return "/imgs/ice.png";
+  if (type === "fighting" || type === "격투") return "/imgs/fight.png";
+  if (type === "ground" || type === "땅") return "/imgs/earth.png";
+  if (type === "flying" || type === "비행") return "/imgs/air.png";
+  if (type === "psychic" || type === "에스퍼") return "/imgs/magic.png";
+  if (type === "bug" || type === "벌레") return "/imgs/bug.png";
+  if (type === "rock" || type === "바위") return "/imgs/rock.png";
+  if (type === "ghost" || type === "고스트") return "/imgs/ghost.png";
+  if (type === "dragon" || type === "드래곤") return "/imgs/dragon.png";
+  if (type === "dark" || type === "악") return "/imgs/dark.png";
+  if (type === "steel" || type === "강철") return "/imgs/iron.png";
+  if (type === "fairy" || type === "페어리") return "/imgs/fairy.png";
   return "노말";
 }
 

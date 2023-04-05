@@ -1,59 +1,82 @@
-@import '../../common/common.scss';
+@import "../../common/common.scss";
 
 .type {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    border: 4px solid;
+    width: 30%;
+    height: 99%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    background-color: white;
+    position: relative;
 
-    .container {
-        border: 4px solid;
-        width: 30%;
-        height: 99%;
+    .home {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+
+    .header {
+      @include flex;
+      margin-top: 20px;
+
+      .icon {
+        width: 80px;
+        height: 70px;
+      }
+
+      .title {
+        @include flex;
+        height: 30px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
+        padding: 10px 5px;
+      }
+    }
+
+    .doubleDamegeFrom,
+    .doubleDamegeTo,
+    .halfDamegeFrom,
+    .halfDamegeTo,
+    .noDamegeFrom,
+    .noDamegeTo {
+      width: 90%;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+
+      .items {
+        border: 3px solid black;
+        border-radius: 20px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
 
-        &:hover {
-            cursor: pointer;
+        span {
+          margin-right: 1rem;
         }
-
-        .title {
-            padding: 5px;
-            border-radius: 8px;
-            margin-top: 50px;
-            font-weight: bold;
-            font-size: 20px;
-            color: white;
-        }
-
-        .doubleDamegeFrom,
-        .doubleDamegeTo,
-        .halfDamegeFrom,
-        .halfDamegeTo,
-        .noDamegeFrom,
-        .noDamegeTo {
-            width: 90%;
-            height: 100px;
-            display: flex;
-            flex-direction: column;
-            
-            .items{
-                border: 3px solid black;
-                border-radius: 20px;
-                display: flex;
-
-                span {
-                    margin-right: 1rem;
-                }
-            }
-        }
+      }
     }
+  }
 
-    @include mobile {
-        .container {
-            width: 100%;
-        }
+  @include mobile {
+    .container {
+      width: 100%;
     }
+  }
 }

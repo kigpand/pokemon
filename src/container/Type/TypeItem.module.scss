@@ -1,41 +1,47 @@
-@import '../../common/common.scss';
+@import "../../common/common.scss";
 
 .typeItem {
-    width: 90%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px;
+    color: white;
+  }
+
+  .items {
+    border: 3px solid;
     display: flex;
-    flex-direction: column;
-    position: relative;
+    align-items: center;
+    padding: 5px 10px 10px 10px;
+    flex-wrap: wrap;
 
+    .icon {
+      cursor: pointer;
+      width: 25px;
+      height: 20px;
+      margin-left: 10px;
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 8px;
+      border: 1px solid;
+    }
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  @include mobile {
     .title {
-        margin: 50px 0 5px 0;
-        font-weight: bold;
+      margin-top: 20px;
     }
-    
-    .items{
-        border: 3px solid;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-
-        span {
-            font-size: 13px;
-            margin-left: 10px;
-            padding: 5px;
-            border-radius: 8px;
-            border: 1px solid;
-        }
-    }
-
-    .closeBtn {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
-
-    @include mobile {
-        .title {
-            margin-top: 20px;
-        }
-    }
+  }
 }

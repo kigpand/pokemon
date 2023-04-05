@@ -7,6 +7,7 @@ import {
 } from "../../../../utils/convert";
 import styles from "./DetailTexts.module.scss";
 import { setCurrentAbility } from "../../../../reducers/datas";
+import { useNavigate } from "react-router-dom";
 
 interface IDetailTexts {
   currentPoke: IPokemonList;
@@ -14,9 +15,15 @@ interface IDetailTexts {
 
 const DetailTexts = ({ currentPoke }: IDetailTexts) => {
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   function onAbility(ability: string) {
     dispatch(setCurrentAbility(ability));
+  }
+
+  function onTypeClick(type: string) {
+    sessionStorage.setItem("type", type);
+    nav("/type");
   }
 
   return (
@@ -36,7 +43,11 @@ const DetailTexts = ({ currentPoke }: IDetailTexts) => {
           <div className={styles.body}>
             {currentPoke!.types?.map((item: string, i: number) => {
               return (
-                <div className={styles.type} key={i}>
+                <div
+                  className={styles.type}
+                  key={i}
+                  onClick={() => onTypeClick(item)}
+                >
                   <img
                     src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
                     alt="img"
