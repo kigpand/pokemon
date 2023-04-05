@@ -6,10 +6,13 @@ import DetailTexts from "./texts/DetailTexts";
 import list from "../../../json/pokemonList.json";
 import { convertOnePoke } from "../../../utils/makeData";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import AbilityModal from "../../abilityModal/AbilityModal";
 import ARROW from "../../../imgs/left.png";
+import { setBookPokeList } from "../../../reducers/pokemon";
+import AddBookModal from "../../addBookModal/AddBookModal";
+import BOOK from "../../../imgs/book.png";
 
 interface IDesktopDetail {
   currentPoke: IPokemonList;
@@ -17,6 +20,11 @@ interface IDesktopDetail {
 
 const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
+  const dispatch = useDispatch();
+  const [onBookModal, setOnBookModal] = useState<Boolean>(false);
+  const bookPokeList = useSelector(
+    (state: RootState) => state.pokemon.bookPokeList
+  );
   const currentAbility = useSelector(
     (state: RootState) => state.datas.currentAbility
   );
@@ -37,6 +45,24 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
     setPokeItem(pokemon);
   };
 
+  function addPokeBook() {
+    if (currentPoke) {
+      const result = bookPokeList.find(
+        (pokeList: IPokemonList) => pokeList.id === pokeItem.id
+      );
+      if (result) {
+        alert("이미 도감에 등록된 포켓몬입니다.");
+        return;
+      }
+      dispatch(setBookPokeList(pokeItem));
+      setOnBookModal(true);
+    }
+  }
+
+  function onCloseBookModal() {
+    setOnBookModal(false);
+  }
+
   return (
     <div className={styles.desktopDetail}>
       {pokeItem!.id !== 1 && (
@@ -52,6 +78,12 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
         className={styles.container}
         style={{ borderColor: getLineColor(pokeItem!.types![0]) }}
       >
+        <img
+          src={BOOK}
+          alt="img"
+          className={styles.book}
+          onClick={addPokeBook}
+        />
         <img src={pokeItem.imageUrl} alt="img" className={styles.img} />
         <DetailTexts currentPoke={pokeItem} />
       </div>
@@ -64,6 +96,7 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
         ></img>
       )}
       {currentAbility && <AbilityModal />}
+      {onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}
     </div>
   );
 };

@@ -15,4 +15,12 @@
   .logo {
     height: get-vw(20px);
   }
+
+  .home {
+    position: absolute;
+    right: 10%;
+    width: get-vw(20px);
+    height: get-vw(20px);
+    cursor: pointer;
+  }
 }
