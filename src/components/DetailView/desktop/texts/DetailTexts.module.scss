@@ -1,0 +1,91 @@
+@import "../../../../common/func.scss";
+
+.detailTexts {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+
+  .header {
+    .num {
+      font-size: get-vw(10px);
+      font-weight: 700;
+      color: gray;
+    }
+
+    .name {
+      font-size: get-vw(20px);
+      font-weight: bold;
+    }
+
+    .generate {
+      font-size: get-vw(8px);
+      font-weight: 700;
+    }
+  }
+
+  .lists {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: get-vw(8px);
+
+    .list {
+      padding: 5px;
+      border: 1px solid lightgray;
+      margin-right: 10px;
+      margin-top: 10px;
+
+      .title {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: gray;
+      }
+
+      .body {
+        display: flex;
+        padding: 5px;
+        font-weight: 700;
+        // font-size: 13px;
+
+        .type {
+          width: get-vw(30px);
+          text-align: center;
+
+          .icon {
+            margin-bottom: 3px;
+            width: get-vw(20px);
+            height: get-vw(15px);
+          }
+        }
+
+        .ability {
+          display: flex;
+          position: relative;
+
+          .item {
+            width: get-vw(50px);
+            text-align: center;
+          }
+          .item:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+
+        .stat {
+          width: get-vw(35px);
+          padding: 10px 5px;
+          margin-right: 5px;
+          text-align: center;
+          border-radius: 8px;
+          background-color: gray;
+
+          .value {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}

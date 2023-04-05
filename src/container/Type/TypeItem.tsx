@@ -1,4 +1,4 @@
-import { getColor, getLineColor } from "../../utils/convert";
+import { getColor } from "../../utils/convert";
 import styles from "./TypeItem.module.scss";
 
 interface ITypeItem {

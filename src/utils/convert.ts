@@ -1,5 +1,17 @@
 import { IServerType } from "../interface/IServerType";
 
+export const MOBILE_SIZE = 412;
+
+interface IBackgroundColor {
+  [index: string]: string; // 이렇게 한 줄만 써주면 된다
+  HP: string;
+  공격: string;
+  방어: string;
+  특수공격: string;
+  특수방어: string;
+  스피드: string;
+}
+
 export function getColor(type: string) {
   if (type === "water" || type === "물") return "#0267c2";
   if (type === "grass" || type === "풀") return "#389a02";
@@ -62,6 +74,42 @@ export function getTypeKo(type: string) {
   if (type === "steel") return "강철";
   if (type === "fairy") return "페어리";
   return "노말";
+}
+
+export function getTypeIcon(type: string) {
+  if (type === "water") return "/imgs/water.png";
+  if (type === "grass") return "/imgs/grass.png";
+  if (type === "poison") return "/imgs/poision.png";
+  if (type === "fire") return "/imgs/fire.png";
+  if (type === "normal") return "/imgs/normal.png";
+  if (type === "electric") return "/imgs/electic.png";
+  if (type === "ice") return "/imgs/ice.png";
+  if (type === "fighting") return "/imgs/fight.png";
+  if (type === "ground") return "/imgs/earth.png";
+  if (type === "flying") return "/imgs/air.png";
+  if (type === "psychic") return "/imgs/magic.png";
+  if (type === "bug") return "/imgs/bug.png";
+  if (type === "rock") return "/imgs/rock.png";
+  if (type === "ghost") return "/imgs/ghost.png";
+  if (type === "dragon") return "/imgs/dragon.png";
+  if (type === "dark") return "/imgs/dark.png";
+  if (type === "steel") return "/imgs/iron.png";
+  if (type === "fairy") return "/imgs/fairy.png";
+  return "노말";
+}
+
+export function getStatusBarColor(name: string) {
+  const backgroundColor: IBackgroundColor = {
+    HP: "red",
+    공격: "orange",
+    방어: "rgb(55, 55, 255)",
+    특수공격: "pink",
+    특수방어: "purple",
+    스피드: "green",
+    총합: "",
+  };
+
+  return backgroundColor[name];
 }
 
 export function getStatList(stat: string) {
