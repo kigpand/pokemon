@@ -53,6 +53,12 @@
           text-align: center;
           cursor: pointer;
 
+          &:hover {
+            .item {
+              text-decoration: underline;
+            }
+          }
+
           .icon {
             margin-bottom: 3px;
             width: get-vw(20px);

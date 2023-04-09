@@ -1,7 +1,7 @@
 @import "../../common/common.scss";
 
 .mainBody {
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -10,7 +10,7 @@
   .lists {
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(6, 250px);
+    grid-template-columns: repeat(5, 250px);
     grid-gap: 10px;
     justify-content: center;
   }
