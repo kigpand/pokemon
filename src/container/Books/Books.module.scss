@@ -1,10 +1,10 @@
-@import '../../common/common.scss';
+@import "../../common/common.scss";
 
 .books {
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100vw;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

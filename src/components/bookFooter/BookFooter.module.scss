@@ -1,49 +1,49 @@
-@import '../../common/common.scss';
+@import "../../common/common.scss";
 
 .bookFooter {
-    width: 70%;
-    display: flex;
-    justify-content: center;
+  width: 70%;
+  display: flex;
+  justify-content: center;
 
-    .noting {
-        height: 300px;
-        line-height: 300px;
-        color: gray;
-        font-weight: bold;
+  .noting {
+    height: 300px;
+    line-height: 300px;
+    color: gray;
+    font-weight: bold;
+  }
+
+  .totalData {
+    width: 100%;
+    height: 50px;
+
+    div {
+      line-height: 50px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      height: 100%;
+      width: 100%;
     }
+  }
 
-    .totalData {
-        width: 100%;
-        height: 50px;
+  .back {
+    display: none;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
 
-        div {
-            line-height: 50px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-            height: 100%;
-            width: 100%;
-        }
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
+  }
+
+  @include mobile {
+    width: 100%;
 
     .back {
-        display: none;
-        font-weight: bold;
-        position: absolute;
-        bottom: 20px;
-
-        &:hover {
-            text-decoration: underline;
-            cursor: pointer;
-        }
+      display: block;
     }
-
-    @include mobile {
-        width: 100%;
-
-        .back {
-            display: block;
-        }
-    }
+  }
 }

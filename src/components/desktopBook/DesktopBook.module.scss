@@ -1,38 +1,38 @@
 .desktopBook {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    .lists {
-        width: 100%;
-        height: 600px;
-        display: grid;
-        justify-content: center;
-        grid-template-columns: repeat(3, 1fr);
+  .lists {
+    width: 100%;
+    height: 600px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
 
-        .listContainer {
-            display: flex;
-            justify-content: center;
-            position: relative;
+    .listContainer {
+      display: flex;
+      justify-content: center;
+      position: relative;
 
-            .removeBtn {
-                width: 30px;
-                height: 30px;
-                padding: 10px;
-                z-index: 100;
-                border-radius: 50%;
-                background-color: white;
-                border: 1px solid lightgray;
-                position: absolute;
-                top: 0;
-                right: 15%;
+      .removeBtn {
+        width: 30px;
+        height: 30px;
+        padding: 10px;
+        z-index: 100;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid lightgray;
+        position: absolute;
+        top: 0;
+        right: 15%;
 
-                &:hover {
-                    background-color: whitesmoke;
-                    cursor: pointer;
-                }
-            }
+        &:hover {
+          background-color: whitesmoke;
+          cursor: pointer;
         }
+      }
     }
+  }
 }
