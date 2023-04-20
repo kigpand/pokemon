@@ -2,6 +2,7 @@ import styles from "./DetailHeader.module.scss";
 import LOGO from "../../../../imgs/logo2.png";
 import HOME from "../../../../imgs/home.png";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 const DetailHeader = () => {
   const nav = useNavigate();
@@ -19,4 +20,4 @@ const DetailHeader = () => {
   );
 };
 
-export default DetailHeader;
+export default React.memo(DetailHeader);

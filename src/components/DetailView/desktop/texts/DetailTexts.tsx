@@ -8,6 +8,7 @@ import {
 import styles from "./DetailTexts.module.scss";
 import { setCurrentAbility } from "../../../../reducers/datas";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 interface IDetailTexts {
   currentPoke: IPokemonList;
@@ -95,4 +96,4 @@ const DetailTexts = ({ currentPoke }: IDetailTexts) => {
   );
 };
 
-export default DetailTexts;
+export default React.memo(DetailTexts);
