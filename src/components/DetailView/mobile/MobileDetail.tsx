@@ -8,9 +8,9 @@ import { RootState } from "../../../store/store";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setCurrentAbility } from "../../../reducers/datas";
-import { setBookPokeList } from "../../../reducers/pokemon";
 import ADDBTN from "../../../imgs/addBtn.png";
 import QUESTION from "../../../imgs/question.png";
+import { useBookList } from "../../../hooks/useBookList";
 
 interface IMobileDetail {
   currentPoke: IPokemonList;
@@ -25,10 +25,8 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
   const currentAbility = useSelector(
     (state: RootState) => state.datas.currentAbility
   );
-  const bookPokeList = useSelector(
-    (state: RootState) => state.pokemon.bookPokeList
-  );
   const [onBookModal, setOnBookModal] = useState<Boolean>(false);
+  const { addPokeBook } = useBookList();
   const nav = useNavigate();
   const dispatch = useDispatch();
 
@@ -50,20 +48,6 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
     setOnBookModal(false);
   }
 
-  function addPokeBook() {
-    if (currentPoke) {
-      const result = bookPokeList.find(
-        (pokeList: IPokemonList) => pokeList.id === currentPoke.id
-      );
-      if (result) {
-        alert("이미 도감에 등록된 포켓몬입니다.");
-        return;
-      }
-      dispatch(setBookPokeList(currentPoke));
-      setOnBookModal(true);
-    }
-  }
-
   return (
     <div className={styles.mobileDetail}>
       <div
@@ -74,7 +58,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
           src={ADDBTN}
           alt="추가버튼"
           className={styles.addBookBtn}
-          onClick={addPokeBook}
+          onClick={() => addPokeBook(currentPoke, () => setOnBookModal(true))}
         ></img>
         <div
           className={styles.closeBtn}

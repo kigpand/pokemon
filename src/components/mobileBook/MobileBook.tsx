@@ -1,20 +1,19 @@
-import styles from './MobileBook.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { IPokemonList } from '../../interface/IPokemonList';
-import BookList from '../../components/bookList/BookLIst';
+import styles from "./MobileBook.module.scss";
+import { IPokemonList } from "../../interface/IPokemonList";
+import BookList from "../../components/bookList/BookLIst";
+import { useBookList } from "../../hooks/useBookList";
 
 const MobileBook = () => {
+  const { bookPokeList } = useBookList();
 
-    const bookPokeList = useSelector((state: RootState) => state.pokemon.bookPokeList);
-
-    return (
-        <div className={styles.mobileBook}>
-            { bookPokeList.length > 0 && bookPokeList.map((pokeList: IPokemonList) => {
-                return <BookList key={pokeList.id} list={pokeList} />
-            })}
-        </div>
-    )
-}
+  return (
+    <div className={styles.mobileBook}>
+      {bookPokeList.length > 0 &&
+        bookPokeList.map((pokeList: IPokemonList) => {
+          return <BookList key={pokeList.id} list={pokeList} />;
+        })}
+    </div>
+  );
+};
 
 export default MobileBook;
