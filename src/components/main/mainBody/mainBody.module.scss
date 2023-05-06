@@ -1,0 +1,47 @@
+@import "../../../common/common.scss";
+
+.mainBody {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+
+  .lists {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(5, 250px);
+    grid-gap: 10px;
+    justify-content: center;
+  }
+
+  .bottom {
+    visibility: hidden;
+  }
+
+  .topBtn {
+    bottom: 20px;
+    right: 20px;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 90%;
+    background-color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @include mobile {
+    .lists {
+      width: 90%;
+      display: grid;
+      grid-template-columns: repeat(2, 2fr);
+      justify-content: center;
+    }
+    .topBtn {
+      right: 10%;
+    }
+  }
+}
