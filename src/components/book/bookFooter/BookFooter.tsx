@@ -1,12 +1,10 @@
 import styles from "./BookFooter.module.scss";
-import { useState, useEffect } from "react";
+import { useCallback } from "react";
 import { IPokemonList } from "../../../interface/IPokemonList";
 import { useNavigate } from "react-router-dom";
 import { useBookList } from "../../../hooks/useBookList";
 
 const BookFooter = () => {
-  const [total, setTotal] = useState<number>(0);
-  const [avg, setAvg] = useState<number>(0);
   const { bookPokeList } = useBookList();
   const nav = useNavigate();
 
@@ -14,24 +12,29 @@ const BookFooter = () => {
     nav(-1);
   }
 
-  useEffect(() => {
-    if (bookPokeList.length > 0) {
-      let totalData: number = 0;
-      bookPokeList.forEach((pokeList: IPokemonList) => {
-        totalData += pokeList.stats[6].stat;
-      });
-
-      setTotal(totalData);
-      setAvg(Math.ceil(totalData / bookPokeList.length));
-    }
-  }, [bookPokeList]);
+  const getData = useCallback(
+    (isAvg: boolean) => {
+      if (bookPokeList.length > 0) {
+        let totalData: number = 0;
+        bookPokeList.forEach((pokeList: IPokemonList) => {
+          totalData += pokeList.stats[6].stat;
+        });
+        if (isAvg) {
+          return Math.ceil(totalData / bookPokeList.length);
+        }
+        return totalData;
+      }
+      return 0;
+    },
+    [bookPokeList]
+  );
 
   return (
     <div className={styles.bookFooter}>
       {bookPokeList.length > 0 ? (
         <div className={styles.totalData}>
-          <div>평균 종족치: {avg}</div>
-          <div>총 종족치: {total}</div>
+          <div>평균 종족치: {getData(true)}</div>
+          <div>총 종족치: {getData(false)}</div>
         </div>
       ) : (
         <div className={styles.noting}>도감에 저장된 포켓몬이 없습니다.</div>
