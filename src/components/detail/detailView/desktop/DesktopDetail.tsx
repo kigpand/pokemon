@@ -1,5 +1,5 @@
 import { IPokemonList } from "../../../../interface/IPokemonList";
-import { getLineColor } from "../../../../utils/convert";
+import { LAST_NUM, getLineColor } from "../../../../utils/convert";
 import styles from "./DesktopDetail.module.scss";
 import DetailHeader from "./header/DetailHeader";
 import DetailTexts from "./texts/DetailTexts";
@@ -69,7 +69,7 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
         <img src={pokeItem.imageUrl} alt="img" className={styles.img} />
         <DetailTexts currentPoke={pokeItem} />
       </div>
-      {pokeItem!.id !== 898 && (
+      {pokeItem!.id !== LAST_NUM && (
         <img
           className={styles.right}
           src={ARROW}

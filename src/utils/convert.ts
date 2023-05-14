@@ -2,6 +2,8 @@ import { IServerType } from "../interface/IServerType";
 
 export const MOBILE_SIZE = 412;
 
+export const LAST_NUM = 898;
+
 interface IBackgroundColor {
   [index: string]: string; // 이렇게 한 줄만 써주면 된다
   HP: string;
