@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -16,7 +17,6 @@ const MainBody = () => {
   const { pokemonList, currentList } = useSelector(
     (state: RootState) => state.pokemon
   );
-  const { scrollPoint } = useSelector((state: RootState) => state.datas);
   const bodyRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
@@ -34,7 +34,6 @@ const MainBody = () => {
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -45,7 +44,6 @@ const MainBody = () => {
       }
       dispatch(setCurrentList(setting));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonList]);
 
   const onScroll = () => {
@@ -66,14 +64,7 @@ const MainBody = () => {
       }
       dispatch(setCurrentList(item));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scroll]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, scrollPoint);
-    }, 10);
-  }, [scrollPoint]);
 
   return (
     <div className={styles.mainBody} ref={bodyRef}>

@@ -1,7 +1,6 @@
 import styles from "./mainHeader.module.scss";
 import LOGO from "../../../imgs/logo2.png";
 import FILTER from "../../../imgs/filter.png";
-import { useDispatch } from "react-redux";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyboardEvent } from "react";
@@ -9,13 +8,11 @@ import { convertOnePoke } from "../../../utils/makeData";
 import SortModal from "../../modal/sortModal/SortModal";
 import list from "../../../json/pokemonList.json";
 import { useState } from "react";
-import { setScrollPoint } from "../../../reducers/datas";
 import BOOK from "../../../imgs/book.png";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [onSortModal, setOnSortModal] = useState<Boolean>(false);
-  const dispatch = useDispatch();
   const nav = useNavigate();
 
   function onSearchItem(e: KeyboardEvent<HTMLInputElement>) {
@@ -27,7 +24,6 @@ const MainHeader = () => {
       if (item) {
         const pokemon = convertOnePoke(item);
         sessionStorage.setItem("currentPoke", JSON.stringify(pokemon));
-        dispatch(setScrollPoint(0));
         nav("/detail");
       } else {
         alert("올바른 도감번호를 입력해주세요.");
