@@ -23,8 +23,9 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     let filteredData = [];
     if (type === "type") {
       filteredData = pokeData.filter((poke) => {
-        const types = getTypeConvertData(poke.pokeTypes);
-        const result = types?.find((type) => type === sortData);
+        const result = getTypeConvertData(poke.pokeTypes)?.find(
+          (type) => type === sortData
+        );
         return result ? true : false;
       });
     } else {
@@ -42,7 +43,6 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
 
   function onSortBy(type: string) {
     const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
-    console.log(list);
     let filteredData: IPokemonList[] = [];
     switch (type) {
       case "id":
