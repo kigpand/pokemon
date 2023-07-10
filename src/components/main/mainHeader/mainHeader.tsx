@@ -1,6 +1,5 @@
 import styles from "./mainHeader.module.scss";
 import LOGO from "../../../imgs/logo2.png";
-import FILTER from "../../../imgs/filter.png";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyboardEvent } from "react";
@@ -8,7 +7,8 @@ import { convertOnePoke } from "../../../utils/makeData";
 import SortModal from "../../modal/sortModal/SortModal";
 import list from "../../../json/pokemonList.json";
 import { useState } from "react";
-import BOOK from "../../../imgs/book.png";
+import { BsFilterRight } from "react-icons/bs";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -55,18 +55,8 @@ const MainHeader = () => {
         placeholder="도감번호나 이름을 입력해주세요"
         onKeyDown={onSearchItem}
       ></input>
-      <img
-        src={FILTER}
-        className={styles.sort}
-        alt="sort"
-        onClick={openSort}
-      ></img>
-      <img
-        src={BOOK}
-        className={styles.book}
-        alt="book"
-        onClick={moveToBook}
-      ></img>
+      <BsFilterRight className={styles.sort} onClick={openSort} />
+      <BsFillBookmarkPlusFill className={styles.book} onClick={moveToBook} />
       {onSortModal && <SortModal closeSort={closeSort} />}
     </div>
   );

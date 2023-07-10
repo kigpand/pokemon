@@ -12,24 +12,21 @@
     grid-template-columns: repeat(3, 1fr);
 
     .listContainer {
+      width: 230px;
       display: flex;
       justify-content: center;
       position: relative;
 
       .removeBtn {
-        width: 30px;
-        height: 30px;
+        font-size: 25px;
         padding: 10px;
         z-index: 100;
-        border-radius: 50%;
-        background-color: white;
-        border: 1px solid lightgray;
         position: absolute;
-        top: 0;
-        right: 15%;
+        top: 5px;
+        right: 5px;
 
         &:hover {
-          background-color: whitesmoke;
+          color: red;
           cursor: pointer;
         }
       }

@@ -20,30 +20,36 @@
       height: 100%;
     }
 
-    .book {
+    .heart,
+    .emptyHeart {
       width: get-vw(20px);
       height: get-vw(20px);
       padding: 5px;
-      border: 1px solid gray;
       position: absolute;
       top: 10px;
       right: 10px;
       cursor: pointer;
+    }
 
+    .heart {
+      color: red;
+    }
+
+    .emptyHeart {
       &:hover {
-        background-color: lightgray;
+        color: red;
       }
     }
   }
 
-  .left,
-  .right {
+  .arrow,
+  .arrow {
     width: get-vw(50px);
     height: get-vw(50px);
     cursor: pointer;
-  }
 
-  .right {
-    transform: rotate(180deg);
+    &:hover {
+      color: gray;
+    }
   }
 }

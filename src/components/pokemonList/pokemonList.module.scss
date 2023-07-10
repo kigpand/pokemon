@@ -28,8 +28,8 @@
   }
 
   &:hover {
-    transform: translateY(-10px);
     cursor: pointer;
+    background-color: lightgray;
   }
 
   @include mobile {

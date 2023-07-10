@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { IPokemonList } from "../../../interface/IPokemonList";
 import styles from "./BookList.module.scss";
-import SEARCH from "../../../imgs/search.png";
-import DELETE from "../../../imgs/delete.png";
 import { useBookList } from "../../../hooks/useBookList";
+import { AiFillDelete, AiOutlineSearch } from "react-icons/ai";
 
 interface IBookList {
   list: IPokemonList;
@@ -23,18 +22,11 @@ const BookList = (item: IBookList) => {
       <div className={styles.name}>{item.list.name}</div>
       <div className={styles.total}>종족치: {item.list.stats[6].stat}</div>
       <div className={styles.btns}>
-        <img
-          src={SEARCH}
+        <AiOutlineSearch className={styles.btn} onClick={onDetail} />
+        <AiFillDelete
           className={styles.btn}
-          alt="search"
-          onClick={onDetail}
-        ></img>
-        <img
-          src={DELETE}
-          className={styles.btn}
-          alt="delete"
           onClick={() => onRemove(item.list)}
-        ></img>
+        />
       </div>
     </div>
   );

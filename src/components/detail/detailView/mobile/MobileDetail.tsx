@@ -12,9 +12,10 @@ import { RootState } from "../../../../store/store";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setCurrentAbility } from "../../../../reducers/datas";
-import ADDBTN from "../../../../imgs/addBtn.png";
 import QUESTION from "../../../../imgs/question.png";
 import { useBookList } from "../../../../hooks/useBookList";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 interface IMobileDetail {
   currentPoke: IPokemonList;
@@ -30,7 +31,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
     (state: RootState) => state.datas.currentAbility
   );
   const [onBookModal, setOnBookModal] = useState<Boolean>(false);
-  const { addPokeBook } = useBookList();
+  const { addPokeBook, bookPokeList, onRemove } = useBookList();
   const nav = useNavigate();
   const dispatch = useDispatch();
 
@@ -58,24 +59,30 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
         className={styles.container}
         style={{ borderColor: getColor(currentPoke.types![0]) }}
       >
-        <img
-          src={ADDBTN}
-          alt="추가버튼"
-          className={styles.addBookBtn}
-          onClick={() => addPokeBook(currentPoke, () => setOnBookModal(true))}
-        ></img>
-        <div
+        <AiOutlineCloseCircle
           className={styles.closeBtn}
           style={{
-            borderColor: getColor(currentPoke?.types![0]),
             color: getColor(currentPoke?.types![0]),
           }}
           onClick={onCloseBtn}
-        >
-          X
-        </div>
+        />
         <div className={styles.num}>
           No.{currentPoke?.id} {currentPoke.name}
+          {bookPokeList.find(
+            (item: IPokemonList) => item.id === currentPoke.id
+          ) ? (
+            <BsHeartFill
+              className={styles.heart}
+              onClick={() => onRemove(currentPoke)}
+            />
+          ) : (
+            <BsHeart
+              className={styles.emptyHeart}
+              onClick={() =>
+                addPokeBook(currentPoke, () => setOnBookModal(true))
+              }
+            />
+          )}
         </div>
         <div
           className={styles.generate}

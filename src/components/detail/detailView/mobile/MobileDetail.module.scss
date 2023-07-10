@@ -15,23 +15,9 @@
     padding-bottom: 10px;
   }
 
-  .addBookBtn {
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    height: 30px;
-    object-fit: contain;
-
-    &:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-  }
-
   .closeBtn {
     @include flex;
-    width: 20px;
-    height: 20px;
+    font-size: 25px;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -45,10 +31,30 @@
   }
 
   .num {
+    display: flex;
+    align-items: center;
     padding: 10px 0;
     padding-left: 10px;
     font-weight: bold;
     font-size: 20px;
+
+    .heart,
+    .emptyHeart {
+      margin-left: 5px;
+      font-size: 20px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    .heart {
+      color: red;
+    }
+
+    .emptyHeart {
+      &:hover {
+        color: red;
+      }
+    }
   }
 
   .generate {

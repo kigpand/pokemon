@@ -1,8 +1,8 @@
 import { IPokemonList } from "../../../interface/IPokemonList";
 import PokemonList from "../../pokemonList/pokemonList";
 import styles from "./DesktopBook.module.scss";
-import DELETE from "../../../imgs/delete.png";
 import { useBookList } from "../../../hooks/useBookList";
+import { AiFillDelete } from "react-icons/ai";
 
 const DesktopBook = () => {
   const { bookPokeList, onRemove } = useBookList();
@@ -14,10 +14,8 @@ const DesktopBook = () => {
           {bookPokeList.map((item: IPokemonList, i: number) => {
             return (
               <div className={styles.listContainer} key={i}>
-                <img
-                  src={DELETE}
+                <AiFillDelete
                   className={styles.removeBtn}
-                  alt="delete"
                   onClick={() => onRemove(item)}
                 />
                 <PokemonList pokemon={item} />

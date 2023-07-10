@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import types from "../../json/types.json";
 import { IType } from "../../interface/IType";
-import HOME from "../../imgs/home.png";
+import { AiOutlineHome } from "react-icons/ai";
 
 const Type = () => {
   const nav = useNavigate();
@@ -49,12 +49,11 @@ const Type = () => {
           className={styles.container}
           style={{ borderColor: getColor(typeData.name) }}
         >
-          <img
-            src={HOME}
-            alt="home"
+          <AiOutlineHome
             className={styles.home}
             onClick={onCloseBtn}
-          ></img>
+            style={{ color: getColor(typeData.name) }}
+          />
           <div className={styles.header}>
             <img
               src={`${process.env.PUBLIC_URL}/${getTypeIcon(typeData.name)}`}

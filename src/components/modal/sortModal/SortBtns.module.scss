@@ -1,29 +1,27 @@
 .sortBtns {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 60px);
-    justify-content: space-evenly;
-    
-    div {
-        padding: 2px;
-        border-radius: 4px;
-        text-align: center;
-        font-size: 13px;
-        margin-top: 3px;
-        color: white;
-        box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.64) inset;
-        -webkit-box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.64) inset;
-        -moz-box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.64) inset;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 90px);
+  justify-content: space-evenly;
+  padding-bottom: 10px;
 
-        &:hover {
-            font-weight: bold;
-            cursor: pointer;
-        }
-    }
+  div {
+    padding: 5px;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 3px;
+    color: black;
+    border: 1px solid;
 
-    .gene,
-    .item {
-        background-color: white;
-        color: black;
+    &:hover {
+      font-weight: bold;
+      cursor: pointer;
     }
+  }
+
+  .gene,
+  .item {
+    color: black;
+    border: 1px solid lightgray;
+  }
 }

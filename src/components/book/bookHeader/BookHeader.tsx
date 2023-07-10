@@ -1,8 +1,8 @@
 import styles from "./BookHeader.module.scss";
 import LOGO from "../../../imgs/logo2.png";
-import BACK from "../../../imgs/back.png";
 import { useNavigate } from "react-router-dom";
 import { useBookList } from "../../../hooks/useBookList";
+import { AiOutlineRollback } from "react-icons/ai";
 
 const BookHeader = () => {
   const nav = useNavigate();
@@ -15,7 +15,7 @@ const BookHeader = () => {
   return (
     <div className={styles.bookHeader}>
       <img src={LOGO} alt="logo" className={styles.logo}></img>
-      <img src={BACK} alt="back" className={styles.back} onClick={onBack}></img>
+      <AiOutlineRollback className={styles.back} onClick={onBack} />
       <div className={styles.title}>
         도감 ({bookPokeList.length > 0 && `${bookPokeList.length}/6`})
       </div>

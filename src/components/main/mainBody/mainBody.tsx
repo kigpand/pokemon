@@ -7,10 +7,10 @@ import PokemonList from "../../pokemonList/pokemonList";
 import styles from "./mainBody.module.scss";
 import { RootState } from "../../../store/store";
 import { IPokemonList } from "../../../interface/IPokemonList";
-import ARROW from "../../../imgs/arrow.png";
 import { convertPokeData } from "../../../utils/makeData";
 import { setCurrentList, setPokemonList } from "../../../reducers/pokemon";
 import pokeData from "../../../json/pokemonList.json";
+import { BsFillArrowUpCircleFill } from "react-icons/bs";
 
 const MainBody = () => {
   const [scroll, setScroll] = useState<number>(0);
@@ -73,12 +73,10 @@ const MainBody = () => {
           return <PokemonList pokemon={data} key={i} />;
         })}
       </div>
-      <img
-        src={ARROW}
-        alt="arrow"
+      <BsFillArrowUpCircleFill
         className={styles.topBtn}
         onClick={returnToTop}
-      ></img>
+      />
     </div>
   );
 };

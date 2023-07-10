@@ -9,10 +9,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import AbilityModal from "../../../modal/abilityModal/AbilityModal";
-import ARROW from "../../../../imgs/left.png";
 import AddBookModal from "../../../modal/addBookModal/AddBookModal";
-import BOOK from "../../../../imgs/book.png";
 import { useBookList } from "../../../../hooks/useBookList";
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+  BsHeart,
+} from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -23,7 +27,7 @@ interface IDesktopDetail {
 const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
   const [onBookModal, setOnBookModal] = useState<Boolean>(false);
-  const { addPokeBook } = useBookList();
+  const { addPokeBook, bookPokeList, onRemove } = useBookList();
   const currentAbility = useSelector(
     (state: RootState) => state.datas.currentAbility
   );
@@ -48,34 +52,35 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
   return (
     <div className={styles.desktopDetail}>
       {pokeItem!.id !== 1 && (
-        <img
-          className={styles.left}
-          src={ARROW}
+        <BsFillArrowLeftCircleFill
+          className={styles.arrow}
           onClick={() => onArrowClick("LEFT")}
-          alt="왼쪽"
-        ></img>
+        />
       )}
       <DetailHeader />
       <div
         className={styles.container}
         style={{ borderColor: getLineColor(pokeItem!.types![0]) }}
       >
-        <img
-          src={BOOK}
-          alt="img"
-          className={styles.book}
-          onClick={() => addPokeBook(pokeItem, () => setOnBookModal(true))}
-        />
+        {bookPokeList.find((item: IPokemonList) => item.id === pokeItem.id) ? (
+          <BsHeartFill
+            className={styles.heart}
+            onClick={() => onRemove(pokeItem)}
+          />
+        ) : (
+          <BsHeart
+            className={styles.emptyHeart}
+            onClick={() => addPokeBook(pokeItem, () => setOnBookModal(true))}
+          />
+        )}
         <img src={pokeItem.imageUrl} alt="img" className={styles.img} />
         <DetailTexts currentPoke={pokeItem} />
       </div>
       {pokeItem!.id !== LAST_NUM && (
-        <img
-          className={styles.right}
-          src={ARROW}
+        <BsFillArrowRightCircleFill
+          className={styles.arrow}
           onClick={() => onArrowClick("RIGHT")}
-          alt="오른쪽"
-        ></img>
+        />
       )}
       {currentAbility && <AbilityModal />}
       {onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}

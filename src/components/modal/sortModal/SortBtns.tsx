@@ -141,7 +141,7 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
           return (
             <div
               key={i}
-              style={{ backgroundColor: getColor(type) }}
+              style={{ borderColor: getColor(type), color: getColor(type) }}
               onClick={() => onSort(type, "type")}
             >
               {getTypeKo(type)}
