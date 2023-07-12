@@ -1,16 +1,16 @@
-import { IPokemonList } from "../../../../interface/IPokemonList";
-import { LAST_NUM, getLineColor } from "../../../../utils/convert";
+import { IPokemonList } from "../../../interface/IPokemonList";
+import { LAST_NUM, getLineColor } from "../../../utils/convert";
 import styles from "./DesktopDetail.module.scss";
 import DetailHeader from "./header/DetailHeader";
 import DetailTexts from "./texts/DetailTexts";
-import list from "../../../../json/pokemonList.json";
-import { convertOnePoke } from "../../../../utils/makeData";
+import list from "../../../json/pokemonList.json";
+import { convertOnePoke } from "../../../utils/makeData";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
-import AbilityModal from "../../../modal/abilityModal/AbilityModal";
-import AddBookModal from "../../../modal/addBookModal/AddBookModal";
-import { useBookList } from "../../../../hooks/useBookList";
+import { RootState } from "../../../store/store";
+import AbilityModal from "../../modal/abilityModal/AbilityModal";
+import AddBookModal from "../../modal/addBookModal/AddBookModal";
+import { useBookList } from "../../../hooks/useBookList";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,

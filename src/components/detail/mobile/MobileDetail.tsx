@@ -1,19 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IPokemonList } from "../../../../interface/IPokemonList";
-import {
-  getColor,
-  getStatusBarColor,
-  getTypeKo,
-} from "../../../../utils/convert";
-import AbilityModal from "../../../modal/abilityModal/AbilityModal";
-import AddBookModal from "../../../modal/addBookModal/AddBookModal";
+import { IPokemonList } from "../../../interface/IPokemonList";
+import { getColor, getStatusBarColor, getTypeKo } from "../../../utils/convert";
+import AbilityModal from "../../modal/abilityModal/AbilityModal";
+import AddBookModal from "../../modal/addBookModal/AddBookModal";
 import styles from "./MobileDetail.module.scss";
-import { RootState } from "../../../../store/store";
+import { RootState } from "../../../store/store";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setCurrentAbility } from "../../../../reducers/datas";
-import QUESTION from "../../../../imgs/question.png";
-import { useBookList } from "../../../../hooks/useBookList";
+import { setCurrentAbility } from "../../../reducers/datas";
+import QUESTION from "../../../imgs/question.png";
+import { useBookList } from "../../../hooks/useBookList";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 

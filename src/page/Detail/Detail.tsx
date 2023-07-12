@@ -1,8 +1,8 @@
 import styles from "./Detail.module.scss";
 import { useEffect, useState } from "react";
 import { IPokemonList } from "../../interface/IPokemonList";
-import DesktopDetail from "../../components/detail/detailView/desktop/DesktopDetail";
-import MobileDetail from "../../components/detail/detailView/mobile/MobileDetail";
+import DesktopDetail from "../../components/detail/desktop/DesktopDetail";
+import MobileDetail from "../../components/detail/mobile/MobileDetail";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { MOBILE_SIZE } from "../../utils/convert";
 

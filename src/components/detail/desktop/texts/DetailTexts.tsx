@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { IPokemonList } from "../../../../../interface/IPokemonList";
+import { IPokemonList } from "../../../../interface/IPokemonList";
 import styles from "./DetailTexts.module.scss";
-import { setCurrentAbility } from "../../../../../reducers/datas";
+import { setCurrentAbility } from "../../../../reducers/datas";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import TextItem from "./textItem/TextItem";
