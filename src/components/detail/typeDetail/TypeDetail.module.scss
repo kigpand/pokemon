@@ -1,0 +1,15 @@
+.typeDetail {
+  position: absolute;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 8px;
+
+  .article {
+    margin-bottom: 20px;
+
+    .title {
+      font-weight: bold;
+    }
+  }
+}

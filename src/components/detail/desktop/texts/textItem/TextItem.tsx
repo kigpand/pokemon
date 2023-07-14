@@ -29,7 +29,6 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
                   alt="img"
                   className={styles.icon}
                 />
-                <div className={styles.item}>{getTypeKo(item)}</div>
               </div>
             );
           })}

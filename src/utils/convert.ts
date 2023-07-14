@@ -183,37 +183,37 @@ export function typeConvertDamegeData(typeData: IServerType) {
       ? typeData.doubleDamegeFrom.split(",").map((v: string) => {
           return getTypeKo(v);
         })
-      : null;
+      : [];
   const doubleTo =
     typeData.doubleDamegeTo !== ""
       ? typeData.doubleDamegeTo.split(",").map((v: string) => {
           return getTypeKo(v);
         })
-      : null;
+      : [];
   const halfFrom =
     typeData.halfDamegeFrom !== ""
       ? typeData.halfDamegeFrom.split(",").map((v: string) => {
           return getTypeKo(v);
         })
-      : null;
+      : [];
   const halfTo =
     typeData.halfDamegeTo !== ""
       ? typeData.halfDamegeTo.split(",").map((v: string) => {
           return getTypeKo(v);
         })
-      : null;
+      : [];
   const noFrom =
     typeData.noDamegeFrom !== ""
       ? typeData.noDamegeFrom.split(",").map((v: string) => {
           return getTypeKo(v);
         })
-      : null;
+      : [];
   const noTo =
     typeData.noDamegeTo !== ""
       ? typeData.noDamegeTo.split(",").map((v: string) => {
           return getTypeKo(v);
         })
-      : null;
+      : [];
 
   return { name, doubleFrom, doubleTo, halfFrom, halfTo, noFrom, noTo };
 }

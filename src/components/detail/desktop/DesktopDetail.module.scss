@@ -5,6 +5,7 @@
   width: 100%;
   height: 100vh;
   @include flex;
+  background-color: whitesmoke;
 
   .container {
     width: 60%;
@@ -14,6 +15,7 @@
     margin: 0 30px;
     position: relative;
     @include flex;
+    background-color: white;
 
     .img {
       width: 50%;
