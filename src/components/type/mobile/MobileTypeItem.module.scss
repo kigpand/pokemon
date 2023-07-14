@@ -1,0 +1,49 @@
+@import "../../../common/common.scss";
+
+.mobileTypeItem {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title {
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .items {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+
+    .icon {
+      cursor: pointer;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-left: 15px;
+    }
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  @include mobile {
+    .title {
+      margin-top: 20px;
+    }
+  }
+}
