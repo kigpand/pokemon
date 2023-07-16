@@ -3,7 +3,7 @@ import { IPokemonList } from "../../../../interface/IPokemonList";
 import styles from "./DetailTexts.module.scss";
 import { setCurrentAbility } from "../../../../reducers/datas";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextItem from "./textItem/TextItem";
 import TypeDetail from "../../typeDetail/TypeDetail";
 
@@ -25,6 +25,14 @@ const DetailTexts = ({ currentPoke }: IDetailTexts) => {
     nav("/type");
   }
 
+  useEffect(() => {
+    console.log(typeDetail);
+  }, [typeDetail]);
+
+  function onCloseType() {
+    setTypeDetail(false);
+  }
+
   return (
     <div className={styles.detailTexts}>
       <div className={styles.header}>
@@ -34,6 +42,12 @@ const DetailTexts = ({ currentPoke }: IDetailTexts) => {
         <div className={styles.vs} onClick={() => setTypeDetail(true)}>
           상성표 보기
         </div>
+        {typeDetail && (
+          <TypeDetail
+            typeArr={currentPoke!.types || []}
+            onCloseType={onCloseType}
+          />
+        )}
       </div>
       <div className={styles.lists}>
         <TextItem items={currentPoke} type="분류" />
@@ -41,12 +55,6 @@ const DetailTexts = ({ currentPoke }: IDetailTexts) => {
         <TextItem items={currentPoke} type="특성" onClick={onAbility} />
         <TextItem items={currentPoke} type="종족값" />
       </div>
-      {typeDetail && (
-        <TypeDetail
-          typeArr={currentPoke!.types || []}
-          onCloseType={() => setTypeDetail(false)}
-        />
-      )}
     </div>
   );
 };

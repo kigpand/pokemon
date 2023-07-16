@@ -18,6 +18,8 @@ const TypeDetailText = ({ title, arr, num }: Props) => {
 
   useEffect(() => {
     let typeArr: ITypeText[] = [];
+
+    // 각 상성들 중첩되는 항목 제거 및 count 증가로 배율 조정
     arr.forEach((item: string) => {
       const result = typeArr.find((type: ITypeText) => type.text === item);
       if (result) {
@@ -44,7 +46,14 @@ const TypeDetailText = ({ title, arr, num }: Props) => {
               key={i}
             >
               <strong>{item.text}</strong>{" "}
-              <span className={styles.num}>x{item.count * num}</span>
+              <span className={styles.num}>
+                x
+                {num === 2
+                  ? num * item.count
+                  : num === 0.5
+                  ? num / item.count
+                  : 0}
+              </span>
             </div>
           );
         })}
