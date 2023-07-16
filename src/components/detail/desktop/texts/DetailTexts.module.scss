@@ -6,6 +6,7 @@
   margin-left: 40px;
 
   .header {
+    position: relative;
     .num {
       font-size: get-vw(10px);
       font-weight: 700;
@@ -20,6 +21,15 @@
     .generate {
       font-size: get-vw(8px);
       font-weight: 700;
+    }
+
+    .vs {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: get-vw(10px);
+      font-weight: bold;
+      cursor: pointer;
     }
   }
 
