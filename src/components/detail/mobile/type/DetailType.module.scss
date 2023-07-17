@@ -1,12 +1,6 @@
 @import "../../../../common/common.scss";
 
 .types {
-  margin-bottom: 1rem;
-
-  .miniTitle {
-    @include miniTitle;
-  }
-
   .mainContents {
     @include mainContents;
 

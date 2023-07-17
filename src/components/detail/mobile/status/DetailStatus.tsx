@@ -1,4 +1,4 @@
-import { getColor, getStatusBarColor } from "../../../../utils/convert";
+import { getStatusBarColor } from "../../../../utils/convert";
 import styles from "./DetailStatus.module.scss";
 
 interface IStateItem {
@@ -7,19 +7,12 @@ interface IStateItem {
 }
 
 type Props = {
-  types: string[];
   stats: IStateItem[];
 };
 
-const DetailStatus = ({ types, stats }: Props) => {
+const DetailStatus = ({ stats }: Props) => {
   return (
     <div className={styles.status}>
-      <div
-        className={styles.miniTitle}
-        style={{ backgroundColor: getColor(types![0]) }}
-      >
-        종족값
-      </div>
       <div className={styles.mainContents}>
         {stats.map((stat: IStateItem, i: number) => {
           const backgroudColor = getStatusBarColor(stat.name);

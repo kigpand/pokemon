@@ -10,6 +10,7 @@ import DetailGenus from "./genus/DetailGenus";
 import DetailType from "./type/DetailType";
 import DetailAbility from "./ability/DetailAbility";
 import DetailStatus from "./status/DetailStatus";
+import DetailLayout from "./layout/DetailLayout";
 
 interface IMobileDetail {
   currentPoke: IPokemonList;
@@ -29,16 +30,29 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
         >
           <MobileDetailHeader currentPoke={currentPoke} />
           <DetailInfo currentPoke={currentPoke} />
-          <DetailGenus types={currentPoke.types} genus={currentPoke.genus} />
-          <DetailType types={currentPoke.types} />
+          <DetailLayout
+            types={currentPoke.types}
+            title="분류"
+            component={<DetailGenus genus={currentPoke.genus} />}
+          />
+          <DetailLayout
+            types={currentPoke.types}
+            title="타입"
+            component={<DetailType types={currentPoke.types} />}
+          />
           {currentPoke?.abilities && (
-            <DetailAbility
-              abilities={currentPoke.abilities}
+            <DetailLayout
               types={currentPoke.types}
+              title="특성"
+              component={<DetailAbility abilities={currentPoke.abilities} />}
             />
           )}
           {currentPoke?.stats && (
-            <DetailStatus types={currentPoke.types} stats={currentPoke.stats} />
+            <DetailLayout
+              types={currentPoke.types}
+              title="종족값"
+              component={<DetailStatus stats={currentPoke.stats} />}
+            />
           )}
           <b style={{ paddingLeft: "5px" }}>정보</b>
           <div className={styles.flavor}>

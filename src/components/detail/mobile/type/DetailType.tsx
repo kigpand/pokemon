@@ -16,12 +16,6 @@ const DetailType = ({ types }: Props) => {
 
   return (
     <div className={styles.types}>
-      <div
-        className={styles.miniTitle}
-        style={{ backgroundColor: getColor(types[0]) }}
-      >
-        타입
-      </div>
       <div className={styles.mainContents}>
         {types.map((type, i) => {
           return (

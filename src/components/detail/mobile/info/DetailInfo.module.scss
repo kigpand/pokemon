@@ -5,6 +5,7 @@
   height: 130px;
   position: relative;
   @include flex;
+  padding: 10px 0;
 
   .img {
     height: 100%;
