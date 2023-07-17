@@ -1,0 +1,26 @@
+@import "../../../../common/common.scss";
+
+.types {
+  margin-bottom: 1rem;
+
+  .miniTitle {
+    @include miniTitle;
+  }
+
+  .mainContents {
+    @include mainContents;
+
+    .type {
+      padding: 5px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: white;
+      margin-right: 1rem;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}
