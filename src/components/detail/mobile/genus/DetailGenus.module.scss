@@ -1,0 +1,12 @@
+@import "../../../../common/common.scss";
+
+.genus {
+  .mainContents {
+    @include mainContents;
+
+    span {
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import "../../../../common/common.scss";
+
+.abilities {
+  .mainContents {
+    @include mainContents;
+
+    span {
+      margin-right: 1rem;
+      font-weight: bold;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}

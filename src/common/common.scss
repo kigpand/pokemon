@@ -1,13 +1,22 @@
 $mobile: 767px;
 
 @mixin mobile {
-    @media (max-width: $mobile) {
-        @content;
-    }
+  @media (max-width: $mobile) {
+    @content;
+  }
 }
 
 @mixin flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin mainContents {
+  padding: 10px;
+  background-color: whitesmoke;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-shadow: 0px 8px 17px -3px #000000;
+  box-shadow: 0px 3px 17px -3px #000000;
 }
