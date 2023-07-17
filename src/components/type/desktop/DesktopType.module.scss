@@ -1,0 +1,27 @@
+.desktopType {
+  width: 100vw;
+  height: 100vh;
+
+  .container {
+    width: 100%;
+    padding-top: 50px;
+    padding-left: 100px;
+
+    .header {
+      display: flex;
+      width: 80%;
+      align-items: center;
+
+      .icon {
+        height: 50px;
+        object-fit: contain;
+      }
+
+      .title {
+        margin-left: 20px;
+        font-weight: bold;
+        font-size: 25px;
+      }
+    }
+  }
+}
