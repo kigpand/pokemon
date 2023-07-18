@@ -6,9 +6,6 @@ import DetailBody from "./texts/DetailBody";
 import list from "../../../json/pokemonList.json";
 import { convertOnePoke } from "../../../utils/makeData";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import AbilityModal from "../../modal/abilityModal/AbilityModal";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -22,9 +19,6 @@ interface IDesktopDetail {
 
 const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
-  const currentAbility = useSelector(
-    (state: RootState) => state.datas.currentAbility
-  );
 
   const onArrowClick = (type: ARROWTYPE) => {
     let item = null;
@@ -55,7 +49,6 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
           onClick={() => onArrowClick("RIGHT")}
         />
       )}
-      {currentAbility && <AbilityModal />}
     </div>
   );
 };

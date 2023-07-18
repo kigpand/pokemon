@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 import { IPokemonList } from "../../../interface/IPokemonList";
 import { getColor } from "../../../utils/convert";
-import AbilityModal from "../../modal/abilityModal/AbilityModal";
 import styles from "./MobileDetail.module.scss";
-import { RootState } from "../../../store/store";
 import DetailInfo from "./info/DetailInfo";
 import MobileDetailHeader from "./header/MobileDetailHeader";
 import DetailGenus from "./genus/DetailGenus";
@@ -17,10 +14,6 @@ interface IMobileDetail {
 }
 
 const MobileDetail = ({ currentPoke }: IMobileDetail) => {
-  const currentAbility = useSelector(
-    (state: RootState) => state.datas.currentAbility
-  );
-
   return (
     <div className={styles.mobileDetail}>
       {currentPoke?.types && (
@@ -60,7 +53,6 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
           </div>
         </div>
       )}
-      {currentAbility && <AbilityModal />}
     </div>
   );
 };
