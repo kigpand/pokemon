@@ -1,27 +1,32 @@
+@import "../../../common/common.scss";
+@import "../../../common/func.scss";
+
 .desktopType {
   width: 100vw;
   height: 100vh;
+  @include flex;
+  background-color: whitesmoke;
 
   .container {
-    width: 100%;
-    padding-top: 50px;
-    padding-left: 100px;
+    width: 60%;
+    min-height: get-vw(300px);
+    border: 3px solid black;
+    position: relative;
+    border-radius: 8px;
+    padding: 50px;
+    margin: 0 30px;
+    position: relative;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-column-gap: 20px;
 
-    .header {
-      display: flex;
-      width: 80%;
-      align-items: center;
-
-      .icon {
-        height: 50px;
-        object-fit: contain;
-      }
-
-      .title {
-        margin-left: 20px;
-        font-weight: bold;
-        font-size: 25px;
-      }
+    .home {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
     }
   }
 }

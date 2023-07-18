@@ -9,7 +9,7 @@ const DetailHeader = () => {
 
   const onHome = () => {
     sessionStorage.removeItem("currentPoke");
-    nav(-1);
+    nav("/");
   };
 
   return (

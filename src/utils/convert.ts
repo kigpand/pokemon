@@ -14,6 +14,7 @@ interface IBackgroundColor {
   스피드: string;
 }
 
+/** 속성에 맞는 색상 반환 함수 */
 export function getColor(type: string) {
   if (type === "water" || type === "물") return "#0267c2";
   if (type === "grass" || type === "풀") return "#389a02";
@@ -35,6 +36,7 @@ export function getColor(type: string) {
   if (type === "fairy" || type === "페어리") return "#df8ddf";
 }
 
+/** 속성에 맞는 border or line 색상 반환 함수 */
 export function getLineColor(type: string) {
   if (type === "water" || type === "물") return "#0267c2";
   if (type === "grass" || type === "풀") return "#389a02";
@@ -56,6 +58,7 @@ export function getLineColor(type: string) {
   if (type === "fairy" || type === "페어리") return "#ff18a7";
 }
 
+/** 영어 이름에 맞는 한글 속성 반환 함수  */
 export function getTypeKo(type: string) {
   if (type === "water") return "물";
   if (type === "grass") return "풀";
@@ -78,6 +81,7 @@ export function getTypeKo(type: string) {
   return "노말";
 }
 
+/** 한글 이름에 맞는 영어 타입 반환 함수 */
 export function getTypeEn(type: string) {
   if (type === "물") return "water";
   if (type === "풀") return "grass";
@@ -100,6 +104,7 @@ export function getTypeEn(type: string) {
   return "노말";
 }
 
+/** 타입에 해당하는 아이콘 반환 함수  */
 export function getTypeIcon(type: string) {
   if (type === "water" || type === "물") return "/imgs/water.png";
   if (type === "grass" || type === "풀") return "/imgs/grass.png";
@@ -122,6 +127,7 @@ export function getTypeIcon(type: string) {
   return "노말";
 }
 
+/** detail page status bar 색상 반환 함수 */
 export function getStatusBarColor(name: string) {
   const backgroundColor: IBackgroundColor = {
     HP: "red",
@@ -136,6 +142,7 @@ export function getStatusBarColor(name: string) {
   return backgroundColor[name];
 }
 
+/** 영어 이름에 해당하는 stat 반환 함수 */
 export function getStatList(stat: string) {
   const items = stat.split(",");
   const splitItems = items.map((item) => {
@@ -165,6 +172,7 @@ export function getStatList(stat: string) {
   return stateItem;
 }
 
+/** 포켓몬 타입리스트 문자열 받아들여 타입 배열로 반환하는 함수 */
 export function getTypeConvertData(typeInfo: string) {
   const array: string[] = typeInfo.split(",");
   if (array.length > 0 && array[0] !== "") {
@@ -176,6 +184,7 @@ export function getTypeConvertData(typeInfo: string) {
   return null;
 }
 
+/** 타입의 반감, 2배, 노데미지 판정 확인해서 반환해주는 함수 */
 export function typeConvertDamegeData(typeData: IServerType) {
   const name = getTypeKo(typeData.name);
   const doubleFrom =
@@ -217,3 +226,13 @@ export function typeConvertDamegeData(typeData: IServerType) {
 
   return { name, doubleFrom, doubleTo, halfFrom, halfTo, noFrom, noTo };
 }
+
+/** 데미지 한글이름 반환 */
+export const getDamegeType: any = {
+  doubleFrom: "x2 데미지 받음",
+  doubleTo: "x2 데미지 줌",
+  halfFrom: "0.5 데미지 받음",
+  halfTo: "0.5 데미지 줌",
+  noFrom: "데미지를 받지않음",
+  noTo: "데미지를 줄수없음",
+};

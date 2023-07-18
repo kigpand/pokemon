@@ -1,9 +1,5 @@
 import { IPokemonList } from "../../../../../interface/IPokemonList";
-import {
-  getStatusBarColor,
-  getTypeIcon,
-  getTypeKo,
-} from "../../../../../utils/convert";
+import { getStatusBarColor, getTypeIcon } from "../../../../../utils/convert";
 import styles from "./TextItem.module.scss";
 
 interface ITextItem {

@@ -1,24 +1,19 @@
-import { useNavigate } from "react-router-dom";
 import {
   getColor,
+  getDamegeType,
   getTypeEn,
-  getTypeIcon,
   typeConvertDamegeData,
 } from "../../../utils/convert";
 import styles from "./DesktopType.module.scss";
 import { useEffect, useState } from "react";
 import { IType } from "../../../interface/IType";
 import types from "../../../json/types.json";
+import DesktopTypeHeader from "./header/DesktopTypeHeader";
+import TypeItem from "../item/TypeItem";
+import DetailHeader from "../../detail/desktop/header/DetailHeader";
 
 const DesktopType = () => {
-  const nav = useNavigate();
   const [typeData, setTypeData] = useState<IType>();
-
-  function onCloseBtn() {
-    nav("/");
-    sessionStorage.removeItem("type");
-    sessionStorage.removeItem("currentPoke");
-  }
 
   useEffect(() => {
     const sessionType = sessionStorage.getItem("type");
@@ -41,24 +36,27 @@ const DesktopType = () => {
 
   return (
     <div className={styles.desktopType}>
+      <DetailHeader />
       {typeData && (
-        <div className={styles.container}>
-          <header className={styles.header}>
-            <img
-              src={`${process.env.PUBLIC_URL}/${getTypeIcon(typeData.name)}`}
-              alt="img"
-              className={styles.icon}
-            />
-            <div
-              className={styles.title}
-              style={{ color: getColor(typeData.name) }}
-            >
-              {typeData.name}(타입)
-            </div>
-          </header>
-          <article className={styles.body}>
-            <div className={styles.title}>2배 데미지</div>
-          </article>
+        <div
+          className={styles.container}
+          style={{ borderColor: getColor(typeData.name) }}
+        >
+          <DesktopTypeHeader name={typeData.name} />
+          {Object.entries(typeData).map(
+            (values: [string, string[]], i: number) => {
+              if (i === 0 || values[1].length === 0) return null;
+              return (
+                <TypeItem
+                  key={i}
+                  arr={values[1]}
+                  title={getDamegeType[values[0]]}
+                  type={typeData.name}
+                  onChangeType={onChangeType}
+                />
+              );
+            }
+          )}
         </div>
       )}
     </div>

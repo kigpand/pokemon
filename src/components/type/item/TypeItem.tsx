@@ -1,19 +1,14 @@
 import { getColor, getTypeIcon } from "../../../utils/convert";
-import styles from "./MobileTypeItem.module.scss";
+import styles from "./TypeItem.module.scss";
 
-interface IMobileTypeItem {
+interface ITypeItem {
   arr: string[];
   title: string;
   type: string;
   onChangeType: any;
 }
 
-const MobileTypeItem = ({
-  arr,
-  title,
-  type,
-  onChangeType,
-}: IMobileTypeItem) => {
+const TypeItem = ({ arr, title, type, onChangeType }: ITypeItem) => {
   return (
     <div className={styles.mobileTypeItem}>
       <div className={styles.title} style={{ backgroundColor: getColor(type) }}>
@@ -38,4 +33,4 @@ const MobileTypeItem = ({
   );
 };
 
-export default MobileTypeItem;
+export default TypeItem;

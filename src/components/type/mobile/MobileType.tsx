@@ -7,11 +7,12 @@ import { IType } from "../../../interface/IType";
 import types from "../../../json/types.json";
 import {
   getColor,
+  getDamegeType,
   getTypeEn,
-  getTypeIcon,
   typeConvertDamegeData,
 } from "../../../utils/convert";
-import MobileTypeItem from "./MobileTypeItem";
+import TypeItem from "../item/TypeItem";
+import MobileTypeHeader from "./header/MobileTypeHeader";
 
 const MobileType = () => {
   const nav = useNavigate();
@@ -54,66 +55,20 @@ const MobileType = () => {
             onClick={onCloseBtn}
             style={{ color: getColor(typeData.name) }}
           />
-          <div className={styles.header}>
-            <img
-              src={`${process.env.PUBLIC_URL}/${getTypeIcon(typeData.name)}`}
-              alt="img"
-              className={styles.icon}
-            />
-            <div
-              className={styles.title}
-              style={{ color: getColor(typeData.name) }}
-            >
-              {typeData.name}(타입)
-            </div>
-          </div>
-          {typeData.doubleFrom && (
-            <MobileTypeItem
-              arr={typeData.doubleFrom}
-              title="x2 데미지 받음"
-              type={typeData.name}
-              onChangeType={onChangeType}
-            />
-          )}
-          {typeData.doubleTo && (
-            <MobileTypeItem
-              arr={typeData.doubleTo}
-              title="x2 데미지 줌"
-              type={typeData.name}
-              onChangeType={onChangeType}
-            />
-          )}
-          {typeData.halfFrom && (
-            <MobileTypeItem
-              arr={typeData.halfFrom}
-              title="x0.5 데미지 받음"
-              type={typeData.name}
-              onChangeType={onChangeType}
-            />
-          )}
-          {typeData.halfTo && (
-            <MobileTypeItem
-              arr={typeData.halfTo}
-              title="x0.5 데미지 줌"
-              type={typeData.name}
-              onChangeType={onChangeType}
-            />
-          )}
-          {typeData.noFrom && (
-            <MobileTypeItem
-              arr={typeData.noFrom}
-              title="데미지 받지않음"
-              type={typeData.name}
-              onChangeType={onChangeType}
-            />
-          )}
-          {typeData.noTo && (
-            <MobileTypeItem
-              arr={typeData.noTo}
-              title="데미지를 줄수 없음"
-              type={typeData.name}
-              onChangeType={onChangeType}
-            />
+          <MobileTypeHeader name={typeData.name} />
+          {Object.entries(typeData).map(
+            (values: [string, string[]], i: number) => {
+              if (i === 0 || values[1].length === 0) return null;
+              return (
+                <TypeItem
+                  key={i}
+                  arr={values[1]}
+                  title={getDamegeType[values[0]]}
+                  type={typeData.name}
+                  onChangeType={onChangeType}
+                />
+              );
+            }
           )}
         </div>
       )}
