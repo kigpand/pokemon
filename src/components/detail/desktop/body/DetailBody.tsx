@@ -6,10 +6,8 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import TextItem from "./textItem/TextItem";
 import TypeDetail from "../../typeDetail/TypeDetail";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { useBookList } from "../../../../hooks/useBookList";
-import AddBookModal from "../../../modal/addBookModal/AddBookModal";
 import { getLineColor } from "../../../../utils/convert";
+import BookComponent from "../../bookComponent/BookComponent";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
@@ -19,8 +17,6 @@ const DetailBody = ({ currentPoke }: IDetailBody) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [typeDetail, setTypeDetail] = useState<boolean>(false);
-  const { addPokeBook, bookPokeList, onRemove } = useBookList();
-  const [onBookModal, setOnBookModal] = useState<Boolean>(false);
 
   function onAbility(ability: string) {
     dispatch(setCurrentAbility(ability));
@@ -35,27 +31,13 @@ const DetailBody = ({ currentPoke }: IDetailBody) => {
     setTypeDetail(false);
   }
 
-  function onCloseBookModal() {
-    setOnBookModal(false);
-  }
-
   return (
     <div
       className={styles.body}
       style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
     >
-      {bookPokeList.find((item: IPokemonList) => item.id === currentPoke.id) ? (
-        <BsHeartFill
-          className={styles.heart}
-          onClick={() => onRemove(currentPoke)}
-        />
-      ) : (
-        <BsHeart
-          className={styles.emptyHeart}
-          onClick={() => addPokeBook(currentPoke, () => setOnBookModal(true))}
-        />
-      )}
       <img src={currentPoke.imageUrl} alt="img" className={styles.img} />
+      <BookComponent poke={currentPoke} />
       <div className={styles.detailTexts}>
         <div className={styles.header}>
           <div className={styles.num}>No.{currentPoke!.id}</div>
@@ -78,7 +60,6 @@ const DetailBody = ({ currentPoke }: IDetailBody) => {
           <TextItem items={currentPoke} type="종족값" />
         </div>
       </div>
-      {onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}
     </div>
   );
 };

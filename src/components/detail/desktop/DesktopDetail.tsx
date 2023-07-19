@@ -2,7 +2,7 @@ import { IPokemonList } from "../../../interface/IPokemonList";
 import { LAST_NUM } from "../../../utils/convert";
 import styles from "./DesktopDetail.module.scss";
 import DetailHeader from "./header/DetailHeader";
-import DetailBody from "./texts/DetailBody";
+import DetailBody from "./body/DetailBody";
 import list from "../../../json/pokemonList.json";
 import { convertOnePoke } from "../../../utils/makeData";
 import { useState } from "react";

@@ -10,24 +10,6 @@
     padding-left: 10px;
     font-weight: bold;
     font-size: 20px;
-
-    .heart,
-    .emptyHeart {
-      margin-left: 5px;
-      font-size: 20px;
-      object-fit: contain;
-      cursor: pointer;
-    }
-
-    .heart {
-      color: red;
-    }
-
-    .emptyHeart {
-      &:hover {
-        color: red;
-      }
-    }
   }
 
   .generate {
