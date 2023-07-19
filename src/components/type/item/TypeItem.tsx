@@ -18,14 +18,23 @@ const TypeItem = ({ arr, title, type, onChangeType }: ITypeItem) => {
         {arr[0] &&
           arr.map((item: string, i: number) => {
             return (
-              <img
-                src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
-                onClick={() => onChangeType(item)}
-                alt="img"
-                className={styles.icon}
-                style={{ borderColor: getColor(item) }}
-                key={i}
-              />
+              <div className={styles.iconWrap} key={i}>
+                <img
+                  src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
+                  onClick={() => onChangeType(item)}
+                  alt="img"
+                  className={styles.icon}
+                  style={{ borderColor: getColor(item) }}
+                />
+                <p
+                  className={styles.arrow_box}
+                  style={{
+                    backgroundColor: getColor(item),
+                  }}
+                >
+                  {item}
+                </p>
+              </div>
             );
           })}
       </div>

@@ -23,12 +23,39 @@
     flex-wrap: wrap;
     row-gap: 10px;
 
-    .icon {
-      cursor: pointer;
-      height: 30px;
-      object-fit: contain;
-      border-radius: 8px;
+    .iconWrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-left: 15px;
+
+      .icon {
+        cursor: pointer;
+        height: 30px;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .arrow_box {
+        font-size: 12px;
+        width: 40px;
+        display: none;
+        position: absolute;
+        padding: 5px 0;
+        text-align: center;
+        top: 20px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        color: #fff;
+        z-index: 100;
+        white-space: nowrap;
+      }
+
+      .icon:hover + p.arrow_box {
+        display: block;
+      }
     }
   }
 
