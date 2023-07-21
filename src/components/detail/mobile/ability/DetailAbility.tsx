@@ -1,7 +1,9 @@
 import styles from "./DetailAbility.module.scss";
 import QUESTION from "../../../../imgs/question.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentAbility } from "../../../../reducers/datas";
+import AbilityModal from "../../../modal/abilityModal/AbilityModal";
+import { RootState } from "../../../../store/store";
 
 type Props = {
   abilities: string[];
@@ -9,6 +11,9 @@ type Props = {
 
 const DetailAbility = ({ abilities }: Props) => {
   const dispatch = useDispatch();
+  const currentAbility = useSelector(
+    (state: RootState) => state.datas.currentAbility
+  );
 
   function onAbility(ability: string) {
     dispatch(setCurrentAbility(ability));
@@ -26,6 +31,7 @@ const DetailAbility = ({ abilities }: Props) => {
           );
         })}
       </div>
+      {currentAbility && <AbilityModal />}
     </div>
   );
 };

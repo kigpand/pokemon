@@ -1,34 +1,22 @@
-import { useDispatch } from "react-redux";
 import { IPokemonList } from "../../../../interface/IPokemonList";
 import styles from "./DetailBody.module.scss";
-import { setCurrentAbility } from "../../../../reducers/datas";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import TextItem from "./textItem/TextItem";
-import TypeDetail from "../../typeDetail/TypeDetail";
 import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
+import TypeDif from "../../typeDif/TypeDif";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
 }
 
 const DetailBody = ({ currentPoke }: IDetailBody) => {
-  const dispatch = useDispatch();
   const nav = useNavigate();
-  const [typeDetail, setTypeDetail] = useState<boolean>(false);
-
-  function onAbility(ability: string) {
-    dispatch(setCurrentAbility(ability));
-  }
 
   function onTypeClick(type: string) {
     sessionStorage.setItem("type", type);
     nav("/type");
-  }
-
-  function onCloseType() {
-    setTypeDetail(false);
   }
 
   return (
@@ -40,23 +28,15 @@ const DetailBody = ({ currentPoke }: IDetailBody) => {
       <BookComponent poke={currentPoke} />
       <div className={styles.detailTexts}>
         <div className={styles.header}>
-          <div className={styles.num}>No.{currentPoke!.id}</div>
-          <div className={styles.name}>{currentPoke!.name}</div>
-          <div className={styles.generate}>{currentPoke!.generate}</div>
-          <div className={styles.vs} onClick={() => setTypeDetail(true)}>
-            상성표 보기
-          </div>
-          {typeDetail && (
-            <TypeDetail
-              typeArr={currentPoke!.types || []}
-              onCloseType={onCloseType}
-            />
-          )}
+          <div className={styles.num}>No.{currentPoke.id}</div>
+          <div className={styles.name}>{currentPoke.name}</div>
+          <div className={styles.generate}>{currentPoke.generate}</div>
+          <TypeDif poke={currentPoke} />
         </div>
         <div className={styles.lists}>
           <TextItem items={currentPoke} type="분류" />
           <TextItem items={currentPoke} type="타입" onClick={onTypeClick} />
-          <TextItem items={currentPoke} type="특성" onClick={onAbility} />
+          <TextItem items={currentPoke} type="특성" />
           <TextItem items={currentPoke} type="종족값" />
         </div>
       </div>

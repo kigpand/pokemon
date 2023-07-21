@@ -5,15 +5,9 @@ import DesktopDetail from "../../components/detail/desktop/DesktopDetail";
 import MobileDetail from "../../components/detail/mobile/MobileDetail";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { MOBILE_SIZE } from "../../utils/convert";
-import AbilityModal from "../../components/modal/abilityModal/AbilityModal";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
 
 const Detail = () => {
   const [currentPoke, setCurrentPoke] = useState<IPokemonList>();
-  const currentAbility = useSelector(
-    (state: RootState) => state.datas.currentAbility
-  );
   const windowSize = useWindowSize();
 
   useEffect(() => {
@@ -32,7 +26,6 @@ const Detail = () => {
         ) : (
           <MobileDetail currentPoke={currentPoke} />
         ))}
-      {currentAbility && <AbilityModal />}
     </div>
   );
 };

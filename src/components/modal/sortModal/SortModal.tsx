@@ -6,8 +6,8 @@ import pokeData from "../../../json/pokemonList.json";
 import { useDispatch } from "react-redux";
 import { resetCurrentList, setPokemonList } from "../../../reducers/pokemon";
 import { convertPokeData } from "../../../utils/makeData";
-import SortBtns from "./SortBtns";
-import { useState } from "react";
+import SortSelect from "./select/SortSelect";
+import SortItem from "./item/SortItem";
 
 interface ISortModal {
   closeSort: () => void;
@@ -16,7 +16,6 @@ interface ISortModal {
 const SortModal = ({ closeSort }: ISortModal) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const [selectOption, setSelectOption] = useState<string>("id");
 
   function onCloseBtn() {
     if (modalRef.current) {
@@ -42,31 +41,9 @@ const SortModal = ({ closeSort }: ISortModal) => {
       <div className={styles.resetBtn} onClick={onResetBtn}>
         초기화
       </div>
-      <div className={styles.title}>정렬</div>
-      <div className={styles.selectContainer}>
-        <select
-          className={styles.select}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            setSelectOption(e.target.value)
-          }
-        >
-          <option value="id">도감번호</option>
-          <option value="weight">무게</option>
-          <option value="height">키</option>
-          <option value="hp">HP</option>
-          <option value="공격">공격</option>
-          <option value="방어">방어</option>
-          <option value="특수공격">특수공격</option>
-          <option value="특수방어">특수방어</option>
-          <option value="스피드">스피드</option>
-          <option value="총합">총합</option>
-        </select>
-      </div>
-      <SortBtns type={selectOption} onCloseBtn={onCloseBtn} />
-      <div className={styles.title}>타입</div>
-      <SortBtns type="type" list={typeList} onCloseBtn={onCloseBtn} />
-      <div className={styles.title}>세대</div>
-      <SortBtns type="gene" list={geneList} onCloseBtn={onCloseBtn} />
+      <SortSelect onCloseBtn={onCloseBtn} />
+      <SortItem title="타입" list={typeList} onCloseBtn={onCloseBtn} />
+      <SortItem title="세대" list={geneList} onCloseBtn={onCloseBtn} />
     </div>
   );
 };
