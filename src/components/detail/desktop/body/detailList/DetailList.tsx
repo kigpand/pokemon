@@ -1,12 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
 import { IPokemonList } from "../../../../../interface/IPokemonList";
 import { getStatusBarColor, getTypeIcon } from "../../../../../utils/convert";
-import styles from "./TextItem.module.scss";
-import { setCurrentAbility } from "../../../../../reducers/datas";
-import { RootState } from "../../../../../store/store";
-import AbilityModal from "../../../../modal/abilityModal/AbilityModal";
+import styles from "./DetailList.module.scss";
 
-interface ITextItem {
+interface IDetailList {
   type: string;
   items: IPokemonList;
   onClick?: (item: any) => void;
@@ -70,27 +66,13 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
   }
 }
 
-const TextItem = ({ type, items, onClick }: ITextItem) => {
-  const dispatch = useDispatch();
-  const currentAbility = useSelector(
-    (state: RootState) => state.datas.currentAbility
-  );
-
-  function onAbility(ability: string) {
-    if (type === "특성") {
-      dispatch(setCurrentAbility(ability));
-    }
-  }
-
+const DetailList = ({ type, items, onClick }: IDetailList) => {
   return (
-    <div className={styles.textItem}>
+    <div className={styles.detailList}>
       <div className={styles.title}>{type}</div>
-      {type === "특성"
-        ? getRenderItem(items, type, onAbility)
-        : getRenderItem(items, type, onClick)}
-      {currentAbility && <AbilityModal />}
+      {getRenderItem(items, type, onClick)}
     </div>
   );
 };
 
-export default TextItem;
+export default DetailList;

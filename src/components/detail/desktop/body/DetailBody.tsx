@@ -2,10 +2,11 @@ import { IPokemonList } from "../../../../interface/IPokemonList";
 import styles from "./DetailBody.module.scss";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import TextItem from "./textItem/TextItem";
+import DetailList from "./detailList/DetailList";
 import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
 import TypeDif from "../../typeDif/TypeDif";
+import AbilityList from "./abilityList/AbilityList";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
@@ -34,10 +35,10 @@ const DetailBody = ({ currentPoke }: IDetailBody) => {
           <TypeDif poke={currentPoke} />
         </div>
         <div className={styles.lists}>
-          <TextItem items={currentPoke} type="분류" />
-          <TextItem items={currentPoke} type="타입" onClick={onTypeClick} />
-          <TextItem items={currentPoke} type="특성" />
-          <TextItem items={currentPoke} type="종족값" />
+          <DetailList items={currentPoke} type="분류" />
+          <DetailList items={currentPoke} type="타입" onClick={onTypeClick} />
+          <AbilityList items={currentPoke} type="특성" />
+          <DetailList items={currentPoke} type="종족값" />
         </div>
       </div>
     </div>
