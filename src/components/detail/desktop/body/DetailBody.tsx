@@ -7,13 +7,23 @@ import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
 import TypeDif from "../../typeDif/TypeDif";
 import AbilityList from "./abilityList/AbilityList";
+import { useDymax } from "../../../../hooks/useDymax";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
+  megaPoke: IPokemonList | null;
+  onChangeMegaPoke: () => void;
+  onChangeDymaxImg: (img: string) => void;
 }
 
-const DetailBody = ({ currentPoke }: IDetailBody) => {
+const DetailBody = ({
+  currentPoke,
+  megaPoke,
+  onChangeMegaPoke,
+  onChangeDymaxImg,
+}: IDetailBody) => {
   const nav = useNavigate();
+  const { dymax } = useDymax(currentPoke);
 
   function onTypeClick(type: string) {
     sessionStorage.setItem("type", type);
@@ -25,7 +35,29 @@ const DetailBody = ({ currentPoke }: IDetailBody) => {
       className={styles.body}
       style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
     >
-      <img src={currentPoke.imageUrl} alt="img" className={styles.img} />
+      <div className={styles.imgs}>
+        <img
+          src={currentPoke.imageUrl}
+          alt="img"
+          className={styles.img}
+          referrerPolicy="no-referrer"
+        />
+        <div className={styles.imgText}>
+          {megaPoke && (
+            <div className={styles.mega} onClick={onChangeMegaPoke}>
+              메가진화
+            </div>
+          )}
+          {dymax && (
+            <div
+              className={styles.dymax}
+              onClick={() => onChangeDymaxImg(dymax)}
+            >
+              다이맥스
+            </div>
+          )}
+        </div>
+      </div>
       <BookComponent poke={currentPoke} />
       <div className={styles.detailTexts}>
         <div className={styles.header}>

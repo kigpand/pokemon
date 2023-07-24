@@ -10,6 +10,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
+import { useMega } from "../../../hooks/useMega";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -19,6 +20,16 @@ interface IDesktopDetail {
 
 const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
+  const { megaPoke } = useMega(pokeItem);
+
+  const onChangeMegaPoke = () => {
+    if (!megaPoke) return;
+    setPokeItem(megaPoke);
+  };
+
+  const onChangeDymaxImg = (img: string) => {
+    setPokeItem({ ...pokeItem, imageUrl: img });
+  };
 
   const onArrowClick = (type: ARROWTYPE) => {
     let item = null;
@@ -42,7 +53,12 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
         />
       )}
       <DetailHeader />
-      <DetailBody currentPoke={pokeItem} />
+      <DetailBody
+        currentPoke={pokeItem}
+        megaPoke={megaPoke}
+        onChangeMegaPoke={onChangeMegaPoke}
+        onChangeDymaxImg={onChangeDymaxImg}
+      />
       {pokeItem!.id !== LAST_NUM && (
         <BsFillArrowRightCircleFill
           className={styles.arrow}
