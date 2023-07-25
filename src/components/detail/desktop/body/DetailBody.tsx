@@ -7,11 +7,13 @@ import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
 import TypeDif from "../../typeDif/TypeDif";
 import AbilityList from "./abilityList/AbilityList";
-import { useDymax } from "../../../../hooks/useDymax";
+import DetailImg from "./detailImg/DetailImg";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
+  originPoke: IPokemonList;
   megaPoke: IPokemonList | null;
+  onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;
 }
@@ -19,11 +21,12 @@ interface IDetailBody {
 const DetailBody = ({
   currentPoke,
   megaPoke,
+  originPoke,
+  onChangeOrigin,
   onChangeMegaPoke,
   onChangeDymaxImg,
 }: IDetailBody) => {
   const nav = useNavigate();
-  const { dymax } = useDymax(currentPoke);
 
   function onTypeClick(type: string) {
     sessionStorage.setItem("type", type);
@@ -35,29 +38,14 @@ const DetailBody = ({
       className={styles.body}
       style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
     >
-      <div className={styles.imgs}>
-        <img
-          src={currentPoke.imageUrl}
-          alt="img"
-          className={styles.img}
-          referrerPolicy="no-referrer"
-        />
-        <div className={styles.imgText}>
-          {megaPoke && (
-            <div className={styles.mega} onClick={onChangeMegaPoke}>
-              메가진화
-            </div>
-          )}
-          {dymax && (
-            <div
-              className={styles.dymax}
-              onClick={() => onChangeDymaxImg(dymax)}
-            >
-              다이맥스
-            </div>
-          )}
-        </div>
-      </div>
+      <DetailImg
+        currentPoke={currentPoke}
+        megaPoke={megaPoke}
+        originPoke={originPoke}
+        onChangeOrigin={onChangeOrigin}
+        onChangeMegaPoke={onChangeMegaPoke}
+        onChangeDymaxImg={onChangeDymaxImg}
+      />
       <BookComponent poke={currentPoke} />
       <div className={styles.detailTexts}>
         <div className={styles.header}>

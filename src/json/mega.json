@@ -489,7 +489,7 @@
     "imageUrl": "https://nexus.traction.one/images/pokemon/pokemon/475-mega.png",
     "states": "hp, 68,attack, 165,defense, 95,special-attack, 65,special-defense, 115,speed, 110",
     "abilities": "정신력",
-    "pokeTypes": "psychic, fighting",
+    "pokeTypes": "psychic,fighting",
     "weight": 564,
     "height": 160,
     "genus": "검포켓몬"

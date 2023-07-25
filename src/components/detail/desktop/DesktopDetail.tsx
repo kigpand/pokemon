@@ -21,14 +21,21 @@ interface IDesktopDetail {
 
 const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
+  const [originPoke, setOriginPoke] = useState<IPokemonList>(currentPoke);
   const { megaPoke } = useMega(pokeItem);
+
+  const onChangeOrigin = () => {
+    setPokeItem(originPoke);
+  };
 
   const onChangeMegaPoke = () => {
     if (!megaPoke) return;
+    if (pokeItem.name === megaPoke.name) return;
     setPokeItem(megaPoke);
   };
 
   const onChangeDymaxImg = (img: string) => {
+    if (pokeItem.imageUrl === img) return;
     setPokeItem({ ...currentPoke, imageUrl: img });
   };
 
@@ -43,6 +50,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
     const pokemon = convertOnePoke(item);
     sessionStorage.setItem("currentPoke", JSON.stringify(pokemon));
     onChangePoke(pokemon);
+    setOriginPoke(pokemon);
     setPokeItem(pokemon);
   };
 
@@ -58,6 +66,8 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
       <DetailBody
         currentPoke={pokeItem}
         megaPoke={megaPoke}
+        originPoke={originPoke}
+        onChangeOrigin={onChangeOrigin}
         onChangeMegaPoke={onChangeMegaPoke}
         onChangeDymaxImg={onChangeDymaxImg}
       />
