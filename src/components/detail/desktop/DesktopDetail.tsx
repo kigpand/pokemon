@@ -16,9 +16,10 @@ type ARROWTYPE = "LEFT" | "RIGHT";
 
 interface IDesktopDetail {
   currentPoke: IPokemonList;
+  onChangePoke: (poke: IPokemonList) => void;
 }
 
-const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
+const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
   const { megaPoke } = useMega(pokeItem);
 
@@ -28,7 +29,7 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
   };
 
   const onChangeDymaxImg = (img: string) => {
-    setPokeItem({ ...pokeItem, imageUrl: img });
+    setPokeItem({ ...currentPoke, imageUrl: img });
   };
 
   const onArrowClick = (type: ARROWTYPE) => {
@@ -41,6 +42,7 @@ const DesktopDetail = ({ currentPoke }: IDesktopDetail) => {
     if (!item) return;
     const pokemon = convertOnePoke(item);
     sessionStorage.setItem("currentPoke", JSON.stringify(pokemon));
+    onChangePoke(pokemon);
     setPokeItem(pokemon);
   };
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { IPokemonList } from "../interface/IPokemonList";
 import pokeList from "../json/gigantamax.json";
-import { convertOnePoke } from "../utils/makeData";
 
 export function useDymax(poke: IPokemonList) {
   const [dymax, setDymax] = useState<string | null>(null);

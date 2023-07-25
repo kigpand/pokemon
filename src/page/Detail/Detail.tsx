@@ -18,11 +18,18 @@ const Detail = () => {
     }
   }, []);
 
+  const onChangePoke = (poke: IPokemonList) => {
+    setCurrentPoke(poke);
+  };
+
   return (
     <div className={styles.detail}>
       {currentPoke &&
         (windowSize >= MOBILE_SIZE ? (
-          <DesktopDetail currentPoke={currentPoke} />
+          <DesktopDetail
+            currentPoke={currentPoke}
+            onChangePoke={onChangePoke}
+          />
         ) : (
           <MobileDetail currentPoke={currentPoke} />
         ))}

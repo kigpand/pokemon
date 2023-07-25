@@ -49,7 +49,7 @@
     "imageUrl": "https://nexus.traction.one/images/pokemon/pokemon/15-mega.png",
     "states": "hp, 65,attack, 150,defense, 40,special-attack, 15,special-defense, 80,speed, 145",
     "abilities": "적응력",
-    "pokeTypes": "bug, poison",
+    "pokeTypes": "bug,poison",
     "weight": 400,
     "height": 14,
     "genus": "독벌포켓몬"
@@ -60,7 +60,7 @@
     "imageUrl": "https://nexus.traction.one/images/pokemon/pokemon/18-mega.png",
     "states": "hp, 83,attack, 80,defense, 80,special-attack, 135,special-defense, 80,speed, 121",
     "abilities": "노가드",
-    "pokeTypes": "normal, flying",
+    "pokeTypes": "normal,flying",
     "weight": 505,
     "height": 22,
     "genus": "새포켓몬"
@@ -82,7 +82,7 @@
     "imageUrl": "https://nexus.traction.one/images/pokemon/pokemon/80-mega.png",
     "states": "hp, 95,attack, 75,defense, 180,special-attack, 130,special-defense, 80,speed, 30",
     "abilities": "조가비갑옷",
-    "pokeTypes": "psychic, water",
+    "pokeTypes": "psychic,water",
     "weight": 1200,
     "height": 20,
     "genus": "기생포켓몬"
@@ -93,7 +93,7 @@
     "imageUrl": "https://nexus.traction.one/images/pokemon/pokemon/94-mega.png",
     "states": "hp, 60,attack, 65,defense, 80,special-attack, 170,special-defense, 95,speed, 130",
     "abilities": "그림자밟기",
-    "pokeTypes": "ghost, posion",
+    "pokeTypes": "ghost,posion",
     "weight": 400,
     "height": 14,
     "genus": "그림자포켓몬"
