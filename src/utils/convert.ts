@@ -23,7 +23,7 @@ export function getColor(type: string) {
   if (type === "normal" || type === "노말") return "#ada594";
   if (type === "electric" || type === "전기") return "#fbb917";
   if (type === "ice" || type === "얼음") return "#6dd3f5";
-  if (type === "fighting" || type === "격투") return "#c03028";
+  if (type === "fighting" || type === "격투") return "#e09c40";
   if (type === "ground" || type === "땅") return "#c9561c";
   if (type === "flying" || type === "비행") return "#5d73d4";
   if (type === "psychic" || type === "에스퍼") return "#dd3c6c";
@@ -32,7 +32,7 @@ export function getColor(type: string) {
   if (type === "ghost" || type === "고스트") return "#695582";
   if (type === "dragon" || type === "드래곤") return "#4e3ba4";
   if (type === "dark" || type === "악") return "#3c2d23";
-  if (type === "steel" || type === "강철") return "#8d8d9e";
+  if (type === "steel" || type === "강철") return "#69a9c7";
   if (type === "fairy" || type === "페어리") return "#df8ddf";
 }
 

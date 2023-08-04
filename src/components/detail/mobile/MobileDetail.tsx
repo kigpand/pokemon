@@ -33,20 +33,16 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
             title="타입"
             component={<DetailType types={currentPoke.types} />}
           />
-          {currentPoke?.abilities && (
-            <DetailLayout
-              types={currentPoke.types}
-              title="특성"
-              component={<DetailAbility abilities={currentPoke.abilities} />}
-            />
-          )}
-          {currentPoke?.stats && (
-            <DetailLayout
-              types={currentPoke.types}
-              title="종족값"
-              component={<DetailStatus stats={currentPoke.stats} />}
-            />
-          )}
+          <DetailLayout
+            types={currentPoke.types}
+            title="특성"
+            component={<DetailAbility abilities={currentPoke.abilities} />}
+          />
+          <DetailLayout
+            types={currentPoke.types}
+            title="종족값"
+            component={<DetailStatus stats={currentPoke.stats} />}
+          />
           <b style={{ paddingLeft: "5px" }}>정보</b>
           <div className={styles.flavor}>
             <div>{currentPoke?.flavor}</div>
