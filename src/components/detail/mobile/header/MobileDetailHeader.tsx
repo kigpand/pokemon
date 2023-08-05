@@ -8,10 +8,10 @@ import AddBookModal from "../../../modal/addBookModal/AddBookModal";
 import BookComponent from "../../bookComponent/BookComponent";
 
 type Props = {
-  currentPoke: IPokemonList;
+  poke: IPokemonList;
 };
 
-const MobileDetailHeader = ({ currentPoke }: Props) => {
+const MobileDetailHeader = ({ poke }: Props) => {
   const [onBookModal, setOnBookModal] = useState<Boolean>(false);
   const nav = useNavigate();
 
@@ -29,21 +29,21 @@ const MobileDetailHeader = ({ currentPoke }: Props) => {
       <AiOutlineCloseCircle
         className={styles.closeBtn}
         style={{
-          color: getColor(currentPoke?.types![0]),
+          color: getColor(poke?.types![0]),
         }}
         onClick={onCloseBtn}
       />
       <div className={styles.num}>
         <span>
-          No.{currentPoke?.id} {currentPoke.name}
+          No.{poke?.id} {poke.name}
         </span>
-        <BookComponent poke={currentPoke} />
+        <BookComponent poke={poke} />
       </div>
       <div
         className={styles.generate}
-        style={{ borderColor: getColor(currentPoke?.types![0]) }}
+        style={{ borderColor: getColor(poke?.types![0]) }}
       >
-        {currentPoke.generate}
+        {poke.generate}
       </div>
       {onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}
     </div>

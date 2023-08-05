@@ -203,7 +203,7 @@
     "imageUrl": "https://nexus.traction.one/images/pokemon/pokemon/229-mega.png",
     "states": "hp, 75,attack, 90,defense, 90,special-attack, 140,special-defense, 90,speed, 115",
     "abilities": "선파워",
-    "pokeTypes": "drak,fire",
+    "pokeTypes": "dark,fire",
     "weight": 495,
     "height": 190,
     "genus": "다크포켓몬"
