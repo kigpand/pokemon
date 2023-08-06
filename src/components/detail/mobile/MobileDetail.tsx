@@ -10,6 +10,7 @@ import DetailStatus from "./status/DetailStatus";
 import DetailLayout from "./layout/DetailLayout";
 import { useMega } from "../../../hooks/useMega";
 import { useState } from "react";
+import MegaModal from "../../modal/megaModal/MegaModal";
 
 interface IMobileDetail {
   currentPoke: IPokemonList;
@@ -18,6 +19,7 @@ interface IMobileDetail {
 const MobileDetail = ({ currentPoke }: IMobileDetail) => {
   const [poke, setPoke] = useState<IPokemonList>(currentPoke);
   const { megaPoke } = useMega(currentPoke);
+  const [megaModal, setMegaModal] = useState<boolean>(false);
 
   function onChangeOrigin() {
     setPoke(currentPoke);
@@ -25,7 +27,16 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
 
   function onChangeMega() {
     if (!megaPoke) return;
-    // setPoke(megaPoke);
+    if (!megaPoke) return;
+    if (Array.isArray(megaPoke)) {
+      setMegaModal(true);
+    } else {
+      setPoke(megaPoke);
+    }
+  }
+
+  function onChangeModalMega(poke: IPokemonList) {
+    setPoke(poke);
   }
 
   function onChangeDymax(dymax: string) {
@@ -73,6 +84,13 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
             <div>{poke?.flavor}</div>
           </div>
         </div>
+      )}
+      {megaModal && Array.isArray(megaPoke) && (
+        <MegaModal
+          megaPoke={megaPoke}
+          onChangeMega={onChangeModalMega}
+          onCloseModal={() => setMegaModal(false)}
+        />
       )}
     </div>
   );
