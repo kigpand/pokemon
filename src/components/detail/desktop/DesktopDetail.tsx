@@ -11,6 +11,7 @@ import {
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
 import { useMega } from "../../../hooks/useMega";
+import MegaModal from "../../modal/megaModal/MegaModal";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -22,16 +23,25 @@ interface IDesktopDetail {
 const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
   const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
   const [originPoke, setOriginPoke] = useState<IPokemonList>(currentPoke);
+  const [megaModal, setMegaModal] = useState<boolean>(false);
   const { megaPoke } = useMega(pokeItem);
 
   const onChangeOrigin = () => {
     setPokeItem(originPoke);
   };
 
+  const onChangeModalMega = (poke: IPokemonList) => {
+    setPokeItem(poke);
+  };
+
   const onChangeMegaPoke = () => {
     if (!megaPoke) return;
-    if (pokeItem.name === megaPoke.name) return;
-    setPokeItem(megaPoke);
+    if (Array.isArray(megaPoke)) {
+      setMegaModal(true);
+    } else {
+      if (pokeItem.name === megaPoke.name) return;
+      setPokeItem(megaPoke);
+    }
   };
 
   const onChangeDymaxImg = (img: string) => {
@@ -75,6 +85,13 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
         <BsFillArrowRightCircleFill
           className={styles.arrow}
           onClick={() => onArrowClick("RIGHT")}
+        />
+      )}
+      {megaModal && Array.isArray(megaPoke) && (
+        <MegaModal
+          megaPoke={megaPoke}
+          onChangeMega={onChangeModalMega}
+          onCloseModal={() => setMegaModal(false)}
         />
       )}
     </div>

@@ -25,7 +25,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
 
   function onChangeMega() {
     if (!megaPoke) return;
-    setPoke(megaPoke);
+    // setPoke(megaPoke);
   }
 
   function onChangeDymax(dymax: string) {

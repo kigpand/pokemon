@@ -4,21 +4,42 @@ import megaList from "../json/mega.json";
 import { convertOnePoke } from "../utils/makeData";
 
 export function useMega(poke: IPokemonList) {
-  const [megaPoke, setMegaPoke] = useState<IPokemonList | null>(null);
+  const [megaPoke, setMegaPoke] = useState<
+    IPokemonList | IPokemonList[] | null
+  >(null);
 
+  // 메가진화 가능한지 파악
   useEffect(() => {
     if (poke) {
-      const result = megaList.find((item: any) => item.id === poke.id);
-      if (result) {
-        const convertData = {
-          ...result,
-          generate: poke.generate,
-          flavor: poke.flavor,
-        };
-        const data = convertOnePoke(convertData);
-        setMegaPoke(data);
+      if (poke.id === 6 || poke.id === 150) {
+        const result = megaList.filter((item: any) => item.id === poke.id);
+        if (result) {
+          const convert = result.map((list: any) => {
+            const convertData = {
+              ...list,
+              generate: poke.generate,
+              flavor: poke.flavor,
+            };
+            const data = convertOnePoke(convertData);
+            return data;
+          });
+          setMegaPoke(convert);
+        } else {
+          setMegaPoke(null);
+        }
       } else {
-        setMegaPoke(null);
+        const result = megaList.find((item: any) => item.id === poke.id);
+        if (result) {
+          const convertData = {
+            ...result,
+            generate: poke.generate,
+            flavor: poke.flavor,
+          };
+          const data = convertOnePoke(convertData);
+          setMegaPoke(data);
+        } else {
+          setMegaPoke(null);
+        }
       }
     }
   }, [poke]);

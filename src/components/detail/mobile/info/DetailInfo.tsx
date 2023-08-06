@@ -6,7 +6,7 @@ import { useDymax } from "../../../../hooks/useDymax";
 type Props = {
   poke: IPokemonList;
   currentPoke: IPokemonList;
-  megaPoke: IPokemonList | null;
+  megaPoke: IPokemonList | null | IPokemonList[];
   onChangeOrigin: () => void;
   onChangeMega: () => void;
   onChangeDymax: (dymax: string) => void;

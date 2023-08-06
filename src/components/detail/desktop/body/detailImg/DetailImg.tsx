@@ -5,7 +5,7 @@ import styles from "./DetailImg.module.scss";
 type Props = {
   currentPoke: IPokemonList;
   originPoke: IPokemonList;
-  megaPoke: IPokemonList | null;
+  megaPoke: IPokemonList | null | IPokemonList[];
   onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;

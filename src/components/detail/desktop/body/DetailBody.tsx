@@ -1,18 +1,15 @@
 import { IPokemonList } from "../../../../interface/IPokemonList";
 import styles from "./DetailBody.module.scss";
 import React from "react";
-import DetailList from "./detailList/DetailList";
 import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
-import TypeDif from "../../typeDif/TypeDif";
-import AbilityList from "./abilityList/AbilityList";
 import DetailImg from "./detailImg/DetailImg";
 import DetailMain from "./detailMain/DetailMain";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
   originPoke: IPokemonList;
-  megaPoke: IPokemonList | null;
+  megaPoke: IPokemonList | IPokemonList[] | null;
   onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;
