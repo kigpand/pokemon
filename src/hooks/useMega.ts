@@ -11,6 +11,7 @@ export function useMega(poke: IPokemonList) {
   // 메가진화 가능한지 파악
   useEffect(() => {
     if (poke) {
+      // 리자몽 or 뮤츠일 경우
       if (poke.id === 6 || poke.id === 150) {
         const result = megaList.filter((item: any) => item.id === poke.id);
         if (result) {

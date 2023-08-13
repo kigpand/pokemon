@@ -16,24 +16,24 @@ interface IBackgroundColor {
 
 /** 속성에 맞는 색상 반환 함수 */
 export function getColor(type: string) {
-  if (type === "water" || type === "물") return "#0267c2";
-  if (type === "grass" || type === "풀") return "#389a02";
+  if (type === "water" || type === "물") return "#5185c5";
+  if (type === "grass" || type === "풀") return "#66a945";
   if (type === "poison" || type === "독") return "#6b246e";
-  if (type === "fire" || type === "불꽃") return "#e25304";
+  if (type === "fire" || type === "불꽃") return "#e56c3e";
   if (type === "normal" || type === "노말") return "#ada594";
-  if (type === "electric" || type === "전기") return "#fbb917";
-  if (type === "ice" || type === "얼음") return "#6dd3f5";
+  if (type === "electric" || type === "전기") return "#f6d851";
+  if (type === "ice" || type === "얼음") return "#6dc8eb";
   if (type === "fighting" || type === "격투") return "#e09c40";
-  if (type === "ground" || type === "땅") return "#c9561c";
-  if (type === "flying" || type === "비행") return "#5d73d4";
-  if (type === "psychic" || type === "에스퍼") return "#dd3c6c";
-  if (type === "bug" || type === "벌레") return "#88960e";
-  if (type === "rock" || type === "바위") return "#9e863d";
-  if (type === "ghost" || type === "고스트") return "#695582";
-  if (type === "dragon" || type === "드래곤") return "#4e3ba4";
-  if (type === "dark" || type === "악") return "#3c2d23";
+  if (type === "ground" || type === "땅") return "#9c7743";
+  if (type === "flying" || type === "비행") return "#a2c3e7";
+  if (type === "psychic" || type === "에스퍼") return "#dd6b7b";
+  if (type === "bug" || type === "벌레") return "#9fa244";
+  if (type === "rock" || type === "바위") return "#bfb889";
+  if (type === "ghost" || type === "고스트") return "#684870";
+  if (type === "dragon" || type === "드래곤") return "#535ca8";
+  if (type === "dark" || type === "악") return "#4c4948";
   if (type === "steel" || type === "강철") return "#69a9c7";
-  if (type === "fairy" || type === "페어리") return "#df8ddf";
+  if (type === "fairy" || type === "페어리") return "#dab4d4";
 }
 
 /** 속성에 맞는 border or line 색상 반환 함수 */
