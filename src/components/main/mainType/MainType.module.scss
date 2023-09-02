@@ -1,0 +1,18 @@
+.mainType {
+  position: absolute;
+  left: 20px;
+  top: 30px;
+
+  .btn {
+    background: none;
+    color: gray;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    &:hover {
+      color: black;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import list from "../../../json/pokemonList.json";
 import { useState } from "react";
 import { BsFilterRight } from "react-icons/bs";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import MainType from "../mainType/MainType";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -47,6 +48,7 @@ const MainHeader = () => {
 
   return (
     <div className={styles.mainHeader}>
+      <MainType />
       <img src={LOGO} className={styles.logo} alt="logo"></img>
       <input
         type="text"
