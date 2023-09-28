@@ -16,7 +16,34 @@ interface IMobileDetail {
   currentPoke: IPokemonList;
 }
 
+interface IDetailArray {
+  title: string;
+  component: React.ReactNode;
+}
+
+function makeArray(poke: IPokemonList): IDetailArray[] {
+  return [
+    {
+      title: "분류",
+      component: <DetailGenus genus={poke.genus} />,
+    },
+    {
+      title: "타입",
+      component: <DetailType types={poke.types!} />,
+    },
+    {
+      title: "특성",
+      component: <DetailAbility abilities={poke.abilities} />,
+    },
+    {
+      title: "종족값",
+      component: <DetailStatus stats={poke.stats} />,
+    },
+  ];
+}
+
 const MobileDetail = ({ currentPoke }: IMobileDetail) => {
+  const detailArray = makeArray(currentPoke);
   const [poke, setPoke] = useState<IPokemonList>(currentPoke);
   const { megaPoke } = useMega(currentPoke);
   const [megaModal, setMegaModal] = useState<boolean>(false);
@@ -59,26 +86,16 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
             onChangeMega={onChangeMega}
             onChangeDymax={onChangeDymax}
           />
-          <DetailLayout
-            types={poke.types}
-            title="분류"
-            component={<DetailGenus genus={poke.genus} />}
-          />
-          <DetailLayout
-            types={poke.types}
-            title="타입"
-            component={<DetailType types={poke.types} />}
-          />
-          <DetailLayout
-            types={poke.types}
-            title="특성"
-            component={<DetailAbility abilities={poke.abilities} />}
-          />
-          <DetailLayout
-            types={poke.types}
-            title="종족값"
-            component={<DetailStatus stats={poke.stats} />}
-          />
+          {detailArray.map((item: IDetailArray, i: number) => {
+            return (
+              <DetailLayout
+                key={i}
+                types={poke.types!}
+                title={item.title}
+                component={item.component}
+              />
+            );
+          })}
           <b style={{ paddingLeft: "5px" }}>정보</b>
           <div className={styles.flavor}>
             <div>{poke?.flavor}</div>
