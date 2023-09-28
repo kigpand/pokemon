@@ -44,6 +44,7 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
   function onSortBy(type: string) {
     const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
     let filteredData: IPokemonList[] = [];
+
     switch (type) {
       case "id":
         filteredData = list.sort((a, b) => b.id - a.id);

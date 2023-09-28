@@ -15,17 +15,13 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
         <div className={styles.body}>
           {items.types?.map((item: string, i: number) => {
             return (
-              <div
-                className={styles.type}
+              <img
                 key={i}
+                src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
+                alt="img"
+                className={styles.type}
                 onClick={() => onClick(item)}
-              >
-                <img
-                  src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
-                  alt="img"
-                  className={styles.icon}
-                />
-              </div>
+              />
             );
           })}
         </div>
@@ -35,10 +31,12 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
         <div className={styles.body}>
           {items.abilities?.map((item: string, i: number) => {
             return (
-              <div className={styles.ability} key={i}>
-                <div className={styles.item} onClick={() => onClick(item)}>
-                  {item}
-                </div>
+              <div
+                key={i}
+                className={styles.ability}
+                onClick={() => onClick(item)}
+              >
+                {item}
               </div>
             );
           })}

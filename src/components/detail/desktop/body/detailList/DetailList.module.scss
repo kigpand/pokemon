@@ -17,35 +17,22 @@
     display: flex;
     padding: 5px;
     font-weight: 700;
-    // font-size: 13px;
+    gap: 5px;
 
     .type {
-      width: get-vw(30px);
       text-align: center;
       cursor: pointer;
-
-      &:hover {
-        .item {
-          text-decoration: underline;
-        }
-      }
-
-      .icon {
-        border-radius: 4px;
-        margin-bottom: 3px;
-        height: get-vw(20px);
-      }
+      border-radius: 4px;
+      margin-bottom: 3px;
+      height: get-vw(20px);
+      object-fit: contain;
     }
 
     .ability {
       display: flex;
       position: relative;
 
-      .item {
-        width: get-vw(50px);
-        text-align: center;
-      }
-      .item:hover {
+      &:hover {
         cursor: pointer;
         text-decoration: underline;
       }
