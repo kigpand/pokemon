@@ -175,12 +175,12 @@ export function getStatList(stat: string) {
 export function getStat(stat: string) {
   const items = stat.split(",");
   const allCount =
-    Number(stat[1]) +
-    Number(stat[3]) +
-    Number(stat[5]) +
-    Number(stat[7]) +
-    Number(stat[9]) +
-    Number(stat[11]);
+    Number(items[1]) +
+    Number(items[3]) +
+    Number(items[5]) +
+    Number(items[7]) +
+    Number(items[9]) +
+    Number(items[11]);
   return {
     hp: Number(items[1]),
     attack: Number(items[3]),

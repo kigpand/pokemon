@@ -35,10 +35,10 @@ function makeArray(poke: IPokemonList): IDetailArray[] {
       title: "특성",
       component: <DetailAbility abilities={poke.abilities} />,
     },
-    // {
-    //   title: "종족값",
-    //   component: <DetailStatus stats={poke.stats} />,
-    // },
+    {
+      title: "종족값",
+      component: <DetailStatus stats={poke.stats} />,
+    },
   ];
 }
 

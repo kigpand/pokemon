@@ -20,7 +20,7 @@ export function convertPokeData(list: IPrevList[]) {
       genus: item.genus,
       abilities,
       types,
-      // stats,
+      stats,
       ...stat,
     });
   });
