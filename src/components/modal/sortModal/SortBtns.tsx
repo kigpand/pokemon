@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { resetCurrentList, setPokemonList } from "../../../reducers/pokemon";
 import { cloneDeep } from "lodash";
 import { IPokemonList } from "../../../interface/IPokemonList";
+import { SortType } from "../../../typedef/SortType";
 
 interface ISortBtns {
   type: string;
@@ -41,44 +42,9 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     onCloseBtn();
   }
 
-  function onSortBy(type: string) {
+  function onSortBy(type: SortType) {
     const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
-    let filteredData: IPokemonList[] = [];
-
-    switch (type) {
-      case "id":
-        filteredData = list.sort((a, b) => b.id - a.id);
-        break;
-      case "weight":
-        filteredData = list.sort((a, b) => b.weight - a.weight);
-        break;
-      case "height":
-        filteredData = list.sort((a, b) => b.height - a.height);
-        break;
-      case "hp":
-        filteredData = list.sort((a, b) => b.stats[0].stat - a.stats[0].stat);
-        break;
-      case "공격":
-        filteredData = list.sort((a, b) => b.stats[1].stat - a.stats[1].stat);
-        break;
-      case "방어":
-        filteredData = list.sort((a, b) => b.stats[2].stat - a.stats[2].stat);
-        break;
-      case "특수공격":
-        filteredData = list.sort((a, b) => b.stats[3].stat - a.stats[3].stat);
-        break;
-      case "특수방어":
-        filteredData = list.sort((a, b) => b.stats[4].stat - a.stats[4].stat);
-        break;
-      case "스피드":
-        filteredData = list.sort((a, b) => b.stats[5].stat - a.stats[5].stat);
-        break;
-      case "총합":
-        filteredData = list.sort((a, b) => b.stats[6].stat - a.stats[6].stat);
-        break;
-      default:
-        break;
-    }
+    let filteredData: IPokemonList[] = list.sort((a, b) => b[type] - a[type]);
 
     if (filteredData?.length > 0) {
       dispatch(setPokemonList(filteredData));
@@ -88,43 +54,9 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
     onCloseBtn();
   }
 
-  function onReverseSortBy(type: string) {
+  function onReverseSortBy(type: SortType) {
     const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
-    let filteredData: IPokemonList[] = [];
-    switch (type) {
-      case "id":
-        filteredData = list.sort((a, b) => a.id - b.id);
-        break;
-      case "weight":
-        filteredData = list.sort((a, b) => a.weight - b.weight);
-        break;
-      case "height":
-        filteredData = list.sort((a, b) => a.height - b.height);
-        break;
-      case "hp":
-        filteredData = list.sort((a, b) => a.stats[0].stat - b.stats[0].stat);
-        break;
-      case "공격":
-        filteredData = list.sort((a, b) => a.stats[1].stat - b.stats[1].stat);
-        break;
-      case "방어":
-        filteredData = list.sort((a, b) => a.stats[2].stat - b.stats[2].stat);
-        break;
-      case "특수공격":
-        filteredData = list.sort((a, b) => a.stats[3].stat - b.stats[3].stat);
-        break;
-      case "특수방어":
-        filteredData = list.sort((a, b) => a.stats[4].stat - b.stats[4].stat);
-        break;
-      case "스피드":
-        filteredData = list.sort((a, b) => a.stats[5].stat - b.stats[5].stat);
-        break;
-      case "총합":
-        filteredData = list.sort((a, b) => a.stats[6].stat - b.stats[6].stat);
-        break;
-      default:
-        break;
-    }
+    const filteredData: IPokemonList[] = list.sort((a, b) => a[type] - b[type]);
 
     if (filteredData?.length > 0) {
       dispatch(setPokemonList(filteredData));
@@ -163,12 +95,15 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
           );
         })}
       {!list && (
-        <div className={styles.item} onClick={() => onSortBy(type)}>
+        <div className={styles.item} onClick={() => onSortBy(type as SortType)}>
           높은 순
         </div>
       )}
       {!list && (
-        <div className={styles.item} onClick={() => onReverseSortBy(type)}>
+        <div
+          className={styles.item}
+          onClick={() => onReverseSortBy(type as SortType)}
+        >
           낮은 순
         </div>
       )}

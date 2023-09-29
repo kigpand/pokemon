@@ -26,7 +26,9 @@ const MainBody = () => {
 
   useEffect(() => {
     if (pokemonList.length === 0) {
+      console.log(pokeData);
       const loadList: IPokemonList[] = convertPokeData(pokeData);
+      console.log(loadList);
       dispatch(setPokemonList(loadList));
     }
     window.addEventListener("scroll", onScroll);

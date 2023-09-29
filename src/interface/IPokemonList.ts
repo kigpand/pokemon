@@ -10,6 +10,13 @@ export interface IPokemonList {
   flavor: string;
   generate: string;
   types: string[] | null;
+  hp: number;
+  attack: number;
+  defense: number;
+  specialAttack: number;
+  specialDefense: number;
+  speed: number;
+  allStat: number;
 }
 
 interface IStat {
