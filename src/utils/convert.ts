@@ -1,4 +1,5 @@
 import { IServerType } from "../interface/IServerType";
+import { SortType } from "../typedef/SortType";
 
 export const MOBILE_SIZE = 412;
 
@@ -6,12 +7,13 @@ export const LAST_NUM = 898;
 
 interface IBackgroundColor {
   [index: string]: string; // 이렇게 한 줄만 써주면 된다
-  HP: string;
-  공격: string;
-  방어: string;
-  특수공격: string;
-  특수방어: string;
-  스피드: string;
+  hp: string;
+  attack: string;
+  defense: string;
+  specialAttack: string;
+  specialDefense: string;
+  speed: string;
+  allStat: string;
 }
 
 /** 속성에 맞는 색상 반환 함수 */
@@ -130,46 +132,16 @@ export function getTypeIcon(type: string) {
 /** detail page status bar 색상 반환 함수 */
 export function getStatusBarColor(name: string) {
   const backgroundColor: IBackgroundColor = {
-    HP: "red",
-    공격: "orange",
-    방어: "rgb(55, 55, 255)",
-    특수공격: "pink",
-    특수방어: "purple",
-    스피드: "green",
-    총합: "",
+    hp: "red",
+    attack: "orange",
+    defense: "rgb(55, 55, 255)",
+    specialAttack: "pink",
+    specialDefense: "purple",
+    speed: "green",
+    allStat: "gray",
   };
 
   return backgroundColor[name];
-}
-
-/** 영어 이름에 해당하는 stat 반환 함수 */
-export function getStatList(stat: string) {
-  const items = stat.split(",");
-  const splitItems = items.map((item) => {
-    if (item === "hp") return "HP";
-    if (item === "attack") return "공격";
-    if (item === "defense") return "방어";
-    if (item === "special-attack") return "특수공격";
-    if (item === "special-defense") return "특수방어";
-    if (item === "speed") return "스피드";
-    return item;
-  });
-  const stateItem = [];
-  const allCount =
-    Number(splitItems[1]) +
-    Number(splitItems[3]) +
-    Number(splitItems[5]) +
-    Number(splitItems[7]) +
-    Number(splitItems[9]) +
-    Number(splitItems[11]);
-  stateItem.push({ name: splitItems[0], stat: Number(splitItems[1]) });
-  stateItem.push({ name: splitItems[2], stat: Number(splitItems[3]) });
-  stateItem.push({ name: splitItems[4], stat: Number(splitItems[5]) });
-  stateItem.push({ name: splitItems[6], stat: Number(splitItems[7]) });
-  stateItem.push({ name: splitItems[8], stat: Number(splitItems[9]) });
-  stateItem.push({ name: splitItems[10], stat: Number(splitItems[11]) });
-  stateItem.push({ name: "총합", stat: allCount });
-  return stateItem;
 }
 
 export function getStat(stat: string) {
@@ -190,6 +162,16 @@ export function getStat(stat: string) {
     speed: Number(items[11]),
     allStat: allCount,
   };
+}
+
+export function getStatKorea(stat: SortType) {
+  if (stat === "hp") return "HP";
+  if (stat === "attack") return "공격";
+  if (stat === "defense") return "방어";
+  if (stat === "specialAttack") return "특수공격";
+  if (stat === "specialDefense") return "특수방어";
+  if (stat === "speed") return "스피드";
+  return "총합";
 }
 
 /** 포켓몬 타입리스트 문자열 받아들여 타입 배열로 반환하는 함수 */
