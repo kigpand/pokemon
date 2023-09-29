@@ -45,7 +45,7 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
     case "종족값":
       return (
         <div className={styles.body}>
-          {items.stats?.map((item: any, i: number) => {
+          {/* {items.stats?.map((item: any, i: number) => {
             return (
               <div
                 className={styles.stat}
@@ -56,7 +56,7 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
                 <div className={styles.value}>{item.stat}</div>
               </div>
             );
-          })}
+          })} */}
         </div>
       );
     default:

@@ -56,25 +56,29 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
         filteredData = list.sort((a, b) => b.height - a.height);
         break;
       case "hp":
-        filteredData = list.sort((a, b) => b.stats[0].stat - a.stats[0].stat);
+        filteredData = list.sort((a, b) => b["hp"] - a["hp"]);
         break;
       case "공격":
-        filteredData = list.sort((a, b) => b.stats[1].stat - a.stats[1].stat);
+        filteredData = list.sort((a, b) => b["attack"] - a["attack"]);
         break;
       case "방어":
-        filteredData = list.sort((a, b) => b.stats[2].stat - a.stats[2].stat);
+        filteredData = list.sort((a, b) => b["defense"] - a["defense"]);
         break;
       case "특수공격":
-        filteredData = list.sort((a, b) => b.stats[3].stat - a.stats[3].stat);
+        filteredData = list.sort(
+          (a, b) => b["specialAttack"] - a["specialAttack"]
+        );
         break;
       case "특수방어":
-        filteredData = list.sort((a, b) => b.stats[4].stat - a.stats[4].stat);
+        filteredData = list.sort(
+          (a, b) => b["specialDefense"] - a["specialDefense"]
+        );
         break;
       case "스피드":
-        filteredData = list.sort((a, b) => b.stats[5].stat - a.stats[5].stat);
+        filteredData = list.sort((a, b) => b["speed"] - a["speed"]);
         break;
       case "총합":
-        filteredData = list.sort((a, b) => b.stats[6].stat - a.stats[6].stat);
+        filteredData = list.sort((a, b) => b.allStat - a.allStat);
         break;
       default:
         break;
@@ -102,25 +106,29 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
         filteredData = list.sort((a, b) => a.height - b.height);
         break;
       case "hp":
-        filteredData = list.sort((a, b) => a.stats[0].stat - b.stats[0].stat);
+        filteredData = list.sort((a, b) => a["hp"] - b["hp"]);
         break;
       case "공격":
-        filteredData = list.sort((a, b) => a.stats[1].stat - b.stats[1].stat);
+        filteredData = list.sort((a, b) => a["attack"] - b["attack"]);
         break;
       case "방어":
-        filteredData = list.sort((a, b) => a.stats[2].stat - b.stats[2].stat);
+        filteredData = list.sort((a, b) => a["defense"] - b["defense"]);
         break;
       case "특수공격":
-        filteredData = list.sort((a, b) => a.stats[3].stat - b.stats[3].stat);
+        filteredData = list.sort(
+          (a, b) => a["specialAttack"] - b["specialAttack"]
+        );
         break;
       case "특수방어":
-        filteredData = list.sort((a, b) => a.stats[4].stat - b.stats[4].stat);
+        filteredData = list.sort(
+          (a, b) => a["specialDefense"] - b["specialDefense"]
+        );
         break;
       case "스피드":
-        filteredData = list.sort((a, b) => a.stats[5].stat - b.stats[5].stat);
+        filteredData = list.sort((a, b) => a["speed"] - b["speed"]);
         break;
       case "총합":
-        filteredData = list.sort((a, b) => a.stats[6].stat - b.stats[6].stat);
+        filteredData = list.sort((a, b) => a.allStat - b.allStat);
         break;
       default:
         break;

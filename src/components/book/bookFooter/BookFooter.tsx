@@ -17,7 +17,7 @@ const BookFooter = () => {
       if (bookPokeList.length > 0) {
         let totalData: number = 0;
         bookPokeList.forEach((pokeList: IPokemonList) => {
-          totalData += pokeList.stats[6].stat;
+          totalData += pokeList.allStat;
         });
         if (isAvg) {
           return Math.ceil(totalData / bookPokeList.length);

@@ -20,7 +20,7 @@ const BookList = (item: IBookList) => {
     <div className={styles.bookList}>
       <div className={styles.id}>No.{item.list.id}</div>
       <div className={styles.name}>{item.list.name}</div>
-      <div className={styles.total}>종족치: {item.list.stats[6].stat}</div>
+      <div className={styles.total}>종족치: {item.list.allStat}</div>
       <div className={styles.btns}>
         <AiOutlineSearch className={styles.btn} onClick={onDetail} />
         <AiFillDelete

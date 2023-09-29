@@ -172,6 +172,26 @@ export function getStatList(stat: string) {
   return stateItem;
 }
 
+export function getStat(stat: string) {
+  const items = stat.split(",");
+  const allCount =
+    Number(stat[1]) +
+    Number(stat[3]) +
+    Number(stat[5]) +
+    Number(stat[7]) +
+    Number(stat[9]) +
+    Number(stat[11]);
+  return {
+    hp: Number(items[1]),
+    attack: Number(items[3]),
+    defense: Number(items[5]),
+    specialAttack: Number(items[7]),
+    specialDefense: Number(items[9]),
+    speed: Number(items[11]),
+    allStat: allCount,
+  };
+}
+
 /** 포켓몬 타입리스트 문자열 받아들여 타입 배열로 반환하는 함수 */
 export function getTypeConvertData(typeInfo: string) {
   const array: string[] = typeInfo.split(",");
