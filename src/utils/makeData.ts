@@ -1,13 +1,12 @@
 import { IPokemonList } from "../interface/IPokemonList";
 import { IPrevList } from "../interface/IPrveList";
-import { getStat, getStatList, getTypeConvertData } from "./convert";
+import { getStat, getTypeConvertData } from "./convert";
 
 export function convertPokeData(list: IPrevList[]) {
   const pokeList: IPokemonList[] = [];
   list.forEach((item: IPrevList) => {
     const abilities = item.abilities.split(",");
     const types = getTypeConvertData(item.pokeTypes);
-    const stats = getStatList(item.states);
     const stat = getStat(item.states);
     pokeList.push({
       id: item.id,
@@ -20,7 +19,6 @@ export function convertPokeData(list: IPrevList[]) {
       genus: item.genus,
       abilities,
       types,
-      stats,
       ...stat,
     });
   });
@@ -31,7 +29,6 @@ export function convertPokeData(list: IPrevList[]) {
 export function convertOnePoke(item: IPrevList) {
   const abilities = item.abilities.split(",");
   const types = getTypeConvertData(item.pokeTypes);
-  const stats = getStatList(item.states);
   const stat = getStat(item.states);
   return {
     id: item.id,
@@ -44,7 +41,6 @@ export function convertOnePoke(item: IPrevList) {
     genus: item.genus,
     abilities,
     types,
-    stats,
     ...stat,
   };
 }

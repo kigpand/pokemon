@@ -37,7 +37,7 @@ function makeArray(poke: IPokemonList): IDetailArray[] {
     },
     {
       title: "종족값",
-      component: <DetailStatus stats={poke.stats} />,
+      component: <DetailStatus poke={poke} />,
     },
   ];
 }

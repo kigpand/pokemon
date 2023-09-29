@@ -5,7 +5,6 @@ export interface IPokemonList {
   id: number;
   name: string;
   imageUrl: string;
-  stats: IStat[];
   weight: number;
   flavor: string;
   generate: string;

@@ -1,5 +1,11 @@
 import { IPokemonList } from "../../../../../interface/IPokemonList";
-import { getStatusBarColor, getTypeIcon } from "../../../../../utils/convert";
+import { SortType } from "../../../../../typedef/SortType";
+import { baseStat } from "../../../../../utils/base";
+import {
+  getStatKorea,
+  getStatusBarColor,
+  getTypeIcon,
+} from "../../../../../utils/convert";
 import styles from "./DetailList.module.scss";
 
 interface IDetailList {
@@ -45,15 +51,15 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
     case "종족값":
       return (
         <div className={styles.body}>
-          {items.stats?.map((item: any, i: number) => {
+          {baseStat.map((item: SortType, i: number) => {
             return (
               <div
                 className={styles.stat}
-                style={{ backgroundColor: getStatusBarColor(item.name) }}
+                style={{ backgroundColor: getStatusBarColor(item) }}
                 key={i}
               >
-                <div className={styles.item}>{item.name}</div>
-                <div className={styles.value}>{item.stat}</div>
+                <div className={styles.item}>{getStatKorea(item)}</div>
+                <div className={styles.value}>{items[item]}</div>
               </div>
             );
           })}
