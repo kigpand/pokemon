@@ -1,12 +1,8 @@
 import { IPokemonList } from "../../../../../interface/IPokemonList";
-import { SortType } from "../../../../../typedef/SortType";
-import { baseStat } from "../../../../../utils/base";
-import {
-  getStatKorea,
-  getStatusBarColor,
-  getTypeIcon,
-} from "../../../../../utils/convert";
 import styles from "./DetailList.module.scss";
+import DetailListAbility from "./renderItem/ability/DetailListAbility";
+import DetailListStat from "./renderItem/stat/DetailListStat";
+import DetailListType from "./renderItem/type/DetailListType";
 
 interface IDetailList {
   type: string;
@@ -17,54 +13,11 @@ interface IDetailList {
 function getRenderItem(items: IPokemonList, type: string, onClick: any) {
   switch (type) {
     case "타입":
-      return (
-        <div className={styles.body}>
-          {items.types?.map((item: string, i: number) => {
-            return (
-              <img
-                key={i}
-                src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
-                alt="img"
-                className={styles.type}
-                onClick={() => onClick(item)}
-              />
-            );
-          })}
-        </div>
-      );
+      return <DetailListType items={items} onClick={onClick} />;
     case "특성":
-      return (
-        <div className={styles.body}>
-          {items.abilities?.map((item: string, i: number) => {
-            return (
-              <div
-                key={i}
-                className={styles.ability}
-                onClick={() => onClick(item)}
-              >
-                {item}
-              </div>
-            );
-          })}
-        </div>
-      );
+      return <DetailListAbility items={items} onClick={onClick} />;
     case "종족값":
-      return (
-        <div className={styles.body}>
-          {baseStat.map((item: SortType, i: number) => {
-            return (
-              <div
-                className={styles.stat}
-                style={{ backgroundColor: getStatusBarColor(item) }}
-                key={i}
-              >
-                <div className={styles.item}>{getStatKorea(item)}</div>
-                <div className={styles.value}>{items[item]}</div>
-              </div>
-            );
-          })}
-        </div>
-      );
+      return <DetailListStat items={items} />;
     default:
       return <div className={styles.body}>{items.genus}</div>;
   }

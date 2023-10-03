@@ -34,14 +34,6 @@ const MainHeader = () => {
     }
   }
 
-  function openSort() {
-    setOnSortModal(true);
-  }
-
-  function closeSort() {
-    setOnSortModal(false);
-  }
-
   function moveToBook() {
     nav("/books");
   }
@@ -57,9 +49,12 @@ const MainHeader = () => {
         placeholder="도감번호나 이름을 입력해주세요"
         onKeyDown={onSearchItem}
       ></input>
-      <BsFilterRight className={styles.sort} onClick={openSort} />
+      <BsFilterRight
+        className={styles.sort}
+        onClick={() => setOnSortModal(true)}
+      />
       <BsFillBookmarkPlusFill className={styles.book} onClick={moveToBook} />
-      {onSortModal && <SortModal closeSort={closeSort} />}
+      {onSortModal && <SortModal closeSort={() => setOnSortModal(false)} />}
     </div>
   );
 };
