@@ -12,7 +12,6 @@ const Books = () => {
     setWidth(window.innerWidth);
 
     window.addEventListener("resize", Resize);
-
     return () => {
       window.removeEventListener("resize", Resize);
     };
