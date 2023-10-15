@@ -10,8 +10,8 @@
   .lists {
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(5, 250px);
-    grid-gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 30px;
     justify-content: center;
   }
 
