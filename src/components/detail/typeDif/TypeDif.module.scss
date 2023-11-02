@@ -18,4 +18,19 @@
       font-size: 13px;
     }
   }
+
+  .vsOther {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    font-size: get-vw(10px);
+    font-weight: bold;
+    cursor: pointer;
+
+    @include mobile {
+      top: 30px;
+      right: 10px;
+      font-size: 13px;
+    }
+  }
 }

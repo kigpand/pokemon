@@ -1,0 +1,7 @@
+@import "../../../common/modal.scss";
+@import "../../../common/common.scss";
+
+.vsModal {
+  @include modal;
+  @include flex;
+}
