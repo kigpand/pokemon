@@ -1,6 +1,8 @@
+import { RefObject } from "react";
 import { IPokemonList } from "../interface/IPokemonList";
 import { IPrevList } from "../interface/IPrveList";
 import { getStat, getTypeConvertData } from "./convert";
+import list from "../json/pokemonList.json";
 
 export function convertPokeData(list: IPrevList[]) {
   const pokeList: IPokemonList[] = [];
@@ -43,4 +45,23 @@ export function convertOnePoke(item: IPrevList) {
     types,
     ...stat,
   };
+}
+
+export function onSearchItem(
+  searchRef: RefObject<HTMLInputElement>,
+  callback: any
+) {
+  if (!searchRef.current) return;
+  const isNaN = Number.isNaN(Number(searchRef.current!.value));
+  const item = isNaN
+    ? list.find((item) => item.name === searchRef.current?.value)
+    : list.find((item) => item.id === Number(searchRef.current?.value));
+  if (item) {
+    const pokemon = convertOnePoke(item);
+    callback(pokemon);
+  } else {
+    alert("올바른 도감번호를 입력해주세요.");
+  }
+
+  searchRef.current!.value = "";
 }
