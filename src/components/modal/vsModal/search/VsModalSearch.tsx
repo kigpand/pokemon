@@ -3,6 +3,15 @@ import styles from "./VsModalSearch.module.scss";
 import { onSearchItem } from "../../../../utils/makeData";
 import { IPokemonList } from "../../../../interface/IPokemonList";
 
+type Props = {
+  getSearch: (poke: IPokemonList) => void;
+};
+
+type VSProps = {
+  poke: IPokemonList;
+  resetPoke: () => void;
+} & Props;
+
 function SearchComponent({
   getSearchPoke,
 }: {
@@ -26,8 +35,21 @@ function SearchComponent({
   );
 }
 
-export default function VsModalSearch() {
-  const [onSearch, setOnSearch] = useState<boolean>(false);
+function VsCheckComponent({ poke, getSearch, resetPoke }: VSProps) {
+  return (
+    <>
+      <div className={styles.searchTitle}>
+        검색된 <strong>{poke.name}</strong>과 비교하시겠습니까?
+      </div>
+      <div className={styles.searchButtons}>
+        <button onClick={() => getSearch(poke)}>예</button>
+        <button onClick={resetPoke}>아니오</button>
+      </div>
+    </>
+  );
+}
+
+export default function VsModalSearch({ getSearch }: Props) {
   const [searchPoke, setSearchPoke] = useState<IPokemonList | null>(null);
 
   function getSearchPoke(poke: IPokemonList) {
@@ -38,7 +60,11 @@ export default function VsModalSearch() {
       <header className={styles.title}>어떤 포켓몬과 비교하시겠습니까?</header>
       <main className={styles.main}>
         {searchPoke ? (
-          <div>sss</div>
+          <VsCheckComponent
+            poke={searchPoke}
+            getSearch={getSearch}
+            resetPoke={() => setSearchPoke(null)}
+          />
         ) : (
           <SearchComponent getSearchPoke={getSearchPoke} />
         )}
