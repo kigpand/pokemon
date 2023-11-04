@@ -9,7 +9,12 @@ type SearchType = {
   onSearch: boolean;
 };
 
-export default function VsModal() {
+type Props = {
+  currentPoke: IPokemonList;
+  closeModal: () => void;
+};
+
+export default function VsModal({ currentPoke, closeModal }: Props) {
   const [search, setSearch] = useState<SearchType>({
     searchPoke: null,
     onSearch: false,
@@ -22,10 +27,14 @@ export default function VsModal() {
   return (
     <section className={styles.vsModal}>
       {search.onSearch ? (
-        <VsModalResult />
+        <VsModalResult
+          currentPoke={currentPoke}
+          searchPoke={search.searchPoke!}
+        />
       ) : (
         <VsModalSearch getSearch={getSearch} />
       )}
+      <div className={styles.back} onClick={closeModal}></div>
     </section>
   );
 }

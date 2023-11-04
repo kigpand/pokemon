@@ -1,3 +1,78 @@
 .resultModal {
   background-color: white;
+  width: 500px;
+  border-radius: 8px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .pokeContainer {
+    display: flex;
+    flex-grow: 1;
+
+    article {
+      &:first-child {
+        border-right: 1px solid lightgray;
+      }
+    }
+
+    .container {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      padding: 0px 20px;
+
+      .pokeImg {
+        width: 100px;
+        height: 100px;
+      }
+
+      .label {
+        padding: 20px 0 10px 0;
+        font-weight: bold;
+      }
+
+      .types {
+        display: flex;
+        gap: 10px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 10px;
+
+        .typeImg {
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      .stat {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        height: 30px;
+        font-size: 12px;
+
+        .item {
+          width: 100px;
+        }
+
+        .value {
+          width: 50px;
+        }
+
+        .winImg {
+          height: 25px;
+        }
+      }
+    }
+  }
 }
