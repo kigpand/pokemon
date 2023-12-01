@@ -31,7 +31,7 @@ function PokeList({
           return (
             <span key={i}>
               <img
-                src={`${process.env.PUBLIC_URL}/${getTypeIcon(type)}`}
+                src={getTypeIcon(type)}
                 alt="img"
                 className={styles.typeImg}
               />

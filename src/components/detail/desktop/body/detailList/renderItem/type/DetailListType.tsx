@@ -14,7 +14,7 @@ export default function DetailListType({ items, onClick }: Props) {
         return (
           <img
             key={i}
-            src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
+            src={getTypeIcon(item)}
             alt="img"
             className={styles.type}
             onClick={() => onClick(item)}

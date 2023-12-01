@@ -20,7 +20,7 @@ const TypeItem = ({ arr, title, type, onChangeType }: ITypeItem) => {
             return (
               <div className={styles.iconWrap} key={i}>
                 <img
-                  src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
+                  src={getTypeIcon(item)}
                   onClick={() => onChangeType(item)}
                   alt="img"
                   className={styles.icon}

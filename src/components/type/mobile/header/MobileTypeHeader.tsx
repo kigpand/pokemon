@@ -8,11 +8,7 @@ type Props = {
 const MobileTypeHeader = ({ name }: Props) => {
   return (
     <div className={styles.header}>
-      <img
-        src={`${process.env.PUBLIC_URL}/${getTypeIcon(name)}`}
-        alt="img"
-        className={styles.icon}
-      />
+      <img src={getTypeIcon(name)} alt="img" className={styles.icon} />
       <div className={styles.title} style={{ color: getColor(name) }}>
         {name}(타입)
       </div>
