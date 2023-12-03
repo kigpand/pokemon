@@ -1,5 +1,23 @@
 import { IServerType } from "../interface/IServerType";
 import { SortType } from "../typedef/SortType";
+import NORMAL from "../svg/normal.svg";
+import AIR from "../svg/air.svg";
+import BUG from "../svg/bug.svg";
+import DARK from "../svg/dark.svg";
+import DRAGON from "../svg/dragon.svg";
+import EARTH from "../svg/earth.svg";
+import ELECTRIC from "../svg/electric.svg";
+import FAIRY from "../svg/fairy.svg";
+import FIGHTING from "../svg/fighting.svg";
+import FIRE from "../svg/fire.svg";
+import GHOST from "../svg/ghost.svg";
+import GRASS from "../svg/grass.svg";
+import ICE from "../svg/ice.svg";
+import IRON from "../svg/iron.svg";
+import MAGIC from "../svg/magic.svg";
+import POSION from "../svg/posion.svg";
+import ROCK from "../svg/rock.svg";
+import WATER from "../svg/water.svg";
 
 export const MOBILE_SIZE = 412;
 
@@ -108,24 +126,24 @@ export function getTypeEn(type: string) {
 
 /** 타입에 해당하는 아이콘 반환 함수  */
 export function getTypeIcon(type: string) {
-  if (type === "water" || type === "물") return "/imgs/water.png";
-  if (type === "grass" || type === "풀") return "/imgs/grass.png";
-  if (type === "poison" || type === "독") return "/imgs/poision.png";
-  if (type === "fire" || type === "불꽃") return "/imgs/fire.png";
-  if (type === "normal" || type === "노말") return "/imgs/normal.png";
-  if (type === "electric" || type === "전기") return "/imgs/electic.png";
-  if (type === "ice" || type === "얼음") return "/imgs/ice.png";
-  if (type === "fighting" || type === "격투") return "/imgs/fight.png";
-  if (type === "ground" || type === "땅") return "/imgs/earth.png";
-  if (type === "flying" || type === "비행") return "/imgs/air.png";
-  if (type === "psychic" || type === "에스퍼") return "/imgs/magic.png";
-  if (type === "bug" || type === "벌레") return "/imgs/bug.png";
-  if (type === "rock" || type === "바위") return "/imgs/rock.png";
-  if (type === "ghost" || type === "고스트") return "/imgs/ghost.png";
-  if (type === "dragon" || type === "드래곤") return "/imgs/dragon.png";
-  if (type === "dark" || type === "악") return "/imgs/dark.png";
-  if (type === "steel" || type === "강철") return "/imgs/iron.png";
-  if (type === "fairy" || type === "페어리") return "/imgs/fairy.png";
+  if (type === "water" || type === "물") return WATER;
+  if (type === "grass" || type === "풀") return GRASS;
+  if (type === "poison" || type === "독") return POSION;
+  if (type === "fire" || type === "불꽃") return FIRE;
+  if (type === "normal" || type === "노말") return NORMAL;
+  if (type === "electric" || type === "전기") return ELECTRIC;
+  if (type === "ice" || type === "얼음") return ICE;
+  if (type === "fighting" || type === "격투") return FIGHTING;
+  if (type === "ground" || type === "땅") return EARTH;
+  if (type === "flying" || type === "비행") return AIR;
+  if (type === "psychic" || type === "에스퍼") return MAGIC;
+  if (type === "bug" || type === "벌레") return BUG;
+  if (type === "rock" || type === "바위") return ROCK;
+  if (type === "ghost" || type === "고스트") return GHOST;
+  if (type === "dragon" || type === "드래곤") return DRAGON;
+  if (type === "dark" || type === "악") return DARK;
+  if (type === "steel" || type === "강철") return IRON;
+  if (type === "fairy" || type === "페어리") return FAIRY;
   return "노말";
 }
 

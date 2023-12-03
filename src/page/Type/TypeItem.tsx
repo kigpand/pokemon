@@ -19,7 +19,7 @@ const TypeItem = ({ arr, title, type, onChangeType }: ITypeItem) => {
           arr.map((item: string, i: number) => {
             return (
               <img
-                src={`${process.env.PUBLIC_URL}/${getTypeIcon(item)}`}
+                src={getTypeIcon(item)}
                 onClick={() => onChangeType(item)}
                 alt="img"
                 className={styles.icon}

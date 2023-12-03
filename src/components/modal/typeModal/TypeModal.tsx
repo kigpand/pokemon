@@ -31,7 +31,7 @@ export default function TypeModal({ onCloseModal }: Props) {
               >
                 <div className={styles.front}>{getTypeKo(item.name)}</div>
                 <img
-                  src={`${process.env.PUBLIC_URL}/${getTypeIcon(item.name)}`}
+                  src={getTypeIcon(item.name)}
                   className={styles.types}
                 ></img>
               </div>
