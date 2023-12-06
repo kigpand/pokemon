@@ -73,10 +73,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
   return (
     <div className={styles.mobileDetail}>
       {poke?.types && (
-        <div
-          className={styles.container}
-          style={{ borderColor: getColor(poke.types![0]) }}
-        >
+        <div className={styles.container}>
           <MobileDetailHeader poke={poke} />
           <DetailInfo
             poke={poke}
