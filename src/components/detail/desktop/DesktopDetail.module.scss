@@ -1,5 +1,4 @@
 @import "../../../common/common.scss";
-@import "../../../common/func.scss";
 
 .desktopDetail {
   width: 100%;
@@ -7,47 +6,10 @@
   @include flex;
   background-color: whitesmoke;
 
-  .container {
-    width: 60%;
-    height: get-vw(350px);
-    border: 3px solid black;
-    padding: 50px;
-    margin: 0 30px;
-    position: relative;
-    @include flex;
-    background-color: white;
-
-    .img {
-      width: 50%;
-      height: 100%;
-    }
-
-    .heart,
-    .emptyHeart {
-      width: get-vw(20px);
-      height: get-vw(20px);
-      padding: 5px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-    }
-
-    .heart {
-      color: red;
-    }
-
-    .emptyHeart {
-      &:hover {
-        color: red;
-      }
-    }
-  }
-
   .arrow,
   .arrow {
-    width: get-vw(50px);
-    height: get-vw(50px);
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 
     &:hover {

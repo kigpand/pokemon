@@ -28,6 +28,7 @@ const DetailBody = ({
       className={styles.body}
       style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
     >
+      <BookComponent poke={currentPoke} />
       <DetailImg
         currentPoke={currentPoke}
         megaPoke={megaPoke}
@@ -36,7 +37,6 @@ const DetailBody = ({
         onChangeMegaPoke={onChangeMegaPoke}
         onChangeDymaxImg={onChangeDymaxImg}
       />
-      <BookComponent poke={currentPoke} />
       <DetailMain poke={currentPoke} />
     </div>
   );

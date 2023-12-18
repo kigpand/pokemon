@@ -20,6 +20,7 @@ const DetailImg = ({
   onChangeDymaxImg,
 }: Props) => {
   const { dymax } = useDymax(currentPoke);
+  console.log(currentPoke);
 
   return (
     <div className={styles.imgs}>
