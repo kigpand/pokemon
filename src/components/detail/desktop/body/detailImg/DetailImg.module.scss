@@ -1,10 +1,9 @@
 .imgs {
-  width: 600px;
   height: 100%;
   position: relative;
 
   .img {
-    width: 100%;
+    width: 400px;
     height: 100%;
   }
 
@@ -16,21 +15,11 @@
     position: absolute;
     bottom: 0px;
     right: 0px;
+    cursor: pointer;
 
-    .origin,
-    .mega,
-    .dymax {
-      cursor: pointer;
-
-      &:hover {
-        color: black;
-        transform: scale(1.1);
-      }
-    }
-
-    .mega,
-    .dymax {
-      margin-left: 10px;
+    &:hover {
+      color: black;
+      transform: scale(1.1);
     }
   }
 }

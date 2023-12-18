@@ -5,6 +5,7 @@ import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
 import DetailImg from "./detailImg/DetailImg";
 import DetailMain from "./detailMain/DetailMain";
+import EvolutionModal from "../../evolutionModal/EvolutionModal";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
@@ -29,15 +30,16 @@ const DetailBody = ({
       style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
     >
       <BookComponent poke={currentPoke} />
-      <DetailImg
+      <DetailImg currentPoke={currentPoke} />
+      <DetailMain poke={currentPoke} />
+      {/* <EvolutionModal
         currentPoke={currentPoke}
         megaPoke={megaPoke}
         originPoke={originPoke}
         onChangeOrigin={onChangeOrigin}
         onChangeMegaPoke={onChangeMegaPoke}
         onChangeDymaxImg={onChangeDymaxImg}
-      />
-      <DetailMain poke={currentPoke} />
+      /> */}
     </div>
   );
 };

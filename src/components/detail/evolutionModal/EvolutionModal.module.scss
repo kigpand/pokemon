@@ -1,0 +1,5 @@
+@import "../../../common/modal.scss";
+
+.evolutionModal {
+  @include modal;
+}
