@@ -1,0 +1,43 @@
+@import "../../../common/modal.scss";
+
+.evolutionModal {
+  @include modal;
+  align-items: center;
+
+  .main {
+    height: 300px;
+    animation: none;
+
+    .title {
+      width: 100%;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .line {
+      width: 100%;
+      height: 2px;
+      background-color: lightgray;
+    }
+
+    .texts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      font-weight: bold;
+      color: gray;
+
+      div {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+          color: black;
+        }
+      }
+    }
+  }
+}

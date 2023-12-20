@@ -1,52 +1,54 @@
+import { useState } from "react";
 import { useDymax } from "../../../../../hooks/useDymax";
 import { IPokemonList } from "../../../../../interface/IPokemonList";
 import styles from "./DetailImg.module.scss";
+import EvolutionModal from "../../../evolutionModal/EvolutionModal";
 
 type Props = {
   currentPoke: IPokemonList;
-  originPoke: IPokemonList;
-  megaPoke: IPokemonList | null | IPokemonList[];
+  megaPoke?: IPokemonList | IPokemonList[] | null;
   onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;
 };
 
-const DetailImg = ({
-  currentPoke,
-  originPoke,
-  megaPoke,
-  onChangeOrigin,
-  onChangeMegaPoke,
-  onChangeDymaxImg,
-}: Props) => {
-  const { dymax } = useDymax(currentPoke);
-  console.log(currentPoke);
+const DetailImg = (props: Props) => {
+  const { dymax } = useDymax(props.currentPoke);
+  const [modal, setModal] = useState<boolean>(false);
+
+  function handleEvolutionModal(type: "origin" | "mega" | "dymax") {
+    if (type === "origin") {
+      props.onChangeOrigin();
+    }
+    if (type === "mega") {
+      props.onChangeMegaPoke();
+    }
+    if (type === "dymax") {
+      props.onChangeDymaxImg(dymax!);
+    }
+    setModal(false);
+  }
 
   return (
     <div className={styles.imgs}>
       <img
-        src={currentPoke.imageUrl}
+        src={props.currentPoke.imageUrl}
         alt="img"
         className={styles.img}
         referrerPolicy="no-referrer"
       />
-      <div className={styles.imgText}>
-        {originPoke.imageUrl !== currentPoke.imageUrl && (
-          <div className={styles.origin} onClick={onChangeOrigin}>
-            원본 포켓몬
-          </div>
-        )}
-        {megaPoke && (
-          <div className={styles.mega} onClick={onChangeMegaPoke}>
-            메가진화
-          </div>
-        )}
-        {dymax && (
-          <div className={styles.dymax} onClick={() => onChangeDymaxImg(dymax)}>
-            거다이맥스
-          </div>
-        )}
-      </div>
+      {(props.megaPoke || dymax) && (
+        <div className={styles.imgText} onClick={() => setModal(true)}>
+          다른 폼 보기
+        </div>
+      )}
+      {modal && (
+        <EvolutionModal
+          dymax={dymax || undefined}
+          megaPoke={props.megaPoke!}
+          handleEvolutionModal={handleEvolutionModal}
+        />
+      )}
     </div>
   );
 };

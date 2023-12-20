@@ -1,5 +1,4 @@
 import { IPokemonList } from "../../../interface/IPokemonList";
-import { getColor } from "../../../utils/convert";
 import styles from "./MobileDetail.module.scss";
 import DetailInfo from "./info/DetailInfo";
 import MobileDetailHeader from "./header/MobileDetailHeader";
@@ -43,8 +42,8 @@ function makeArray(poke: IPokemonList): IDetailArray[] {
 }
 
 const MobileDetail = ({ currentPoke }: IMobileDetail) => {
-  const detailArray = makeArray(currentPoke);
   const [poke, setPoke] = useState<IPokemonList>(currentPoke);
+  const detailArray = makeArray(poke);
   const { megaPoke } = useMega(currentPoke);
   const [megaModal, setMegaModal] = useState<boolean>(false);
 

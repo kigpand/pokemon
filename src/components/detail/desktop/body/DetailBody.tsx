@@ -8,36 +8,21 @@ import DetailMain from "./detailMain/DetailMain";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
-  originPoke: IPokemonList;
   megaPoke: IPokemonList | IPokemonList[] | null;
   onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;
 }
 
-const DetailBody = ({
-  currentPoke,
-  megaPoke,
-  originPoke,
-  onChangeOrigin,
-  onChangeMegaPoke,
-  onChangeDymaxImg,
-}: IDetailBody) => {
+const DetailBody = (props: IDetailBody) => {
   return (
     <div
       className={styles.body}
-      style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
+      style={{ borderColor: getLineColor(props.currentPoke!.types![0]) }}
     >
-      <BookComponent poke={currentPoke} />
-      <DetailImg
-        currentPoke={currentPoke}
-        megaPoke={megaPoke}
-        originPoke={originPoke}
-        onChangeOrigin={onChangeOrigin}
-        onChangeMegaPoke={onChangeMegaPoke}
-        onChangeDymaxImg={onChangeDymaxImg}
-      />
-      <DetailMain poke={currentPoke} />
+      <BookComponent poke={props.currentPoke} />
+      <DetailImg {...props} />
+      <DetailMain poke={props.currentPoke} />
     </div>
   );
 };

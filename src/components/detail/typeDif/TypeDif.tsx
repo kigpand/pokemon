@@ -24,7 +24,7 @@ const TypeDif = ({ poke }: Props) => {
         상성표 보기
       </div>
       <div className={styles.vsOther} onClick={() => setVS(true)}>
-        겨루기
+        비교
       </div>
       {typeDetail && (
         <TypeDetail
