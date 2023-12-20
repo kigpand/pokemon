@@ -1,5 +1,4 @@
 import { IPokemonList } from "../../../interface/IPokemonList";
-import { getColor } from "../../../utils/convert";
 import styles from "./MobileDetail.module.scss";
 import DetailInfo from "./info/DetailInfo";
 import MobileDetailHeader from "./header/MobileDetailHeader";
