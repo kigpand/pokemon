@@ -76,7 +76,6 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
       <DetailBody
         currentPoke={pokeItem}
         megaPoke={megaPoke}
-        originPoke={originPoke}
         onChangeOrigin={onChangeOrigin}
         onChangeMegaPoke={onChangeMegaPoke}
         onChangeDymaxImg={onChangeDymaxImg}

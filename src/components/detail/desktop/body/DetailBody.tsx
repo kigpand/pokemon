@@ -5,41 +5,24 @@ import { getLineColor } from "../../../../utils/convert";
 import BookComponent from "../../bookComponent/BookComponent";
 import DetailImg from "./detailImg/DetailImg";
 import DetailMain from "./detailMain/DetailMain";
-import EvolutionModal from "../../evolutionModal/EvolutionModal";
 
 interface IDetailBody {
   currentPoke: IPokemonList;
-  originPoke: IPokemonList;
   megaPoke: IPokemonList | IPokemonList[] | null;
   onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;
 }
 
-const DetailBody = ({
-  currentPoke,
-  megaPoke,
-  originPoke,
-  onChangeOrigin,
-  onChangeMegaPoke,
-  onChangeDymaxImg,
-}: IDetailBody) => {
+const DetailBody = (props: IDetailBody) => {
   return (
     <div
       className={styles.body}
-      style={{ borderColor: getLineColor(currentPoke!.types![0]) }}
+      style={{ borderColor: getLineColor(props.currentPoke!.types![0]) }}
     >
-      <BookComponent poke={currentPoke} />
-      <DetailImg currentPoke={currentPoke} />
-      <DetailMain poke={currentPoke} />
-      {/* <EvolutionModal
-        currentPoke={currentPoke}
-        megaPoke={megaPoke}
-        originPoke={originPoke}
-        onChangeOrigin={onChangeOrigin}
-        onChangeMegaPoke={onChangeMegaPoke}
-        onChangeDymaxImg={onChangeDymaxImg}
-      /> */}
+      <BookComponent poke={props.currentPoke} />
+      <DetailImg {...props} />
+      <DetailMain poke={props.currentPoke} />
     </div>
   );
 };
