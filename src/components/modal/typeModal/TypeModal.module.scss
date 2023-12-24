@@ -41,7 +41,7 @@
         position: relative;
 
         .front {
-          @include flex;
+          display: none;
           background-color: rgba(0, 0, 0, 0.4);
           position: absolute;
           width: 100%;
@@ -54,6 +54,12 @@
 
         .types {
           width: 100%;
+        }
+
+        &:hover {
+          .front {
+            @include flex;
+          }
         }
       }
     }
