@@ -2,15 +2,14 @@
   width: 200px;
   padding: 10px;
   position: absolute;
-  top: -500px;
   right: 10px;
-  background-color: white;
+  top: 10px;
   border: 1px solid lightgray;
   z-index: 100;
-  animation: sortAnim 0.8s forwards;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 
   .sortBtn,
   .resetBtn {
@@ -72,14 +71,7 @@
     .pokeId,
     .weight,
     .height {
-      background-color: white;
       color: black;
-    }
-  }
-
-  @keyframes sortAnim {
-    100% {
-      top: 10px;
     }
   }
 }

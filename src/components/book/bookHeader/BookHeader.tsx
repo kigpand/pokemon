@@ -1,5 +1,5 @@
 import styles from "./BookHeader.module.scss";
-import LOGO from "../../../imgs/logo2.png";
+import LOGO from "../../../imgs/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useBookList } from "../../../hooks/useBookList";
 import { AiOutlineRollback } from "react-icons/ai";

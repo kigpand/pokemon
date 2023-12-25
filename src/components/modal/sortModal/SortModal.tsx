@@ -1,6 +1,5 @@
 import "../../../common/event.scss";
 import styles from "./SortModal.module.scss";
-import { useRef } from "react";
 import { typeList, geneList } from "./sort";
 import pokeData from "../../../json/pokemonList.json";
 import { useDispatch } from "react-redux";
@@ -14,16 +13,10 @@ interface ISortModal {
 }
 
 const SortModal = ({ closeSort }: ISortModal) => {
-  const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   function onCloseBtn() {
-    if (modalRef.current) {
-      modalRef.current.style.animation = "closeModal .8s forwards";
-      modalRef.current.addEventListener("animationend", () => {
-        closeSort();
-      });
-    }
+    closeSort();
   }
 
   function onResetBtn() {
@@ -34,7 +27,7 @@ const SortModal = ({ closeSort }: ISortModal) => {
   }
 
   return (
-    <div className={styles.sortModal} ref={modalRef}>
+    <div className={styles.sortModal}>
       <div className={styles.sortBtn} onClick={onCloseBtn}>
         닫기
       </div>

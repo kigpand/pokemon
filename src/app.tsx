@@ -10,7 +10,12 @@ import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 
 function App() {
-  const [theme, setTheme] = useState<string>("light");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  function handleTheme() {
+    setTheme(theme === "light" ? "dark" : "light");
+  }
+
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <div className={styles.app} id="app">
