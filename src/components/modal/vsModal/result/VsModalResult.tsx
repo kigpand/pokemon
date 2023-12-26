@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { IPokemonList } from "../../../../interface/IPokemonList";
 import { SortType } from "../../../../typedef/SortType";
 import { baseStat } from "../../../../utils/base";
@@ -7,6 +8,7 @@ import {
   getTypeIcon,
 } from "../../../../utils/convert";
 import styles from "./VsModalResult.module.scss";
+import { RootState } from "../../../../store/store";
 
 type Props = {
   currentPoke: IPokemonList;
@@ -63,8 +65,13 @@ function PokeList({
 }
 
 export default function VsModalResult({ currentPoke, searchPoke }: Props) {
+  const theme = useSelector((state: RootState) => state.datas.theme);
+
   return (
-    <div className={styles.resultModal}>
+    <div
+      className={styles.resultModal}
+      style={{ backgroundColor: theme === "dark" ? "black" : "white" }}
+    >
       <div className={styles.title}>
         {currentPoke.name} vs {searchPoke.name}
       </div>

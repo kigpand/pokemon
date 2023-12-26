@@ -3,6 +3,8 @@ import styles from "./VsModal.module.scss";
 import VsModalSearch from "./search/VsModalSearch";
 import VsModalResult from "./result/VsModalResult";
 import { IPokemonList } from "../../../interface/IPokemonList";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 type SearchType = {
   searchPoke: IPokemonList | null;
@@ -15,6 +17,7 @@ type Props = {
 };
 
 export default function VsModal({ currentPoke, closeModal }: Props) {
+  const theme = useSelector((state: RootState) => state.datas.theme);
   const [search, setSearch] = useState<SearchType>({
     searchPoke: null,
     onSearch: false,
@@ -25,7 +28,10 @@ export default function VsModal({ currentPoke, closeModal }: Props) {
   }
 
   return (
-    <section className={styles.vsModal}>
+    <section
+      className={styles.vsModal}
+      style={{ color: theme === "dark" ? "white" : "black" }}
+    >
       {search.onSearch ? (
         <VsModalResult
           currentPoke={currentPoke}
