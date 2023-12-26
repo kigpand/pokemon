@@ -10,6 +10,7 @@ import { BsFilterRight } from "react-icons/bs";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import MainType from "../mainType/MainType";
 import { IPokemonList } from "../../../interface/IPokemonList";
+import MainThemeToggle from "../mainThemeToggle/MainThemeToggle";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -34,6 +35,7 @@ const MainHeader = () => {
   return (
     <div className={styles.mainHeader}>
       <MainType />
+      <MainThemeToggle />
       <img src={LOGO} className={styles.logo} alt="logo"></img>
       <input
         type="text"

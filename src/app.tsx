@@ -6,15 +6,12 @@ import Type from "./page/Type/Type";
 import Books from "./page/Books/Books";
 import { GlobalStyle } from "./styles/globalstyles";
 import { ThemeProvider } from "styled-components";
-import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 function App() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  function handleTheme() {
-    setTheme(theme === "light" ? "dark" : "light");
-  }
+  const theme = useSelector((state: RootState) => state.datas.theme);
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>

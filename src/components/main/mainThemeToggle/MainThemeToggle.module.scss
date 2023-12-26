@@ -1,0 +1,16 @@
+.themeToggle {
+  position: absolute;
+  font-size: 30px;
+  top: 1rem;
+  right: 3.8rem;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 5px;
+  height: 30px;
+  object-fit: contain;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightgray;
+  }
+}
