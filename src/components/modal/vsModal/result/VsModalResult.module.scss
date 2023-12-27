@@ -1,13 +1,12 @@
 @import "../../../../common/common.scss";
 
 .resultModal {
-  background-color: white;
   width: 500px;
   border-radius: 8px;
-  color: black;
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
+  border: 1px solid lightgray;
 
   .title {
     font-size: 20px;

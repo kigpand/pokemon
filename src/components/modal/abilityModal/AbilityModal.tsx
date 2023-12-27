@@ -7,8 +7,8 @@ import { IAbility } from "../../../interface/IAbility";
 import abililty from "../../../json/ability.json";
 
 const AbilityModal = () => {
-  const currentAbility = useSelector(
-    (state: RootState) => state.datas.currentAbility
+  const { theme, currentAbility } = useSelector(
+    (state: RootState) => state.datas
   );
   const dispatch = useDispatch();
   const [ability, setAbility] = useState<IAbility>();
@@ -26,7 +26,13 @@ const AbilityModal = () => {
 
   return (
     <div className={styles.abilityModal}>
-      <div className={styles.main}>
+      <div
+        className={styles.main}
+        style={{
+          backgroundColor: theme === "dark" ? "black" : "white",
+          color: theme === "dark" ? "white" : "black",
+        }}
+      >
         <div className={styles.title}>{ability?.name}</div>
         <div className={styles.line}></div>
         <div className={styles.content}>{ability?.text}</div>

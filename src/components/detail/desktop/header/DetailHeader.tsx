@@ -1,5 +1,5 @@
 import styles from "./DetailHeader.module.scss";
-import LOGO from "../../../../imgs/logo2.png";
+import LOGO from "../../../../imgs/logo.png";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { AiOutlineHome } from "react-icons/ai";

@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import styles from "./VsModalSearch.module.scss";
 import { onSearchItem } from "../../../../utils/makeData";
 import { IPokemonList } from "../../../../interface/IPokemonList";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 type Props = {
   getSearch: (poke: IPokemonList) => void;
@@ -51,12 +53,18 @@ function VsCheckComponent({ poke, getSearch, resetPoke }: VSProps) {
 
 export default function VsModalSearch({ getSearch }: Props) {
   const [searchPoke, setSearchPoke] = useState<IPokemonList | null>(null);
+  const theme = useSelector((state: RootState) => state.datas.theme);
 
   function getSearchPoke(poke: IPokemonList) {
     setSearchPoke(poke);
   }
   return (
-    <div className={styles.modalSearch}>
+    <div
+      className={styles.modalSearch}
+      style={{
+        backgroundColor: theme === "dark" ? "black" : "white",
+      }}
+    >
       <header className={styles.title}>어떤 포켓몬과 비교하시겠습니까?</header>
       <main className={styles.main}>
         {searchPoke ? (

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { typeConvertDamegeData } from "../../../utils/convert";
 import TypeDetailText from "../typeDetailText/TypeDetailText";
 import { BsX } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 type Props = {
   typeArr: string[];
@@ -56,6 +58,7 @@ function filterType(typeObj: any) {
 
 const TypeDetail = ({ typeArr, onCloseType }: Props) => {
   const [type, setType] = useState<any | null>(null);
+  const theme = useSelector((state: RootState) => state.datas.theme);
 
   useEffect(() => {
     let typeObj: any = {};
@@ -83,7 +86,12 @@ const TypeDetail = ({ typeArr, onCloseType }: Props) => {
   }, [typeArr]);
 
   return (
-    <div className={styles.typeDetail}>
+    <div
+      className={styles.typeDetail}
+      style={{
+        backgroundColor: theme === "dark" ? "black" : "white",
+      }}
+    >
       <BsX className={styles.close} onClick={onCloseType} />
       <article className={styles.article}>
         <div className={styles.title}>방어 상성</div>

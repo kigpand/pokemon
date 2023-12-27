@@ -1,16 +1,16 @@
 import styles from "./mainHeader.module.scss";
-import LOGO from "../../../imgs/logo2.png";
+import LOGO from "../../../imgs/logo.png";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyboardEvent } from "react";
-import { convertOnePoke, onSearchItem } from "../../../utils/makeData";
+import { onSearchItem } from "../../../utils/makeData";
 import SortModal from "../../modal/sortModal/SortModal";
-import list from "../../../json/pokemonList.json";
 import { useState } from "react";
 import { BsFilterRight } from "react-icons/bs";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import MainType from "../mainType/MainType";
 import { IPokemonList } from "../../../interface/IPokemonList";
+import MainThemeToggle from "../mainThemeToggle/MainThemeToggle";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
@@ -35,6 +35,7 @@ const MainHeader = () => {
   return (
     <div className={styles.mainHeader}>
       <MainType />
+      <MainThemeToggle />
       <img src={LOGO} className={styles.logo} alt="logo"></img>
       <input
         type="text"

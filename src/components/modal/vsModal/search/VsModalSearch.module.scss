@@ -1,15 +1,14 @@
 .modalSearch {
-  background-color: white;
   border-radius: 20px;
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  border: 1px solid lightgray;
 
   .title {
     border-bottom: 1px solid lightgray;
     padding: 15px 10px 10px 10px;
-    color: black;
     font-weight: bold;
   }
 
@@ -24,7 +23,6 @@
       .searchLabel {
         font-size: 12px;
         font-weight: bold;
-        color: black;
         margin-bottom: 8px;
       }
 
@@ -52,10 +50,6 @@
       }
     }
 
-    .searchTitle {
-      color: black;
-    }
-
     .searchButtons {
       display: flex;
       justify-content: center;
@@ -66,7 +60,7 @@
         width: 70px;
         height: 25px;
         border: 1px solid black;
-        background-color: transparent;
+        background-color: white;
         cursor: pointer;
 
         &:hover {

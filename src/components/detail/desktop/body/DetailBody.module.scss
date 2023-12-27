@@ -1,12 +1,11 @@
 @import "../../../../common/common.scss";
 
 .body {
-  width: 60%;
+  width: 800px;
   height: 400px;
   border: 3px solid;
   padding: 50px;
   margin: 0 30px;
   position: relative;
   @include flex;
-  background-color: white;
 }

@@ -2,15 +2,14 @@
   width: 200px;
   padding: 10px;
   position: absolute;
-  top: -500px;
   right: 10px;
-  background-color: white;
+  top: 10px;
   border: 1px solid lightgray;
   z-index: 100;
-  animation: sortAnim 0.8s forwards;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 
   .sortBtn,
   .resetBtn {
@@ -57,7 +56,6 @@
       text-align: center;
       font-size: 13px;
       margin-top: 3px;
-      color: white;
       box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.64) inset;
       -webkit-box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.64) inset;
       -moz-box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.64) inset;
@@ -72,14 +70,7 @@
     .pokeId,
     .weight,
     .height {
-      background-color: white;
       color: black;
-    }
-  }
-
-  @keyframes sortAnim {
-    100% {
-      top: 10px;
     }
   }
 }

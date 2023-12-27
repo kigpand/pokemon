@@ -1,29 +1,24 @@
 import "../../../common/event.scss";
 import styles from "./SortModal.module.scss";
-import { useRef } from "react";
 import { typeList, geneList } from "./sort";
 import pokeData from "../../../json/pokemonList.json";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetCurrentList, setPokemonList } from "../../../reducers/pokemon";
 import { convertPokeData } from "../../../utils/makeData";
 import SortSelect from "./select/SortSelect";
 import SortItem from "./item/SortItem";
+import { RootState } from "../../../store/store";
 
 interface ISortModal {
   closeSort: () => void;
 }
 
 const SortModal = ({ closeSort }: ISortModal) => {
-  const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+  const theme = useSelector((state: RootState) => state.datas.theme);
 
   function onCloseBtn() {
-    if (modalRef.current) {
-      modalRef.current.style.animation = "closeModal .8s forwards";
-      modalRef.current.addEventListener("animationend", () => {
-        closeSort();
-      });
-    }
+    closeSort();
   }
 
   function onResetBtn() {
@@ -34,7 +29,12 @@ const SortModal = ({ closeSort }: ISortModal) => {
   }
 
   return (
-    <div className={styles.sortModal} ref={modalRef}>
+    <div
+      className={styles.sortModal}
+      style={{
+        backgroundColor: theme === "dark" ? "black" : "white",
+      }}
+    >
       <div className={styles.sortBtn} onClick={onCloseBtn}>
         닫기
       </div>
