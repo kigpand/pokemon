@@ -1,9 +1,11 @@
 {
   "files": {
-    "main.css": "/pokemon/static/css/main.42e54d2e.css",
-    "main.js": "/pokemon/static/js/main.1bac65f9.js",
+    "main.css": "/pokemon/static/css/main.2985a5f2.css",
+    "main.js": "/pokemon/static/js/main.35d18986.js",
+    "static/media/logo.png": "/pokemon/static/media/logo.9631a0e0100b336ef8dd.png",
+    "static/media/moon.png": "/pokemon/static/media/moon.1035ca0949e3b65bd541.png",
+    "static/media/sun.png": "/pokemon/static/media/sun.6277057d4f8bd6eff8dd.png",
     "static/media/question.png": "/pokemon/static/media/question.5309d943f96f5d79c34c.png",
-    "static/media/logo2.png": "/pokemon/static/media/logo2.3190fea33098f98a6fd3.png",
     "static/media/magic.svg": "/pokemon/static/media/magic.4629119dbd282bbc4e7a7656aec67c8b.svg",
     "static/media/dragon.svg": "/pokemon/static/media/dragon.e243d6f6d27e17dd4e1202787ac4bf79.svg",
     "static/media/ghost.svg": "/pokemon/static/media/ghost.ef09417b4e38707f66becec61e2a9061.svg",
@@ -23,11 +25,11 @@
     "static/media/fighting.svg": "/pokemon/static/media/fighting.4261226a63b503114e2f6cbf7212f5f6.svg",
     "static/media/rock.svg": "/pokemon/static/media/rock.c837fee5d29a9a5dc63cf224ea555f69.svg",
     "static/media/grass.svg": "/pokemon/static/media/grass.b673cb5a02a0c7e2c037ca04b49471ce.svg",
-    "main.42e54d2e.css.map": "/pokemon/static/css/main.42e54d2e.css.map",
-    "main.1bac65f9.js.map": "/pokemon/static/js/main.1bac65f9.js.map"
+    "main.2985a5f2.css.map": "/pokemon/static/css/main.2985a5f2.css.map",
+    "main.35d18986.js.map": "/pokemon/static/js/main.35d18986.js.map"
   },
   "entrypoints": [
-    "static/css/main.42e54d2e.css",
-    "static/js/main.1bac65f9.js"
+    "static/css/main.2985a5f2.css",
+    "static/js/main.35d18986.js"
   ]
 }
