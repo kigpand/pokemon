@@ -25,7 +25,7 @@ function PokeList({
   return (
     <article className={styles.container}>
       <div style={{ textAlign: "center", padding: "10px 0" }}>
-        <img src={poke.imageUrl} alt="img" className={styles.pokeImg} />
+        <img src={poke.imageUrl} alt="imageUrl" className={styles.pokeImg} />
       </div>
       <label className={styles.label}>타입</label>
       <div className={styles.types}>
@@ -34,7 +34,7 @@ function PokeList({
             <span key={i}>
               <img
                 src={getTypeIcon(type)}
-                alt="img"
+                alt="typeImg"
                 className={styles.typeImg}
               />
             </span>
@@ -54,6 +54,7 @@ function PokeList({
             {poke[item] > vsPoke[item] && (
               <img
                 src={`${process.env.PUBLIC_URL}/imgs/win.png`}
+                alt="winImg"
                 className={styles.winImg}
               />
             )}

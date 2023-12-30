@@ -21,19 +21,19 @@ function SearchComponent({
 }) {
   const searchRef = useRef<HTMLInputElement>(null);
 
+  function handleSubmitButton(e: React.MouseEvent<HTMLFormElement>) {
+    e.preventDefault();
+    onSearchItem(searchRef, getSearchPoke);
+  }
+
   return (
-    <div className={styles.search}>
+    <form className={styles.search} onSubmit={handleSubmitButton}>
       <div className={styles.searchLabel}>
         검색할 포켓몬명이나 도감번호를 입력해주세요
       </div>
       <input type="text" className={styles.searchInput} ref={searchRef}></input>
-      <div
-        className={styles.searchButton}
-        onClick={() => onSearchItem(searchRef, getSearchPoke)}
-      >
-        검색
-      </div>
-    </div>
+      <input type="submit" className={styles.searchButton}></input>
+    </form>
   );
 }
 

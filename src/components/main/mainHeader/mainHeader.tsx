@@ -35,7 +35,6 @@ const MainHeader = () => {
   return (
     <div className={styles.mainHeader}>
       <MainType />
-      <MainThemeToggle />
       <img src={LOGO} className={styles.logo} alt="logo"></img>
       <input
         type="text"
@@ -44,6 +43,7 @@ const MainHeader = () => {
         placeholder="도감번호나 이름을 입력해주세요"
         onKeyDown={onSearch}
       ></input>
+      <MainThemeToggle />
       <BsFilterRight
         className={styles.sort}
         onClick={() => setOnSortModal(true)}
