@@ -1,10 +1,10 @@
-import styles from "./Detail.module.scss";
+import styled from "styled-components";
+import DesktopDetail from "../components/detail/desktop/DesktopDetail";
+import MobileDetail from "../components/detail/mobile/MobileDetail";
 import { useEffect, useState } from "react";
-import { IPokemonList } from "../../interface/IPokemonList";
-import DesktopDetail from "../../components/detail/desktop/DesktopDetail";
-import MobileDetail from "../../components/detail/mobile/MobileDetail";
-import { useWindowSize } from "../../hooks/useWindowSize";
-import { MOBILE_SIZE } from "../../utils/convert";
+import { IPokemonList } from "../interface/IPokemonList";
+import { useWindowSize } from "../hooks/useWindowSize";
+import { MOBILE_SIZE } from "../utils/convert";
 
 const Detail = () => {
   const [currentPoke, setCurrentPoke] = useState<IPokemonList>();
@@ -23,7 +23,7 @@ const Detail = () => {
   };
 
   return (
-    <div className={styles.detail}>
+    <DetailWrapper>
       {currentPoke &&
         (windowSize >= MOBILE_SIZE ? (
           <DesktopDetail
@@ -33,8 +33,17 @@ const Detail = () => {
         ) : (
           <MobileDetail currentPoke={currentPoke} />
         ))}
-    </div>
+    </DetailWrapper>
   );
 };
 
 export default Detail;
+
+const DetailWrapper = styled.section`
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;

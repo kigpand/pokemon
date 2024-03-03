@@ -1,17 +1,17 @@
-import { IPokemonList } from "../../../interface/IPokemonList";
-import { LAST_NUM } from "../../../utils/convert";
-import styles from "./DesktopDetail.module.scss";
-import DetailHeader from "./header/DetailHeader";
-import DetailBody from "./body/DetailBody";
-import list from "../../../json/pokemonList.json";
-import { convertOnePoke } from "../../../utils/makeData";
 import { useState } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
+import styled from "styled-components";
+import { IPokemonList } from "../../../interface/IPokemonList";
 import { useMega } from "../../../hooks/useMega";
+import DetailBody from "./body/DetailBody";
 import MegaModal from "../../modal/megaModal/MegaModal";
+import { LAST_NUM } from "../../../utils/convert";
+import { convertOnePoke } from "../../../utils/makeData";
+import list from "../../../json/pokemonList.json";
+import DetailHeader from "./DetailHeader";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -65,13 +65,8 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
   };
 
   return (
-    <div className={styles.desktopDetail}>
-      {pokeItem!.id !== 1 && (
-        <BsFillArrowLeftCircleFill
-          className={styles.arrow}
-          onClick={() => onArrowClick("LEFT")}
-        />
-      )}
+    <DesktopWrapper>
+      {pokeItem!.id !== 1 && <LeftArrow onClick={() => onArrowClick("LEFT")} />}
       <DetailHeader />
       <DetailBody
         currentPoke={pokeItem}
@@ -81,10 +76,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
         onChangeDymaxImg={onChangeDymaxImg}
       />
       {pokeItem!.id !== LAST_NUM && (
-        <BsFillArrowRightCircleFill
-          className={styles.arrow}
-          onClick={() => onArrowClick("RIGHT")}
-        />
+        <RightArrow onClick={() => onArrowClick("RIGHT")} />
       )}
       {megaModal && Array.isArray(megaPoke) && (
         <MegaModal
@@ -93,8 +85,36 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
           onCloseModal={() => setMegaModal(false)}
         />
       )}
-    </div>
+    </DesktopWrapper>
   );
 };
 
 export default DesktopDetail;
+
+const DesktopWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LeftArrow = styled(BsFillArrowLeftCircleFill)`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    color: gray;
+  }
+`;
+
+const RightArrow = styled(BsFillArrowRightCircleFill)`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    color: gray;
+  }
+`;
