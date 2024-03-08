@@ -4,14 +4,14 @@ import {
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
 import styled from "styled-components";
-import { IPokemonList } from "../../../interface/IPokemonList";
-import { useMega } from "../../../hooks/useMega";
-import DetailBody from "./body/DetailBody";
-import MegaModal from "../../modal/megaModal/MegaModal";
-import { LAST_NUM } from "../../../utils/convert";
-import { convertOnePoke } from "../../../utils/makeData";
-import list from "../../../json/pokemonList.json";
+import list from "json/pokemonList.json";
 import DetailHeader from "./DetailHeader";
+import { IPokemonList } from "interface/IPokemonList";
+import { useMega } from "hooks/useMega";
+import { LAST_NUM } from "utils/convert";
+import MegaModal from "components/modal/megaModal/MegaModal";
+import DesktopDetailBody from "./DesktopDetailBody";
+import { convertOnePoke } from "utils/makeData";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -68,7 +68,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
     <DesktopWrapper>
       {pokeItem!.id !== 1 && <LeftArrow onClick={() => onArrowClick("LEFT")} />}
       <DetailHeader />
-      <DetailBody
+      <DesktopDetailBody
         currentPoke={pokeItem}
         megaPoke={megaPoke}
         onChangeOrigin={onChangeOrigin}

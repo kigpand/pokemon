@@ -1,8 +1,8 @@
+import styled from "styled-components";
 import { useState } from "react";
-import { useDymax } from "../../../../../hooks/useDymax";
-import { IPokemonList } from "../../../../../interface/IPokemonList";
-import styles from "./DetailImg.module.scss";
-import EvolutionModal from "../../../evolutionModal/EvolutionModal";
+import { IPokemonList } from "interface/IPokemonList";
+import { useDymax } from "hooks/useDymax";
+import EvolutionModal from "components/detail/evolutionModal/EvolutionModal";
 
 type Props = {
   currentPoke: IPokemonList;
@@ -12,7 +12,7 @@ type Props = {
   onChangeDymaxImg: (img: string) => void;
 };
 
-const DetailImg = (props: Props) => {
+const DesktopDetailBodyImg = (props: Props) => {
   const { dymax } = useDymax(props.currentPoke);
   const [modal, setModal] = useState<boolean>(false);
 
@@ -30,17 +30,16 @@ const DetailImg = (props: Props) => {
   }
 
   return (
-    <div className={styles.imgs}>
-      <img
+    <ImgWrapper>
+      <ImgStyled
         src={props.currentPoke.imageUrl}
         alt="img"
-        className={styles.img}
         referrerPolicy="no-referrer"
       />
       {(props.megaPoke || dymax) && (
-        <div className={styles.imgText} onClick={() => setModal(true)}>
+        <ImgTextStyled onClick={() => setModal(true)}>
           다른 폼 보기
-        </div>
+        </ImgTextStyled>
       )}
       {modal && (
         <EvolutionModal
@@ -49,8 +48,34 @@ const DetailImg = (props: Props) => {
           handleEvolutionModal={handleEvolutionModal}
         />
       )}
-    </div>
+    </ImgWrapper>
   );
 };
 
-export default DetailImg;
+export default DesktopDetailBodyImg;
+
+const ImgWrapper = styled.div`
+  height: 100%;
+  position: relative;
+`;
+
+const ImgStyled = styled.img`
+  width: 400px;
+  height: 100%;
+`;
+
+const ImgTextStyled = styled.div`
+  font-size: 14px;
+  color: gray;
+  display: flex;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+    transform: scale(1.1);
+  }
+`;

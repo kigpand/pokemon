@@ -1,4 +1,4 @@
-import LOGO from "../../../imgs/logo.png";
+import LOGO from "imgs/logo.png";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import styled from "styled-components";

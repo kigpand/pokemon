@@ -10,7 +10,7 @@ import { IType } from "../../../interface/IType";
 import types from "../../../json/types.json";
 import DesktopTypeHeader from "./header/DesktopTypeHeader";
 import TypeItem from "../item/TypeItem";
-import DetailHeader from "../../detail/desktop/DetailHeader";
+import DetailHeader from "components/detail/desktop/DetailHeader";
 
 const DesktopType = () => {
   const [typeData, setTypeData] = useState<IType>();
