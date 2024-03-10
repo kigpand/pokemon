@@ -1,7 +1,7 @@
 import { getLineColor } from "utils/convert";
 import { IPokemonList } from "interface/IPokemonList";
 import styled from "styled-components";
-import DetailMain from "./body/detailMain/DetailMain";
+import DesktopDetailContents from "./DesktopDetailContents";
 import BookComponent from "components/detail/bookComponent/BookComponent";
 import DesktopDetailBodyImg from "./DesktopDetailBodyImg";
 
@@ -20,7 +20,7 @@ const DesktopDetailBody = (props: IDetailBody) => {
     >
       <BookComponent poke={props.currentPoke} />
       <DesktopDetailBodyImg {...props} />
-      <DetailMain poke={props.currentPoke} />
+      <DesktopDetailContents poke={props.currentPoke} />
     </BodyWrapper>
   );
 };

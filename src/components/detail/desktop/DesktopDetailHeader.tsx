@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import styled from "styled-components";
 
-const DetailHeader = () => {
+const DesktopDetailHeader = () => {
   const nav = useNavigate();
 
   const onHome = () => {
@@ -19,7 +19,7 @@ const DetailHeader = () => {
   );
 };
 
-export default DetailHeader;
+export default DesktopDetailHeader;
 
 const DetailHeaderWrapper = styled.header`
   width: 100%;
