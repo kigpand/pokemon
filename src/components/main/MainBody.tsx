@@ -3,14 +3,15 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PokemonList from "../../pokemonList/pokemonList";
-import styles from "./mainBody.module.scss";
-import { RootState } from "../../../store/store";
-import { IPokemonList } from "../../../interface/IPokemonList";
-import { convertPokeData } from "../../../utils/makeData";
-import { setCurrentList, setPokemonList } from "../../../reducers/pokemon";
-import pokeData from "../../../json/pokemonList.json";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import { mobileWidth } from "styles/globalstyles";
+import { RootState } from "store/store";
+import { IPokemonList } from "interface/IPokemonList";
+import { convertPokeData } from "utils/makeData";
+import { setCurrentList, setPokemonList } from "reducers/pokemon";
+import styled from "styled-components";
+import PokemonList from "components/pokemonList/pokemonList";
+import pokeData from "json/pokemonList.json";
 
 const MainBody = () => {
   const [scroll, setScroll] = useState<number>(0);
@@ -67,18 +68,54 @@ const MainBody = () => {
   }, [scroll]);
 
   return (
-    <div className={styles.mainBody} ref={bodyRef}>
-      <div className={styles.lists}>
+    <MainStyled ref={bodyRef}>
+      <ListWrapper>
         {currentList.map((data: IPokemonList, i: number) => {
           return <PokemonList pokemon={data} key={i} />;
         })}
-      </div>
-      <BsFillArrowUpCircleFill
-        className={styles.topBtn}
-        onClick={returnToTop}
-      />
-    </div>
+      </ListWrapper>
+      <TopButton onClick={returnToTop} />
+    </MainStyled>
   );
 };
 
 export default MainBody;
+
+const MainStyled = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+`;
+
+const ListWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 30px;
+  justify-content: center;
+
+  @media only screen and (max-width: ${mobileWidth}) {
+    width: 90%;
+    grid-template-columns: repeat(2, 2fr);
+  }
+`;
+
+const TopButton = styled(BsFillArrowUpCircleFill)`
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 90%;
+  color: rgb(119, 217, 255);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: ${mobileWidth}) {
+    right: 10%;
+  }
+`;
