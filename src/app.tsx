@@ -1,8 +1,8 @@
-import Main from "./page/Main/Main";
+import Main from "./page/Main";
 import { Route, Routes } from "react-router-dom";
 import Detail from "./page/Detail";
 import Type from "./page/Type/Type";
-import Books from "./page/Books/Books";
+import Books from "./page/Books";
 import { GlobalStyle } from "./styles/globalstyles";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/theme";

@@ -1,9 +1,9 @@
-import DesktopBook from "../../components/book/desktopBook/DesktopBook";
-import MobileBook from "../../components/book/mobileBook/MobileBook";
-import styles from "./Books.module.scss";
+import DesktopBook from "../components/book/desktopBook/DesktopBook";
+import MobileBook from "../components/book/mobileBook/MobileBook";
 import { useState, useEffect } from "react";
-import BookHeader from "../../components/book/bookHeader/BookHeader";
-import BookFooter from "../../components/book/bookFooter/BookFooter";
+import BookHeader from "../components/book/BookHeader";
+import BookFooter from "../components/book/bookFooter/BookFooter";
+import styled from "styled-components";
 
 const Books = () => {
   const [width, setWidth] = useState<number>(0);
@@ -22,12 +22,20 @@ const Books = () => {
   }
 
   return (
-    <div className={styles.books}>
+    <BookWrapper>
       <BookHeader />
       {width > 767 ? <DesktopBook /> : <MobileBook />}
       <BookFooter />
-    </div>
+    </BookWrapper>
   );
 };
 
 export default Books;
+
+const BookWrapper = styled.section`
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
