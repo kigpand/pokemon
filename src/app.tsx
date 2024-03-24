@@ -21,6 +21,7 @@ function App() {
           <Route path="/detail" element={<Detail />}></Route>
           <Route path="/type" element={<Type />}></Route>
           <Route path="/books" element={<Books />}></Route>
+          <Route path="*" element={<div>잘못된경로입니다.</div>} />
         </Routes>
       </AppWrapper>
     </ThemeProvider>
