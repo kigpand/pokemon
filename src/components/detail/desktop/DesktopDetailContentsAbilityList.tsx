@@ -26,7 +26,7 @@ const DesktopDetailContentsAbilityList = ({ type, items }: Props) => {
       <AbilityListBodyStyled>
         {items.abilities?.map((item: string, i: number) => {
           return (
-            <AbilityListBodyStyled>
+            <AbilityListBodyStyled key={i}>
               <div className="item" onClick={() => onAbility(item)}>
                 {item}
               </div>

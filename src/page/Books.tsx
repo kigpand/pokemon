@@ -1,8 +1,8 @@
-import DesktopBook from "../components/book/desktopBook/DesktopBook";
-import MobileBook from "../components/book/mobileBook/MobileBook";
+import DesktopBook from "../components/book/DesktopBook";
+import MobileBook from "../components/book/MobileBook";
 import { useState, useEffect } from "react";
 import BookHeader from "../components/book/BookHeader";
-import BookFooter from "../components/book/bookFooter/BookFooter";
+import BookFooter from "../components/book/BookFooter";
 import styled from "styled-components";
 
 const Books = () => {
