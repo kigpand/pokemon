@@ -1,11 +1,11 @@
-import styles from "./TypeDetail.module.scss";
-import types from "../../../json/types.json";
 import { useEffect, useState } from "react";
-import { typeConvertDamegeData } from "../../../utils/convert";
-import TypeDetailText from "../typeDetailText/TypeDetailText";
 import { BsX } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
+import { typeConvertDamegeData } from "utils/convert";
+import { RootState } from "store/store";
+import types from "json/types.json";
+import TypeDetailText from "./TypeDifDetailText";
+import styled from "styled-components";
 
 type Props = {
   typeArr: string[];
@@ -56,7 +56,7 @@ function filterType(typeObj: any) {
   return typeObj;
 }
 
-const TypeDetail = ({ typeArr, onCloseType }: Props) => {
+const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
   const [type, setType] = useState<any | null>(null);
   const theme = useSelector((state: RootState) => state.datas.theme);
 
@@ -86,15 +86,10 @@ const TypeDetail = ({ typeArr, onCloseType }: Props) => {
   }, [typeArr]);
 
   return (
-    <div
-      className={styles.typeDetail}
-      style={{
-        backgroundColor: theme === "dark" ? "black" : "white",
-      }}
-    >
-      <BsX className={styles.close} onClick={onCloseType} />
-      <article className={styles.article}>
-        <div className={styles.title}>방어 상성</div>
+    <DetailWrapper backgroundColor={theme === "dark" ? "black" : "white"}>
+      <CloseStyled onClick={onCloseType} />
+      <article>
+        <TitleStyled>방어 상성</TitleStyled>
         {type && type.doubleFrom.length > 0 && (
           <TypeDetailText title="효과가 좋음" arr={type.doubleFrom} num={2} />
         )}
@@ -105,8 +100,34 @@ const TypeDetail = ({ typeArr, onCloseType }: Props) => {
           <TypeDetailText title="효과가 없음" arr={type.noFrom} num={0} />
         )}
       </article>
-    </div>
+    </DetailWrapper>
   );
 };
 
-export default TypeDetail;
+export default TypeDifDetail;
+
+const DetailWrapper = styled.div<{ backgroundColor: string }>`
+  background-color: ${(props) => props.backgroundColor};
+  top: 0;
+  right: 0;
+  position: absolute;
+  padding: 15px;
+  border: 1px solid;
+  border-radius: 8px;
+  z-index: 100;
+`;
+
+const CloseStyled = styled(BsX)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const TitleStyled = styled.div`
+  font-weight: bold;
+`;

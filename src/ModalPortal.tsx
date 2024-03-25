@@ -24,12 +24,15 @@ const ModalWrapper = styled.section`
   position: fixed;
   background-color: rgba(0, 0, 0, 0.4);
   top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .back {
     position: absolute;
     top: 0;
     left: 0;
-    /* z-index: -1; */
+    z-index: -1;
     width: 100%;
     height: 100%;
 

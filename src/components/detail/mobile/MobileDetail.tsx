@@ -1,15 +1,15 @@
-import { IPokemonList } from "../../../interface/IPokemonList";
-import styles from "./MobileDetail.module.scss";
-import DetailInfo from "./info/DetailInfo";
-import MobileDetailHeader from "./header/MobileDetailHeader";
-import DetailGenus from "./genus/DetailGenus";
-import DetailType from "./type/DetailType";
-import DetailAbility from "./ability/DetailAbility";
-import DetailStatus from "./status/DetailStatus";
-import DetailLayout from "./layout/DetailLayout";
-import { useMega } from "../../../hooks/useMega";
 import { useState } from "react";
-import MegaModal from "../../modal/megaModal/MegaModal";
+import { IPokemonList } from "interface/IPokemonList";
+import { useMega } from "hooks/useMega";
+import MobileDetailInfo from "./MobileDetailInfo";
+import MobileDetailHeader from "./MobileDetailHeader";
+import MobileDetailGenus from "./MobileDetailGenus";
+import MobileDetailType from "./MobileDetailType";
+import MobileDetailAbility from "./MobileDetailAbility";
+import MobileDetailStatus from "./MobileDetailStatus";
+import MobileDetailLayout from "./MobileDetailLayout";
+import styled from "styled-components";
+import MegaModal from "components/modal/megaModal/MegaModal";
 
 interface IMobileDetail {
   currentPoke: IPokemonList;
@@ -24,19 +24,19 @@ function makeArray(poke: IPokemonList): IDetailArray[] {
   return [
     {
       title: "분류",
-      component: <DetailGenus genus={poke.genus} />,
+      component: <MobileDetailGenus genus={poke.genus} />,
     },
     {
       title: "타입",
-      component: <DetailType types={poke.types!} />,
+      component: <MobileDetailType types={poke.types!} />,
     },
     {
       title: "특성",
-      component: <DetailAbility abilities={poke.abilities} />,
+      component: <MobileDetailAbility abilities={poke.abilities} />,
     },
     {
       title: "종족값",
-      component: <DetailStatus poke={poke} />,
+      component: <MobileDetailStatus poke={poke} />,
     },
   ];
 }
@@ -70,11 +70,11 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
   }
 
   return (
-    <div className={styles.mobileDetail}>
+    <>
       {poke?.types && (
-        <div className={styles.container}>
+        <Container>
           <MobileDetailHeader poke={poke} />
-          <DetailInfo
+          <MobileDetailInfo
             poke={poke}
             currentPoke={currentPoke}
             megaPoke={megaPoke || null}
@@ -84,7 +84,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
           />
           {detailArray.map((item: IDetailArray, i: number) => {
             return (
-              <DetailLayout
+              <MobileDetailLayout
                 key={i}
                 types={poke.types!}
                 title={item.title}
@@ -93,10 +93,8 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
             );
           })}
           <b style={{ paddingLeft: "5px" }}>정보</b>
-          <div className={styles.flavor}>
-            <div>{poke?.flavor}</div>
-          </div>
-        </div>
+          <FlovarStyled>{poke?.flavor}</FlovarStyled>
+        </Container>
       )}
       {megaModal && Array.isArray(megaPoke) && (
         <MegaModal
@@ -105,8 +103,19 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
           onCloseModal={() => setMegaModal(false)}
         />
       )}
-    </div>
+    </>
   );
 };
 
 export default MobileDetail;
+
+const Container = styled.article`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`;
+
+const FlovarStyled = styled.div`
+  font-size: 0.8rem;
+`;

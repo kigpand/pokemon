@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { IPokemonList } from "interface/IPokemonList";
-import TypeDif from "../typeDif/TypeDif";
+import TypeDif from "../TypeDif";
 import DesktopDetailContentsAbilityList from "./DesktopDetailContentsAbilityList";
 import DesktopDetailContentsList from "./DesktopDetailContentsList";
 import styled from "styled-components";
@@ -20,9 +20,11 @@ const DesktopDetailContents = ({ poke }: Props) => {
   return (
     <DetailMainStyled>
       <MainHeaderStyled>
-        <div className="num">No.{poke.id}</div>
-        <div className="name">{poke.name}</div>
-        <div className="generate">{poke.generate}</div>
+        <div>
+          <div className="num">No.{poke.id}</div>
+          <div className="name">{poke.name}</div>
+          <div className="generate">{poke.generate}</div>
+        </div>
         <TypeDif poke={poke} />
       </MainHeaderStyled>
       <ListStyled>
@@ -49,6 +51,9 @@ const DetailMainStyled = styled.div`
 
 const MainHeaderStyled = styled.header`
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   .num {
     font-size: 14px;
     font-weight: 700;

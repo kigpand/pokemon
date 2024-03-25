@@ -2,7 +2,7 @@ import { getLineColor } from "utils/convert";
 import { IPokemonList } from "interface/IPokemonList";
 import styled from "styled-components";
 import DesktopDetailContents from "./DesktopDetailContents";
-import BookComponent from "components/detail/bookComponent/BookComponent";
+import BookComponent from "components/detail/BookComponent";
 import DesktopDetailBodyImg from "./DesktopDetailBodyImg";
 
 interface IDetailBody {

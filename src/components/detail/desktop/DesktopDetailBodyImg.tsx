@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
-import EvolutionModal from "components/detail/evolutionModal/EvolutionModal";
+import EvolutionModal from "components/modal/EvolutionModal";
 
 type Props = {
   currentPoke: IPokemonList;
