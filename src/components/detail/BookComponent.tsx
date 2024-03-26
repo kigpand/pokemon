@@ -3,7 +3,7 @@ import { useBookList } from "../../hooks/useBookList";
 import { IPokemonList } from "../../interface/IPokemonList";
 import { useState } from "react";
 import { mobileWidth } from "styles/globalstyles";
-import AddBookModal from "../modal/addBookModal/AddBookModal";
+import AddBookModal from "../modal/AddBookModal";
 import styled from "styled-components";
 
 type Props = {

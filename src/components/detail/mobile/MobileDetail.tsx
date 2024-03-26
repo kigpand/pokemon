@@ -9,7 +9,7 @@ import MobileDetailAbility from "./MobileDetailAbility";
 import MobileDetailStatus from "./MobileDetailStatus";
 import MobileDetailLayout from "./MobileDetailLayout";
 import styled from "styled-components";
-import MegaModal from "components/modal/megaModal/MegaModal";
+import MegaModal from "components/modal/MegaModal";
 
 interface IMobileDetail {
   currentPoke: IPokemonList;

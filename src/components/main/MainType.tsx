@@ -1,5 +1,5 @@
-import TypeModal from "components/modal/typeModal/TypeModal";
 import { useState } from "react";
+import TypeModal from "components/modal/TypeModal";
 import styled from "styled-components";
 
 export default function MainType() {

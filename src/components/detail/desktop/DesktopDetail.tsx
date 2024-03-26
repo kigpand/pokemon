@@ -10,7 +10,7 @@ import { convertOnePoke } from "utils/makeData";
 import styled from "styled-components";
 import list from "json/pokemonList.json";
 import DesktopDetailHeader from "./DesktopDetailHeader";
-import MegaModal from "components/modal/megaModal/MegaModal";
+import MegaModal from "components/modal/MegaModal";
 import DesktopDetailBody from "./DesktopDetailBody";
 
 type ARROWTYPE = "LEFT" | "RIGHT";

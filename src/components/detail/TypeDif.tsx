@@ -2,7 +2,7 @@ import { IPokemonList } from "interface/IPokemonList";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import TypeDifDetail from "./TypeDifDetail";
-import VsModal from "components/modal/vsModal/VsModal";
+import VsModal from "components/modal/VsModal";
 
 type Props = {
   poke: IPokemonList;

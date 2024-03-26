@@ -5,7 +5,7 @@ import { IPokemonList } from "interface/IPokemonList";
 import { getColor } from "utils/convert";
 import styled from "styled-components";
 import BookComponent from "components/detail/BookComponent";
-import AddBookModal from "components/modal/addBookModal/AddBookModal";
+import AddBookModal from "components/modal/AddBookModal";
 
 type Props = {
   poke: IPokemonList;

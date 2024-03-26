@@ -4,7 +4,7 @@ import { setCurrentAbility } from "reducers/datas";
 import { RootState } from "store/store";
 import QUESTION from "imgs/question.png";
 import styled from "styled-components";
-import AbilityModal from "components/modal/abilityModal/AbilityModal";
+import AbilityModal from "components/modal/AbilityModal";
 
 type Props = {
   abilities: string[];
