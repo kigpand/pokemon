@@ -3,14 +3,14 @@ import {
   getDamegeType,
   getTypeEn,
   typeConvertDamegeData,
-} from "../../../utils/convert";
-import styles from "./DesktopType.module.scss";
+} from "utils/convert";
+import { IType } from "interface/IType";
 import { useEffect, useState } from "react";
-import { IType } from "../../../interface/IType";
-import types from "../../../json/types.json";
-import DesktopTypeHeader from "./header/DesktopTypeHeader";
-import TypeItem from "../item/TypeItem";
+import types from "json/types.json";
+import DesktopTypeHeader from "./DesktopTypeHeader";
+import TypeItem from "./TypeItem";
 import DetailHeader from "components/detail/desktop/DesktopDetailHeader";
+import styled from "styled-components";
 
 const DesktopType = () => {
   const [typeData, setTypeData] = useState<IType>();
@@ -35,13 +35,10 @@ const DesktopType = () => {
   };
 
   return (
-    <div className={styles.desktopType}>
+    <TypeWrapper>
       <DetailHeader />
       {typeData && (
-        <div
-          className={styles.container}
-          style={{ borderColor: getColor(typeData.name) }}
-        >
+        <TypeContainer $border={getColor(typeData.name)}>
           <DesktopTypeHeader name={typeData.name} />
           {Object.entries(typeData).map(
             (values: [string, string[]], i: number) => {
@@ -57,10 +54,32 @@ const DesktopType = () => {
               );
             }
           )}
-        </div>
+        </TypeContainer>
       )}
-    </div>
+    </TypeWrapper>
   );
 };
 
 export default DesktopType;
+
+const TypeWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TypeContainer = styled.div<{ $border: string }>`
+  width: 60%;
+  min-height: 400px;
+  border: 3px solid ${(props) => props.$border};
+  position: relative;
+  border-radius: 8px;
+  padding: 50px;
+  margin: 0 30px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-column-gap: 20px;
+`;

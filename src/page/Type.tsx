@@ -1,5 +1,5 @@
-import DesktopType from "../components/type/desktop/DesktopType";
-import MobileType from "../components/type/mobile/MobileType";
+import DesktopType from "../components/type/DesktopType";
+import MobileType from "../components/type/MobileType";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { MOBILE_SIZE } from "../utils/convert";
 

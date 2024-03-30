@@ -28,7 +28,7 @@ const SortModal = ({ closeSort }: ISortModal) => {
   }
 
   return (
-    <SortModalWrapper backgroundColor={theme === "dark" ? "black" : "white"}>
+    <SortModalWrapper $backgroundColor={theme === "dark" ? "black" : "white"}>
       <SortButton onClick={onCloseBtn}>닫기</SortButton>
       <ResetButton onClick={onResetBtn}>초기화</ResetButton>
       <SortSelect onCloseBtn={onCloseBtn} />
@@ -40,7 +40,7 @@ const SortModal = ({ closeSort }: ISortModal) => {
 
 export default SortModal;
 
-const SortModalWrapper = styled.article<{ backgroundColor: string }>`
+const SortModalWrapper = styled.article<{ $backgroundColor: string }>`
   width: 200px;
   padding: 10px;
   position: absolute;
@@ -51,7 +51,7 @@ const SortModalWrapper = styled.article<{ backgroundColor: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.$backgroundColor};
 `;
 
 const ButtonStyled = styled.div`

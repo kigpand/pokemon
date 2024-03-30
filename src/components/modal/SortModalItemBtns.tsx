@@ -70,7 +70,7 @@ const SortModalItemBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
           return (
             <ItemStyled
               key={i}
-              borderColor={getColor(type)}
+              $borderColor={getColor(type)}
               color={getColor(type)}
               onClick={() => onSort(type, "type")}
             >
@@ -111,14 +111,14 @@ const SortButtonWrapper = styled.div`
   padding-bottom: 10px;
 `;
 
-const ItemStyled = styled.div<{ borderColor: string; color: string }>`
+const ItemStyled = styled.div<{ $borderColor: string; color: string }>`
   padding: 5px;
   text-align: center;
   font-size: 13px;
   margin-top: 3px;
   background-color: white;
   color: ${(props) => props.color};
-  border: 1px solid ${(props) => props.borderColor};
+  border: 1px solid ${(props) => props.$borderColor};
 
   &:hover {
     font-weight: bold;
