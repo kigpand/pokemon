@@ -54,6 +54,7 @@ export function getColor(type: string) {
   if (type === "dark" || type === "악") return "#4c4948";
   if (type === "steel" || type === "강철") return "#69a9c7";
   if (type === "fairy" || type === "페어리") return "#dab4d4";
+  return "white";
 }
 
 /** 속성에 맞는 border or line 색상 반환 함수 */
