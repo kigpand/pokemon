@@ -10,7 +10,7 @@ import { IPokemonList } from "interface/IPokemonList";
 import { convertPokeData } from "utils/makeData";
 import { setCurrentList, setPokemonList } from "reducers/pokemon";
 import styled from "styled-components";
-import PokemonList from "components/pokemonList/pokemonList";
+import PokemonList from "components/pokemonList/PokemonList";
 import pokeData from "json/pokemonList.json";
 
 const MainBody = () => {

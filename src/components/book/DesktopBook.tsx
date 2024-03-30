@@ -1,8 +1,8 @@
 import { IPokemonList } from "../../interface/IPokemonList";
 import { useBookList } from "../../hooks/useBookList";
 import { AiFillDelete } from "react-icons/ai";
-import PokemonList from "../pokemonList/pokemonList";
 import styled from "styled-components";
+import PokemonList from "components/pokemonList/PokemonList";
 
 const DesktopBook = () => {
   const { bookPokeList, onRemove } = useBookList();
