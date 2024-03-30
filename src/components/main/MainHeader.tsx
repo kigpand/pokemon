@@ -11,7 +11,7 @@ import LOGO from "imgs/logo.png";
 import styled from "styled-components";
 import MainType from "./MainType";
 import MainThemeToggle from "./MainThemeToggle";
-import SortModal from "components/modal/sortModal/SortModal";
+import SortModal from "components/modal/SortModal";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);

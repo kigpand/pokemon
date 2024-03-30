@@ -1,23 +1,19 @@
-import {
-  getColor,
-  getTypeConvertData,
-  getTypeKo,
-} from "../../../utils/convert";
-import styles from "./SortBtns.module.scss";
-import pokeData from "../../../json/pokemonList.json";
-import { convertPokeData } from "../../../utils/makeData";
+import pokeData from "json/pokemonList.json";
 import { useDispatch } from "react-redux";
-import { resetCurrentList, setPokemonList } from "../../../reducers/pokemon";
 import { cloneDeep } from "lodash";
-import { IPokemonList } from "../../../interface/IPokemonList";
-import { SortType } from "../../../typedef/SortType";
+import styled from "styled-components";
+import { getColor, getTypeConvertData, getTypeKo } from "utils/convert";
+import { convertPokeData } from "utils/makeData";
+import { resetCurrentList, setPokemonList } from "reducers/pokemon";
+import { SortType } from "typedef/SortType";
+import { IPokemonList } from "interface/IPokemonList";
 
 interface ISortBtns {
   type: string;
   list?: string[];
   onCloseBtn: () => void;
 }
-const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
+const SortModalItemBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
   const dispatch = useDispatch();
 
   function onSort(sortData: string, type: string) {
@@ -67,48 +63,83 @@ const SortBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
   }
 
   return (
-    <div className={styles.sortBtns}>
+    <SortButtonWrapper>
       {type === "type" &&
         list &&
         list.map((type: string, i: number) => {
           return (
-            <div
+            <ItemStyled
               key={i}
-              style={{ borderColor: getColor(type), color: getColor(type) }}
+              borderColor={getColor(type)}
+              color={getColor(type)}
               onClick={() => onSort(type, "type")}
             >
               {getTypeKo(type)}
-            </div>
+            </ItemStyled>
           );
         })}
       {type === "gene" &&
         list &&
         list.map((gene: string, i: number) => {
           return (
-            <div
-              key={i}
-              className={styles.gene}
-              onClick={() => onSort(gene, "gene")}
-            >
+            <WhiteItemStyled key={i} onClick={() => onSort(gene, "gene")}>
               {gene}
-            </div>
+            </WhiteItemStyled>
           );
         })}
       {!list && (
-        <div className={styles.item} onClick={() => onSortBy(type as SortType)}>
+        <WhiteItemStyled onClick={() => onSortBy(type as SortType)}>
           높은 순
-        </div>
+        </WhiteItemStyled>
       )}
       {!list && (
-        <div
-          className={styles.item}
-          onClick={() => onReverseSortBy(type as SortType)}
-        >
+        <WhiteItemStyled onClick={() => onReverseSortBy(type as SortType)}>
           낮은 순
-        </div>
+        </WhiteItemStyled>
       )}
-    </div>
+    </SortButtonWrapper>
   );
 };
 
-export default SortBtns;
+export default SortModalItemBtns;
+
+const SortButtonWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 90px);
+  justify-content: space-evenly;
+  padding-bottom: 10px;
+`;
+
+const ItemStyled = styled.div<{ borderColor: string; color: string }>`
+  padding: 5px;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 3px;
+  background-color: white;
+  color: ${(props) => props.color};
+  border: 1px solid ${(props) => props.borderColor};
+
+  &:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+`;
+
+const WhiteItemStyled = styled.div`
+  background-color: white;
+  color: black;
+  border: 1px solid lightgray;
+  padding: 5px;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 3px;
+  background-color: white;
+  color: black;
+  border: 1px solid;
+
+  &:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+`;
