@@ -97,7 +97,6 @@ const ListWrapper = styled.div`
   justify-content: center;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    /* width: 90%; */
     grid-template-columns: repeat(2, 2fr);
   }
 `;

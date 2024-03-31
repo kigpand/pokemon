@@ -95,7 +95,7 @@ const SearchStyled = styled.input`
   border-radius: 20px;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 90%;
+    width: 200px;
   }
 `;
 
