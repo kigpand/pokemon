@@ -15,8 +15,10 @@ const BookHeader = () => {
 
   return (
     <HeaderWrapper>
-      <img src={LOGO} alt="logo"></img>
-      <BackButton onClick={onBack} />
+      <LogoWrapper>
+        <img src={LOGO} alt="logo"></img>
+        <BackButton onClick={onBack} />
+      </LogoWrapper>
       <TitleStyled>
         도감 ({bookPokeList.length > 0 && `${bookPokeList.length}/6`})
       </TitleStyled>
@@ -45,15 +47,18 @@ const HeaderWrapper = styled.header`
   }
 `;
 
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const BackButton = styled(AiOutlineRollback)`
-  font-size: 20px;
+  font-size: 30px;
   color: white;
   border-radius: 4px;
   background-color: black;
   padding: 5px;
-  position: absolute;
-  top: 20px;
-  right: 0;
+  margin-top: 20px;
 
   &:hover {
     background-color: gray;

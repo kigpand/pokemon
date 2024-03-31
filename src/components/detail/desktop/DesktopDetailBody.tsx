@@ -28,8 +28,8 @@ const DesktopDetailBody = (props: IDetailBody) => {
 export default DesktopDetailBody;
 
 const BodyWrapper = styled.div`
-  width: 800px;
-  height: 400px;
+  width: 950px;
+  height: 500px;
   border: 3px solid;
   padding: 50px;
   margin: 0 30px;

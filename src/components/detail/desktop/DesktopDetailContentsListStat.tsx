@@ -34,7 +34,7 @@ const ListStat = styled.div`
   gap: 5px;
 
   .stat {
-    width: 40px;
+    width: 50px;
     padding: 10px 5px;
     margin-right: 5px;
     text-align: center;

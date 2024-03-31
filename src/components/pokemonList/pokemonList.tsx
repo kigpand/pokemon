@@ -43,7 +43,6 @@ const PokemonListWrapper = styled.div`
   }
 
   ${media.phone`
-    width: 90%;
     height: 150px;
   `}
 `;

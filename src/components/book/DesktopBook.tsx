@@ -31,7 +31,7 @@ const DesktopBook = () => {
 export default DesktopBook;
 
 const DesktopWrapper = styled.article`
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,21 +39,21 @@ const DesktopWrapper = styled.article`
 
 const ListWrapper = styled.ul`
   width: 100%;
-  height: 600px;
+  height: 450px;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   list-style: none;
 `;
 
 const ListStyled = styled.li`
-  width: 230px;
   display: flex;
   justify-content: center;
   position: relative;
 
   .removeBtn {
-    font-size: 25px;
+    font-size: 50px;
     padding: 10px;
     z-index: 100;
     position: absolute;

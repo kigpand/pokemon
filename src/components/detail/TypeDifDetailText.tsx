@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getColor } from "utils/convert";
 import styled from "styled-components";
+import { media } from "styles/MediaStyled";
 
 interface ITypeText {
   count: number;
@@ -64,6 +65,10 @@ const TextWrapper = styled.div`
   display: flex;
   margin-top: 15px;
   width: 400px;
+
+  ${media.phone`
+      width: 300px;
+  `}
 `;
 
 const TitleStyled = styled.div`
@@ -71,6 +76,10 @@ const TitleStyled = styled.div`
   font-weight: bold;
   height: 100%;
   width: 20%;
+
+  ${media.phone`
+    font-size: 12px;
+  `};
 `;
 
 const TypeListWrapper = styled.ul`
@@ -83,6 +92,10 @@ const TypeListWrapper = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+
+  ${media.phone`
+    font-size: 10px;
+  `};
 `;
 
 const TypeListStyled = styled.li<{ backgroundColor: string }>`

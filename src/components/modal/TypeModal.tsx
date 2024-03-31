@@ -50,7 +50,7 @@ const TypeModalWrapper = styled.article<{ theme: string }>`
   background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
   color: ${(props) => (props.theme === "dark" ? "white" : "black")};
   width: 300px;
-  height: 450px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -59,7 +59,7 @@ const TypeModalWrapper = styled.article<{ theme: string }>`
 
 const TitleStyled = styled.div`
   width: 100%;
-  padding: 10px;
+  padding: 20px 0 10px 10px;
   font-weight: bold;
 `;
 
@@ -68,14 +68,12 @@ const ContentWrapper = styled.div`
   flex-grow: 1;
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(3, 80px);
-  grid-row-gap: 10px;
+  grid-template-columns: repeat(3, 60px);
+  gap: 10px;
   align-items: center;
   justify-content: center;
 
   .icon {
-    width: 50px;
-    height: 50px;
     cursor: pointer;
     position: relative;
 

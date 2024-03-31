@@ -36,16 +36,22 @@ const MainHeader = () => {
   return (
     <HeaderStyled>
       <MainType />
-      <LogoStyled src={LOGO} alt="logo"></LogoStyled>
-      <SearchStyled
-        type="text"
-        ref={searchRef}
-        placeholder="도감번호나 이름을 입력해주세요"
-        onKeyDown={onSearch}
-      ></SearchStyled>
-      <MainThemeToggle />
-      <SortStyled onClick={() => setOnSortModal(true)} />
-      <BookStyled onClick={moveToBook} />
+      <LogoWrapper>
+        <img src={LOGO} alt="logo" />
+        <SearchStyled
+          type="text"
+          ref={searchRef}
+          placeholder="도감번호나 이름을 입력해주세요"
+          onKeyDown={onSearch}
+        ></SearchStyled>
+      </LogoWrapper>
+      <SideItemWrapper>
+        <FirstSide>
+          <MainThemeToggle />
+          <SortStyled onClick={() => setOnSortModal(true)} />
+        </FirstSide>
+        <BookStyled onClick={moveToBook} />
+      </SideItemWrapper>
       {onSortModal && <SortModal closeSort={() => setOnSortModal(false)} />}
     </HeaderStyled>
   );
@@ -57,20 +63,26 @@ const HeaderStyled = styled.header`
   width: 90%;
   height: 20%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   position: relative;
   margin-bottom: 10px;
+  padding: 30px 0px;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
-const LogoStyled = styled.img`
-  width: 150px;
-  height: 50px;
-  margin: 30px 0;
+const LogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+
+  img {
+    width: 150px;
+    height: 50px;
+  }
 `;
 
 const SearchStyled = styled.input`
@@ -83,20 +95,29 @@ const SearchStyled = styled.input`
   border-radius: 20px;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 90%;
+    width: 200px;
   }
 `;
 
+const SideItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+`;
+
+const FirstSide = styled.div`
+  display: flex;
+  gap: 1px;
+`;
+
 const SortStyled = styled(BsFilterRight)`
-  position: absolute;
-  font-size: 30px;
-  right: 1rem;
-  height: 30px;
+  font-size: 45px;
+  height: 45px;
   object-fit: contain;
   border: 1px solid lightgray;
   border-radius: 4px;
   padding: 5px;
-  top: 1rem;
 
   &:hover {
     background-color: lightgray;
@@ -104,21 +125,18 @@ const SortStyled = styled(BsFilterRight)`
   }
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
 const BookStyled = styled(BsFillBookmarkPlusFill)`
-  position: absolute;
-  font-size: 30px;
-  right: 1rem;
-  height: 30px;
+  font-size: 45px;
+  height: 45px;
   object-fit: contain;
   border: 1px solid lightgray;
   border-radius: 4px;
   padding: 5px;
-  top: 60px;
 
   &:hover {
     background-color: lightgray;
@@ -126,8 +144,7 @@ const BookStyled = styled(BsFillBookmarkPlusFill)`
   }
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 20px;
-    height: 20px;
-    top: 50px;
+    width: 30px;
+    height: 30px;
   }
 `;

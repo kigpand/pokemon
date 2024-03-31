@@ -33,32 +33,32 @@ const BookComponent = ({ poke }: Props) => {
 export default BookComponent;
 
 const HeartStyled = styled(BsHeartFill)`
-  width: 24px;
-  height: 24px;
+  width: 35px;
+  height: 35px;
   padding: 5px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
   color: red;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     position: static;
-    font-size: 20px;
+    font-size: 30px;
     object-fit: contain;
     cursor: pointer;
   }
 `;
 
 const EmptyStyled = styled(BsHeart)`
-  width: 24px;
-  height: 24px;
+  width: 35px;
+  height: 35px;
   padding: 5px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
 
   &:hover {
@@ -66,10 +66,10 @@ const EmptyStyled = styled(BsHeart)`
   }
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     position: static;
-    font-size: 20px;
+    font-size: 30px;
     object-fit: contain;
     cursor: pointer;
   }
