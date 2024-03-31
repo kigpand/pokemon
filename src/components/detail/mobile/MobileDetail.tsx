@@ -92,7 +92,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
               />
             );
           })}
-          <b style={{ paddingLeft: "5px" }}>정보</b>
+          <b style={{ paddingLeft: "5px", fontWeight: "bold" }}>정보</b>
           <FlovarStyled>{poke?.flavor}</FlovarStyled>
         </Container>
       )}
@@ -117,5 +117,6 @@ const Container = styled.article`
 `;
 
 const FlovarStyled = styled.div`
-  font-size: 0.8rem;
+  font-size: 12px;
+  margin-top: 5px;
 `;

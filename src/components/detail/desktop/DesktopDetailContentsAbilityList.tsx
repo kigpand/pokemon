@@ -60,18 +60,12 @@ const AbilityListBodyStyled = styled.div`
   padding: 5px;
   font-weight: 700;
 
-  .ability {
-    display: flex;
-    position: relative;
+  .item {
+    text-align: center;
 
-    .item {
-      width: 60px;
-      text-align: center;
-
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
     }
   }
 `;

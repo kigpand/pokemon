@@ -42,7 +42,7 @@ const StatusItemWrapper = styled.div`
 `;
 
 const TitleStyled = styled.div<{ color: string }>`
-  height: 13px;
+  height: 25px;
   padding: 5px;
   display: flex;
   align-items: center;
@@ -51,13 +51,14 @@ const TitleStyled = styled.div<{ color: string }>`
 `;
 
 const BarStyled = styled.div<{ color: string; width: string }>`
-  height: 15px;
+  height: 25px;
   font-size: 13px;
   display: flex;
   align-items: center;
   width: ${(props) => props.width};
 
   div {
+    height: 100%;
     padding: 5px;
     display: flex;
     align-items: center;
