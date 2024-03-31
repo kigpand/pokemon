@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pokemon/static/css/main.2985a5f2.css",
-    "main.js": "/pokemon/static/js/main.35d18986.js",
+    "main.css": "/pokemon/static/css/main.a7889e36.css",
+    "main.js": "/pokemon/static/js/main.568592f7.js",
     "static/media/logo.png": "/pokemon/static/media/logo.9631a0e0100b336ef8dd.png",
     "static/media/moon.png": "/pokemon/static/media/moon.1035ca0949e3b65bd541.png",
     "static/media/sun.png": "/pokemon/static/media/sun.6277057d4f8bd6eff8dd.png",
@@ -12,8 +12,8 @@
     "static/media/fairy.svg": "/pokemon/static/media/fairy.556b990c660e41a30426c7f16b6a65e9.svg",
     "static/media/bug.svg": "/pokemon/static/media/bug.92cdc9403fad38bf15c0e625e77ac635.svg",
     "static/media/fire.svg": "/pokemon/static/media/fire.e6d5d5afdc1fa952566568c87d4d1477.svg",
-    "static/media/dark.svg": "/pokemon/static/media/dark.20ab213b6c9e1f93812c49fad54c1106.svg",
     "index.html": "/pokemon/index.html",
+    "static/media/dark.svg": "/pokemon/static/media/dark.20ab213b6c9e1f93812c49fad54c1106.svg",
     "static/media/iron.svg": "/pokemon/static/media/iron.1db1f8e691be888ddd59a63827c44eb9.svg",
     "static/media/normal.svg": "/pokemon/static/media/normal.30869222dc4d8cea368dbe97ebd71869.svg",
     "static/media/water.svg": "/pokemon/static/media/water.176904dc94dee21919dcdcab2dcebd8b.svg",
@@ -25,11 +25,11 @@
     "static/media/fighting.svg": "/pokemon/static/media/fighting.4261226a63b503114e2f6cbf7212f5f6.svg",
     "static/media/rock.svg": "/pokemon/static/media/rock.c837fee5d29a9a5dc63cf224ea555f69.svg",
     "static/media/grass.svg": "/pokemon/static/media/grass.b673cb5a02a0c7e2c037ca04b49471ce.svg",
-    "main.2985a5f2.css.map": "/pokemon/static/css/main.2985a5f2.css.map",
-    "main.35d18986.js.map": "/pokemon/static/js/main.35d18986.js.map"
+    "main.a7889e36.css.map": "/pokemon/static/css/main.a7889e36.css.map",
+    "main.568592f7.js.map": "/pokemon/static/js/main.568592f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.2985a5f2.css",
-    "static/js/main.35d18986.js"
+    "static/css/main.a7889e36.css",
+    "static/js/main.568592f7.js"
   ]
 }
