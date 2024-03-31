@@ -14,10 +14,6 @@ export default function MainType() {
 }
 
 const TypeWrapper = styled.div`
-  position: absolute;
-  left: 20px;
-  top: 30px;
-
   button {
     background: none;
     color: gray;

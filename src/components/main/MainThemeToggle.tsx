@@ -25,20 +25,16 @@ export default function MainThemeToggle() {
 }
 
 const ThemeToggleWrapper = styled.img<{ theme: string }>`
-  position: absolute;
   font-size: 30px;
-  top: 1rem;
-  right: 3.8rem;
   border: 1px solid lightgray;
   border-radius: 4px;
   padding: 5px;
-  height: 30px;
+  height: 45px;
   background-color: ${(props) => (props.theme === "light" ? "black" : "white")};
   object-fit: contain;
   cursor: pointer;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    right: 3.1rem;
-    height: 20px;
+    height: 30px;
   }
 `;

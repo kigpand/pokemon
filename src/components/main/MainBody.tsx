@@ -10,8 +10,8 @@ import { IPokemonList } from "interface/IPokemonList";
 import { convertPokeData } from "utils/makeData";
 import { setCurrentList, setPokemonList } from "reducers/pokemon";
 import styled from "styled-components";
-import PokemonList from "components/pokemonList/PokemonList";
 import pokeData from "json/pokemonList.json";
+import PokemonList from "components/pokemonList/PokemonList";
 
 const MainBody = () => {
   const [scroll, setScroll] = useState<number>(0);
@@ -93,11 +93,11 @@ const ListWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 30px;
+  gap: 10px;
   justify-content: center;
 
   @media only screen and (max-width: ${mobileWidth}) {
-    width: 90%;
+    /* width: 90%; */
     grid-template-columns: repeat(2, 2fr);
   }
 `;
