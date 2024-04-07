@@ -126,6 +126,8 @@ const CloseStyled = styled(BsX)`
   &:hover {
     transform: scale(1.1);
   }
+
+  
 `;
 
 const TitleStyled = styled.div`
