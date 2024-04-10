@@ -7,6 +7,7 @@ import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { mobileWidth } from "styles/globalstyles";
 import { IPokemonList } from "interface/IPokemonList";
 import { onSearchItem } from "utils/makeData";
+import { useStorage } from "hooks/useStorage";
 import LOGO from "imgs/logo.png";
 import styled from "styled-components";
 import MainType from "./MainType";
@@ -17,15 +18,13 @@ const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [onSortModal, setOnSortModal] = useState<Boolean>(false);
   const nav = useNavigate();
-
-  function setPokeItem(poke: IPokemonList) {
-    sessionStorage.setItem("currentPoke", JSON.stringify(poke));
-    nav("/detail");
-  }
+  const { setCurrentPokeStorage } = useStorage();
 
   function onSearch(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
-      onSearchItem(searchRef, setPokeItem);
+      onSearchItem(searchRef, (poke: IPokemonList) =>
+        setCurrentPokeStorage(poke)
+      );
     }
   }
 

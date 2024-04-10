@@ -1,20 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import { IPokemonList } from "../../interface/IPokemonList";
-import { useBookList } from "../../hooks/useBookList";
 import { AiFillDelete, AiOutlineSearch } from "react-icons/ai";
 import styled from "styled-components";
+import { useStorage } from "hooks/useStorage";
+import { useBookList } from "hooks/useBookList";
+import { IPokemonList } from "interface/IPokemonList";
 
 interface IBookList {
   list: IPokemonList;
 }
 const BookList = (item: IBookList) => {
-  const nav = useNavigate();
   const { onRemove } = useBookList();
-
-  function onDetail() {
-    sessionStorage.setItem("currentPoke", JSON.stringify(item.list));
-    nav("/detail");
-  }
+  const { setCurrentPokeStorage } = useStorage();
 
   return (
     <ListWrapper>
@@ -22,7 +17,10 @@ const BookList = (item: IBookList) => {
       <NameStyled>{item.list.name}</NameStyled>
       <TotalStyled>종족치: {item.list.allStat}</TotalStyled>
       <ButtonStyled>
-        <AiOutlineSearch className="button" onClick={onDetail} />
+        <AiOutlineSearch
+          className="button"
+          onClick={() => setCurrentPokeStorage(item.list)}
+        />
         <AiFillDelete className="button" onClick={() => onRemove(item.list)} />
       </ButtonStyled>
     </ListWrapper>

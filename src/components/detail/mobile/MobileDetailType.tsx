@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { MobileDetailContents } from "styles/CommonStyled";
 import { getColor, getTypeKo } from "utils/convert";
+import { useStorage } from "hooks/useStorage";
 import styled from "styled-components";
 
 type Props = {
@@ -8,11 +8,10 @@ type Props = {
 };
 
 const MobileDetailType = ({ types }: Props) => {
-  const nav = useNavigate();
+  const { setTypeStorage } = useStorage();
 
   function onTypeClick(type: string) {
-    sessionStorage.setItem("type", type);
-    nav("/type");
+    setTypeStorage(type);
   }
 
   return (

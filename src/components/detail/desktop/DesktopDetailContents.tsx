@@ -1,20 +1,19 @@
-import { useNavigate } from "react-router-dom";
 import { IPokemonList } from "interface/IPokemonList";
-import TypeDif from "../TypeDif";
 import DesktopDetailContentsAbilityList from "./DesktopDetailContentsAbilityList";
 import DesktopDetailContentsList from "./DesktopDetailContentsList";
 import styled from "styled-components";
+import { useStorage } from "hooks/useStorage";
+import TypeDif from "../TypeDif";
 
 type Props = {
   poke: IPokemonList;
 };
 
 const DesktopDetailContents = ({ poke }: Props) => {
-  const nav = useNavigate();
+  const { setTypeStorage } = useStorage();
 
   function onTypeClick(type: string) {
-    sessionStorage.setItem("type", type);
-    nav("/type");
+    setTypeStorage(type);
   }
 
   return (

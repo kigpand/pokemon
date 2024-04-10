@@ -2,12 +2,14 @@ import LOGO from "imgs/logo.png";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import styled from "styled-components";
+import { useStorage } from "hooks/useStorage";
 
 const DesktopDetailHeader = () => {
   const nav = useNavigate();
+  const { clearCurrentPokeStorage } = useStorage();
 
   const onHome = () => {
-    sessionStorage.removeItem("currentPoke");
+    clearCurrentPokeStorage();
     nav("/");
   };
 

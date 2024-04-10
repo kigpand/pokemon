@@ -6,6 +6,7 @@ import { getColor } from "utils/convert";
 import styled from "styled-components";
 import BookComponent from "components/detail/BookComponent";
 import AddBookModal from "components/modal/AddBookModal";
+import { useStorage } from "hooks/useStorage";
 
 type Props = {
   poke: IPokemonList;
@@ -14,9 +15,10 @@ type Props = {
 const MobileDetailHeader = ({ poke }: Props) => {
   const [onBookModal, setOnBookModal] = useState<Boolean>(false);
   const nav = useNavigate();
+  const { clearCurrentPokeStorage } = useStorage();
 
   function onCloseBtn() {
-    sessionStorage.removeItem("currentPoke");
+    clearCurrentPokeStorage();
     nav(-1);
   }
 

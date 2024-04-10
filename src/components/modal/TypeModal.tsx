@@ -1,23 +1,22 @@
 import types from "json/types.json";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import ModalPortal from "ModalPortal";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { RootState } from "store/store";
 import { getTypeIcon, getTypeKo } from "utils/convert";
+import { useStorage } from "hooks/useStorage";
 
 type Props = {
   onCloseModal: () => void;
 };
 
 export default function TypeModal({ onCloseModal }: Props) {
-  const nav = useNavigate();
+  const { setTypeStorage } = useStorage();
   const theme = useSelector((state: RootState) => state.datas.theme);
 
   function onType(type: string) {
     onCloseModal();
-    sessionStorage.setItem("type", type);
-    nav("/type");
+    setTypeStorage(type);
   }
 
   return (

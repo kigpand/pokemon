@@ -5,18 +5,17 @@ import { useEffect, useState } from "react";
 import { IPokemonList } from "../interface/IPokemonList";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { MOBILE_SIZE } from "../utils/convert";
+import { useStorage } from "hooks/useStorage";
 
 const Detail = () => {
   const [currentPoke, setCurrentPoke] = useState<IPokemonList>();
   const windowSize = useWindowSize();
+  const { getCurrentPokeStorage } = useStorage();
 
   useEffect(() => {
-    const item = sessionStorage.getItem("currentPoke");
-    if (item) {
-      const poke = JSON.parse(item);
-      setCurrentPoke(poke);
-    }
-  }, []);
+    const item = getCurrentPokeStorage();
+    if (item) setCurrentPoke(item);
+  }, [getCurrentPokeStorage]);
 
   const onChangePoke = (poke: IPokemonList) => {
     setCurrentPoke(poke);
