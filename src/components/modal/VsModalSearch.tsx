@@ -18,7 +18,7 @@ export default function VsModalSearch({ getSearch }: Props) {
     setSearchPoke(poke);
   }
   return (
-    <SearchWrapper backgroundColor={theme === "dark" ? "black" : "white"}>
+    <SearchWrapper $backgroundColor={theme === "dark" ? "black" : "white"}>
       <TitleStyled>어떤 포켓몬과 비교하시겠습니까?</TitleStyled>
       <SearchMain>
         {searchPoke ? (
@@ -35,8 +35,8 @@ export default function VsModalSearch({ getSearch }: Props) {
   );
 }
 
-const SearchWrapper = styled.div<{ backgroundColor: string }>`
-  background-color: ${(props) => props.backgroundColor};
+const SearchWrapper = styled.div<{ $backgroundColor: string }>`
+  background-color: ${(props) => props.$backgroundColor};
   border-radius: 20px;
   padding-bottom: 10px;
   display: flex;

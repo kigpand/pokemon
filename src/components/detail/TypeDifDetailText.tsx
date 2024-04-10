@@ -41,7 +41,7 @@ const TypeDifDetailText = ({ title, arr, num }: Props) => {
       <TypeListWrapper>
         {types.map((item: ITypeText, i: number) => {
           return (
-            <TypeListStyled backgroundColor={getColor(item.text)} key={i}>
+            <TypeListStyled $backgroundColor={getColor(item.text)} key={i}>
               <strong>{item.text}</strong>
               <span>
                 x
@@ -98,12 +98,12 @@ const TypeListWrapper = styled.ul`
   `};
 `;
 
-const TypeListStyled = styled.li<{ backgroundColor: string }>`
+const TypeListStyled = styled.li<{ $backgroundColor: string }>`
   padding: 5px;
   border-radius: 4px;
   color: white;
   margin-left: 5px;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.$backgroundColor};
 
   span {
     font-size: 10px;

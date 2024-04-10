@@ -86,7 +86,7 @@ const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
   }, [typeArr]);
 
   return (
-    <DetailWrapper backgroundColor={theme === "dark" ? "black" : "white"}>
+    <DetailWrapper $backgroundColor={theme === "dark" ? "black" : "white"}>
       <CloseStyled onClick={onCloseType} />
       <article>
         <TitleStyled>방어 상성</TitleStyled>
@@ -106,8 +106,8 @@ const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
 
 export default TypeDifDetail;
 
-const DetailWrapper = styled.div<{ backgroundColor: string }>`
-  background-color: ${(props) => props.backgroundColor};
+const DetailWrapper = styled.div<{ $backgroundColor: string }>`
+  background-color: ${(props) => props.$backgroundColor};
   top: 0;
   right: 0;
   position: absolute;
@@ -126,8 +126,6 @@ const CloseStyled = styled(BsX)`
   &:hover {
     transform: scale(1.1);
   }
-
-  
 `;
 
 const TitleStyled = styled.div`
