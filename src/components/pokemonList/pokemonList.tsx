@@ -1,23 +1,17 @@
-import { useNavigate } from "react-router-dom";
-import { IPokemonList } from "../../interface/IPokemonList";
-import { MouseEvent } from "react";
 import { media } from "styles/MediaStyled";
 import styled from "styled-components";
+import { useStorage } from "hooks/useStorage";
+import { IPokemonList } from "interface/IPokemonList";
 
 interface IPokeMonList {
   pokemon: IPokemonList;
 }
 
 const PokemonList = ({ pokemon }: IPokeMonList) => {
-  const nav = useNavigate();
-
-  function onNav(e: MouseEvent<HTMLDivElement>) {
-    sessionStorage.setItem("currentPoke", JSON.stringify(pokemon));
-    nav("/detail");
-  }
+  const { setCurrentPokeStorage } = useStorage();
 
   return (
-    <PokemonListWrapper onClick={onNav}>
+    <PokemonListWrapper onClick={() => setCurrentPokeStorage(pokemon)}>
       <NumberStyled>No.{pokemon.id}</NumberStyled>
       <ImgWrapper src={pokemon.imageUrl} alt={pokemon.name}></ImgWrapper>
       <NameStyled>{pokemon.name}</NameStyled>

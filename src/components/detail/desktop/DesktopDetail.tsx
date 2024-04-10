@@ -12,6 +12,7 @@ import list from "json/pokemonList.json";
 import DesktopDetailHeader from "./DesktopDetailHeader";
 import MegaModal from "components/modal/MegaModal";
 import DesktopDetailBody from "./DesktopDetailBody";
+import { useStorage } from "hooks/useStorage";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -25,6 +26,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
   const [originPoke, setOriginPoke] = useState<IPokemonList>(currentPoke);
   const [megaModal, setMegaModal] = useState<boolean>(false);
   const { megaPoke } = useMega(pokeItem);
+  const { setCurrentPokeStorage } = useStorage();
 
   const onChangeOrigin = () => {
     setPokeItem(originPoke);
@@ -58,7 +60,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
     }
     if (!item) return;
     const pokemon = convertOnePoke(item);
-    sessionStorage.setItem("currentPoke", JSON.stringify(pokemon));
+    setCurrentPokeStorage(pokemon);
     onChangePoke(pokemon);
     setOriginPoke(pokemon);
     setPokeItem(pokemon);

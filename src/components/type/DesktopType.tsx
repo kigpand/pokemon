@@ -11,23 +11,22 @@ import DesktopTypeHeader from "./DesktopTypeHeader";
 import TypeItem from "./TypeItem";
 import DetailHeader from "components/detail/desktop/DesktopDetailHeader";
 import styled from "styled-components";
+import { useStorage } from "hooks/useStorage";
 
 const DesktopType = () => {
   const [typeData, setTypeData] = useState<IType>();
+  const { setTypeStorage, getTypeStorage } = useStorage();
 
   useEffect(() => {
-    const sessionType = sessionStorage.getItem("type");
-    if (sessionType) {
-      const type = types.find((type) => type.name === sessionType);
-      if (type) {
-        setTypeData(typeConvertDamegeData(type));
-      }
+    const type = getTypeStorage();
+    if (type) {
+      setTypeData(type);
     }
-  }, []);
+  }, [getTypeStorage]);
 
   const onChangeType = (item: string) => {
     const value = getTypeEn(item);
-    sessionStorage.setItem("type", value);
+    setTypeStorage(value);
     const type = types.find((type) => type.name === value);
     if (type) {
       setTypeData(typeConvertDamegeData(type));
