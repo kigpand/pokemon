@@ -77,6 +77,7 @@ export function getLineColor(type: string) {
   if (type === "dark" || type === "악") return "#383020";
   if (type === "steel" || type === "강철") return "#444444";
   if (type === "fairy" || type === "페어리") return "#ff18a7";
+  return "#ffffff";
 }
 
 /** 영어 이름에 맞는 한글 속성 반환 함수  */

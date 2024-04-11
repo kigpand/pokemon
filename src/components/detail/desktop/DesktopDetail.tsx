@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -28,15 +28,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
   const { megaPoke } = useMega(pokeItem);
   const { setCurrentPokeStorage } = useStorage();
 
-  const onChangeOrigin = () => {
-    setPokeItem(originPoke);
-  };
-
-  const onChangeModalMega = (poke: IPokemonList) => {
-    setPokeItem(poke);
-  };
-
-  const onChangeMegaPoke = () => {
+  const onChangeMegaPoke = useCallback(() => {
     if (!megaPoke) return;
     if (Array.isArray(megaPoke)) {
       setMegaModal(true);
@@ -44,27 +36,33 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
       if (pokeItem.name === megaPoke.name) return;
       setPokeItem(megaPoke);
     }
-  };
+  }, [megaPoke, pokeItem.name]);
 
-  const onChangeDymaxImg = (img: string) => {
-    if (pokeItem.imageUrl === img) return;
-    setPokeItem({ ...currentPoke, imageUrl: img });
-  };
+  const onChangeDymaxImg = useCallback(
+    (img: string) => {
+      if (pokeItem.imageUrl === img) return;
+      setPokeItem({ ...currentPoke, imageUrl: img });
+    },
+    [currentPoke, pokeItem.imageUrl]
+  );
 
-  const onArrowClick = (type: ARROWTYPE) => {
-    let item = null;
-    if (type === "LEFT") {
-      item = list.find((item) => item.id === pokeItem!.id - 1);
-    } else {
-      item = list.find((item) => item.id === pokeItem!.id + 1);
-    }
-    if (!item) return;
-    const pokemon = convertOnePoke(item);
-    setCurrentPokeStorage(pokemon);
-    onChangePoke(pokemon);
-    setOriginPoke(pokemon);
-    setPokeItem(pokemon);
-  };
+  const onArrowClick = useCallback(
+    (type: ARROWTYPE) => {
+      let item = null;
+      if (type === "LEFT") {
+        item = list.find((item) => item.id === pokeItem!.id - 1);
+      } else {
+        item = list.find((item) => item.id === pokeItem!.id + 1);
+      }
+      if (!item) return;
+      const pokemon = convertOnePoke(item);
+      setCurrentPokeStorage(pokemon);
+      onChangePoke(pokemon);
+      setOriginPoke(pokemon);
+      setPokeItem(pokemon);
+    },
+    [onChangePoke, pokeItem, setCurrentPokeStorage]
+  );
 
   return (
     <DesktopWrapper>
@@ -73,7 +71,7 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
       <DesktopDetailBody
         currentPoke={pokeItem}
         megaPoke={megaPoke}
-        onChangeOrigin={onChangeOrigin}
+        onChangeOrigin={() => setPokeItem(originPoke)}
         onChangeMegaPoke={onChangeMegaPoke}
         onChangeDymaxImg={onChangeDymaxImg}
       />
@@ -83,7 +81,9 @@ const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
       {megaModal && Array.isArray(megaPoke) && (
         <MegaModal
           megaPoke={megaPoke}
-          onChangeMega={onChangeModalMega}
+          onChangeMega={(poke: IPokemonList) => {
+            setPokeItem(poke);
+          }}
           onCloseModal={() => setMegaModal(false)}
         />
       )}

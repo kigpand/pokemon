@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
 import EvolutionModal from "components/modal/EvolutionModal";
@@ -16,18 +16,21 @@ const DesktopDetailBodyImg = (props: Props) => {
   const { dymax } = useDymax(props.currentPoke);
   const [modal, setModal] = useState<boolean>(false);
 
-  function handleEvolutionModal(type: "origin" | "mega" | "dymax") {
-    if (type === "origin") {
-      props.onChangeOrigin();
-    }
-    if (type === "mega") {
-      props.onChangeMegaPoke();
-    }
-    if (type === "dymax") {
-      props.onChangeDymaxImg(dymax!);
-    }
-    setModal(false);
-  }
+  const handleEvolutionModal = useCallback(
+    (type: "origin" | "mega" | "dymax") => {
+      if (type === "origin") {
+        props.onChangeOrigin();
+      }
+      if (type === "mega") {
+        props.onChangeMegaPoke();
+      }
+      if (type === "dymax") {
+        props.onChangeDymaxImg(dymax!);
+      }
+      setModal(false);
+    },
+    [dymax, props]
+  );
 
   return (
     <ImgWrapper>

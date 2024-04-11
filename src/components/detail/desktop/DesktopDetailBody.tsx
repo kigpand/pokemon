@@ -15,9 +15,7 @@ interface IDetailBody {
 
 const DesktopDetailBody = (props: IDetailBody) => {
   return (
-    <BodyWrapper
-      style={{ borderColor: getLineColor(props.currentPoke!.types![0]) }}
-    >
+    <BodyWrapper $borderColor={getLineColor(props.currentPoke!.types![0])}>
       <BookComponent poke={props.currentPoke} />
       <DesktopDetailBodyImg {...props} />
       <DesktopDetailContents poke={props.currentPoke} />
@@ -27,10 +25,10 @@ const DesktopDetailBody = (props: IDetailBody) => {
 
 export default DesktopDetailBody;
 
-const BodyWrapper = styled.div`
+const BodyWrapper = styled.div<{ $borderColor: string }>`
   width: 950px;
   height: 500px;
-  border: 3px solid;
+  border: 3px solid ${(props) => props.$borderColor};
   padding: 50px;
   margin: 0 30px;
   position: relative;

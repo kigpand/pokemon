@@ -10,10 +10,6 @@ type Props = {
 const MobileDetailType = ({ types }: Props) => {
   const { setTypeStorage } = useStorage();
 
-  function onTypeClick(type: string) {
-    setTypeStorage(type);
-  }
-
   return (
     <MobileDetailContents>
       {types.map((type, i) => {
@@ -21,7 +17,7 @@ const MobileDetailType = ({ types }: Props) => {
           <TypeStyled
             color={getColor(type)}
             key={i}
-            onClick={() => onTypeClick(type)}
+            onClick={() => setTypeStorage(type)}
           >
             {getTypeKo(type)}
           </TypeStyled>

@@ -1,8 +1,8 @@
 import { IPokemonList } from "interface/IPokemonList";
+import { useStorage } from "hooks/useStorage";
 import DesktopDetailContentsAbilityList from "./DesktopDetailContentsAbilityList";
 import DesktopDetailContentsList from "./DesktopDetailContentsList";
 import styled from "styled-components";
-import { useStorage } from "hooks/useStorage";
 import TypeDif from "../TypeDif";
 
 type Props = {
@@ -11,10 +11,6 @@ type Props = {
 
 const DesktopDetailContents = ({ poke }: Props) => {
   const { setTypeStorage } = useStorage();
-
-  function onTypeClick(type: string) {
-    setTypeStorage(type);
-  }
 
   return (
     <DetailMainStyled>
@@ -31,7 +27,7 @@ const DesktopDetailContents = ({ poke }: Props) => {
         <DesktopDetailContentsList
           items={poke}
           type="타입"
-          onClick={onTypeClick}
+          onClick={(type: string) => setTypeStorage(type)}
         />
         <DesktopDetailContentsAbilityList items={poke} type="특성" />
         <DesktopDetailContentsList items={poke} type="종족값" />

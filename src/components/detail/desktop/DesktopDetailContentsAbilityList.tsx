@@ -16,10 +16,6 @@ const DesktopDetailContentsAbilityList = ({ type, items }: Props) => {
     (state: RootState) => state.datas.currentAbility
   );
 
-  function onAbility(ability: string) {
-    dispatch(setCurrentAbility(ability));
-  }
-
   return (
     <AbilityListStyled>
       <div className="title">{type}</div>
@@ -27,7 +23,10 @@ const DesktopDetailContentsAbilityList = ({ type, items }: Props) => {
         {items.abilities?.map((item: string, i: number) => {
           return (
             <AbilityListBodyStyled key={i}>
-              <div className="item" onClick={() => onAbility(item)}>
+              <div
+                className="item"
+                onClick={() => dispatch(setCurrentAbility(item))}
+              >
                 {item}
               </div>
             </AbilityListBodyStyled>
