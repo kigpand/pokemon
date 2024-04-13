@@ -2,6 +2,7 @@ import { media } from "styles/MediaStyled";
 import styled from "styled-components";
 import { useStorage } from "hooks/useStorage";
 import { IPokemonList } from "interface/IPokemonList";
+import React from "react";
 
 interface IPokeMonList {
   pokemon: IPokemonList;
@@ -19,7 +20,7 @@ const PokemonList = ({ pokemon }: IPokeMonList) => {
   );
 };
 
-export default PokemonList;
+export default React.memo(PokemonList);
 
 const PokemonListWrapper = styled.div`
   width: 100%;

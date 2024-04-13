@@ -8,6 +8,7 @@ import { mobileWidth } from "styles/globalstyles";
 import { IPokemonList } from "interface/IPokemonList";
 import { onSearchItem } from "utils/makeData";
 import { useStorage } from "hooks/useStorage";
+import { Page } from "utils/enums";
 import LOGO from "imgs/logo.png";
 import styled from "styled-components";
 import MainType from "./MainType";
@@ -29,7 +30,7 @@ const MainHeader = () => {
   }
 
   function moveToBook() {
-    nav("/books");
+    nav(Page.book);
   }
 
   return (

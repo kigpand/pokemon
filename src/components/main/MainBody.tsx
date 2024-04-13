@@ -26,26 +26,15 @@ const MainBody = () => {
   }
 
   useEffect(() => {
-    if (pokemonList.length === 0) {
-      const loadList: IPokemonList[] = convertPokeData(pokeData);
-      dispatch(setPokemonList(loadList));
-    }
+    const list = convertPokeData(pokeData);
+    dispatch(setPokemonList(list));
+    dispatch(setCurrentList(list.slice(0, 20)));
     window.addEventListener("scroll", onScroll);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
-
-  useEffect(() => {
-    if (pokemonList.length > 0 && currentList.length === 0) {
-      const setting: IPokemonList[] = [];
-      for (let i = 0; i < 20; i++) {
-        setting.push(pokemonList[i]);
-      }
-      dispatch(setCurrentList(setting));
-    }
-  }, [pokemonList]);
 
   const onScroll = () => {
     if (
@@ -58,12 +47,8 @@ const MainBody = () => {
 
   useEffect(() => {
     if (scroll !== 0) {
-      const item: IPokemonList[] = [];
       const count = currentList.length;
-      for (let i = count; i < count + 10; i++) {
-        if (pokemonList[i]) item.push(pokemonList[i]);
-      }
-      dispatch(setCurrentList(item));
+      dispatch(setCurrentList(pokemonList.slice(count, count + 9)));
     }
   }, [scroll]);
 
