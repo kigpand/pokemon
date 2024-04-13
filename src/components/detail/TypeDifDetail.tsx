@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { BsX } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { typeConvertDamegeData } from "utils/convert";
@@ -57,10 +57,9 @@ function filterType(typeObj: any) {
 }
 
 const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
-  const [type, setType] = useState<any | null>(null);
   const theme = useSelector((state: RootState) => state.datas.theme);
 
-  useEffect(() => {
+  const type = useMemo(() => {
     let typeObj: any = {};
     typeArr.forEach((type: string, i: number) => {
       const result = types.find((item) => item.name === type);
@@ -81,8 +80,7 @@ const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
         }
       }
     });
-    const newType = filterType(typeObj);
-    setType(newType);
+    return filterType(typeObj);
   }, [typeArr]);
 
   return (
@@ -90,13 +88,13 @@ const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
       <CloseStyled onClick={onCloseType} />
       <article>
         <TitleStyled>방어 상성</TitleStyled>
-        {type && type.doubleFrom.length > 0 && (
+        {type.doubleFrom.length > 0 && (
           <TypeDetailText title="효과가 좋음" arr={type.doubleFrom} num={2} />
         )}
-        {type && type.halfFrom.length > 0 && (
+        {type.halfFrom.length > 0 && (
           <TypeDetailText title="효과가 별로" arr={type.halfFrom} num={0.5} />
         )}
-        {type && type.noFrom.length > 0 && (
+        {type.noFrom.length > 0 && (
           <TypeDetailText title="효과가 없음" arr={type.noFrom} num={0} />
         )}
       </article>
