@@ -22,10 +22,6 @@ const MobileDetailHeader = ({ poke }: Props) => {
     nav(-1);
   }
 
-  function onCloseBookModal() {
-    setOnBookModal(false);
-  }
-
   return (
     <HeaderWrapper>
       <CloseButton color={getColor(poke?.types![0])} onClick={onCloseBtn} />
@@ -38,7 +34,9 @@ const MobileDetailHeader = ({ poke }: Props) => {
       <GeneragteWrapper color={getColor(poke?.types![0])}>
         {poke.generate}
       </GeneragteWrapper>
-      {onBookModal && <AddBookModal onCloseBookModal={onCloseBookModal} />}
+      {onBookModal && (
+        <AddBookModal onCloseBookModal={() => setOnBookModal(false)} />
+      )}
     </HeaderWrapper>
   );
 };

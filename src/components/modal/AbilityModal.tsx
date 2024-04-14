@@ -21,13 +21,9 @@ const AbilityModal = () => {
     }
   }, [currentAbility]);
 
-  function onCloseAbility() {
-    dispatch(setCurrentAbility(null));
-  }
-
   return (
     <ModalPortal
-      handleCloseModal={onCloseAbility}
+      handleCloseModal={() => dispatch(setCurrentAbility(null))}
       component={
         <AbilityWrapper theme={theme}>
           <TitleStyled>{ability?.name}</TitleStyled>

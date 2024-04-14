@@ -25,28 +25,6 @@ const MainBody = () => {
     window.scrollTo(0, 0);
   }
 
-  useEffect(() => {
-    if (pokemonList.length === 0) {
-      const loadList: IPokemonList[] = convertPokeData(pokeData);
-      dispatch(setPokemonList(loadList));
-    }
-    window.addEventListener("scroll", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (pokemonList.length > 0 && currentList.length === 0) {
-      const setting: IPokemonList[] = [];
-      for (let i = 0; i < 20; i++) {
-        setting.push(pokemonList[i]);
-      }
-      dispatch(setCurrentList(setting));
-    }
-  }, [pokemonList]);
-
   const onScroll = () => {
     if (
       window.scrollY + document.documentElement.clientHeight >
@@ -57,15 +35,27 @@ const MainBody = () => {
   };
 
   useEffect(() => {
+    const list = convertPokeData(pokeData);
+    dispatch(setPokemonList(list));
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     if (scroll !== 0) {
-      const item: IPokemonList[] = [];
       const count = currentList.length;
-      for (let i = count; i < count + 10; i++) {
-        if (pokemonList[i]) item.push(pokemonList[i]);
-      }
-      dispatch(setCurrentList(item));
+      dispatch(setCurrentList(pokemonList.slice(count, count + 9)));
     }
   }, [scroll]);
+
+  useEffect(() => {
+    if (pokemonList.length > 0 && currentList.length === 0) {
+      dispatch(setCurrentList(pokemonList.slice(0, 20)));
+    }
+  }, [pokemonList]);
 
   return (
     <MainStyled ref={bodyRef}>

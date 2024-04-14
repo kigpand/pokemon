@@ -31,7 +31,7 @@ const MobileType = () => {
     if (type) {
       setTypeData(type);
     }
-  }, [storage]);
+  }, []);
 
   const onChangeType = (item: string) => {
     const value = getTypeEn(item);

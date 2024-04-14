@@ -5,18 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store/store";
 import { setTheme } from "reducers/datas";
 import { mobileWidth } from "styles/globalstyles";
+import { Theme } from "utils/enums";
 
 export default function MainThemeToggle() {
   const theme = useSelector((state: RootState) => state.datas.theme);
   const dispatch = useDispatch();
 
   function handleChangeTheme() {
-    dispatch(setTheme(theme === "dark" ? "light" : "dark"));
+    dispatch(setTheme(theme === Theme.dark ? Theme.light : Theme.dark));
   }
 
   return (
     <ThemeToggleWrapper
-      src={theme === "light" ? MOON : SUN}
+      src={theme === Theme.light ? MOON : SUN}
       alt="img"
       onClick={handleChangeTheme}
       theme={theme}
@@ -30,7 +31,8 @@ const ThemeToggleWrapper = styled.img<{ theme: string }>`
   border-radius: 4px;
   padding: 5px;
   height: 45px;
-  background-color: ${(props) => (props.theme === "light" ? "black" : "white")};
+  background-color: ${(props) =>
+    props.theme === Theme.light ? "black" : "white"};
   object-fit: contain;
   cursor: pointer;
 

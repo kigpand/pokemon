@@ -9,10 +9,6 @@ const BookFooter = () => {
   const { bookPokeList } = useBookList();
   const nav = useNavigate();
 
-  function onBackBtn() {
-    nav(-1);
-  }
-
   const getData = useCallback(
     (isAvg: boolean) => {
       if (bookPokeList.length > 0) {
@@ -40,7 +36,7 @@ const BookFooter = () => {
       ) : (
         <Noting>도감에 저장된 포켓몬이 없습니다.</Noting>
       )}
-      <BackButton onClick={onBackBtn}>&lt; 뒤로가기</BackButton>
+      <BackButton onClick={() => nav(-1)}>&lt; 뒤로가기</BackButton>
     </FooterWrapper>
   );
 };

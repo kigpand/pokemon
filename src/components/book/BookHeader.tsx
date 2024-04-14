@@ -9,15 +9,11 @@ const BookHeader = () => {
   const nav = useNavigate();
   const { bookPokeList } = useBookList();
 
-  function onBack() {
-    nav(-1);
-  }
-
   return (
     <HeaderWrapper>
       <LogoWrapper>
         <img src={LOGO} alt="logo"></img>
-        <BackButton onClick={onBack} />
+        <BackButton onClick={() => nav(-1)} />
       </LogoWrapper>
       <TitleStyled>
         도감 ({bookPokeList.length > 0 && `${bookPokeList.length}/6`})

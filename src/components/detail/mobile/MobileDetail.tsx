@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IPokemonList } from "interface/IPokemonList";
 import { useMega } from "hooks/useMega";
 import MobileDetailInfo from "./MobileDetailInfo";
@@ -43,31 +43,18 @@ function makeArray(poke: IPokemonList): IDetailArray[] {
 
 const MobileDetail = ({ currentPoke }: IMobileDetail) => {
   const [poke, setPoke] = useState<IPokemonList>(currentPoke);
+  const [megaModal, setMegaModal] = useState<boolean>(false);
   const detailArray = makeArray(poke);
   const { megaPoke } = useMega(currentPoke);
-  const [megaModal, setMegaModal] = useState<boolean>(false);
 
-  function onChangeOrigin() {
-    setPoke(currentPoke);
-  }
-
-  function onChangeMega() {
-    if (!megaPoke) return;
+  const onChangeMega = useCallback(() => {
     if (!megaPoke) return;
     if (Array.isArray(megaPoke)) {
       setMegaModal(true);
     } else {
       setPoke(megaPoke);
     }
-  }
-
-  function onChangeModalMega(poke: IPokemonList) {
-    setPoke(poke);
-  }
-
-  function onChangeDymax(dymax: string) {
-    setPoke({ ...currentPoke, imageUrl: dymax });
-  }
+  }, [megaPoke]);
 
   return (
     <>
@@ -78,9 +65,11 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
             poke={poke}
             currentPoke={currentPoke}
             megaPoke={megaPoke || null}
-            onChangeOrigin={onChangeOrigin}
+            onChangeOrigin={() => setPoke(currentPoke)}
             onChangeMega={onChangeMega}
-            onChangeDymax={onChangeDymax}
+            onChangeDymax={(dymax) =>
+              setPoke({ ...currentPoke, imageUrl: dymax })
+            }
           />
           {detailArray.map((item: IDetailArray, i: number) => {
             return (
@@ -99,7 +88,7 @@ const MobileDetail = ({ currentPoke }: IMobileDetail) => {
       {megaModal && Array.isArray(megaPoke) && (
         <MegaModal
           megaPoke={megaPoke}
-          onChangeMega={onChangeModalMega}
+          onChangeMega={(poke) => setPoke(poke)}
           onCloseModal={() => setMegaModal(false)}
         />
       )}

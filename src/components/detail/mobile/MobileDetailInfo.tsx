@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
 import styled from "styled-components";
@@ -25,18 +25,21 @@ const MobileDetailInfo = ({
   const { dymax } = useDymax(currentPoke);
   const [modal, setModal] = useState<boolean>(false);
 
-  function handleEvolutionModal(type: "origin" | "mega" | "dymax") {
-    if (type === "origin") {
-      onChangeOrigin();
-    }
-    if (type === "mega") {
-      onChangeMega();
-    }
-    if (type === "dymax") {
-      onChangeDymax(dymax!);
-    }
-    setModal(false);
-  }
+  const handleEvolutionModal = useCallback(
+    (type: "origin" | "mega" | "dymax") => {
+      if (type === "origin") {
+        onChangeOrigin();
+      }
+      if (type === "mega") {
+        onChangeMega();
+      }
+      if (type === "dymax") {
+        onChangeDymax(dymax!);
+      }
+      setModal(false);
+    },
+    [dymax, onChangeDymax, onChangeMega, onChangeOrigin]
+  );
 
   return (
     <InfoWrapper>

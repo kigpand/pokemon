@@ -16,16 +16,12 @@ const MobileDetailAbility = ({ abilities }: Props) => {
     (state: RootState) => state.datas.currentAbility
   );
 
-  function onAbility(ability: string) {
-    dispatch(setCurrentAbility(ability));
-  }
-
   return (
     <>
       <AbilityWrapper>
         {abilities.map((abil, i) => {
           return (
-            <span onClick={() => onAbility(abil)} key={i}>
+            <span onClick={() => dispatch(setCurrentAbility(abil))} key={i}>
               {abil}
               <img src={QUESTION} alt="question" />
             </span>

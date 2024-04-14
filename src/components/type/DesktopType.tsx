@@ -14,14 +14,12 @@ import styled from "styled-components";
 import { useStorage } from "hooks/useStorage";
 
 const DesktopType = () => {
-  const [typeData, setTypeData] = useState<IType>();
+  const [typeData, setTypeData] = useState<IType | null>(null);
   const { setTypeStorage, getTypeStorage } = useStorage();
 
   useEffect(() => {
     const type = getTypeStorage();
-    if (type) {
-      setTypeData(type);
-    }
+    setTypeData(type ?? null);
   }, [getTypeStorage]);
 
   const onChangeType = (item: string) => {

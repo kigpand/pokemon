@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { getColor } from "utils/convert";
 import styled from "styled-components";
 import { media } from "styles/MediaStyled";
@@ -15,11 +15,8 @@ type Props = {
 };
 
 const TypeDifDetailText = ({ title, arr, num }: Props) => {
-  const [types, setTypes] = useState<ITypeText[]>([]);
-
-  useEffect(() => {
+  const types = useMemo(() => {
     let typeArr: ITypeText[] = [];
-
     // 각 상성들 중첩되는 항목 제거 및 count 증가로 배율 조정
     arr.forEach((item: string) => {
       const result = typeArr.find((type: ITypeText) => type.text === item);
@@ -32,8 +29,8 @@ const TypeDifDetailText = ({ title, arr, num }: Props) => {
         typeArr = [...typeArr, { text: item, count: 1 }];
       }
     });
-    setTypes(typeArr);
-  }, []);
+    return typeArr;
+  }, [arr]);
 
   return (
     <TextWrapper>
