@@ -15,8 +15,8 @@ export default function TypeModal({ onCloseModal }: Props) {
   const theme = useSelector((state: RootState) => state.datas.theme);
 
   function onType(type: string) {
-    onCloseModal();
     setTypeStorage(type);
+    onCloseModal();
   }
 
   return (

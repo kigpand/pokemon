@@ -1,4 +1,4 @@
-import SortBtns from "./SortModalItemBtns";
+import SortModalItemBtns from "./SortModalItemBtns";
 import styled from "styled-components";
 import { useState } from "react";
 import { SortType } from "typedef/SortType";
@@ -29,7 +29,7 @@ const SortModalSelect = ({ onCloseBtn }: Props) => {
         <option value="speed">스피드</option>
         <option value="allStat">총합</option>
       </SelectStyled>
-      <SortBtns type={selectOption} onCloseBtn={onCloseBtn} />
+      <SortModalItemBtns type={selectOption} onCloseBtn={onCloseBtn} />
     </ModalSelectWrapper>
   );
 };

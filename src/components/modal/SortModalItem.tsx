@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SortBtns from "./SortModalItemBtns";
+import SortModalItemBtns from "./SortModalItemBtns";
 
 type Props = {
   title: string;
@@ -11,7 +11,7 @@ const SortItem = ({ title, list, onCloseBtn }: Props) => {
   return (
     <SortItemWrapper>
       <TitleStyled>{title}</TitleStyled>
-      <SortBtns
+      <SortModalItemBtns
         type={title === "타입" ? "type" : "gene"}
         list={list}
         onCloseBtn={onCloseBtn}

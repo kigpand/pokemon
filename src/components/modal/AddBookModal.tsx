@@ -9,13 +9,10 @@ interface IBookModal {
 
 const AddBookModal = ({ onCloseBookModal }: IBookModal) => {
   const theme = useSelector((state: RootState) => state.datas.theme);
-  function onCloseModal() {
-    onCloseBookModal();
-  }
 
   return (
     <ModalPortal
-      handleCloseModal={onCloseModal}
+      handleCloseModal={onCloseBookModal}
       component={
         <AddBookModalWrapper theme={theme}>
           <TitleStyled>도감</TitleStyled>

@@ -7,6 +7,7 @@ import { convertPokeData } from "utils/makeData";
 import { resetCurrentList, setPokemonList } from "reducers/pokemon";
 import { SortType } from "typedef/SortType";
 import { IPokemonList } from "interface/IPokemonList";
+import { useCallback } from "react";
 
 interface ISortBtns {
   type: string;
@@ -16,51 +17,62 @@ interface ISortBtns {
 const SortModalItemBtns = ({ type, list, onCloseBtn }: ISortBtns) => {
   const dispatch = useDispatch();
 
-  function onSort(sortData: string, type: string) {
-    let filteredData = [];
-    if (type === "type") {
-      filteredData = pokeData.filter((poke) => {
-        const result = getTypeConvertData(poke.pokeTypes)?.find(
-          (type) => type === sortData
-        );
-        return result ? true : false;
-      });
-    } else {
-      filteredData = pokeData.filter((poke) => poke.generate === sortData);
-    }
+  const onSort = useCallback(
+    (sortData: string, type: string) => {
+      let filteredData = [];
+      if (type === "type") {
+        filteredData = pokeData.filter((poke) => {
+          const result = getTypeConvertData(poke.pokeTypes)?.find(
+            (type) => type === sortData
+          );
+          return result ? true : false;
+        });
+      } else {
+        filteredData = pokeData.filter((poke) => poke.generate === sortData);
+      }
 
-    if (filteredData?.length > 0) {
-      const setting = convertPokeData(filteredData);
-      dispatch(setPokemonList(setting));
-      dispatch(resetCurrentList([]));
-    }
+      if (filteredData?.length > 0) {
+        const setting = convertPokeData(filteredData);
+        dispatch(setPokemonList(setting));
+        dispatch(resetCurrentList([]));
+      }
 
-    onCloseBtn();
-  }
+      onCloseBtn();
+    },
+    [dispatch, onCloseBtn]
+  );
 
-  function onSortBy(type: SortType) {
-    const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
-    let filteredData: IPokemonList[] = list.sort((a, b) => b[type] - a[type]);
+  const onSortBy = useCallback(
+    (type: SortType) => {
+      const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
+      let filteredData: IPokemonList[] = list.sort((a, b) => b[type] - a[type]);
 
-    if (filteredData?.length > 0) {
-      dispatch(setPokemonList(filteredData));
-      dispatch(resetCurrentList([]));
-    }
+      if (filteredData?.length > 0) {
+        dispatch(setPokemonList(filteredData));
+        dispatch(resetCurrentList([]));
+      }
 
-    onCloseBtn();
-  }
+      onCloseBtn();
+    },
+    [dispatch, onCloseBtn]
+  );
 
-  function onReverseSortBy(type: SortType) {
-    const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
-    const filteredData: IPokemonList[] = list.sort((a, b) => a[type] - b[type]);
+  const onReverseSortBy = useCallback(
+    (type: SortType) => {
+      const list: IPokemonList[] = convertPokeData(cloneDeep(pokeData));
+      const filteredData: IPokemonList[] = list.sort(
+        (a, b) => a[type] - b[type]
+      );
 
-    if (filteredData?.length > 0) {
-      dispatch(setPokemonList(filteredData));
-      dispatch(resetCurrentList([]));
-    }
+      if (filteredData?.length > 0) {
+        dispatch(setPokemonList(filteredData));
+        dispatch(resetCurrentList([]));
+      }
 
-    onCloseBtn();
-  }
+      onCloseBtn();
+    },
+    [dispatch, onCloseBtn]
+  );
 
   return (
     <SortButtonWrapper>
