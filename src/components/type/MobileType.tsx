@@ -31,6 +31,7 @@ const MobileType = () => {
     if (type) {
       setTypeData(type);
     }
+    // eslint-disable-next-line
   }, []);
 
   const onChangeType = (item: string) => {
