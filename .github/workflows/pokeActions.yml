@@ -1,5 +1,5 @@
 name: Poke deploy
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} will distribute the Pokemon page
 on:
   push:
     branches: ["master"]
