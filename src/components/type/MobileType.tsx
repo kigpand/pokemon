@@ -1,47 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
-import types from "json/types.json";
 import TypeItem from "./TypeItem";
 import MobileTypeHeader from "./MobileTypeHeader";
 import styled from "styled-components";
-import { IType } from "interface/IType";
-import {
-  getColor,
-  getDamegeType,
-  getTypeEn,
-  typeConvertDamegeData,
-} from "utils/convert";
+import { getColor, getDamegeType } from "utils/convert";
 import { useStorage } from "hooks/useStorage";
+import { useType } from "hooks/useType";
 
 const MobileType = () => {
   const nav = useNavigate();
-  const [typeData, setTypeData] = useState<IType>();
   const storage = useStorage();
+  const { typeData, handleChangeType } = useType();
 
   function onCloseBtn() {
     nav("/");
     storage.clearTypeStorage();
     storage.clearCurrentPokeStorage();
   }
-
-  useEffect(() => {
-    const type = storage.getTypeStorage();
-    if (type) {
-      setTypeData(type);
-    }
-    // eslint-disable-next-line
-  }, []);
-
-  const onChangeType = (item: string) => {
-    const value = getTypeEn(item);
-    storage.setTypeStorage(value);
-    const type = types.find((type) => type.name === value);
-    if (type) {
-      setTypeData(typeConvertDamegeData(type));
-    }
-  };
 
   return (
     <TypeWrapper>
@@ -61,7 +36,7 @@ const MobileType = () => {
                   arr={values[1]}
                   title={getDamegeType[values[0]]}
                   type={typeData.name}
-                  onChangeType={onChangeType}
+                  onChangeType={handleChangeType}
                 />
               );
             }
