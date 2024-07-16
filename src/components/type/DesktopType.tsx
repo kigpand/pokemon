@@ -1,35 +1,12 @@
-import {
-  getColor,
-  getDamegeType,
-  getTypeEn,
-  typeConvertDamegeData,
-} from "utils/convert";
-import { IType } from "interface/IType";
-import { useEffect, useState } from "react";
-import types from "json/types.json";
+import { getColor, getDamegeType } from "utils/convert";
 import DesktopTypeHeader from "./DesktopTypeHeader";
 import TypeItem from "./TypeItem";
 import DetailHeader from "components/detail/desktop/DesktopDetailHeader";
 import styled from "styled-components";
-import { useStorage } from "hooks/useStorage";
+import { useType } from "hooks/useType";
 
 const DesktopType = () => {
-  const [typeData, setTypeData] = useState<IType | null>(null);
-  const { setTypeStorage, getTypeStorage } = useStorage();
-
-  useEffect(() => {
-    const type = getTypeStorage();
-    setTypeData(type ?? null);
-  }, [getTypeStorage]);
-
-  const onChangeType = (item: string) => {
-    const value = getTypeEn(item);
-    setTypeStorage(value);
-    const type = types.find((type) => type.name === value);
-    if (type) {
-      setTypeData(typeConvertDamegeData(type));
-    }
-  };
+  const { typeData, handleChangeType } = useType();
 
   return (
     <TypeWrapper>
@@ -46,7 +23,7 @@ const DesktopType = () => {
                   arr={values[1]}
                   title={getDamegeType[values[0]]}
                   type={typeData.name}
-                  onChangeType={onChangeType}
+                  onChangeType={handleChangeType}
                 />
               );
             }

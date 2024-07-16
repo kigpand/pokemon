@@ -98,7 +98,7 @@ const IconWrapper = styled.div`
     position: absolute;
     padding: 5px 0;
     text-align: center;
-    top: 20px;
+    top: 35px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
