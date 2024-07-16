@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Poke Book",
+  "name": "Ji's Pokemon",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,12 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://kigpand.github.io/pokemon/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "description": "김지훈 포켓몬 테스트 사이트",
+  "scope": "/",
+  "orientation": "portrait",
+  "lang": "ko"
 }
