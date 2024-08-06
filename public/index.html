@@ -26,4 +26,11 @@
     <div id="root"></div>
     <div id="overlay-root"></div>
   </body>
+  <script>
+    if (typeof navigator.serviceWorker !== "undefined") {
+      navigator.serviceWorker
+        .register("pokemon/sw.js")
+        .then((registration) => console.log("Service worker is already"));
+    }
+  </script>
 </html>
