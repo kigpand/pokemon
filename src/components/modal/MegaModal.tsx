@@ -1,6 +1,8 @@
 import { IPokemonList } from "interface/IPokemonList";
 import styled from "styled-components";
 import ModalPortal from "ModalPortal";
+import { RootState } from "store/store";
+import { useSelector } from "react-redux";
 
 type Props = {
   megaPoke: IPokemonList[];
@@ -9,6 +11,7 @@ type Props = {
 };
 
 const MegaModal = ({ megaPoke, onChangeMega, onCloseModal }: Props) => {
+  const theme = useSelector((state: RootState) => state.datas.theme);
   // 메가진화 클릭 이벤트
   const onClick = (poke: IPokemonList) => {
     onChangeMega(poke);
@@ -19,7 +22,7 @@ const MegaModal = ({ megaPoke, onChangeMega, onCloseModal }: Props) => {
     <ModalPortal
       handleCloseModal={onCloseModal}
       component={
-        <MegaModalWrapper>
+        <MegaModalWrapper theme={theme}>
           <TitleStyled>어떤 형태의 진화를 보시겠습니까?</TitleStyled>
           <ButtonWrapper>
             <div onClick={() => onClick(megaPoke[0])}>x</div>
@@ -33,10 +36,11 @@ const MegaModal = ({ megaPoke, onChangeMega, onCloseModal }: Props) => {
 
 export default MegaModal;
 
-const MegaModalWrapper = styled.article`
+const MegaModalWrapper = styled.article<{ theme: string }>`
   width: 300px;
   height: 200px;
-  background-color: white;
+  background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
+  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
   border-radius: 8px;
 `;
 
