@@ -93,6 +93,7 @@ const SearchStyled = styled.input`
   width: 300px;
   height: 30px;
   border-radius: 20px;
+  padding: 4px 8px;
 
   @media only screen and (max-width: ${mobileWidth}) {
     width: 200px;
