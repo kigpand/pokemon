@@ -2,17 +2,20 @@ import SortModalItemBtns from "./SortModalItemBtns";
 import styled from "styled-components";
 import { useState } from "react";
 import { SortType } from "typedef/SortType";
+import { useSelector } from "react-redux";
+import { RootState } from "store/store";
 
 type Props = {
   onCloseBtn: () => void;
 };
 
 const SortModalSelect = ({ onCloseBtn }: Props) => {
+  const theme = useSelector((state: RootState) => state.datas.theme);
   const [selectOption, setSelectOption] = useState<SortType>("id");
 
   return (
     <ModalSelectWrapper>
-      <TitleStyled>정렬</TitleStyled>
+      <TitleStyled theme={theme}>정렬</TitleStyled>
       <SelectStyled
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
           setSelectOption(e.target.value as SortType)
@@ -43,13 +46,13 @@ const ModalSelectWrapper = styled.div`
   align-items: flex-start;
 `;
 
-const TitleStyled = styled.header`
+const TitleStyled = styled.header<{ theme: string }>`
   width: 95%;
   padding: 3px 5px;
   border-radius: 4px;
   margin: 10px 0 5px 0;
   font-weight: bold;
-  color: black;
+  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
 `;
 
 const SelectStyled = styled.select`

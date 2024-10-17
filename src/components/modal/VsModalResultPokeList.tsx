@@ -30,7 +30,7 @@ export default function VsModalResultPokeList({
             <div>{getStatKorea(item)}</div>
             <div>{poke[item]}</div>
             {poke[item] > vsPoke[item] && (
-              <img
+              <WinImg
                 src={`${process.env.PUBLIC_URL}/imgs/win.png`}
                 alt="winImg"
               />
@@ -105,15 +105,26 @@ const StatWrapper = styled.span<{ color: string }>`
     }
   }
 
-  img {
-    height: 25px;
-  }
-
   @media only screen and (max-width: ${mobileWidth}) {
     font-size: 10px;
 
     img {
       height: 15px;
+    }
+  }
+`;
+
+const WinImg = styled.img`
+  height: 25px;
+  animation: scaleAnim 0.8s alternate infinite linear;
+
+  @media only screen and (max-width: ${mobileWidth}) {
+    height: 15px;
+  }
+
+  @keyframes scaleAnim {
+    100% {
+      transform: scale(1.3);
     }
   }
 `;

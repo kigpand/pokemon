@@ -41,6 +41,7 @@ const HeartStyled = styled(BsHeartFill)`
   right: 15px;
   cursor: pointer;
   color: red;
+  animation: heartAnim 0.3s linear forwards;
 
   @media only screen and (max-width: ${mobileWidth}) {
     width: 30px;
@@ -49,6 +50,18 @@ const HeartStyled = styled(BsHeartFill)`
     font-size: 30px;
     object-fit: contain;
     cursor: pointer;
+  }
+
+  @keyframes heartAnim {
+    0% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 

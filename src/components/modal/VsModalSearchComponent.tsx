@@ -39,7 +39,7 @@ const InputStyled = styled.input`
   height: 25px;
   border-radius: 8px;
   border: 1px solid lightgray;
-  padding: 0;
+  padding: 4px 8px;
 `;
 
 const ButtonStyled = styled.input`
