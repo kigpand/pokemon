@@ -31,6 +31,7 @@ const AddBookModalWrapper = styled.article<{ theme: string }>`
   width: 300px;
   height: 200px;
   border-radius: 8px;
+  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
 `;
 
 const TitleStyled = styled.div`

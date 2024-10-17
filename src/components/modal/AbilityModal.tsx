@@ -38,6 +38,7 @@ export default AbilityModal;
 
 const AbilityWrapper = styled.article<{ theme: string }>`
   background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
+  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "dark")};
   color: ${(props) => (props.theme === "dark" ? "white" : "black")};
   width: 300px;
   height: 200px;

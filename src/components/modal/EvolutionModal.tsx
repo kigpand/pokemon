@@ -19,7 +19,7 @@ export default function EvolutionModal({
 
   return (
     <ModalPortal
-      handleCloseModal={() => console.log("111")}
+      handleCloseModal={() => handleEvolutionModal("origin")}
       component={
         <EvolutionWrapper theme={theme}>
           <TitleStyled>어떤 진화를 선택하시겠습니까?</TitleStyled>
@@ -46,6 +46,7 @@ const EvolutionWrapper = styled.article<{ theme: string }>`
   width: 300px;
   height: 300px;
   background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
+  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
   border-radius: 8px;
 `;
 
@@ -58,7 +59,7 @@ const TitleStyled = styled.header`
   border-bottom: 2px solid lightgray;
 `;
 
-const TextStyled = styled.div`
+const TextStyled = styled.div<{ theme: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +73,7 @@ const TextStyled = styled.div`
     cursor: pointer;
     &:hover {
       text-decoration: underline;
-      color: black;
+      color: ${(props) => (props.theme === "dark" ? "black" : "white")};
     }
   }
 `;

@@ -3,6 +3,8 @@ import { useCallback, useState } from "react";
 import { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
 import EvolutionModal from "components/modal/EvolutionModal";
+import { useSelector } from "react-redux";
+import { RootState } from "store/store";
 
 type Props = {
   currentPoke: IPokemonList;
@@ -14,6 +16,7 @@ type Props = {
 
 const DesktopDetailBodyImg = (props: Props) => {
   const { dymax } = useDymax(props.currentPoke);
+  const theme = useSelector((state: RootState) => state.datas.theme);
   const [modal, setModal] = useState<boolean>(false);
 
   const handleEvolutionModal = useCallback(
@@ -40,7 +43,7 @@ const DesktopDetailBodyImg = (props: Props) => {
         referrerPolicy="no-referrer"
       />
       {(props.megaPoke || dymax) && (
-        <ImgTextStyled onClick={() => setModal(true)}>
+        <ImgTextStyled theme={theme} onClick={() => setModal(true)}>
           다른 폼 보기
         </ImgTextStyled>
       )}
@@ -67,7 +70,7 @@ const ImgStyled = styled.img`
   height: 100%;
 `;
 
-const ImgTextStyled = styled.div`
+const ImgTextStyled = styled.div<{ theme: string }>`
   font-size: 14px;
   color: gray;
   display: flex;
@@ -78,7 +81,7 @@ const ImgTextStyled = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: black;
+    color: ${(props) => (props.theme === "dark" ? "white" : "black")};
     transform: scale(1.1);
   }
 `;
