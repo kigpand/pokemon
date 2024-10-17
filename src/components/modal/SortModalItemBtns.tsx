@@ -118,7 +118,7 @@ export default SortModalItemBtns;
 const SortButtonWrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 80px);
+  grid-template-columns: repeat(2, 48%);
   justify-content: space-evenly;
   padding-bottom: 10px;
 `;
