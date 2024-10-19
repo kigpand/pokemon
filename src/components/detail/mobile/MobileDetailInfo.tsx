@@ -65,6 +65,7 @@ const MobileDetailInfo = ({
           megaPoke={megaPoke}
           dymax={dymax || undefined}
           handleEvolutionModal={handleEvolutionModal}
+          handleCloseModal={() => setModal(false)}
         />
       )}
     </InfoWrapper>

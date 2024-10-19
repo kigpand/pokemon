@@ -8,22 +8,24 @@ type Props = {
   dymax?: string;
   megaPoke: IPokemonList | null | IPokemonList[];
   handleEvolutionModal: (type: "origin" | "mega" | "dymax") => void;
+  handleCloseModal: () => void;
 };
 
 export default function EvolutionModal({
   dymax,
   megaPoke,
   handleEvolutionModal,
+  handleCloseModal,
 }: Props) {
   const theme = useSelector((state: RootState) => state.datas.theme);
 
   return (
     <ModalPortal
-      handleCloseModal={() => handleEvolutionModal("origin")}
+      handleCloseModal={handleCloseModal}
       component={
         <EvolutionWrapper theme={theme}>
           <TitleStyled>어떤 진화를 선택하시겠습니까?</TitleStyled>
-          <TextStyled>
+          <TextStyled theme={theme}>
             <div onClick={() => handleEvolutionModal("origin")}>
               원본 포켓몬 보기
             </div>
@@ -73,7 +75,7 @@ const TextStyled = styled.div<{ theme: string }>`
     cursor: pointer;
     &:hover {
       text-decoration: underline;
-      color: ${(props) => (props.theme === "dark" ? "black" : "white")};
+      color: ${(props) => (props.theme === "dark" ? "white" : "black")};
     }
   }
 `;
