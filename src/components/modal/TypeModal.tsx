@@ -52,7 +52,7 @@ const TypeModalWrapper = styled.article<{ theme: string }>`
   height: 500px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
   border-radius: 8px;
 `;
 
