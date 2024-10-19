@@ -52,6 +52,7 @@ const DesktopDetailBodyImg = (props: Props) => {
           dymax={dymax || undefined}
           megaPoke={props.megaPoke!}
           handleEvolutionModal={handleEvolutionModal}
+          handleCloseModal={() => setModal(false)}
         />
       )}
     </ImgWrapper>
