@@ -35,8 +35,10 @@ const MainBody = () => {
   };
 
   useEffect(() => {
-    const list = convertPokeData(pokeData);
-    dispatch(setPokemonList(list));
+    if (currentList.length === 0) {
+      const list = convertPokeData(pokeData);
+      dispatch(setPokemonList(list));
+    }
     window.addEventListener("scroll", onScroll);
 
     return () => {
