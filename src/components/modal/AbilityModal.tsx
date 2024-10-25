@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store/store";
-import { IAbility } from "interface/IAbility";
 import { setCurrentAbility } from "reducers/datas";
-import { useEffect, useState } from "react";
 import abililty from "json/ability.json";
 import ModalPortal from "ModalPortal";
 import styled from "styled-components";
@@ -12,22 +10,18 @@ const AbilityModal = () => {
     (state: RootState) => state.datas
   );
   const dispatch = useDispatch();
-  const [ability, setAbility] = useState<IAbility>();
-
-  useEffect(() => {
-    if (currentAbility !== null) {
-      const abilites = abililty.find((abil) => abil.name === currentAbility);
-      setAbility(abilites);
-    }
-  }, [currentAbility]);
 
   return (
     <ModalPortal
       handleCloseModal={() => dispatch(setCurrentAbility(null))}
       component={
         <AbilityWrapper theme={theme}>
-          <TitleStyled>{ability?.name}</TitleStyled>
-          <ContentWrapper>{ability?.text}</ContentWrapper>
+          <TitleStyled>
+            {abililty.find((abil) => abil.name === currentAbility)?.name}
+          </TitleStyled>
+          <ContentWrapper>
+            {abililty.find((abil) => abil.name === currentAbility)?.text}
+          </ContentWrapper>
         </AbilityWrapper>
       }
     />

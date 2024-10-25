@@ -17,15 +17,11 @@ const SortModal = ({ closeSort }: ISortModal) => {
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.datas.theme);
 
-  function onCloseBtn() {
-    closeSort();
-  }
-
   function onResetBtn() {
     const list = convertPokeData(pokeData);
     dispatch(setPokemonList(list));
     dispatch(resetCurrentList([]));
-    onCloseBtn();
+    closeSort();
   }
 
   return (
@@ -34,14 +30,14 @@ const SortModal = ({ closeSort }: ISortModal) => {
         <SortModalWrapper
           $backgroundColor={theme === "dark" ? "black" : "white"}
         >
-          <SortSelect onCloseBtn={onCloseBtn} />
-          <SortItem title="타입" list={typeList} onCloseBtn={onCloseBtn} />
-          <SortItem title="세대" list={geneList} onCloseBtn={onCloseBtn} />
-          <SortButton onClick={onCloseBtn}>닫기</SortButton>
+          <SortSelect onCloseBtn={closeSort} />
+          <SortItem title="타입" list={typeList} onCloseBtn={closeSort} />
+          <SortItem title="세대" list={geneList} onCloseBtn={closeSort} />
+          <SortButton onClick={closeSort}>닫기</SortButton>
           <ResetButton onClick={onResetBtn}>초기화</ResetButton>
         </SortModalWrapper>
       }
-      handleCloseModal={onCloseBtn}
+      handleCloseModal={closeSort}
     />
   );
 };
