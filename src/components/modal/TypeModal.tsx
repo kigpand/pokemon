@@ -28,14 +28,10 @@ export default function TypeModal({ onCloseModal }: Props) {
           <ContentWrapper>
             {types.map((item, i) => {
               return (
-                <div key={i} className="icon" onClick={() => onType(item.name)}>
-                  <div className="front">{getTypeKo(item.name)}</div>
-                  <img
-                    src={getTypeIcon(item.name)}
-                    className="types"
-                    alt={item.name}
-                  ></img>
-                </div>
+                <ImgWrapper key={i} onClick={() => onType(item.name)}>
+                  <Front className="front">{getTypeKo(item.name)}</Front>
+                  <Icon src={getTypeIcon(item.name)} alt={item.name} />
+                </ImgWrapper>
               );
             })}
           </ContentWrapper>
@@ -71,33 +67,36 @@ const ContentWrapper = styled.div`
   gap: 10px;
   align-items: center;
   justify-content: center;
+`;
 
-  .icon {
-    cursor: pointer;
-    position: relative;
+const ImgWrapper = styled.div`
+  cursor: pointer;
+  height: 60px;
+  position: relative;
 
+  &:hover {
     .front {
-      display: none;
-      background-color: rgba(0, 0, 0, 0.4);
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      font-weight: bold;
-      color: white;
-      font-size: 18px;
-    }
-
-    .types {
-      width: 100%;
-    }
-
-    &:hover {
-      .front {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+      visibility: visible;
     }
   }
+`;
+
+const Front = styled.div`
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Icon = styled.img`
+  width: 100%;
+  height: 100%;
 `;
