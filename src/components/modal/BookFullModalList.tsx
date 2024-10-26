@@ -43,13 +43,16 @@ const NameField = styled.div<{ $bgColor: string }>`
   font-size: 12px;
   color: white;
   font-weight: bold;
-  width: 50px;
+  width: 60px;
   background-color: ${(props) => props.$bgColor};
   border-radius: 4px;
   height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const StatWrapper = styled.div`
