@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import ModalPortal from "ModalPortal";
 import { IPokemonList } from "interface/IPokemonList";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 
 type Props = {
   dymax?: string;
@@ -17,15 +15,13 @@ export default function EvolutionModal({
   handleEvolutionModal,
   handleCloseModal,
 }: Props) {
-  const theme = useSelector((state: RootState) => state.datas.theme);
-
   return (
     <ModalPortal
       handleCloseModal={handleCloseModal}
       component={
-        <EvolutionWrapper theme={theme}>
+        <EvolutionWrapper>
           <TitleStyled>어떤 진화를 선택하시겠습니까?</TitleStyled>
-          <TextStyled theme={theme}>
+          <TextStyled>
             <div onClick={() => handleEvolutionModal("origin")}>
               원본 포켓몬 보기
             </div>
@@ -47,8 +43,8 @@ export default function EvolutionModal({
 const EvolutionWrapper = styled.article<{ theme: string }>`
   width: 300px;
   height: 300px;
-  background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
-  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
+  background-color: ${(props) => props.theme.backgroundColor};
+  border: 1px solid ${(props) => props.theme.textColor};
   border-radius: 8px;
 `;
 
@@ -61,7 +57,7 @@ const TitleStyled = styled.header`
   border-bottom: 2px solid lightgray;
 `;
 
-const TextStyled = styled.div<{ theme: string }>`
+const TextStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,7 +71,7 @@ const TextStyled = styled.div<{ theme: string }>`
     cursor: pointer;
     &:hover {
       text-decoration: underline;
-      color: ${(props) => (props.theme === "dark" ? "white" : "black")};
+      color: ${(props) => props.theme.textColor};
     }
   }
 `;

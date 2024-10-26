@@ -1,8 +1,6 @@
 import types from "json/types.json";
 import ModalPortal from "ModalPortal";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 import { getTypeIcon, getTypeKo } from "utils/convert";
 import { useStorage } from "hooks/useStorage";
 
@@ -12,7 +10,6 @@ type Props = {
 
 export default function TypeModal({ onCloseModal }: Props) {
   const { setTypeStorage } = useStorage();
-  const theme = useSelector((state: RootState) => state.datas.theme);
 
   function onType(type: string) {
     setTypeStorage(type);
@@ -23,13 +20,13 @@ export default function TypeModal({ onCloseModal }: Props) {
     <ModalPortal
       handleCloseModal={onCloseModal}
       component={
-        <TypeModalWrapper theme={theme}>
+        <TypeModalWrapper>
           <TitleStyled>타입을 선택해주세요</TitleStyled>
           <ContentWrapper>
             {types.map((item, i) => {
               return (
                 <ImgWrapper key={i} onClick={() => onType(item.name)}>
-                  <Front className="front">{getTypeKo(item.name)}</Front>
+                  <Front>{getTypeKo(item.name)}</Front>
                   <Icon src={getTypeIcon(item.name)} alt={item.name} />
                 </ImgWrapper>
               );
@@ -42,13 +39,13 @@ export default function TypeModal({ onCloseModal }: Props) {
 }
 
 const TypeModalWrapper = styled.article<{ theme: string }>`
-  background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
-  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
   width: 300px;
   height: 500px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
+  border: 1px solid ${(props) => props.theme.textColor};
   border-radius: 8px;
 `;
 
@@ -67,18 +64,6 @@ const ContentWrapper = styled.div`
   gap: 10px;
   align-items: center;
   justify-content: center;
-`;
-
-const ImgWrapper = styled.div`
-  cursor: pointer;
-  height: 60px;
-  position: relative;
-
-  &:hover {
-    .front {
-      display: flex;
-    }
-  }
 `;
 
 const Front = styled.div`
@@ -110,4 +95,16 @@ const Front = styled.div`
 const Icon = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+const ImgWrapper = styled.div`
+  cursor: pointer;
+  height: 60px;
+  position: relative;
+
+  &:hover {
+    ${Front} {
+      display: flex;
+    }
+  }
 `;

@@ -75,7 +75,7 @@ const ImgWrapper = styled.img`
 const NameStyled = styled.div<StyledProps>`
   height: 60px;
   display: flex;
-  color: ${(props) => (props.$isBookPoke ? "red" : "black")};
+  color: ${(props) => (props.$isBookPoke ? "red" : props.theme.textColor)};
   align-items: center;
   justify-content: center;
   font-weight: 700;

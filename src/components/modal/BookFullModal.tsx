@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 import ModalPortal from "ModalPortal";
 import styled from "styled-components";
 import { useBookList } from "hooks/useBookList";
@@ -15,14 +13,13 @@ export default function BookFullModal({
   handleBookFullRemove,
   handleClose,
 }: IBookModal) {
-  const theme = useSelector((state: RootState) => state.datas.theme);
   const { bookPokeList } = useBookList();
 
   return (
     <ModalPortal
       handleCloseModal={handleClose}
       component={
-        <FullModalWrapper theme={theme}>
+        <FullModalWrapper>
           <TitleStyled>도감이 가득찼습니다.</TitleStyled>
           <MiniTitle>포켓몬을 제외하시겠습니까?</MiniTitle>
           <ListContainer>
@@ -46,11 +43,11 @@ export default function BookFullModal({
 }
 
 const FullModalWrapper = styled.article<{ theme: string }>`
-  background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
-  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
   width: 400px;
   border-radius: 8px;
-  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
+  border: 1px solid ${(props) => props.theme.textColor};
 `;
 
 const TitleStyled = styled.div`

@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { IPokemonList } from "interface/IPokemonList";
-import { RootState } from "store/store";
 import VsModalSearchComponent from "components/modal/VsModalSearchComponent";
 import VsModalCheckComponent from "components/modal/VsModalCheckComponent";
 import styled from "styled-components";
@@ -12,13 +10,12 @@ type Props = {
 
 export default function VsModalSearch({ getSearch }: Props) {
   const [searchPoke, setSearchPoke] = useState<IPokemonList | null>(null);
-  const theme = useSelector((state: RootState) => state.datas.theme);
 
   function getSearchPoke(poke: IPokemonList) {
     setSearchPoke(poke);
   }
   return (
-    <SearchWrapper $backgroundColor={theme === "dark" ? "black" : "white"}>
+    <SearchWrapper>
       <TitleStyled>어떤 포켓몬과 비교하시겠습니까?</TitleStyled>
       <SearchMain>
         {searchPoke ? (
@@ -35,8 +32,8 @@ export default function VsModalSearch({ getSearch }: Props) {
   );
 }
 
-const SearchWrapper = styled.div<{ $backgroundColor: string }>`
-  background-color: ${(props) => props.$backgroundColor};
+const SearchWrapper = styled.div`
+  background-color: ${(props) => props.theme.backgroundColor};
   border-radius: 20px;
   padding-bottom: 10px;
   display: flex;

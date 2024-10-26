@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 import ModalPortal from "ModalPortal";
 import styled from "styled-components";
 
@@ -8,13 +6,11 @@ interface IBookModal {
 }
 
 const AddBookModal = ({ onCloseBookModal }: IBookModal) => {
-  const theme = useSelector((state: RootState) => state.datas.theme);
-
   return (
     <ModalPortal
       handleCloseModal={onCloseBookModal}
       component={
-        <AddBookModalWrapper theme={theme}>
+        <AddBookModalWrapper>
           <TitleStyled>도감</TitleStyled>
           <ContentWrapper>몬스터가 도감에 추가되었습니다.</ContentWrapper>
         </AddBookModalWrapper>
@@ -25,13 +21,13 @@ const AddBookModal = ({ onCloseBookModal }: IBookModal) => {
 
 export default AddBookModal;
 
-const AddBookModalWrapper = styled.article<{ theme: string }>`
-  background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
-  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
+const AddBookModalWrapper = styled.article`
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
   width: 300px;
   height: 200px;
   border-radius: 8px;
-  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
+  border: 1px solid ${(props) => props.theme.textColor};
 `;
 
 const TitleStyled = styled.div`

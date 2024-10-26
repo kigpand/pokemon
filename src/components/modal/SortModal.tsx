@@ -3,9 +3,8 @@ import SortSelect from "./SortModalSelect";
 import SortItem from "./SortModalItem";
 import styled from "styled-components";
 import { typeList, geneList } from "../../utils/sort";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { convertPokeData } from "utils/makeData";
-import { RootState } from "store/store";
 import { resetCurrentList, setPokemonList } from "reducers/pokemon";
 import ModalPortal from "ModalPortal";
 
@@ -15,7 +14,6 @@ interface ISortModal {
 
 const SortModal = ({ closeSort }: ISortModal) => {
   const dispatch = useDispatch();
-  const theme = useSelector((state: RootState) => state.datas.theme);
 
   function onResetBtn() {
     const list = convertPokeData(pokeData);
@@ -27,9 +25,7 @@ const SortModal = ({ closeSort }: ISortModal) => {
   return (
     <ModalPortal
       component={
-        <SortModalWrapper
-          $backgroundColor={theme === "dark" ? "black" : "white"}
-        >
+        <SortModalWrapper>
           <SortSelect onCloseBtn={closeSort} />
           <SortItem title="타입" list={typeList} onCloseBtn={closeSort} />
           <SortItem title="세대" list={geneList} onCloseBtn={closeSort} />
@@ -44,7 +40,7 @@ const SortModal = ({ closeSort }: ISortModal) => {
 
 export default SortModal;
 
-const SortModalWrapper = styled.article<{ $backgroundColor: string }>`
+const SortModalWrapper = styled.article`
   width: 300px;
   padding: 10px;
   right: 10px;
@@ -54,7 +50,7 @@ const SortModalWrapper = styled.article<{ $backgroundColor: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props) => props.$backgroundColor};
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const ButtonStyled = styled.div`
