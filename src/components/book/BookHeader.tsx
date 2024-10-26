@@ -25,10 +25,9 @@ const BookHeader = () => {
 export default BookHeader;
 
 const HeaderWrapper = styled.header`
-  width: 70%;
+  width: 60%;
   position: relative;
   padding-bottom: 10px;
-  margin-bottom: 10px;
   border-bottom: 2px solid lightgrey;
 
   img {

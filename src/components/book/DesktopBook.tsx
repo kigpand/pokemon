@@ -35,19 +35,20 @@ const DesktopWrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px 0px;
 `;
 
 const ListWrapper = styled.ul`
   width: 100%;
-  height: 450px;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 200px);
+  gap: 40px;
   list-style: none;
 `;
 
 const ListStyled = styled.li`
+  width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -57,8 +58,7 @@ const ListStyled = styled.li`
     padding: 10px;
     z-index: 100;
     position: absolute;
-    top: 5px;
-    right: 5px;
+    right: 0px;
 
     &:hover {
       color: red;
