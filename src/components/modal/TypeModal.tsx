@@ -76,13 +76,12 @@ const ImgWrapper = styled.div`
 
   &:hover {
     .front {
-      visibility: visible;
+      display: flex;
     }
   }
 `;
 
 const Front = styled.div`
-  visibility: hidden;
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   width: 100%;
@@ -91,9 +90,21 @@ const Front = styled.div`
   font-weight: bold;
   color: white;
   font-size: 18px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+  animation: view 0.2s linear forwards;
+
+  @keyframes view {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 `;
 
 const Icon = styled.img`
