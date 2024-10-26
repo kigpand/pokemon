@@ -25,10 +25,20 @@ export const useBookList = () => {
     [bookPokeList, dispatch]
   );
 
+  const findBookPoke = useCallback(
+    (poke: IPokemonList) => {
+      const result = bookPokeList.find(
+        (list: IPokemonList) => poke.id === list.id
+      );
+      return result ? true : false;
+    },
+    [bookPokeList]
+  );
+
   function onRemove(item: IPokemonList) {
     const list = { list: item };
     dispatch(removeBookPokeList(list));
   }
 
-  return { bookPokeList, addPokeBook, onRemove };
+  return { bookPokeList, addPokeBook, findBookPoke, onRemove };
 };
