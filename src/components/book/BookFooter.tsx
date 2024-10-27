@@ -44,7 +44,7 @@ const BookFooter = () => {
 export default BookFooter;
 
 const FooterWrapper = styled.footer`
-  width: 70%;
+  width: 60%;
   display: flex;
   justify-content: center;
 

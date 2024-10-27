@@ -1,8 +1,6 @@
 import types from "json/types.json";
 import ModalPortal from "ModalPortal";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 import { getTypeIcon, getTypeKo } from "utils/convert";
 import { useStorage } from "hooks/useStorage";
 
@@ -12,7 +10,6 @@ type Props = {
 
 export default function TypeModal({ onCloseModal }: Props) {
   const { setTypeStorage } = useStorage();
-  const theme = useSelector((state: RootState) => state.datas.theme);
 
   function onType(type: string) {
     setTypeStorage(type);
@@ -23,19 +20,15 @@ export default function TypeModal({ onCloseModal }: Props) {
     <ModalPortal
       handleCloseModal={onCloseModal}
       component={
-        <TypeModalWrapper theme={theme}>
+        <TypeModalWrapper>
           <TitleStyled>타입을 선택해주세요</TitleStyled>
           <ContentWrapper>
             {types.map((item, i) => {
               return (
-                <div key={i} className="icon" onClick={() => onType(item.name)}>
-                  <div className="front">{getTypeKo(item.name)}</div>
-                  <img
-                    src={getTypeIcon(item.name)}
-                    className="types"
-                    alt={item.name}
-                  ></img>
-                </div>
+                <ImgWrapper key={i} onClick={() => onType(item.name)}>
+                  <Front>{getTypeKo(item.name)}</Front>
+                  <Icon src={getTypeIcon(item.name)} alt={item.name} />
+                </ImgWrapper>
               );
             })}
           </ContentWrapper>
@@ -46,13 +39,13 @@ export default function TypeModal({ onCloseModal }: Props) {
 }
 
 const TypeModalWrapper = styled.article<{ theme: string }>`
-  background-color: ${(props) => (props.theme === "dark" ? "black" : "white")};
-  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
   width: 300px;
   height: 500px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${(props) => (props.theme === "dark" ? "white" : "black")};
+  border: 1px solid ${(props) => props.theme.textColor};
   border-radius: 8px;
 `;
 
@@ -71,33 +64,47 @@ const ContentWrapper = styled.div`
   gap: 10px;
   align-items: center;
   justify-content: center;
+`;
 
-  .icon {
-    cursor: pointer;
-    position: relative;
+const Front = styled.div`
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  animation: view 0.2s linear forwards;
 
-    .front {
-      display: none;
-      background-color: rgba(0, 0, 0, 0.4);
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      font-weight: bold;
-      color: white;
-      font-size: 18px;
+  @keyframes view {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
     }
-
-    .types {
-      width: 100%;
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
     }
+  }
+`;
 
-    &:hover {
-      .front {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+const Icon = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+const ImgWrapper = styled.div`
+  cursor: pointer;
+  height: 60px;
+  position: relative;
+
+  &:hover {
+    ${Front} {
+      display: flex;
     }
   }
 `;

@@ -1,9 +1,7 @@
 import VsModalResultPokeList from "components/modal/VsModalResultPokeList";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 import { mobileWidth } from "styles/globalstyles";
 import { IPokemonList } from "interface/IPokemonList";
-import { RootState } from "store/store";
 
 type Props = {
   currentPoke: IPokemonList;
@@ -11,10 +9,8 @@ type Props = {
 };
 
 export default function VsModalResult({ currentPoke, searchPoke }: Props) {
-  const theme = useSelector((state: RootState) => state.datas.theme);
-
   return (
-    <ResultWrapper $backgroundColor={theme === "dark" ? "black" : "white"}>
+    <ResultWrapper>
       <TitleStyled>
         {currentPoke.name} vs {searchPoke.name}
       </TitleStyled>
@@ -26,8 +22,8 @@ export default function VsModalResult({ currentPoke, searchPoke }: Props) {
   );
 }
 
-const ResultWrapper = styled.section<{ $backgroundColor: string }>`
-  background-color: ${(props) => props.$backgroundColor};
+const ResultWrapper = styled.section`
+  background-color: ${(props) => props.theme.backgroundColor};
   width: 500px;
   border-radius: 8px;
   display: flex;

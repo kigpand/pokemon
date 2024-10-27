@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import SortModalItemBtns from "./SortModalItemBtns";
-import { useSelector } from "react-redux";
-import { RootState } from "store/store";
 
 type Props = {
   title: string;
@@ -10,10 +8,9 @@ type Props = {
 };
 
 const SortItem = ({ title, list, onCloseBtn }: Props) => {
-  const theme = useSelector((state: RootState) => state.datas.theme);
   return (
     <SortItemWrapper>
-      <TitleStyled theme={theme}>{title}</TitleStyled>
+      <TitleStyled>{title}</TitleStyled>
       <SortModalItemBtns
         type={title === "타입" ? "type" : "gene"}
         list={list}
@@ -35,5 +32,5 @@ const TitleStyled = styled.div<{ theme: string }>`
   border-radius: 4px;
   margin: 10px 0 5px 0;
   font-weight: bold;
-  color: ${(props) => (props.theme === "dark" ? "white" : "black")};
+  color: ${(props) => props.theme.textColor};
 `;

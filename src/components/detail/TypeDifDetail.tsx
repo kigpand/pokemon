@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { BsX } from "react-icons/bs";
-import { useSelector } from "react-redux";
 import { typeConvertDamegeData } from "utils/convert";
-import { RootState } from "store/store";
 import types from "json/types.json";
 import TypeDetailText from "./TypeDifDetailText";
 import styled from "styled-components";
@@ -57,8 +55,6 @@ function filterType(typeObj: any) {
 }
 
 const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
-  const theme = useSelector((state: RootState) => state.datas.theme);
-
   const type = useMemo(() => {
     let typeObj: any = {};
     typeArr.forEach((type: string, i: number) => {
@@ -84,7 +80,7 @@ const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
   }, [typeArr]);
 
   return (
-    <DetailWrapper $backgroundColor={theme === "dark" ? "black" : "white"}>
+    <DetailWrapper>
       <CloseStyled onClick={onCloseType} />
       <article>
         <TitleStyled>방어 상성</TitleStyled>
@@ -104,8 +100,8 @@ const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
 
 export default TypeDifDetail;
 
-const DetailWrapper = styled.div<{ $backgroundColor: string }>`
-  background-color: ${(props) => props.$backgroundColor};
+const DetailWrapper = styled.div`
+  background-color: ${(props) => props.theme.backgroundColor};
   top: 0;
   right: 0;
   position: absolute;

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { mobileWidth } from "styles/globalstyles";
 import AddBookModal from "../modal/AddBookModal";
 import styled from "styled-components";
+import BookFullModal from "components/modal/BookFullModal";
 
 type Props = {
   poke: IPokemonList;
@@ -13,18 +14,37 @@ type Props = {
 const BookComponent = ({ poke }: Props) => {
   const { bookPokeList, onRemove, addPokeBook } = useBookList();
   const [onBookModal, setOnBookModal] = useState<Boolean>(false);
+  const [isBookListFull, setIsBookListFull] = useState<boolean>(false);
+
+  function handleAddBook() {
+    if (bookPokeList.length < 6) {
+      addPokeBook(poke, () => setOnBookModal(true));
+    } else {
+      setIsBookListFull(true);
+    }
+  }
+
+  function handleBookFullRemove(item: IPokemonList) {
+    onRemove(item);
+    addPokeBook(poke, () => setOnBookModal(true));
+    setIsBookListFull(false);
+  }
 
   return (
     <>
       {bookPokeList.find((item: IPokemonList) => item.id === poke.id) ? (
         <HeartStyled onClick={() => onRemove(poke)} />
       ) : (
-        <EmptyStyled
-          onClick={() => addPokeBook(poke, () => setOnBookModal(true))}
-        />
+        <EmptyStyled onClick={handleAddBook} />
       )}
       {onBookModal && (
         <AddBookModal onCloseBookModal={() => setOnBookModal(false)} />
+      )}
+      {isBookListFull && (
+        <BookFullModal
+          handleBookFullRemove={handleBookFullRemove}
+          handleClose={() => setIsBookListFull(false)}
+        />
       )}
     </>
   );

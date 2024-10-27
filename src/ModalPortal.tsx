@@ -27,6 +27,7 @@ const ModalWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: anim 0.2s linear forwards;
 
   .back {
     position: absolute;
@@ -38,6 +39,15 @@ const ModalWrapper = styled.section`
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  @keyframes anim {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;
