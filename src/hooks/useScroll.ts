@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 export function useScroll() {
   const [scroll, setScroll] = useState<number>(0);
 
+  console.log("test");
   const onScroll = useCallback(() => {
     if (
       window.scrollY + document.documentElement.clientHeight >
