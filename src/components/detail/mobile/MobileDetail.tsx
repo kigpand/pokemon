@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useMega } from "hooks/useMega";
 import MobileDetailInfo from "./MobileDetailInfo";
 import MobileDetailHeader from "./MobileDetailHeader";

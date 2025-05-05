@@ -3,7 +3,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useMega } from "hooks/useMega";
 import { LAST_NUM } from "utils/convert";
 import { convertOnePoke } from "utils/makeData";

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { BsFilterRight } from "react-icons/bs";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { mobileWidth } from "styles/globalstyles";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { onSearchItem } from "utils/makeData";
 import { useStorage } from "hooks/useStorage";
 import { Page } from "utils/enums";

@@ -2,7 +2,7 @@ import ModalPortal from "ModalPortal";
 import styled from "styled-components";
 import { useBookList } from "hooks/useBookList";
 import BookFullModalList from "./BookFullModalList";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 
 interface IBookModal {
   handleBookFullRemove: (item: IPokemonList) => void;

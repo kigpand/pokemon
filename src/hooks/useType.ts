@@ -1,7 +1,7 @@
 import types from "json/types.json";
 import { useEffect, useState } from "react";
 import { useStorage } from "./useStorage";
-import { IType } from "interface/IType";
+import type { IType } from "interface/IType";
 import { getTypeEn, typeConvertDamegeData } from "utils/convert";
 
 export function useType() {

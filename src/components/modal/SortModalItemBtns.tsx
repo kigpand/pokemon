@@ -6,7 +6,7 @@ import { getColor, getTypeConvertData, getTypeKo } from "utils/convert";
 import { convertPokeData } from "utils/makeData";
 import { resetCurrentList, setPokemonList } from "reducers/pokemon";
 import { SortType } from "typedef/SortType";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useCallback } from "react";
 
 interface ISortBtns {

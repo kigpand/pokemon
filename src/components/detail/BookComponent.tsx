@@ -1,6 +1,6 @@
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useBookList } from "../../hooks/useBookList";
-import { IPokemonList } from "../../interface/IPokemonList";
+import type { IPokemonList } from "../../interface/IPokemonList";
 import { useState } from "react";
 import { mobileWidth } from "styles/globalstyles";
 import AddBookModal from "../modal/AddBookModal";

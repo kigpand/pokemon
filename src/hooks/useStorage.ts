@@ -1,4 +1,4 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import types from "json/types.json";

@@ -1,7 +1,7 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { AiFillDelete } from "react-icons/ai";
 import styled from "styled-components";
-import { SortType } from "typedef/SortType";
+import type { SortType } from "typedef/SortType";
 import { baseStat } from "utils/base";
 import { getColor, getStatKorea } from "utils/convert";
 

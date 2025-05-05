@@ -1,4 +1,4 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import TypeDifDetail from "./TypeDifDetail";

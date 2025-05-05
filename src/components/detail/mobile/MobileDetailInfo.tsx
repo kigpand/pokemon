@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
 import styled from "styled-components";
 import TypeDif from "components/detail/TypeDif";

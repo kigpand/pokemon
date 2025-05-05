@@ -1,6 +1,6 @@
 import { RefObject } from "react";
-import { IPokemonList } from "../interface/IPokemonList";
-import { IPrevList } from "../interface/IPrveList";
+import type { IPokemonList } from "../interface/IPokemonList";
+import type { IPrevList } from "../interface/IPrveList";
 import { getStat, getTypeConvertData } from "./convert";
 import list from "../json/pokemonList.json";
 

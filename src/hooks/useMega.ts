@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { IPokemonList } from "../interface/IPokemonList";
+import type { IPokemonList } from "../interface/IPokemonList";
 import megaList from "../json/mega.json";
 import { convertOnePoke } from "../utils/makeData";
 

@@ -1,4 +1,4 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useStorage } from "hooks/useStorage";
 import DesktopDetailContentsAbilityList from "./DesktopDetailContentsAbilityList";
 import DesktopDetailContentsList from "./DesktopDetailContentsList";

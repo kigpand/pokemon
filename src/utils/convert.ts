@@ -1,5 +1,5 @@
-import { IServerType } from "../interface/IServerType";
-import { SortType } from "../typedef/SortType";
+import type { IServerType } from "../interface/IServerType";
+import type { SortType } from "../typedef/SortType";
 import NORMAL from "../svg/normal.svg";
 import AIR from "../svg/air.svg";
 import BUG from "../svg/bug.svg";

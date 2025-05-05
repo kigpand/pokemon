@@ -1,7 +1,7 @@
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { getColor } from "utils/convert";
 import styled from "styled-components";
 import BookComponent from "components/detail/BookComponent";

@@ -1,4 +1,4 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useRef } from "react";
 import { onSearchItem } from "utils/makeData";
 import styled from "styled-components";

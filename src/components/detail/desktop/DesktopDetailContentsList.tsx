@@ -2,7 +2,7 @@ import styled from "styled-components";
 import DesktopDetailContentsListAbility from "./DesktopDetailContentsListAbility";
 import DesktopDetailContentsListStat from "./DesktopDetailContentsListStat";
 import DesktopDetailContentsListType from "./DesktopDetailContentsListType";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 
 interface IDetailList {
   type: string;

@@ -1,7 +1,7 @@
 import { media } from "styles/MediaStyled";
 import styled from "styled-components";
 import { useStorage } from "hooks/useStorage";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import React from "react";
 import { useBookList } from "hooks/useBookList";
 import { getColor } from "utils/convert";

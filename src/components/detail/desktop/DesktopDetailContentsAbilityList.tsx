@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { RootState } from "store/store";
 import { setCurrentAbility } from "reducers/datas";
 import AbilityModal from "components/modal/AbilityModal";
