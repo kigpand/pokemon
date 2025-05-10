@@ -2,7 +2,6 @@ import { media } from "styles/MediaStyled";
 import styled from "styled-components";
 import { useStorage } from "hooks/useStorage";
 import type { IPokemonList } from "interface/IPokemonList";
-import React from "react";
 import { useBookList } from "hooks/useBookList";
 import { getColor } from "utils/convert";
 
@@ -32,7 +31,7 @@ const PokemonList = ({ pokemon }: Props) => {
   );
 };
 
-export default React.memo(PokemonList);
+export default PokemonList;
 
 type StyledProps = {
   $pokeColor: string;

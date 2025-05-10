@@ -56,27 +56,26 @@ function filterType(typeObj: any) {
 
 const TypeDifDetail = ({ typeArr, onCloseType }: Props) => {
   const type = useMemo(() => {
-    let typeObj: any = {};
-    typeArr.forEach((type: string, i: number) => {
+    const initial = {
+      doubleFrom: [] as string[],
+      halfFrom: [] as string[],
+      noFrom: [] as string[],
+    };
+
+    const mergedType = typeArr.reduce((acc, type) => {
       const result = types.find((item) => item.name === type);
-      if (result) {
-        const convert = typeConvertDamegeData(result);
-        if (i === 0) {
-          typeObj = {
-            doubleFrom: [...convert.doubleFrom],
-            halfFrom: [...convert.halfFrom],
-            noFrom: [...convert.noFrom],
-          };
-        } else {
-          typeObj = {
-            doubleFrom: [...typeObj.doubleFrom, ...convert.doubleFrom],
-            halfFrom: [...typeObj.halfFrom, ...convert.halfFrom],
-            noFrom: [...typeObj.noFrom, ...convert.noFrom],
-          };
-        }
-      }
-    });
-    return filterType(typeObj);
+      if (!result) return acc;
+
+      const converted = typeConvertDamegeData(result);
+
+      return {
+        doubleFrom: [...acc.doubleFrom, ...converted.doubleFrom],
+        halfFrom: [...acc.halfFrom, ...converted.halfFrom],
+        noFrom: [...acc.noFrom, ...converted.noFrom],
+      };
+    }, initial);
+
+    return filterType(mergedType);
   }, [typeArr]);
 
   return (
