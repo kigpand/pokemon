@@ -1,14 +1,14 @@
-import { useState } from "react";
 import TypeModal from "components/modal/TypeModal";
+import { useModal } from "hooks/useModal";
 import styled from "styled-components";
 
 export default function MainType() {
-  const [view, setView] = useState<boolean>(false);
+  const { isOpen, open, close } = useModal();
 
   return (
     <TypeWrapper>
-      <button onClick={() => setView(true)}>타입보기</button>
-      {view && <TypeModal onCloseModal={() => setView(false)} />}
+      <button onClick={open}>타입보기</button>
+      {isOpen && <TypeModal onCloseModal={close} />}
     </TypeWrapper>
   );
 }

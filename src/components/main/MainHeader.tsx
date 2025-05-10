@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyboardEvent } from "react";
-import { useState } from "react";
 import { BsFilterRight } from "react-icons/bs";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { mobileWidth } from "styles/globalstyles";
@@ -14,10 +13,11 @@ import styled from "styled-components";
 import MainType from "./MainType";
 import MainThemeToggle from "./MainThemeToggle";
 import SortModal from "components/modal/SortModal";
+import { useModal } from "hooks/useModal";
 
 const MainHeader = () => {
   const searchRef = useRef<HTMLInputElement>(null);
-  const [onSortModal, setOnSortModal] = useState<Boolean>(false);
+  const { open, isOpen, close } = useModal();
   const nav = useNavigate();
   const { setCurrentPokeStorage } = useStorage();
 
@@ -48,11 +48,11 @@ const MainHeader = () => {
       <SideItemWrapper>
         <FirstSide>
           <MainThemeToggle />
-          <SortStyled onClick={() => setOnSortModal(true)} />
+          <SortStyled onClick={open} />
         </FirstSide>
         <BookStyled onClick={moveToBook} />
       </SideItemWrapper>
-      {onSortModal && <SortModal closeSort={() => setOnSortModal(false)} />}
+      {isOpen && <SortModal closeSort={close} />}
     </HeaderStyled>
   );
 };
