@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { IPokemonList } from "../interface/IPokemonList";
+import type { IPokemonList } from "../interface/IPokemonList";
 import pokeList from "../json/gigantamax.json";
 
 export function useDymax(poke: IPokemonList) {

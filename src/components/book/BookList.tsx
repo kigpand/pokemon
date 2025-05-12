@@ -2,7 +2,7 @@ import { AiFillDelete, AiOutlineSearch } from "react-icons/ai";
 import styled from "styled-components";
 import { useStorage } from "hooks/useStorage";
 import { useBookList } from "hooks/useBookList";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 
 interface IBookList {
   list: IPokemonList;

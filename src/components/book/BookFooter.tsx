@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IPokemonList } from "../../interface/IPokemonList";
+import type { IPokemonList } from "../../interface/IPokemonList";
 import { useNavigate } from "react-router-dom";
 import { useBookList } from "../../hooks/useBookList";
 import { mobileWidth } from "styles/globalstyles";

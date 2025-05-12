@@ -1,4 +1,4 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import styled from "styled-components";
 
 type VSProps = {

@@ -1,7 +1,7 @@
 import VsModalResultPokeList from "components/modal/VsModalResultPokeList";
 import styled from "styled-components";
 import { mobileWidth } from "styles/globalstyles";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 
 type Props = {
   currentPoke: IPokemonList;

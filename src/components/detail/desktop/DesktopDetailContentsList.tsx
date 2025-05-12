@@ -2,13 +2,13 @@ import styled from "styled-components";
 import DesktopDetailContentsListAbility from "./DesktopDetailContentsListAbility";
 import DesktopDetailContentsListStat from "./DesktopDetailContentsListStat";
 import DesktopDetailContentsListType from "./DesktopDetailContentsListType";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 
-interface IDetailList {
+type Props = {
   type: string;
   items: IPokemonList;
   onClick?: (item: any) => void;
-}
+};
 
 function getRenderItem(items: IPokemonList, type: string, onClick: any) {
   switch (type) {
@@ -25,7 +25,7 @@ function getRenderItem(items: IPokemonList, type: string, onClick: any) {
   }
 }
 
-const DesktopDetailContentsList = ({ type, items, onClick }: IDetailList) => {
+const DesktopDetailContentsList = ({ type, items, onClick }: Props) => {
   return (
     <DetailListStyled>
       <TitleStyled>{type}</TitleStyled>

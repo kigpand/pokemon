@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { IPokemonList } from "interface/IPokemonList";
-import { SortType } from "typedef/SortType";
+import type { IPokemonList } from "interface/IPokemonList";
+import type { SortType } from "typedef/SortType";
 import { baseStat } from "utils/base";
 import { getStatKorea, getStatusBarColor, getTypeIcon } from "utils/convert";
 import { mobileWidth } from "styles/globalstyles";

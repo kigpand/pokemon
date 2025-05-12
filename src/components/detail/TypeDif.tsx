@@ -1,30 +1,28 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import TypeDifDetail from "./TypeDifDetail";
 import VsModal from "components/modal/VsModal";
+import { useModal } from "hooks/useModal";
 
 type Props = {
   poke: IPokemonList;
 };
 
 const TypeDif = ({ poke }: Props) => {
-  const [typeDetail, setTypeDetail] = useState<boolean>(false);
+  const { isOpen, open, close } = useModal();
   const [vs, setVS] = useState<boolean>(false);
 
   useEffect(() => {
-    setTypeDetail(false);
-  }, [poke]);
+    close();
+  }, [poke, close]);
 
   return (
     <DifWrapper>
-      <div onClick={() => setTypeDetail(true)}>상성표 보기</div>
+      <div onClick={open}>상성표 보기</div>
       <div onClick={() => setVS(true)}>비교</div>
-      {typeDetail && (
-        <TypeDifDetail
-          typeArr={poke.types || []}
-          onCloseType={() => setTypeDetail(false)}
-        />
+      {isOpen && (
+        <TypeDifDetail typeArr={poke.types || []} onCloseType={close} />
       )}
       {vs && <VsModal currentPoke={poke} closeModal={() => setVS(false)} />}
     </DifWrapper>

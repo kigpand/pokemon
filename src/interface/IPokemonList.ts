@@ -17,8 +17,3 @@ export interface IPokemonList {
   speed: number;
   allStat: number;
 }
-
-interface IStat {
-  name: string;
-  stat: number;
-}

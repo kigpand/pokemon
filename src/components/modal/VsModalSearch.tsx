@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import VsModalSearchComponent from "components/modal/VsModalSearchComponent";
 import VsModalCheckComponent from "components/modal/VsModalCheckComponent";
 import styled from "styled-components";

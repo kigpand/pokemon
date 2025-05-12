@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IPokemonList } from "../interface/IPokemonList";
+import type { IPokemonList } from "../interface/IPokemonList";
 import { convertPokeData } from "utils/makeData";
 import pokeData from "json/pokemonList.json";
 

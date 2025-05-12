@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { mobileWidth } from "styles/globalstyles";
 import { RootState } from "store/store";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { setCurrentList } from "reducers/pokemon";
 import styled from "styled-components";
 import PokemonList from "components/pokemonList/PokemonList";

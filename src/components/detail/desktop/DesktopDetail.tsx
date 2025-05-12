@@ -3,7 +3,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import { useMega } from "hooks/useMega";
 import { LAST_NUM } from "utils/convert";
 import { convertOnePoke } from "utils/makeData";
@@ -13,78 +13,82 @@ import DesktopDetailHeader from "./DesktopDetailHeader";
 import MegaModal from "components/modal/MegaModal";
 import DesktopDetailBody from "./DesktopDetailBody";
 import { useStorage } from "hooks/useStorage";
+import { useModal } from "hooks/useModal";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
-interface IDesktopDetail {
-  currentPoke: IPokemonList;
-  onChangePoke: (poke: IPokemonList) => void;
-}
-
-const DesktopDetail = ({ currentPoke, onChangePoke }: IDesktopDetail) => {
-  const [pokeItem, setPokeItem] = useState<IPokemonList>(currentPoke);
-  const [originPoke, setOriginPoke] = useState<IPokemonList>(currentPoke);
-  const [megaModal, setMegaModal] = useState<boolean>(false);
-  const { megaPoke } = useMega(pokeItem);
-  const { setCurrentPokeStorage } = useStorage();
+const DesktopDetail = () => {
+  const { setCurrentPokeStorage, getCurrentPokeStorage } = useStorage();
+  // 현재 적용중인 포켓몬
+  const [currentPoke, setCurrentPoke] = useState<IPokemonList | null>(
+    getCurrentPokeStorage()
+  );
+  const [originPoke, setOriginPoke] = useState<IPokemonList | null>(
+    currentPoke
+  );
+  const { isOpen, open, close } = useModal();
+  const { megaPoke } = useMega(currentPoke);
 
   const onChangeMegaPoke = useCallback(() => {
     if (!megaPoke) return;
     if (Array.isArray(megaPoke)) {
-      setMegaModal(true);
+      open();
     } else {
-      if (pokeItem.name === megaPoke.name) return;
-      setPokeItem(megaPoke);
+      if (currentPoke?.name === megaPoke.name) return;
+      setCurrentPoke(megaPoke);
     }
-  }, [megaPoke, pokeItem.name]);
+  }, [megaPoke, open, currentPoke?.name]);
 
   const onChangeDymaxImg = useCallback(
     (img: string) => {
-      if (pokeItem.imageUrl === img) return;
-      setPokeItem({ ...currentPoke, imageUrl: img });
+      if (currentPoke?.imageUrl === img || !currentPoke) return;
+      setCurrentPoke({ ...currentPoke, imageUrl: img });
     },
-    [currentPoke, pokeItem.imageUrl]
+    [currentPoke, setCurrentPoke]
   );
 
   const onArrowClick = useCallback(
     (type: ARROWTYPE) => {
       let item = null;
       if (type === "LEFT") {
-        item = list.find((item) => item.id === pokeItem!.id - 1);
+        item = list.find((item) => item.id === currentPoke!.id - 1);
       } else {
-        item = list.find((item) => item.id === pokeItem!.id + 1);
+        item = list.find((item) => item.id === currentPoke!.id + 1);
       }
       if (!item) return;
       const pokemon = convertOnePoke(item);
       setCurrentPokeStorage(pokemon);
-      onChangePoke(pokemon);
+      setCurrentPoke(pokemon);
       setOriginPoke(pokemon);
-      setPokeItem(pokemon);
     },
-    [onChangePoke, pokeItem, setCurrentPokeStorage]
+    [setCurrentPoke, currentPoke, setCurrentPokeStorage]
   );
+
+  if (!currentPoke) return null;
 
   return (
     <DesktopWrapper>
-      {pokeItem!.id !== 1 && <LeftArrow onClick={() => onArrowClick("LEFT")} />}
+      {currentPoke!.id !== 1 && (
+        <LeftArrow onClick={() => onArrowClick("LEFT")} />
+      )}
       <DesktopDetailHeader />
       <DesktopDetailBody
-        currentPoke={pokeItem}
+        currentPoke={currentPoke}
         megaPoke={megaPoke}
-        onChangeOrigin={() => setPokeItem(originPoke)}
+        onChangeOrigin={() => setCurrentPoke(originPoke)}
         onChangeMegaPoke={onChangeMegaPoke}
         onChangeDymaxImg={onChangeDymaxImg}
       />
-      {pokeItem!.id !== LAST_NUM && (
+      {currentPoke!.id !== LAST_NUM && (
         <RightArrow onClick={() => onArrowClick("RIGHT")} />
       )}
-      {megaModal && Array.isArray(megaPoke) && (
+      {isOpen && Array.isArray(megaPoke) && (
         <MegaModal
           megaPoke={megaPoke}
           onChangeMega={(poke: IPokemonList) => {
-            setPokeItem(poke);
+            setCurrentPoke(poke);
           }}
-          onCloseModal={() => setMegaModal(false)}
+          onCloseModal={close}
         />
       )}
     </DesktopWrapper>

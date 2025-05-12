@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ModalPortal from "ModalPortal";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 
 type Props = {
   dymax?: string;

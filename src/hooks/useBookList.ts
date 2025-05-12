@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { removeBookPokeList, setBookPokeList } from "../reducers/pokemon";
-import { IPokemonList } from "../interface/IPokemonList";
+import type { IPokemonList } from "../interface/IPokemonList";
 import { useCallback } from "react";
 
 export const useBookList = () => {

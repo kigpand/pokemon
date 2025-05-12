@@ -1,4 +1,4 @@
-import { IPokemonList } from "../../interface/IPokemonList";
+import type { IPokemonList } from "../../interface/IPokemonList";
 import { useBookList } from "../../hooks/useBookList";
 import { AiFillDelete } from "react-icons/ai";
 import styled from "styled-components";

@@ -1,10 +1,10 @@
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import styled from "styled-components";
 import { getTypeIcon } from "utils/convert";
 
 type Props = {
   items: IPokemonList;
-  onClick: any;
+  onClick: (item: string) => void;
 };
 
 export default function DesktopDetailContentsListType({

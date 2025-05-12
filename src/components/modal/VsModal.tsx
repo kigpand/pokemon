@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IPokemonList } from "interface/IPokemonList";
+import type { IPokemonList } from "interface/IPokemonList";
 import VsModalSearch from "./VsModalSearch";
 import VsModalResult from "./VsModalResult";
 import ModalPortal from "ModalPortal";

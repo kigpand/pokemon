@@ -16,20 +16,17 @@ type Props = {
 
 const TypeDifDetailText = ({ title, arr, num }: Props) => {
   const types = useMemo(() => {
-    let typeArr: ITypeText[] = [];
-    // 각 상성들 중첩되는 항목 제거 및 count 증가로 배율 조정
-    arr.forEach((item: string) => {
-      const result = typeArr.find((type: ITypeText) => type.text === item);
-      if (result) {
-        typeArr = [
-          ...typeArr.filter((type) => type.text !== item),
-          { ...result, count: 2 },
-        ];
+    const map = new Map<string, ITypeText>();
+
+    arr.forEach((item) => {
+      if (map.has(item)) {
+        map.set(item, { text: item, count: 2 });
       } else {
-        typeArr = [...typeArr, { text: item, count: 1 }];
+        map.set(item, { text: item, count: 1 });
       }
     });
-    return typeArr;
+
+    return Array.from(map.values());
   }, [arr]);
 
   return (
