@@ -1,11 +1,9 @@
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import type { IPokemonList } from "interface/IPokemonList";
 import { getColor } from "utils/convert";
 import styled from "styled-components";
 import BookComponent from "components/detail/BookComponent";
-import AddBookModal from "components/modal/AddBookModal";
 import { useStorage } from "hooks/useStorage";
 
 type Props = {
@@ -13,7 +11,6 @@ type Props = {
 };
 
 const MobileDetailHeader = ({ poke }: Props) => {
-  const [onBookModal, setOnBookModal] = useState<Boolean>(false);
   const nav = useNavigate();
   const { clearCurrentPokeStorage } = useStorage();
 
@@ -34,9 +31,6 @@ const MobileDetailHeader = ({ poke }: Props) => {
       <GeneragteWrapper color={getColor(poke?.types![0])}>
         {poke.generate}
       </GeneragteWrapper>
-      {onBookModal && (
-        <AddBookModal onCloseBookModal={() => setOnBookModal(false)} />
-      )}
     </HeaderWrapper>
   );
 };

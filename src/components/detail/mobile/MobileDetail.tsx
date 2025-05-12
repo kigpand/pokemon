@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { IPokemonList } from "interface/IPokemonList";
 import { useMega } from "hooks/useMega";
 import MobileDetailInfo from "./MobileDetailInfo";
@@ -10,17 +10,15 @@ import MobileDetailStatus from "./MobileDetailStatus";
 import MobileDetailLayout from "./MobileDetailLayout";
 import styled from "styled-components";
 import MegaModal from "components/modal/MegaModal";
+import { useStorage } from "hooks/useStorage";
 
-interface IMobileDetail {
-  currentPoke: IPokemonList;
-}
-
-interface IDetailArray {
+type DetailArray = {
   title: string;
   component: React.ReactNode;
-}
+};
 
-function makeArray(poke: IPokemonList): IDetailArray[] {
+function makeArray(poke: IPokemonList | null): DetailArray[] {
+  if (!poke) return [];
   return [
     {
       title: "분류",
@@ -41,54 +39,67 @@ function makeArray(poke: IPokemonList): IDetailArray[] {
   ];
 }
 
-const MobileDetail = ({ currentPoke }: IMobileDetail) => {
-  const [poke, setPoke] = useState<IPokemonList>(currentPoke);
+const MobileDetail = () => {
+  const { getCurrentPokeStorage } = useStorage();
+  // 현재 적용중인 포켓몬
+  const [currentPoke, setCurrentPoke] = useState<IPokemonList | null>(
+    getCurrentPokeStorage()
+  );
+  const [originPoke, setOriginPoke] = useState<IPokemonList | null>(
+    currentPoke
+  );
   const [megaModal, setMegaModal] = useState<boolean>(false);
-  const detailArray = makeArray(poke);
+  const detailArray = makeArray(originPoke);
   const { megaPoke } = useMega(currentPoke);
+
+  useEffect(() => {
+    setCurrentPoke(getCurrentPokeStorage());
+  }, [getCurrentPokeStorage]);
 
   const onChangeMega = useCallback(() => {
     if (!megaPoke) return;
     if (Array.isArray(megaPoke)) {
       setMegaModal(true);
     } else {
-      setPoke(megaPoke);
+      setOriginPoke(megaPoke);
     }
   }, [megaPoke]);
 
+  if (!originPoke || !currentPoke) return null;
+
   return (
     <>
-      {poke?.types && (
+      {originPoke?.types && (
         <Container>
-          <MobileDetailHeader poke={poke} />
+          <MobileDetailHeader poke={originPoke} />
           <MobileDetailInfo
-            poke={poke}
+            poke={originPoke}
             currentPoke={currentPoke}
             megaPoke={megaPoke || null}
-            onChangeOrigin={() => setPoke(currentPoke)}
+            onChangeOrigin={() => setOriginPoke(currentPoke)}
             onChangeMega={onChangeMega}
             onChangeDymax={(dymax) =>
-              setPoke({ ...currentPoke, imageUrl: dymax })
+              setOriginPoke({ ...currentPoke, imageUrl: dymax })
             }
           />
-          {detailArray.map((item: IDetailArray, i: number) => {
+          {detailArray.map((item: DetailArray, i: number) => {
             return (
               <MobileDetailLayout
                 key={i}
-                types={poke.types!}
+                types={originPoke.types!}
                 title={item.title}
                 component={item.component}
               />
             );
           })}
           <b style={{ paddingLeft: "5px", fontWeight: "bold" }}>정보</b>
-          <FlovarStyled>{poke?.flavor}</FlovarStyled>
+          <FlovarStyled>{originPoke?.flavor}</FlovarStyled>
         </Container>
       )}
       {megaModal && Array.isArray(megaPoke) && (
         <MegaModal
           megaPoke={megaPoke}
-          onChangeMega={(poke) => setPoke(poke)}
+          onChangeMega={(poke) => setOriginPoke(poke)}
           onCloseModal={() => setMegaModal(false)}
         />
       )}

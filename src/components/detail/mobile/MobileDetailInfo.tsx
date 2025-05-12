@@ -1,9 +1,10 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import type { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
 import styled from "styled-components";
 import TypeDif from "components/detail/TypeDif";
 import EvolutionModal from "components/modal/EvolutionModal";
+import { useModal } from "hooks/useModal";
 
 type Props = {
   poke: IPokemonList;
@@ -23,7 +24,7 @@ const MobileDetailInfo = ({
   onChangeDymax,
 }: Props) => {
   const { dymax } = useDymax(currentPoke);
-  const [modal, setModal] = useState<boolean>(false);
+  const { isOpen, open, close } = useModal();
 
   const handleEvolutionModal = useCallback(
     (type: "origin" | "mega" | "dymax") => {
@@ -36,17 +37,15 @@ const MobileDetailInfo = ({
       if (type === "dymax") {
         onChangeDymax(dymax!);
       }
-      setModal(false);
+      close();
     },
-    [dymax, onChangeDymax, onChangeMega, onChangeOrigin]
+    [dymax, onChangeDymax, onChangeMega, onChangeOrigin, close]
   );
 
   return (
     <InfoWrapper>
       {(megaPoke || dymax) && (
-        <OtherFormStyled onClick={() => setModal(true)}>
-          다른 폼 보기
-        </OtherFormStyled>
+        <OtherFormStyled onClick={open}>다른 폼 보기</OtherFormStyled>
       )}
       <ImgStyled
         src={poke.imageUrl}
@@ -60,12 +59,12 @@ const MobileDetailInfo = ({
         <div>키: {poke.height / 10}m</div>
         <div>몸무게: {poke.weight / 10}kg</div>
       </WHstatStyled>
-      {modal && (
+      {isOpen && (
         <EvolutionModal
           megaPoke={megaPoke}
           dymax={dymax || undefined}
           handleEvolutionModal={handleEvolutionModal}
-          handleCloseModal={() => setModal(false)}
+          handleCloseModal={close}
         />
       )}
     </InfoWrapper>

@@ -2,39 +2,38 @@ import styled from "styled-components";
 import { media } from "styles/MediaStyled";
 import { getColor, getTypeIcon } from "utils/convert";
 
-interface ITypeItem {
+type Props = {
   arr: string[];
   title: string;
   type: string;
   onChangeType: any;
-}
+};
 
-const TypeItem = ({ arr, title, type, onChangeType }: ITypeItem) => {
+const TypeItem = ({ arr, title, type, onChangeType }: Props) => {
   return (
     <TypeItemWrapper>
       <TitleStyled $backgroundcolor={getColor(type)}>{title}</TitleStyled>
       <ItemWrapper $borderColor={getColor(type)}>
-        {arr[0] &&
-          arr.map((item: string, i: number) => {
-            return (
-              <IconWrapper key={i}>
-                <img
-                  src={getTypeIcon(item)}
-                  onClick={() => onChangeType(item)}
-                  alt="img"
-                  className="icon"
-                />
-                <p
-                  className="arrow_box"
-                  style={{
-                    backgroundColor: getColor(item),
-                  }}
-                >
-                  {item}
-                </p>
-              </IconWrapper>
-            );
-          })}
+        {arr?.map((item: string, i: number) => {
+          return (
+            <IconWrapper key={i}>
+              <img
+                src={getTypeIcon(item)}
+                onClick={() => onChangeType(item)}
+                alt="img"
+                className="icon"
+              />
+              <p
+                className="arrow_box"
+                style={{
+                  backgroundColor: getColor(item),
+                }}
+              >
+                {item}
+              </p>
+            </IconWrapper>
+          );
+        })}
       </ItemWrapper>
     </TypeItemWrapper>
   );
