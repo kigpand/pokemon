@@ -13,6 +13,7 @@ import DesktopDetailHeader from "./DesktopDetailHeader";
 import MegaModal from "components/modal/MegaModal";
 import DesktopDetailBody from "./DesktopDetailBody";
 import { useStorage } from "hooks/useStorage";
+import { useModal } from "hooks/useModal";
 
 type ARROWTYPE = "LEFT" | "RIGHT";
 
@@ -25,18 +26,18 @@ const DesktopDetail = () => {
   const [originPoke, setOriginPoke] = useState<IPokemonList | null>(
     currentPoke
   );
-  const [megaModal, setMegaModal] = useState<boolean>(false);
+  const { isOpen, open, close } = useModal();
   const { megaPoke } = useMega(currentPoke);
 
   const onChangeMegaPoke = useCallback(() => {
     if (!megaPoke) return;
     if (Array.isArray(megaPoke)) {
-      setMegaModal(true);
+      open();
     } else {
       if (currentPoke?.name === megaPoke.name) return;
       setCurrentPoke(megaPoke);
     }
-  }, [megaPoke, currentPoke, setCurrentPoke]);
+  }, [megaPoke, open, currentPoke?.name]);
 
   const onChangeDymaxImg = useCallback(
     (img: string) => {
@@ -81,13 +82,13 @@ const DesktopDetail = () => {
       {currentPoke!.id !== LAST_NUM && (
         <RightArrow onClick={() => onArrowClick("RIGHT")} />
       )}
-      {megaModal && Array.isArray(megaPoke) && (
+      {isOpen && Array.isArray(megaPoke) && (
         <MegaModal
           megaPoke={megaPoke}
           onChangeMega={(poke: IPokemonList) => {
             setCurrentPoke(poke);
           }}
-          onCloseModal={() => setMegaModal(false)}
+          onCloseModal={close}
         />
       )}
     </DesktopWrapper>

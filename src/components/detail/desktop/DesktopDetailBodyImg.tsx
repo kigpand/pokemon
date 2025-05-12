@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useCallback, useState } from "react";
 import type { IPokemonList } from "interface/IPokemonList";
 import { useDymax } from "hooks/useDymax";
 import EvolutionModal from "components/modal/EvolutionModal";
+import { useModal } from "hooks/useModal";
 
 type Props = {
   currentPoke: IPokemonList;
@@ -14,23 +14,20 @@ type Props = {
 
 const DesktopDetailBodyImg = (props: Props) => {
   const { dymax } = useDymax(props.currentPoke);
-  const [modal, setModal] = useState<boolean>(false);
+  const { isOpen, open, close } = useModal();
 
-  const handleEvolutionModal = useCallback(
-    (type: "origin" | "mega" | "dymax") => {
-      if (type === "origin") {
-        props.onChangeOrigin();
-      }
-      if (type === "mega") {
-        props.onChangeMegaPoke();
-      }
-      if (type === "dymax") {
-        props.onChangeDymaxImg(dymax!);
-      }
-      setModal(false);
-    },
-    [dymax, props]
-  );
+  const handleEvolutionModal = (type: "origin" | "mega" | "dymax") => {
+    if (type === "origin") {
+      props.onChangeOrigin();
+    }
+    if (type === "mega") {
+      props.onChangeMegaPoke();
+    }
+    if (type === "dymax") {
+      props.onChangeDymaxImg(dymax!);
+    }
+    close();
+  };
 
   return (
     <ImgWrapper>
@@ -40,16 +37,14 @@ const DesktopDetailBodyImg = (props: Props) => {
         referrerPolicy="no-referrer"
       />
       {(props.megaPoke || dymax) && (
-        <ImgTextStyled onClick={() => setModal(true)}>
-          다른 폼 보기
-        </ImgTextStyled>
+        <ImgTextStyled onClick={open}>다른 폼 보기</ImgTextStyled>
       )}
-      {modal && (
+      {isOpen && (
         <EvolutionModal
           dymax={dymax || undefined}
           megaPoke={props.megaPoke!}
           handleEvolutionModal={handleEvolutionModal}
-          handleCloseModal={() => setModal(false)}
+          handleCloseModal={close}
         />
       )}
     </ImgWrapper>

@@ -5,15 +5,15 @@ import DesktopDetailContents from "./DesktopDetailContents";
 import BookComponent from "components/detail/BookComponent";
 import DesktopDetailBodyImg from "./DesktopDetailBodyImg";
 
-interface IDetailBody {
+type Props = {
   currentPoke: IPokemonList;
   megaPoke: IPokemonList | IPokemonList[] | null;
   onChangeOrigin: () => void;
   onChangeMegaPoke: () => void;
   onChangeDymaxImg: (img: string) => void;
-}
+};
 
-const DesktopDetailBody = (props: IDetailBody) => {
+const DesktopDetailBody = (props: Props) => {
   return (
     <BodyWrapper $borderColor={getLineColor(props.currentPoke!.types![0])}>
       <BookComponent poke={props.currentPoke} />
