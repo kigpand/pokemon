@@ -1,8 +1,12 @@
+import { useStorage } from "hooks/useStorage";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Default = () => {
   const nav = useNavigate();
+  const { getCurrentPokeStorage } = useStorage();
+  console.log(getCurrentPokeStorage());
+
   return (
     <DefaultWrapper>
       <h1>잘못된 경로입니다.</h1>
