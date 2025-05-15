@@ -1,11 +1,8 @@
-import { useStorage } from "hooks/useStorage";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Default = () => {
   const nav = useNavigate();
-  const { getCurrentPokeStorage } = useStorage();
-  console.log(getCurrentPokeStorage());
 
   return (
     <DefaultWrapper>
